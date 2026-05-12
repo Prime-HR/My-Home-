@@ -502,5 +502,5 @@ if (contactForm) {
 // CONSOLE SIGNATURE
 // ================================================
 console.log('%c🚀 RAUF HUSEIN SOFTWARE MARKETPLACE 🚀', 'font-size:18px;color:#f5a623;font-weight:bold;');
-console.log('%c30+ Enterprise Systems · Built for Africa', 'color:#00d4aa;');
-console.log('%chusein@primehr.org · +233 24 883 7001', 'color:#6b7280;');
+console.log('%c90+ Enterprise Systems · Built for Africa', 'color:#00d4aa;');
+console.log('%chuseinrauf0@gmail.com · +233 24 883 7001', 'color:#6b7280;');
