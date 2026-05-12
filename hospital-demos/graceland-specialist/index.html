@@ -1,0 +1,1095 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Graceland Specialist Hospital | Quality Healthcare in Kumasi, Ghana</title>
+  <meta name="description" content="Graceland Specialist Hospital — Trusted healthcare in Kumasi, Ghana. Grace-filled specialist hospital delivering outstanding medical care in Kumasi.. Call 026 400 4383 for appointments and emergencies.">
+  <meta name="keywords" content="hospital Kumasi, healthcare Ghana, Graceland Specialist Hospital, doctor Kumasi, medical centre Ghana">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --navy: #0d2137;
+      --navy2: #122d4b;
+      --blue: #1565c0;
+      --blue-light: #1976d2;
+      --teal: #00acc1;
+      --teal-light: #00bcd4;
+      --red: #dc2626;
+      --green: #16a34a;
+      --white: #ffffff;
+      --off-white: #f8fafc;
+      --surface: #f1f5f9;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --text-dim: #475569;
+      --text-light: #94a3b8;
+      --gold: #f59e0b;
+      --radius: 12px;
+      --radius-lg: 20px;
+      --shadow: 0 4px 20px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+      --transition: 0.3s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); line-height: 1.6; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; }
+
+    /* ── TOP EMERGENCY BAR ── */
+    .emergency-bar {
+      background: var(--red);
+      color: white;
+      text-align: center;
+      padding: 0.5rem 1rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .emergency-bar a { color: white; font-weight: 700; }
+    .emergency-bar i { margin-right: 0.4rem; }
+    .emg-dot { width: 6px; height: 6px; background: rgba(255,255,255,0.6); border-radius: 50%; display: inline-block; }
+
+    /* ── NAV ── */
+    .nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .logo-mark {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+    }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+    .logo-name {
+      font-weight: 800;
+      font-size: 0.9rem;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+    }
+    .logo-sub {
+      font-size: 0.65rem;
+      color: var(--teal);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 0.25rem;
+      margin-left: auto;
+    }
+    .nav-links a {
+      display: block;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      border-radius: 8px;
+      transition: all var(--transition);
+    }
+    .nav-links a:hover { color: var(--blue); background: #eff6ff; }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 1.25rem;
+      background: var(--blue);
+      color: white;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.02em;
+      transition: all var(--transition);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .nav-cta:hover { background: var(--blue-light); transform: translateY(-1px); }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 0.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-left: auto;
+    }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: 0.3s; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 50%, #0d3a5e 100%);
+      color: white;
+      padding: 5rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,172,193,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      left: -5%;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(21,101,192,0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.875rem;
+      background: rgba(0,172,193,0.2);
+      border: 1px solid rgba(0,172,193,0.4);
+      border-radius: 100px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--teal-light);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero-badge i { font-size: 0.7rem; }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: white;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+    .hero-title span { color: var(--teal-light); }
+    .hero-desc {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+      max-width: 520px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.875rem 1.75rem;
+      background: var(--teal);
+      color: white;
+      border-radius: var(--radius);
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: all var(--transition);
+    }
+    .btn-hero-primary:hover { background: var(--teal-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,172,193,0.4); }
+    .btn-hero-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.875rem 1.75rem;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all var(--transition);
+    }
+    .btn-hero-ghost:hover { background: rgba(255,255,255,0.18); }
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .h-stat { display: flex; flex-direction: column; gap: 0.15rem; }
+    .h-stat-num {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: white;
+      line-height: 1;
+    }
+    .h-stat-num span { color: var(--teal-light); }
+    .h-stat-label { font-size: 0.72rem; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.06em; }
+    .h-stat-sep { width: 1px; height: 36px; background: rgba(255,255,255,0.15); align-self: center; }
+
+    /* Hero visual (right side) */
+    .hero-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      flex-shrink: 0;
+    }
+    .hero-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+      width: 260px;
+    }
+    .hero-card-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+    .hero-card-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.85);
+    }
+    .hero-card-row:last-child { border-bottom: none; }
+    .hero-card-row i { color: var(--teal-light); width: 18px; text-align: center; }
+    .open-badge {
+      background: rgba(22,163,74,0.2);
+      border: 1px solid rgba(22,163,74,0.4);
+      color: #4ade80;
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+      font-size: 0.68rem;
+      font-weight: 700;
+    }
+
+    /* ── TRUST STRIP ── */
+    .trust-strip {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 2rem;
+    }
+    .trust-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-dim);
+    }
+    .trust-item i { color: var(--blue); font-size: 1rem; }
+
+    /* ── SECTIONS ── */
+    .section { padding: 5rem 2rem; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .section-label::before { content: ''; display: block; width: 20px; height: 2px; background: var(--blue); border-radius: 2px; }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.75rem, 3vw, 2.75rem);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .section-sub { font-size: 1rem; color: var(--text-dim); margin-top: 0.75rem; max-width: 560px; line-height: 1.7; }
+
+    /* ── SERVICES ── */
+    .services-section { background: var(--white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .service-card {
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.75rem;
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--blue), var(--teal));
+      transform: scaleX(0);
+      transition: transform var(--transition);
+      transform-origin: left;
+    }
+    .service-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); border-color: transparent; }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      width: 52px;
+      height: 52px;
+      background: linear-gradient(135deg, #dbeafe, #e0f2fe);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.4rem;
+      color: var(--blue);
+    }
+    .service-title { font-weight: 700; font-size: 1rem; color: var(--navy); margin-bottom: 0.5rem; }
+    .service-desc { font-size: 0.875rem; color: var(--text-dim); line-height: 1.65; }
+
+    /* ── WHY US ── */
+    .why-section { background: var(--navy); color: white; }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .why-left .section-label { color: var(--teal-light); }
+    .why-left .section-label::before { background: var(--teal-light); }
+    .why-left .section-title { color: white; }
+    .why-left .section-sub { color: rgba(255,255,255,0.65); }
+    .why-items { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
+    .why-item {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      padding: 1.25rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      transition: all var(--transition);
+    }
+    .why-item:hover { background: rgba(255,255,255,0.09); border-color: rgba(0,172,193,0.3); }
+    .why-icon {
+      width: 42px;
+      height: 42px;
+      background: rgba(0,172,193,0.15);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--teal-light);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .why-item h4 { font-weight: 700; font-size: 0.95rem; color: white; margin-bottom: 0.35rem; }
+    .why-item p { font-size: 0.84rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+    .why-visual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .why-stat-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      text-align: center;
+    }
+    .why-stat-card:first-child { grid-column: span 2; }
+    .wsc-num {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--teal-light);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .wsc-label { font-size: 0.8rem; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.06em; }
+
+    /* ── CONTACT ── */
+    .contact-section { background: var(--off-white); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem; align-items: start; }
+    .contact-cards { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-card {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: all var(--transition);
+    }
+    .contact-card:hover { box-shadow: var(--shadow); border-color: #bfdbfe; }
+    .contact-card-icon {
+      width: 46px;
+      height: 46px;
+      background: #dbeafe;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .contact-card h4 { font-weight: 700; font-size: 0.875rem; color: var(--navy); margin-bottom: 0.35rem; }
+    .contact-card p, .contact-card a { font-size: 0.875rem; color: var(--text-dim); line-height: 1.6; }
+    .contact-card a { color: var(--blue); font-weight: 600; }
+
+    /* Appointment form */
+    .appt-form-wrap {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+    }
+    .appt-form-wrap h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .appt-form-wrap p { font-size: 0.875rem; color: var(--text-dim); margin-bottom: 1.75rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+    .form-group label { font-size: 0.75rem; font-weight: 600; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text);
+      background: var(--off-white);
+      outline: none;
+      transition: border-color var(--transition);
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--blue); background: white; }
+    .form-group select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.75rem center; padding-right: 2.5rem; }
+    .form-submit {
+      width: 100%;
+      padding: 0.9rem;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all var(--transition);
+      margin-top: 0.5rem;
+    }
+    .form-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(21,101,192,0.35); }
+    .form-note { font-size: 0.75rem; color: var(--text-light); text-align: center; margin-top: 0.75rem; }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--teal) 100%);
+      padding: 4rem 2rem;
+      text-align: center;
+      color: white;
+    }
+    .cta-banner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    .cta-banner p { font-size: 1rem; color: rgba(255,255,255,0.85); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+    .cta-btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.9rem 2rem;
+      background: white;
+      color: var(--blue);
+      border-radius: var(--radius);
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all var(--transition);
+    }
+    .cta-btn-white:hover { background: var(--off-white); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.75);
+      padding: 3rem 2rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 2rem;
+    }
+    .footer-brand .logo-name { color: white; font-size: 1rem; }
+    .footer-brand .logo-sub { color: var(--teal-light); }
+    .footer-desc { font-size: 0.85rem; line-height: 1.7; margin-top: 1rem; color: rgba(255,255,255,0.55); }
+    .footer-socials { display: flex; gap: 0.75rem; margin-top: 1.25rem; }
+    .footer-socials a {
+      width: 34px;
+      height: 34px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.85rem;
+      transition: all var(--transition);
+    }
+    .footer-socials a:hover { background: var(--teal); border-color: var(--teal); color: white; }
+    .footer-col h5 { font-size: 0.8rem; font-weight: 700; color: white; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.25rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-col li { font-size: 0.84rem; display: flex; align-items: flex-start; gap: 0.5rem; }
+    .footer-col li i { color: var(--teal-light); margin-top: 0.2rem; font-size: 0.8rem; width: 14px; flex-shrink: 0; }
+    .footer-col a { color: rgba(255,255,255,0.6); transition: color var(--transition); }
+    .footer-col a:hover { color: var(--teal-light); }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+    }
+    .footer-bottom a { color: rgba(255,255,255,0.5); transition: color var(--transition); }
+    .footer-bottom a:hover { color: var(--teal-light); }
+
+    /* ── WHATSAPP FLOATING ── */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 56px;
+      height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.5);
+      z-index: 500;
+      transition: all var(--transition);
+      animation: pulse-wa 2s infinite;
+    }
+    .whatsapp-float:hover { transform: scale(1.1); background: #20bd5a; }
+    @keyframes pulse-wa {
+      0%, 100% { box-shadow: 0 4px 16px rgba(37,211,102,0.5); }
+      50% { box-shadow: 0 4px 32px rgba(37,211,102,0.8); }
+    }
+
+    /* ── MOBILE NAV ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 108px;
+        left: 0; right: 0;
+        background: white;
+        border-bottom: 1px solid var(--border);
+        padding: 1rem;
+        box-shadow: var(--shadow-lg);
+        gap: 0.25rem;
+      }
+      .nav-links.open a { padding: 0.75rem 1rem; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .why-visual { display: none; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.25rem; }
+      .h-stat-sep { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- EMERGENCY BAR -->
+<div class="emergency-bar">
+  <span><i class="fas fa-phone-volume"></i> Emergency: <a href="tel:+233264004383">026 400 4383</a></span>
+  <span class="emg-dot"></span>
+  <span><i class="fas fa-clock"></i> Open 24 Hours · 7 Days a Week</span>
+  <span class="emg-dot"></span>
+  <span><i class="fas fa-map-marker-alt"></i> Kumasi, Ghana</span>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">
+      <div class="logo-mark">GS</div>
+      <div class="logo-text">
+        <span class="logo-name">Graceland Specialist</span>
+        <span class="logo-sub">Healthcare · Kumasi</span>
+      </div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="tel:+233264004383" class="nav-cta"><i class="fas fa-phone"></i> Call 026 400 4383</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fas fa-shield-halved"></i>
+        Trusted Healthcare · Kumasi, Ghana
+      </div>
+      <h1 class="hero-title">
+        <span>Graceland Specialist Hospital</span><br>
+        Quality Care,<br>Every Day.
+      </h1>
+      <p class="hero-desc">Grace-filled specialist hospital delivering outstanding medical care in Kumasi. Serving the Kumasi community with compassionate, professional, and affordable medical care.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-hero-primary">
+          <i class="fas fa-calendar-check"></i> Book Appointment
+        </a>
+        <a href="https://wa.me/233264004383?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment%20at%20Graceland Specialist Hospital" target="_blank" class="btn-hero-ghost">
+          <i class="fab fa-whatsapp"></i> WhatsApp Us
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="h-stat">
+          <div class="h-stat-num">24<span>/7</span></div>
+          <div class="h-stat-label">Emergency Care</div>
+        </div>
+        <div class="h-stat-sep"></div>
+        <div class="h-stat">
+          <div class="h-stat-num">10<span>+</span></div>
+          <div class="h-stat-label">Specialists</div>
+        </div>
+        <div class="h-stat-sep"></div>
+        <div class="h-stat">
+          <div class="h-stat-num">100<span>%</span></div>
+          <div class="h-stat-label">Dedicated Care</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-title">Today's Status</div>
+        <div class="hero-card-row">
+          <i class="fas fa-circle-dot"></i>
+          <span>Status</span>
+          <span class="open-badge" style="margin-left:auto;">● OPEN</span>
+        </div>
+        <div class="hero-card-row">
+          <i class="fas fa-clock"></i>
+          <span>Emergency</span>
+          <span style="margin-left:auto;font-size:0.8rem;color:rgba(255,255,255,0.6);">24 Hours</span>
+        </div>
+        <div class="hero-card-row">
+          <i class="fas fa-phone"></i>
+          <span>026 400 4383</span>
+        </div>
+        <div class="hero-card-row">
+          <i class="fas fa-map-marker-alt"></i>
+          <span style="font-size:0.8rem;">Kumasi, Ashanti Region</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-inner">
+    <div class="trust-item"><i class="fas fa-user-md"></i> Experienced Medical Team</div>
+    <div class="trust-item"><i class="fas fa-flask"></i> Modern Laboratory</div>
+    <div class="trust-item"><i class="fas fa-pills"></i> On-Site Pharmacy</div>
+    <div class="trust-item"><i class="fas fa-ambulance"></i> Emergency Response</div>
+    <div class="trust-item"><i class="fas fa-shield-halved"></i> Safe & Hygienic</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section services-section" id="services">
+  <div class="container">
+    <div class="section-label">Our Services</div>
+    <h2 class="section-title">Comprehensive Medical Care</h2>
+    <p class="section-sub">We provide a full range of healthcare services designed to meet the needs of every patient — from routine check-ups to specialized treatment.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-stethoscope"></i></div>
+        <h3 class="service-title">General Medicine</h3>
+        <p class="service-desc">Diagnosis and treatment of common illnesses, chronic conditions, and general health concerns for adults and children.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-ambulance"></i></div>
+        <h3 class="service-title">Emergency Care</h3>
+        <p class="service-desc">24-hour emergency services with rapid response for accidents, trauma, and acute medical conditions.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-baby"></i></div>
+        <h3 class="service-title">Maternity & Antenatal</h3>
+        <p class="service-desc">Safe delivery, antenatal care, postnatal support, and neonatal care for mothers and newborns.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-flask"></i></div>
+        <h3 class="service-title">Laboratory Services</h3>
+        <p class="service-desc">Full diagnostic laboratory with blood tests, urinalysis, culture and sensitivity, and rapid diagnostic kits.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-pills"></i></div>
+        <h3 class="service-title">Pharmacy</h3>
+        <p class="service-desc">Well-stocked in-house pharmacy with licensed pharmacists, dispensing quality medicines at affordable prices.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-x-ray"></i></div>
+        <h3 class="service-title">Diagnostics & Imaging</h3>
+        <p class="service-desc">Ultrasound, X-ray, ECG, and other diagnostic imaging services to support accurate and fast diagnosis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section why-section" id="about">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-left">
+        <div class="section-label">Why Choose Us</div>
+        <h2 class="section-title">Healthcare You Can<br>Trust and Afford</h2>
+        <p class="section-sub">At Graceland Specialist Hospital, every patient is treated with dignity, urgency, and expertise. We combine modern medicine with genuine compassion.</p>
+        <div class="why-items">
+          <div class="why-item">
+            <div class="why-icon"><i class="fas fa-user-md"></i></div>
+            <div>
+              <h4>Experienced Doctors & Nurses</h4>
+              <p>Our medical team brings years of experience and specialist training to deliver the highest standard of care.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon"><i class="fas fa-clock"></i></div>
+            <div>
+              <h4>24/7 Availability</h4>
+              <p>Medical emergencies don't keep office hours. Our emergency unit is open around the clock, every day of the year.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon"><i class="fas fa-wallet"></i></div>
+            <div>
+              <h4>Affordable & NHIS Accredited</h4>
+              <p>We accept NHIS and offer affordable payment options so quality healthcare is accessible to all.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon"><i class="fas fa-shield-halved"></i></div>
+            <div>
+              <h4>Safe, Clean Environment</h4>
+              <p>We maintain strict infection control standards to ensure every patient and visitor stays safe at all times.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="why-visual">
+        <div class="why-stat-card">
+          <div class="wsc-num">24/7</div>
+          <div class="wsc-label">Emergency Services Available</div>
+        </div>
+        <div class="why-stat-card">
+          <div class="wsc-num" style="font-size:1.75rem;">NHIS</div>
+          <div class="wsc-label">Accredited Facility</div>
+        </div>
+        <div class="why-stat-card">
+          <div class="wsc-num">100%</div>
+          <div class="wsc-label">Committed to Your Health</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact-section" id="contact">
+  <div class="container">
+    <div class="section-label">Contact Us</div>
+    <h2 class="section-title">Get in Touch or Book an Appointment</h2>
+    <div class="contact-grid">
+      <div class="contact-cards">
+        <div class="contact-card">
+          <div class="contact-card-icon"><i class="fas fa-phone"></i></div>
+          <div>
+            <h4>Call Us</h4>
+            <a href="tel:+233264004383">026 400 4383</a>
+            <p>Available 24 hours for emergencies</p>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-icon"><i class="fab fa-whatsapp" style="color:#25D366;"></i></div>
+          <div>
+            <h4>WhatsApp</h4>
+            <a href="https://wa.me/233264004383" target="_blank">Chat on WhatsApp</a>
+            <p>Quick responses during business hours</p>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div>
+            <h4>Location</h4>
+            <p>Kumasi, Ashanti Region<br>Kumasi, Ashanti Region, Ghana</p>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-icon"><i class="fas fa-clock"></i></div>
+          <div>
+            <h4>Working Hours</h4>
+            <p>Emergency: 24 Hours / 7 Days<br>OPD: Mon–Sat, 7:00am – 8:00pm</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="appt-form-wrap">
+        <h3>Book an Appointment</h3>
+        <p>Fill in your details and we'll confirm your appointment within 2 hours.</p>
+        <form id="apptForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" placeholder="e.g. Kwame" required>
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" placeholder="e.g. Mensah" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="+233 XX XXX XXXX" required>
+          </div>
+          <div class="form-group">
+            <label>Department / Service</label>
+            <select required>
+              <option value="" disabled selected>Select a service</option>
+              <option>General Medicine</option>
+              <option>Emergency</option>
+              <option>Maternity / Antenatal</option>
+              <option>Laboratory</option>
+              <option>Pharmacy</option>
+              <option>Diagnostics & Imaging</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Preferred Date</label>
+            <input type="date" required>
+          </div>
+          <button type="submit" class="form-submit">
+            <i class="fas fa-calendar-check"></i> Confirm Appointment
+          </button>
+          <p class="form-note">We will call you back to confirm within 2 hours.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <h2>Need Medical Help Right Now?</h2>
+  <p>Our emergency team is on standby 24 hours a day. Don't wait — call us or come in immediately.</p>
+  <a href="tel:+233264004383" class="cta-btn-white">
+    <i class="fas fa-phone-volume"></i> Call 026 400 4383 Now
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="nav-logo">
+        <div class="logo-mark">GS</div>
+        <div class="logo-text">
+          <span class="logo-name">Graceland Specialist</span>
+          <span class="logo-sub">Kumasi, Ghana</span>
+        </div>
+      </div>
+      <p class="footer-desc">Providing compassionate, affordable, and professional healthcare to the Kumasi community. Your health is our priority.</p>
+      <div class="footer-socials">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://wa.me/233264004383" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Our Services</h5>
+      <ul>
+        <li><i class="fas fa-chevron-right"></i><a href="#services">General Medicine</a></li>
+        <li><i class="fas fa-chevron-right"></i><a href="#services">Emergency Care</a></li>
+        <li><i class="fas fa-chevron-right"></i><a href="#services">Maternity Care</a></li>
+        <li><i class="fas fa-chevron-right"></i><a href="#services">Laboratory</a></li>
+        <li><i class="fas fa-chevron-right"></i><a href="#services">Pharmacy</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><i class="fas fa-phone"></i><a href="tel:+233264004383">026 400 4383</a></li>
+        <li><i class="fab fa-whatsapp"></i><a href="https://wa.me/233264004383" target="_blank">WhatsApp</a></li>
+        <li><i class="fas fa-map-marker-alt"></i>Kumasi, Ashanti Region, Kumasi</li>
+        <li><i class="fas fa-clock"></i>Emergency: 24/7</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Graceland Specialist Hospital. All rights reserved. · Kumasi, Ghana</p>
+    <p>Website by <a href="https://raufhusein.site" target="_blank">Rauf Husein</a> · <a href="https://raufhusein.site" target="_blank">raufhusein.site</a></p>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/233264004383?text=Hello%2C%20I%20need%20medical%20assistance%20at%20Graceland Specialist Hospital" target="_blank" class="whatsapp-float" title="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+  // Mobile menu
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  // Appointment form
+  document.getElementById('apptForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('.form-submit');
+    btn.textContent = 'Booking...';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.innerHTML = '<i class="fas fa-check"></i> Appointment Requested!';
+      btn.style.background = '#16a34a';
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-calendar-check"></i> Confirm Appointment';
+        btn.style.background = '';
+        btn.disabled = false;
+        this.reset();
+      }, 4000);
+    }, 1500);
+  });
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
