@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Queens Specialist Hospital — Kumasi, Ghana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --midnight: #060d1a;
+    --navy: #0b1a33;
+    --navy-mid: #0f2347;
+    --gold: #c9a84c;
+    --gold-light: #e8c96f;
+    --gold-pale: #f5e8c0;
+    --cream: #fdf8f0;
+    --white: #ffffff;
+    --text-muted: #8a9ab5;
+    --text-body: #c8d4e8;
+    --border: rgba(201,168,76,0.18);
+    --card-bg: rgba(11,26,51,0.7);
+    --transition: cubic-bezier(0.4,0,0.2,1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--midnight);
+    color: var(--text-body);
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* ── NOISE TEXTURE ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: .4;
+  }
+
+  /* ── EMERGENCY BAR ── */
+  .emergency-bar {
+    background: linear-gradient(90deg, #8b0000 0%, #c0392b 50%, #8b0000 100%);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: .8rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #fff;
+    position: relative; z-index: 100;
+    animation: pulseBar 3s ease-in-out infinite;
+  }
+  @keyframes pulseBar {
+    0%,100% { opacity: 1; }
+    50% { opacity: .85; }
+  }
+  .emergency-bar a { color: #ffd6d6; font-weight: 700; text-decoration: none; }
+  .emergency-bar a:hover { text-decoration: underline; }
+
+  /* ── NAVIGATION ── */
+  nav {
+    position: fixed; top: 40px; left: 0; right: 0;
+    z-index: 999;
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: all .4s var(--transition);
+  }
+  nav.scrolled {
+    top: 0;
+    background: rgba(6,13,26,.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 5%;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px; text-decoration: none;
+  }
+  .logo-crown {
+    width: 42px; height: 42px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 0 20px rgba(201,168,76,.35);
+  }
+  .logo-text { line-height: 1.1; }
+  .logo-text strong {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    color: var(--white);
+    letter-spacing: .04em;
+  }
+  .logo-text span {
+    font-size: .68rem;
+    color: var(--gold);
+    letter-spacing: .15em;
+    text-transform: uppercase;
+  }
+  .nav-links {
+    list-style: none;
+    display: flex; gap: 36px; align-items: center;
+  }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: .82rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    transition: color .3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+    height: 1px; background: var(--gold);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .3s var(--transition);
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-cta {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--midnight) !important;
+    padding: 10px 24px !important;
+    border-radius: 2px;
+    font-weight: 500 !important;
+    letter-spacing: .1em !important;
+    transition: all .3s !important;
+    box-shadow: 0 4px 20px rgba(201,168,76,.3);
+  }
+  .nav-cta::after { display: none !important; }
+  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,.45) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(15,35,71,.8) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 80% at 20% 80%, rgba(201,168,76,.06) 0%, transparent 60%),
+      linear-gradient(160deg, var(--midnight) 0%, var(--navy) 50%, #0a1f42 100%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 80%);
+  }
+  /* Floating orbs */
+  .orb {
+    position: absolute; border-radius: 50%;
+    filter: blur(80px); pointer-events: none;
+  }
+  .orb-1 {
+    width: 500px; height: 500px;
+    background: rgba(201,168,76,.06);
+    top: -100px; right: -100px;
+    animation: floatOrb 12s ease-in-out infinite;
+  }
+  .orb-2 {
+    width: 300px; height: 300px;
+    background: rgba(11,100,200,.08);
+    bottom: 100px; left: 5%;
+    animation: floatOrb 16s ease-in-out infinite reverse;
+  }
+  @keyframes floatOrb {
+    0%,100% { transform: translate(0,0); }
+    33% { transform: translate(30px,-40px); }
+    66% { transform: translate(-20px,20px); }
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 8%;
+    max-width: 720px;
+    padding-top: 120px;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--border);
+    background: rgba(201,168,76,.06);
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: .75rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    opacity: 0; transform: translateY(20px);
+    animation: fadeUp .8s .2s forwards;
+  }
+  .hero-badge span { font-size: .6rem; }
+  .hero-h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5.2rem);
+    font-weight: 800;
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 24px;
+    opacity: 0; transform: translateY(30px);
+    animation: fadeUp .9s .4s forwards;
+  }
+  .hero-h1 em {
+    font-style: italic;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--text-body);
+    max-width: 500px;
+    margin-bottom: 40px;
+    opacity: 0; transform: translateY(20px);
+    animation: fadeUp .9s .6s forwards;
+    line-height: 1.8;
+  }
+  .hero-actions {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    opacity: 0; transform: translateY(20px);
+    animation: fadeUp .9s .8s forwards;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--midnight);
+    padding: 14px 32px;
+    border: none; border-radius: 2px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .88rem;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: all .3s var(--transition);
+    box-shadow: 0 4px 24px rgba(201,168,76,.3);
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(201,168,76,.45); }
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    padding: 14px 32px;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 2px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .88rem;
+    font-weight: 400;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: all .3s var(--transition);
+    backdrop-filter: blur(10px);
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* Hero stats */
+  .hero-stats {
+    position: absolute; right: 8%; bottom: 12%;
+    display: flex; gap: 1px;
+    opacity: 0; animation: fadeUp .9s 1s forwards;
+  }
+  .stat-box {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(20px);
+    padding: 24px 32px;
+    text-align: center;
+    min-width: 120px;
+  }
+  .stat-box:first-child { border-radius: 4px 0 0 4px; }
+  .stat-box:last-child { border-radius: 0 4px 4px 0; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    display: block;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: .7rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 6px;
+    display: block;
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── NHIS STRIP ── */
+  .nhis-strip {
+    background: linear-gradient(90deg, rgba(201,168,76,.08) 0%, rgba(201,168,76,.15) 50%, rgba(201,168,76,.08) 100%);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 8%;
+    display: flex; align-items: center; justify-content: center; gap: 40px;
+    flex-wrap: wrap;
+    position: relative; z-index: 2;
+  }
+  .nhis-item {
+    display: flex; align-items: center; gap: 10px;
+    font-size: .8rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    font-weight: 500;
+  }
+  .nhis-item svg { flex-shrink: 0; }
+  .nhis-divider { width: 1px; height: 30px; background: var(--border); }
+
+  /* ── SECTIONS ── */
+  section { position: relative; z-index: 1; }
+  .section-header {
+    text-align: center;
+    margin-bottom: 70px;
+  }
+  .section-tag {
+    display: inline-block;
+    font-size: .72rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .section-tag::before, .section-tag::after {
+    content: '—';
+    margin: 0 8px;
+    opacity: .5;
+  }
+  .section-h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 18px;
+  }
+  .section-h2 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .section-desc {
+    max-width: 560px;
+    margin: 0 auto;
+    color: var(--text-muted);
+    font-size: .95rem;
+    line-height: 1.8;
+  }
+
+  /* ── SERVICES ── */
+  .services {
+    padding: 110px 8%;
+    background: var(--midnight);
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .service-card {
+    background: var(--midnight);
+    padding: 48px 36px;
+    transition: background .4s;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .4s var(--transition);
+  }
+  .service-card:hover { background: var(--navy); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon {
+    width: 52px; height: 52px;
+    background: linear-gradient(135deg, rgba(201,168,76,.15), rgba(201,168,76,.05));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+    font-size: 1.4rem;
+    transition: all .4s;
+  }
+  .service-card:hover .service-icon {
+    background: linear-gradient(135deg, rgba(201,168,76,.3), rgba(201,168,76,.1));
+    box-shadow: 0 0 20px rgba(201,168,76,.2);
+  }
+  .service-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .service-card p {
+    color: var(--text-muted);
+    font-size: .88rem;
+    line-height: 1.75;
+  }
+  .service-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--gold);
+    font-size: .78rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-top: 20px;
+    opacity: 0; transform: translateX(-8px);
+    transition: all .3s;
+  }
+  .service-card:hover .service-link { opacity: 1; transform: translateX(0); }
+  .service-link:hover { gap: 10px; }
+
+  /* ── ABOUT / WHY US ── */
+  .about {
+    padding: 110px 8%;
+    background: var(--navy);
+    overflow: hidden;
+  }
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .about-visual {
+    position: relative;
+  }
+  .about-card-main {
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-card-main::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), transparent);
+  }
+  .about-rating {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 28px;
+  }
+  .stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; }
+  .rating-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    color: var(--white);
+    font-weight: 600;
+    line-height: 1;
+  }
+  .rating-note {
+    font-size: .78rem;
+    color: var(--text-muted);
+    letter-spacing: .08em;
+  }
+  .about-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.6;
+    border-left: 2px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 28px;
+  }
+  .nhis-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: linear-gradient(135deg, rgba(201,168,76,.12), rgba(201,168,76,.05));
+    border: 1px solid var(--border);
+    padding: 8px 18px;
+    border-radius: 100px;
+    font-size: .75rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+  }
+  .about-float {
+    position: absolute;
+    right: -24px; bottom: -24px;
+    background: var(--midnight);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 24px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 60px rgba(0,0,0,.4);
+  }
+  .float-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--gold-light);
+    font-weight: 700;
+    line-height: 1;
+  }
+  .float-label {
+    font-size: .7rem;
+    color: var(--text-muted);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .about-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.7rem);
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 24px;
+  }
+  .about-content p {
+    color: var(--text-muted);
+    font-size: .95rem;
+    line-height: 1.9;
+    margin-bottom: 36px;
+  }
+  .perks-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .perk {
+    display: flex; align-items: flex-start; gap: 12px;
+  }
+  .perk-dot {
+    width: 22px; height: 22px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: .7rem;
+    color: var(--midnight);
+    font-weight: 700;
+    margin-top: 2px;
+  }
+  .perk-text {
+    font-size: .88rem;
+    color: var(--text-body);
+    line-height: 1.6;
+  }
+  .perk-text strong {
+    display: block;
+    color: var(--white);
+    font-size: .9rem;
+    margin-bottom: 2px;
+  }
+
+  /* ── DOCTORS ── */
+  .doctors {
+    padding: 110px 8%;
+    background: var(--midnight);
+  }
+  .doctors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+  }
+  .doctor-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform .4s var(--transition), box-shadow .4s;
+    backdrop-filter: blur(20px);
+  }
+  .doctor-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 80px rgba(0,0,0,.4), 0 0 0 1px rgba(201,168,76,.2);
+  }
+  .doctor-header {
+    background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+    padding: 40px 36px 30px;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+    display: flex; gap: 24px; align-items: flex-start;
+  }
+  .doctor-avatar {
+    width: 72px; height: 72px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--midnight);
+    flex-shrink: 0;
+    box-shadow: 0 0 30px rgba(201,168,76,.3);
+  }
+  .doctor-title-block { flex: 1; }
+  .doctor-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.45rem;
+    color: var(--white);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .doctor-role {
+    font-size: .72rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .doctor-body { padding: 28px 36px 36px; }
+  .doctor-body p {
+    font-size: .9rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 24px;
+  }
+  .doctor-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    background: rgba(201,168,76,.08);
+    border: 1px solid rgba(201,168,76,.2);
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: .72rem;
+    color: var(--gold-light);
+    letter-spacing: .08em;
+  }
+
+  /* ── WHY US ── */
+  .why {
+    padding: 110px 8%;
+    background: var(--navy);
+  }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 60px;
+  }
+  .why-card {
+    background: var(--navy);
+    padding: 40px 28px;
+    text-align: center;
+    transition: background .3s;
+    position: relative;
+  }
+  .why-card:hover { background: var(--navy-mid); }
+  .why-icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .why-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--white);
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .why-card p {
+    font-size: .83rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* ── FREE SCREENING ── */
+  .screening {
+    margin: 0 8%;
+    background: linear-gradient(135deg, var(--navy-mid) 0%, rgba(201,168,76,.08) 100%);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 70px 60px;
+    display: flex; align-items: center; justify-content: space-between; gap: 40px;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    margin-bottom: -55px;
+  }
+  .screening::before {
+    content: '♥';
+    position: absolute; right: 60px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 180px;
+    color: rgba(201,168,76,.04);
+    pointer-events: none;
+    font-family: serif;
+  }
+  .screening h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem;
+    color: var(--white);
+    max-width: 500px;
+    line-height: 1.3;
+  }
+  .screening h3 em { font-style: italic; color: var(--gold-light); }
+  .screening p {
+    color: var(--text-muted);
+    font-size: .9rem;
+    max-width: 420px;
+    margin-top: 12px;
+    line-height: 1.7;
+  }
+  .screening-action { flex-shrink: 0; }
+
+  /* ── CONTACT ── */
+  .contact {
+    padding: 165px 8% 110px;
+    background: var(--midnight);
+  }
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .contact-info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    color: var(--white);
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+  .contact-info p {
+    color: var(--text-muted);
+    font-size: .95rem;
+    line-height: 1.85;
+    margin-bottom: 40px;
+  }
+  .contact-details { display: flex; flex-direction: column; gap: 20px; }
+  .contact-row {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    backdrop-filter: blur(20px);
+  }
+  .contact-icon {
+    width: 40px; height: 40px;
+    background: linear-gradient(135deg, rgba(201,168,76,.15), rgba(201,168,76,.05));
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .contact-row-text strong {
+    display: block;
+    font-size: .75rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .contact-row-text span {
+    font-size: .92rem;
+    color: var(--white);
+  }
+  .contact-row-text a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color .3s;
+  }
+  .contact-row-text a:hover { color: var(--gold-light); }
+
+  /* Appointment form */
+  .appt-form {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 48px;
+    backdrop-filter: blur(20px);
+    position: relative;
+  }
+  .appt-form::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), transparent);
+    border-radius: 8px 8px 0 0;
+  }
+  .appt-form h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    color: var(--white);
+    margin-bottom: 28px;
+    font-weight: 600;
+  }
+  .form-group { margin-bottom: 20px; }
+  .form-group label {
+    display: block;
+    font-size: .75rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 12px 16px;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: .9rem;
+    transition: border-color .3s;
+    outline: none;
+    -webkit-appearance: none;
+  }
+  .form-group select option { background: var(--navy-mid); color: var(--white); }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold);
+    background: rgba(201,168,76,.04);
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-submit {
+    width: 100%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--midnight);
+    padding: 15px;
+    border: none; border-radius: 4px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .88rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .3s;
+    margin-top: 8px;
+  }
+  .form-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,.4); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    border-top: 1px solid var(--border);
+    padding: 70px 8% 40px;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+  }
+  .footer-brand p {
+    color: var(--text-muted);
+    font-size: .88rem;
+    line-height: 1.8;
+    margin-top: 16px;
+    margin-bottom: 24px;
+    max-width: 280px;
+  }
+  .footer-socials { display: flex; gap: 10px; }
+  .social-btn {
+    width: 36px; height: 36px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    font-size: .85rem;
+    color: var(--text-muted);
+    transition: all .3s;
+  }
+  .social-btn:hover { background: rgba(201,168,76,.1); border-color: var(--gold); color: var(--gold); }
+  .footer-col h5 {
+    font-size: .78rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: .88rem;
+    transition: color .3s;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .footer-col ul a::before {
+    content: '›';
+    color: var(--gold);
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity .3s, transform .3s;
+    transform: translateX(-4px);
+  }
+  .footer-col ul a:hover { color: var(--gold-light); }
+  .footer-col ul a:hover::before { opacity: 1; transform: translateX(0); }
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 28px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .footer-bottom p {
+    font-size: .78rem;
+    color: var(--text-muted);
+    letter-spacing: .04em;
+  }
+  .footer-bottom a { color: var(--gold); text-decoration: none; }
+  .nhis-footer {
+    display: flex; align-items: center; gap: 8px;
+    font-size: .75rem;
+    color: var(--gold-light);
+    background: rgba(201,168,76,.08);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 100px;
+    letter-spacing: .08em;
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity .8s var(--transition), transform .8s var(--transition);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: .1s; }
+  .reveal-delay-2 { transition-delay: .2s; }
+  .reveal-delay-3 { transition-delay: .3s; }
+  .reveal-delay-4 { transition-delay: .4s; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hero-stats { position: static; margin: 40px 0 0; display: flex; flex-wrap: wrap; }
+    .stat-box { flex: 1; min-width: 90px; }
+    .about-inner { grid-template-columns: 1fr; gap: 40px; }
+    .about-float { display: none; }
+    .contact-inner { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+    .screening { padding: 48px 36px; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .hero-content { padding: 0 5%; padding-top: 140px; }
+    .services, .about, .doctors, .why, .contact { padding-left: 5%; padding-right: 5%; }
+    .screening { margin: 0 5%; }
+    footer { padding-left: 5%; padding-right: 5%; }
+    .footer-top { grid-template-columns: 1fr; gap: 40px; }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .appt-form { padding: 32px 24px; }
+    .hero-stats { gap: 1px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- EMERGENCY BAR -->
+<div class="emergency-bar">
+  🚨 24/7 Emergency Hotline — Call Now: <a href="tel:0244576615">024 457 6615</a>
+</div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <div class="logo-crown">👑</div>
+    <div class="logo-text">
+      <strong>Queens Specialist Hospital</strong>
+      <span>Kumasi, Ghana</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#doctors">Doctors</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Book Appointment</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span>⭐</span> 4.7 / 5 — Rated Excellent · NHIS Accredited
+    </div>
+    <h1 class="hero-h1">
+      Your Health.<br>
+      Our <em>Sacred</em><br>
+      Commitment.
+    </h1>
+    <p class="hero-sub">
+      Queens Specialist Hospital delivers world-class medical care in the heart of Kumasi. From expert surgery to ENT care — compassionate, accredited, and open 24 hours.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">
+        Book Appointment →
+      </a>
+      <a href="#services" class="btn-outline">
+        Our Services
+      </a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-box">
+      <span class="stat-num">24/7</span>
+      <span class="stat-label">Emergency</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num">15+</span>
+      <span class="stat-label">Yrs Expertise</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num">4.7★</span>
+      <span class="stat-label">Google Rating</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num">NHIS</span>
+      <span class="stat-label">Accredited</span>
+    </div>
+  </div>
+</section>
+
+<!-- NHIS STRIP -->
+<div class="nhis-strip">
+  <div class="nhis-item">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#c9a84c" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round"/></svg>
+    NHIS Accredited Facility
+  </div>
+  <div class="nhis-divider"></div>
+  <div class="nhis-item">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#c9a84c" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round"/></svg>
+    Open 24 Hours · Mon–Sun
+  </div>
+  <div class="nhis-divider"></div>
+  <div class="nhis-item">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#c9a84c" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round"/></svg>
+    ENT &amp; Surgical Specialists On-Site
+  </div>
+  <div class="nhis-divider"></div>
+  <div class="nhis-item">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#c9a84c" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round"/></svg>
+    Free Health Screenings Available
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-header reveal">
+    <p class="section-tag">What We Offer</p>
+    <h2 class="section-h2">Comprehensive Medical<br><em>Services</em> Under One Roof</h2>
+    <p class="section-desc">From routine outpatient care to complex surgical procedures, we provide expert medical services tailored to every patient's unique needs.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">🏥</div>
+      <h3>Outpatient Services</h3>
+      <p>Convenient, expert outpatient care ensuring top-quality treatment without an overnight stay. Consultations, diagnostics, and follow-ups handled efficiently.</p>
+      <a href="#contact" class="service-link">Learn More →</a>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-icon">⚕️</div>
+      <h3>Expert Surgical Care</h3>
+      <p>Advanced surgical procedures in our state-of-the-art operating theatres. Led by Dr. Ishmael Kyei — breast surgeon and KNUST Senior Lecturer — with a focus on patient well-being and recovery.</p>
+      <a href="#contact" class="service-link">Learn More →</a>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-icon">👂</div>
+      <h3>ENT Specialist Care</h3>
+      <p>Dedicated ear, nose, and throat treatment by Dr. Maa Pabia Kyei, with over 15 years of experience. Precise diagnostics and comprehensive management of all ENT conditions.</p>
+      <a href="#contact" class="service-link">Learn More →</a>
+    </div>
+    <div class="service-card reveal reveal-delay-3">
+      <div class="service-icon">💊</div>
+      <h3>Pharmacy Services</h3>
+      <p>High-quality medications dispensed with expert pharmacist guidance. Ensuring safe, effective treatment with full counselling on dosage, interactions, and adherence.</p>
+      <a href="#contact" class="service-link">Learn More →</a>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">🩺</div>
+      <h3>Emergency &amp; Urgent Care</h3>
+      <p>Round-the-clock emergency response, 24 hours a day, 7 days a week. Our team is always ready to respond quickly and effectively to any medical emergency.</p>
+      <a href="tel:0244576615" class="service-link">Call Now →</a>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-icon">🔬</div>
+      <h3>Health Screenings</h3>
+      <p>Proactive, free health screenings for early detection and preventive care. Covering blood pressure, blood sugar, cholesterol, and more — keeping you ahead of illness.</p>
+      <a href="#contact" class="service-link">Book Free Screen →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-visual reveal">
+      <div class="about-card-main">
+        <div class="about-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-num">4.7</span>
+          <div>
+            <p class="rating-note">Google Rating</p>
+            <p class="rating-note">7 verified reviews</p>
+          </div>
+        </div>
+        <p class="about-quote">
+          "Excellent service — ENT Specialist available. Queens Specialist Hospital exceeded my expectations in every way."
+        </p>
+        <div class="nhis-badge">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#e8c96f" stroke-width="1.5"/><path d="M4.5 7l2 2 3-3" stroke="#e8c96f" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Accredited by National Health Insurance Scheme
+        </div>
+      </div>
+      <div class="about-float">
+        <p class="float-num">15+</p>
+        <p class="float-label">Years of<br>Excellence</p>
+      </div>
+    </div>
+    <div class="about-content reveal reveal-delay-2">
+      <h2>A Hospital Built on <em style="font-style:italic;color:var(--gold-light)">Trust</em> &amp; Excellence</h2>
+      <p>
+        Located in Atonsu Dompoase, Kumasi, Queens Specialist Hospital is your trusted healthcare partner in the Ashanti Region. We combine cutting-edge medical technology with genuine compassion — treating every patient as a whole person, not just a diagnosis.
+      </p>
+      <div class="perks-grid">
+        <div class="perk">
+          <div class="perk-dot">✓</div>
+          <div class="perk-text"><strong>Expert Care</strong>High-quality healthcare from skilled, credentialed professionals.</div>
+        </div>
+        <div class="perk">
+          <div class="perk-dot">✓</div>
+          <div class="perk-text"><strong>NHIS Accredited</strong>Quality healthcare at very little cost to you.</div>
+        </div>
+        <div class="perk">
+          <div class="perk-dot">✓</div>
+          <div class="perk-text"><strong>Personalized Approach</strong>Tailored care focused entirely on your needs.</div>
+        </div>
+        <div class="perk">
+          <div class="perk-dot">✓</div>
+          <div class="perk-text"><strong>Modern Facilities</strong>State-of-the-art operating rooms and recovery suites.</div>
+        </div>
+        <div class="perk">
+          <div class="perk-dot">✓</div>
+          <div class="perk-text"><strong>24/7 Emergency</strong>Always ready for any medical emergency, day or night.</div>
+        </div>
+        <div class="perk">
+          <div class="perk-dot">✓</div>
+          <div class="perk-text"><strong>Affordable Healthcare</strong>Top-tier medical services at competitive prices.</div>
+        </div>
+      </div>
+      <a href="#contact" class="btn-primary">Request an Appointment →</a>
+    </div>
+  </div>
+</section>
+
+<!-- DOCTORS -->
+<section class="doctors" id="doctors">
+  <div class="section-header reveal">
+    <p class="section-tag">Our Specialists</p>
+    <h2 class="section-h2">Meet Our <em>Expert</em> Medical Team</h2>
+    <p class="section-desc">A dedicated team of highly qualified specialists committed to delivering compassionate, professional healthcare.</p>
+  </div>
+  <div class="doctors-grid">
+    <div class="doctor-card reveal">
+      <div class="doctor-header">
+        <div class="doctor-avatar">MK</div>
+        <div class="doctor-title-block">
+          <p class="doctor-name">Dr. Maa Pabia Kyei</p>
+          <p class="doctor-role">ENT Specialist</p>
+        </div>
+      </div>
+      <div class="doctor-body">
+        <p>With over 15 years of experience, Dr. Maa Pabia Kyei is a highly skilled ENT specialist practising at Queens Specialist Hospital and Suntreso Government Hospital. Her expertise in treating ear, nose, and throat conditions ensures top-notch care for every patient.</p>
+        <div class="doctor-tags">
+          <span class="tag">Ear Disorders</span>
+          <span class="tag">Nasal Conditions</span>
+          <span class="tag">Throat Care</span>
+          <span class="tag">15+ Years Exp.</span>
+        </div>
+      </div>
+    </div>
+    <div class="doctor-card reveal reveal-delay-2">
+      <div class="doctor-header">
+        <div class="doctor-avatar">IK</div>
+        <div class="doctor-title-block">
+          <p class="doctor-name">Dr. Ishmael Kyei</p>
+          <p class="doctor-role">Lead Surgeon</p>
+        </div>
+      </div>
+      <div class="doctor-body">
+        <p>Dr. Ishmael Kyei is a distinguished breast surgeon serving at both KATH and Queens Specialist Hospital. He also imparts his knowledge as a Senior Lecturer at KNUST. With extensive expertise, Dr. Kyei is dedicated to delivering exceptional surgical care.</p>
+        <div class="doctor-tags">
+          <span class="tag">Breast Surgery</span>
+          <span class="tag">General Surgery</span>
+          <span class="tag">KATH Consultant</span>
+          <span class="tag">KNUST Lecturer</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why">
+  <div class="section-header reveal">
+    <p class="section-tag">Why Queens</p>
+    <h2 class="section-h2">Excellence in Every<br><em>Aspect of Care</em></h2>
+  </div>
+  <div class="why-grid reveal">
+    <div class="why-card">
+      <span class="why-icon">🏆</span>
+      <h4>Expert Surgeons</h4>
+      <p>Highly skilled and experienced surgeons dedicated to providing the absolute best in surgical care.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">🔬</span>
+      <h4>Cutting-Edge Tech</h4>
+      <p>Cutting-edge equipment and innovative techniques for precise and effective treatments.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">🤝</span>
+      <h4>Comprehensive Care</h4>
+      <p>From diagnosis to recovery, a full range of services for holistic, continuous patient care.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">❤️</span>
+      <h4>Patient-Centred</h4>
+      <p>Comfort, safety, and well-being are our top priority — every decision is made for you.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">🛡️</span>
+      <h4>Private &amp; Secure</h4>
+      <p>Your medical records and personal data are handled with the utmost privacy and security.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">💰</span>
+      <h4>Affordable</h4>
+      <p>Top-tier medical services at competitive prices. NHIS accepted to reduce your costs further.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">🌙</span>
+      <h4>24/7 Available</h4>
+      <p>Open around the clock — no matter the hour, our team is ready to care for you.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">🩺</span>
+      <h4>Recovery Support</h4>
+      <p>Dedicated follow-up care and recovery programmes to ensure a smooth return to health.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FREE SCREENING BANNER -->
+<div class="screening reveal">
+  <div>
+    <h3>Free Health Screenings — <em>Your Prevention, Our Priority</em></h3>
+    <p>Stay proactive with complimentary screenings for blood pressure, blood sugar, cholesterol, and more. Early detection saves lives — book your free screening today.</p>
+  </div>
+  <div class="screening-action">
+    <a href="#contact" class="btn-primary">Book Free Screening →</a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-info reveal">
+      <h2>Get in Touch &amp; Book Your <em style="font-style:italic;color:var(--gold-light)">Appointment</em></h2>
+      <p>We're here 24 hours a day, 7 days a week. Reach out to schedule your visit, ask a question, or get emergency care immediately.</p>
+      <div class="contact-details">
+        <div class="contact-row">
+          <div class="contact-icon">📍</div>
+          <div class="contact-row-text">
+            <strong>Location</strong>
+            <span>Atonsu Dompoase, Kumasi, Ashanti Region, Ghana</span>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">📞</div>
+          <div class="contact-row-text">
+            <strong>Phone / Emergency</strong>
+            <span><a href="tel:0244576615">024 457 6615</a> — Open 24/7</span>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-row-text">
+            <strong>Email</strong>
+            <span><a href="mailto:info@queenshospitalgh.com">info@queenshospitalgh.com</a></span>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">🌐</div>
+          <div class="contact-row-text">
+            <strong>Website</strong>
+            <span><a href="https://www.queensspecialisthospitalgh.com" target="_blank">queensspecialisthospitalgh.com</a></span>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">🕐</div>
+          <div class="contact-row-text">
+            <strong>Opening Hours</strong>
+            <span>Monday – Sunday: Open 24 Hours</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <div class="appt-form">
+        <h3>Request an Appointment</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="Kwame">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Mensah">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="024 000 0000">
+        </div>
+        <div class="form-group">
+          <label>Service Required</label>
+          <select>
+            <option value="">Select a service…</option>
+            <option>ENT Consultation</option>
+            <option>Surgical Consultation</option>
+            <option>Outpatient Services</option>
+            <option>Emergency Care</option>
+            <option>Pharmacy Services</option>
+            <option>Free Health Screening</option>
+            <option>General Consultation</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Preferred Date</label>
+          <input type="date">
+        </div>
+        <div class="form-group">
+          <label>Additional Notes</label>
+          <textarea rows="3" placeholder="Briefly describe your symptoms or reason for visit…" style="resize:none"></textarea>
+        </div>
+        <button class="form-submit" onclick="handleSubmit(this)">
+          Confirm Appointment Request
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo" style="display:inline-flex">
+        <div class="logo-crown">👑</div>
+        <div class="logo-text">
+          <strong>Queens Specialist Hospital</strong>
+          <span>Kumasi, Ghana</span>
+        </div>
+      </a>
+      <p>Your trusted healthcare partner in the Ashanti Region. Delivering compassionate, expert medical care — 24 hours a day, 7 days a week.</p>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/queenshospitalgh/" target="_blank" class="social-btn" title="Instagram">𝕀</a>
+        <a href="https://www.queensspecialisthospitalgh.com" target="_blank" class="social-btn" title="Website">🌐</a>
+        <a href="tel:0244576615" class="social-btn" title="Call">📞</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#services">Outpatient Care</a></li>
+        <li><a href="#services">Surgical Care</a></li>
+        <li><a href="#services">ENT Specialist</a></li>
+        <li><a href="#services">Pharmacy</a></li>
+        <li><a href="#services">Emergency</a></li>
+        <li><a href="#services">Free Screenings</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Hospital</h5>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#doctors">Our Doctors</a></li>
+        <li><a href="#contact">Appointments</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="tel:0244576615">024 457 6615</a></li>
+        <li><a href="mailto:info@queenshospitalgh.com">info@queenshospitalgh.com</a></li>
+        <li><a href="https://maps.google.com/?q=Queens+Hospital+Kumasi" target="_blank">Get Directions</a></li>
+        <li><a href="https://www.queensspecialisthospitalgh.com" target="_blank">Website</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Queens Specialist Hospital, Kumasi — All rights reserved.</p>
+    <div class="nhis-footer">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#e8c96f" stroke-width="1.2"/><path d="M3.5 6l1.5 1.5 3-3" stroke="#e8c96f" stroke-width="1.2" stroke-linecap="round"/></svg>
+      NHIS Accredited
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Form submit
+  function handleSubmit(btn) {
+    btn.textContent = '✓ Request Received — We\'ll Call You Shortly';
+    btn.style.background = 'linear-gradient(135deg,#2e7d32,#43a047)';
+    btn.style.color = '#fff';
+    btn.disabled = true;
+  }
+</script>
+</body>
+</html>
