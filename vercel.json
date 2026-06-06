@@ -11,7 +11,8 @@
     { "source": "/contact.html", "destination": "/contact", "permanent": true },
     { "source": "/privacy.html", "destination": "/privacy", "permanent": true },
     { "source": "/terms.html", "destination": "/terms", "permanent": true },
-    { "source": "/tiktok-tool.html", "destination": "/tiktok-tool", "permanent": true }
+    { "source": "/tiktok-tool.html", "destination": "/tiktok-tool", "permanent": true },
+    { "source": "/teleprompter.html", "destination": "/teleprompter", "permanent": true }
   ],
   "rewrites": [
     { "source": "/products", "destination": "/products.html" },
@@ -19,7 +20,8 @@
     { "source": "/contact", "destination": "/contact.html" },
     { "source": "/privacy", "destination": "/privacy.html" },
     { "source": "/terms", "destination": "/terms.html" },
-    { "source": "/tiktok-tool", "destination": "/tiktok-tool.html" }
+    { "source": "/tiktok-tool", "destination": "/tiktok-tool.html" },
+    { "source": "/teleprompter", "destination": "/teleprompter.html" }
   ],
   "headers": [
     {

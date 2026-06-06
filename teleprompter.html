@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI For Ghana — Lesson Reader</title>
+    <meta name="description" content="Follow along with AI For Ghana lessons at your own pace. Paste your lesson content and read it in teleprompter mode.">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --bg-card: #111;
+            --border: rgba(255,255,255,0.08);
+            --text: #fff;
+            --text-dim: rgba(255,255,255,0.5);
+            --accent: #FCD116;
+            --green: #006B3F;
+            --red: #CE1126;
+            --radius: 12px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; min-height: 100vh; }
+
+        /* ── NAV ── */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(10,10,10,0.97);
+            border-bottom: 1px solid var(--border);
+            padding: 0.9rem 1.5rem;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+        .nav-logo {
+            width: 36px; height: 36px; border-radius: 8px;
+            background: linear-gradient(135deg, #006B3F, #FCD116, #CE1126);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.85rem; color: #fff;
+        }
+        .nav-title { font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; color: #fff; }
+        .nav-sub { font-size: 0.7rem; color: var(--text-dim); }
+        .nav-back { color: var(--text-dim); font-size: 0.82rem; text-decoration: none; display: flex; align-items: center; gap: 0.4rem; }
+        .nav-back:hover { color: #fff; }
+
+        /* ── SETUP SCREEN ── */
+        #setupScreen {
+            max-width: 720px; margin: 0 auto;
+            padding: 7rem 1.5rem 4rem;
+        }
+        .setup-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(252,209,22,0.1); border: 1px solid rgba(252,209,22,0.25);
+            border-radius: 50px; padding: 0.35rem 1rem; margin-bottom: 1.5rem;
+            font-size: 0.78rem; color: var(--accent);
+        }
+        .setup-badge i { font-size: 0.7rem; }
+        .setup-title {
+            font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800; line-height: 1.15; margin-bottom: 0.75rem;
+        }
+        .setup-title span { color: var(--accent); }
+        .setup-sub { color: var(--text-dim); font-size: 1rem; margin-bottom: 2.5rem; line-height: 1.6; }
+
+        .setup-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 16px; padding: 1.75rem; margin-bottom: 1.5rem;
+        }
+        .setup-card h3 {
+            font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700;
+            margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;
+        }
+        .setup-card h3 i { color: var(--text-dim); }
+
+        .field { margin-bottom: 1.25rem; }
+        .field label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--text-dim); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .field input, .field textarea, .field select {
+            width: 100%; background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border); border-radius: 10px;
+            color: #fff; font-family: 'Outfit', sans-serif; font-size: 0.95rem;
+            padding: 0.75rem 1rem; outline: none; transition: border-color 0.2s;
+        }
+        .field input:focus, .field textarea:focus, .field select:focus { border-color: rgba(252,209,22,0.4); }
+        .field textarea { resize: vertical; min-height: 220px; line-height: 1.6; }
+        .field select option { background: #1a1a1a; }
+
+        .settings-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+        @media(max-width:600px){ .settings-row { grid-template-columns: 1fr 1fr; } }
+
+        .speed-display {
+            font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800;
+            color: var(--accent); text-align: center; margin-top: 0.25rem;
+        }
+        input[type=range] {
+            width: 100%; accent-color: var(--accent); background: none;
+            border: none; padding: 0.5rem 0; cursor: pointer;
+        }
+
+        .btn-start {
+            width: 100%; background: linear-gradient(135deg, #006B3F, #1a8a52);
+            color: #fff; border: none; border-radius: 12px; padding: 1.1rem;
+            font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            gap: 0.6rem; transition: all 0.2s;
+        }
+        .btn-start:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,107,63,0.3); }
+
+        .sample-btn {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: none; border: 1px solid var(--border);
+            border-radius: 50px; padding: 0.4rem 1rem; color: var(--text-dim);
+            font-size: 0.8rem; cursor: pointer; transition: all 0.2s; margin-top: 0.5rem;
+        }
+        .sample-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* ── READER SCREEN ── */
+        #readerScreen { display: none; }
+
+        .reader-controls {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(10,10,10,0.98);
+            border-bottom: 1px solid var(--border);
+            padding: 0.75rem 1.5rem;
+            display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+        }
+        .lesson-title-bar {
+            font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem;
+            color: #fff; flex: 1; min-width: 120px;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .controls-group { display: flex; align-items: center; gap: 0.5rem; }
+
+        .ctrl-btn {
+            background: rgba(255,255,255,0.06); border: 1px solid var(--border);
+            border-radius: 8px; color: #fff; width: 36px; height: 36px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; font-size: 0.85rem; transition: all 0.15s;
+        }
+        .ctrl-btn:hover { background: rgba(255,255,255,0.12); }
+        .ctrl-btn.active { background: var(--accent); color: #000; border-color: var(--accent); }
+
+        .play-btn {
+            background: var(--green); border: none; border-radius: 8px;
+            color: #fff; padding: 0 1.25rem; height: 36px;
+            display: flex; align-items: center; gap: 0.4rem;
+            cursor: pointer; font-family: 'Syne', sans-serif; font-weight: 700;
+            font-size: 0.85rem; transition: all 0.15s; white-space: nowrap;
+        }
+        .play-btn:hover { opacity: 0.85; }
+        .play-btn.paused { background: var(--accent); color: #000; }
+
+        .speed-ctrl { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--text-dim); }
+        .speed-ctrl input[type=range] { width: 80px; padding: 0; }
+        .speed-label { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--accent); font-size: 0.85rem; min-width: 28px; }
+
+        .font-ctrl { display: flex; align-items: center; gap: 0.3rem; }
+        .font-ctrl button {
+            background: rgba(255,255,255,0.06); border: 1px solid var(--border);
+            border-radius: 6px; color: #fff; width: 28px; height: 28px;
+            cursor: pointer; font-size: 0.75rem; transition: 0.15s;
+        }
+        .font-ctrl button:hover { background: rgba(255,255,255,0.15); }
+
+        .progress-bar-wrap { position: fixed; top: 57px; left: 0; right: 0; z-index: 99; height: 3px; background: rgba(255,255,255,0.08); }
+        .progress-bar-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.3s; }
+
+        /* ── TELEPROMPTER CONTENT ── */
+        #readerContent {
+            padding: 5rem 1.5rem 40vh;
+            max-width: 780px; margin: 0 auto;
+            font-size: 1.6rem; line-height: 1.8;
+            font-weight: 400; color: rgba(255,255,255,0.9);
+        }
+        #readerContent.mirror { transform: scaleX(-1); }
+        #readerContent h1 { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; margin: 2rem 0 1rem; color: #fff; }
+        #readerContent h2 { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 700; margin: 1.5rem 0 0.75rem; color: var(--accent); }
+        #readerContent h3 { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 600; margin: 1.25rem 0 0.5rem; color: rgba(255,255,255,0.7); }
+        #readerContent p { margin-bottom: 1.25rem; }
+        #readerContent ul, #readerContent ol { padding-left: 1.5rem; margin-bottom: 1.25rem; }
+        #readerContent li { margin-bottom: 0.5rem; }
+        #readerContent strong { color: #fff; font-weight: 600; }
+        #readerContent blockquote {
+            border-left: 3px solid var(--accent); padding-left: 1.25rem;
+            color: rgba(255,255,255,0.7); font-style: italic; margin: 1.5rem 0;
+        }
+        #readerContent hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+        #readerContent .slide-break {
+            text-align: center; padding: 1.5rem 0; color: var(--text-dim);
+            font-size: 0.9rem; letter-spacing: 0.1em;
+        }
+        #readerContent .slide-break::before { content: '· · · NEXT SLIDE · · ·'; }
+
+        /* Focus line indicator */
+        .focus-line {
+            position: fixed; top: 50%; left: 0; right: 0; z-index: 50;
+            height: 3px; background: rgba(252,209,22,0.2); pointer-events: none;
+            display: none;
+        }
+        .focus-line.show { display: block; }
+
+        /* ── DONE SCREEN ── */
+        .done-overlay {
+            display: none; position: fixed; inset: 0; z-index: 200;
+            background: rgba(10,10,10,0.95); align-items: center; justify-content: center;
+            flex-direction: column; text-align: center;
+        }
+        .done-overlay.show { display: flex; }
+        .done-icon { font-size: 4rem; margin-bottom: 1rem; }
+        .done-title { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .done-sub { color: var(--text-dim); margin-bottom: 2rem; }
+        .done-actions { display: flex; gap: 1rem; }
+        .done-btn {
+            padding: 0.75rem 1.5rem; border-radius: 10px; font-family: 'Syne', sans-serif;
+            font-weight: 700; cursor: pointer; font-size: 0.9rem; border: none;
+        }
+        .done-btn.primary { background: var(--green); color: #fff; }
+        .done-btn.secondary { background: var(--bg-card); border: 1px solid var(--border); color: #fff; }
+    </style>
+</head>
+<body>
+
+<!-- SETUP SCREEN -->
+<div id="setupScreen">
+    <nav class="nav">
+        <a href="index.html" class="nav-brand">
+            <div class="nav-logo">AI</div>
+            <div>
+                <div class="nav-title">AI FOR GHANA</div>
+                <div class="nav-sub">Lesson Reader</div>
+            </div>
+        </a>
+        <a href="index.html" class="nav-back"><i class="fas fa-arrow-left"></i> Back</a>
+    </nav>
+
+    <div class="setup-badge"><i class="fas fa-scroll"></i> Teleprompter Mode</div>
+    <h1 class="setup-title">Read Any Lesson<br>Like a <span>Teleprompter</span></h1>
+    <p class="setup-sub">Paste your NotebookLM slides, lesson notes, or any educational content. The reader scrolls automatically so you can follow along, present, or study hands-free.</p>
+
+    <div class="setup-card">
+        <h3><i class="fas fa-paste"></i> Your Content</h3>
+        <div class="field">
+            <label>Lesson Title</label>
+            <input type="text" id="lessonTitle" placeholder="e.g. AI is like a Market Woman — Lesson 1">
+        </div>
+        <div class="field">
+            <label>Paste your slides or lesson text here</label>
+            <textarea id="lessonContent" placeholder="Paste your NotebookLM slides, lesson notes, or any text here...
+
+You can use:
+- Headings (##, ###)
+- Bullet points (-)
+- Bold text (**word**)
+- Slide breaks (---)
+- Quotes (> text)
+
+Just paste and press Start!"></textarea>
+        </div>
+        <button class="sample-btn" onclick="loadSample()"><i class="fas fa-magic"></i> Load Sample Lesson</button>
+    </div>
+
+    <div class="setup-card">
+        <h3><i class="fas fa-sliders-h"></i> Reading Settings</h3>
+        <div class="settings-row">
+            <div class="field">
+                <label>Scroll Speed</label>
+                <input type="range" id="speedSetup" min="1" max="10" value="3" oninput="updateSpeedDisplay()">
+                <div class="speed-display" id="speedDisplay">Slow</div>
+            </div>
+            <div class="field">
+                <label>Font Size</label>
+                <select id="fontSizeSetup">
+                    <option value="1.2rem">Small</option>
+                    <option value="1.6rem" selected>Medium</option>
+                    <option value="2rem">Large</option>
+                    <option value="2.5rem">Extra Large</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Theme</label>
+                <select id="themeSetup">
+                    <option value="dark" selected>Dark (default)</option>
+                    <option value="light">Light</option>
+                    <option value="green">Ghana Green</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn-start" onclick="startReading()">
+        <i class="fas fa-play"></i> Start Reading
+    </button>
+</div>
+
+<!-- READER SCREEN -->
+<div id="readerScreen">
+    <div class="reader-controls" id="readerControls">
+        <div class="lesson-title-bar" id="readerTitle">Lesson</div>
+
+        <div class="controls-group">
+            <div class="speed-ctrl">
+                <i class="fas fa-tachometer-alt" style="color:var(--text-dim)"></i>
+                <input type="range" id="speedReader" min="1" max="10" value="3" oninput="changeSpeed()">
+                <span class="speed-label" id="speedLabelReader">▶</span>
+            </div>
+        </div>
+
+        <div class="controls-group">
+            <div class="font-ctrl">
+                <button onclick="changeFontSize(-0.1)" title="Smaller">A-</button>
+                <button onclick="changeFontSize(0.1)" title="Larger">A+</button>
+            </div>
+        </div>
+
+        <div class="controls-group">
+            <button class="ctrl-btn" id="focusBtn" onclick="toggleFocusLine()" title="Focus Line"><i class="fas fa-grip-lines"></i></button>
+            <button class="ctrl-btn" id="mirrorBtn" onclick="toggleMirror()" title="Mirror Mode"><i class="fas fa-arrows-alt-h"></i></button>
+            <button class="ctrl-btn" onclick="restartReader()" title="Restart"><i class="fas fa-redo"></i></button>
+            <button class="ctrl-btn" onclick="exitReader()" title="Exit"><i class="fas fa-times"></i></button>
+        </div>
+
+        <button class="play-btn paused" id="playBtn" onclick="togglePlay()">
+            <i class="fas fa-play" id="playIcon"></i> <span id="playLabel">Start</span>
+        </button>
+    </div>
+
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressFill"></div></div>
+    <div class="focus-line" id="focusLine"></div>
+    <div id="readerContent"></div>
+</div>
+
+<!-- DONE OVERLAY -->
+<div class="done-overlay" id="doneOverlay">
+    <div class="done-icon">🇬🇭</div>
+    <div class="done-title">Lesson Complete!</div>
+    <div class="done-sub">You finished the lesson. Well done.</div>
+    <div class="done-actions">
+        <button class="done-btn primary" onclick="restartReader(); closeDone()"><i class="fas fa-redo"></i> Read Again</button>
+        <button class="done-btn secondary" onclick="exitReader(); closeDone()"><i class="fas fa-home"></i> New Lesson</button>
+    </div>
+</div>
+
+<script>
+    // ── State ──
+    let scrollInterval = null;
+    let isPlaying = false;
+    let currentSpeed = 3;
+    let currentFontSize = 1.6;
+    let isMirrored = false;
+    let showFocusLine = false;
+
+    const SAMPLE = `## Lesson 1: What is Artificial Intelligence?
+*AI For Ghana — Phase 1: Foundation*
+
+---
+
+### What is AI?
+
+Artificial Intelligence — or AI — is when a computer learns from experience and uses that learning to make decisions.
+
+It is not magic. It is not science fiction. It is a tool. Like a hammer, but for thinking.
+
+---
+
+### The Market Woman Analogy 🛒
+
+You know that market woman at Kejetia?
+
+She has been selling for 20 years. She knows:
+- Every price
+- Every customer
+- What sells in the morning
+- What sells in the evening
+
+She learned all this from **experience**.
+
+**AI does the same thing** — but instead of 20 years, it has seen millions of examples. And it never forgets.
+
+---
+
+### How AI Learns
+
+1. **Data** — Feed the AI many examples (like showing a student many maths problems)
+2. **Pattern** — The AI finds patterns in the data
+3. **Prediction** — The AI uses patterns to predict new answers
+
+> "AI is not smarter than humans. It is faster at finding patterns in large amounts of data."
+
+---
+
+### AI in Ghana Today
+
+- **Mobile Money** — MTN MoMo uses AI to detect fraud
+- **Agriculture** — Apps that detect crop diseases from photos
+- **Healthcare** — Tools that help diagnose malaria faster
+- **Education** — AI tutors that adapt to your level
+
+---
+
+### Key Takeaway
+
+AI = **A machine that learns from data** to make decisions or predictions.
+
+It is not a robot. It is not going to take over the world. It is a tool — and the Ghanaians who learn to use it will have the biggest advantage.
+
+---
+
+### Quick Quiz
+
+1. What does AI stand for?
+2. How does AI learn? (Hint: think of the market woman)
+3. Name ONE example of AI you have seen in Ghana
+4. Is AI magic? Why or why not?
+
+---
+
+*Next lesson: How does AI actually learn? (Inside the machine)*
+
+**#AIGhana #AIForGhana #PromptGhana**`;
+
+    function loadSample() {
+        document.getElementById('lessonTitle').value = 'Lesson 1: What is Artificial Intelligence?';
+        document.getElementById('lessonContent').value = SAMPLE;
+    }
+
+    function updateSpeedDisplay() {
+        const val = parseInt(document.getElementById('speedSetup').value);
+        const labels = ['', 'Very Slow', 'Very Slow', 'Slow', 'Slow', 'Medium', 'Medium', 'Fast', 'Fast', 'Very Fast', 'Very Fast'];
+        document.getElementById('speedDisplay').textContent = labels[val];
+    }
+
+    function markdownToHTML(text) {
+        return text
+            .replace(/^---$/gm, '<div class="slide-break"></div>')
+            .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+            .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+            .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+            .replace(/^\> (.+)$/gm, '<blockquote>$1</blockquote>')
+            .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
+            .replace(/^- (.+)$/gm, '<li>$1</li>')
+            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.+?)\*/g, '<em>$1</em>')
+            .replace(/(<li>.*<\/li>\n?)+/g, match => `<ul>${match}</ul>`)
+            .replace(/\n\n/g, '</p><p>')
+            .replace(/^([^<\n].+)$/gm, (m) => m.startsWith('<') ? m : `<p>${m}</p>`)
+            .replace(/<p><\/p>/g, '');
+    }
+
+    function startReading() {
+        const title = document.getElementById('lessonTitle').value || 'AI For Ghana Lesson';
+        const content = document.getElementById('lessonContent').value.trim();
+        if (!content) { alert('Please paste your lesson content first.'); return; }
+
+        currentSpeed = parseInt(document.getElementById('speedSetup').value);
+        currentFontSize = parseFloat(document.getElementById('fontSizeSetup').value);
+        const theme = document.getElementById('themeSetup').value;
+
+        // Apply theme
+        if (theme === 'light') {
+            document.body.style.background = '#f5f5f0';
+            document.body.style.color = '#111';
+            document.getElementById('readerContent').style.color = '#111';
+        } else if (theme === 'green') {
+            document.body.style.background = '#001a0d';
+        }
+
+        document.getElementById('readerTitle').textContent = title;
+        document.getElementById('readerContent').innerHTML = markdownToHTML(content);
+        document.getElementById('readerContent').style.fontSize = currentFontSize + 'rem';
+        document.getElementById('speedReader').value = currentSpeed;
+        updateSpeedLabel();
+
+        document.getElementById('setupScreen').style.display = 'none';
+        document.getElementById('readerScreen').style.display = 'block';
+        window.scrollTo(0, 0);
+    }
+
+    function getScrollPxPerInterval() {
+        // 1 = 0.3px/tick, 10 = 3px/tick
+        return currentSpeed * 0.3;
+    }
+
+    function togglePlay() {
+        if (isPlaying) {
+            pauseScroll();
+        } else {
+            startScroll();
+        }
+    }
+
+    function startScroll() {
+        isPlaying = true;
+        document.getElementById('playBtn').classList.remove('paused');
+        document.getElementById('playIcon').className = 'fas fa-pause';
+        document.getElementById('playLabel').textContent = 'Pause';
+
+        scrollInterval = setInterval(() => {
+            const maxScroll = document.body.scrollHeight - window.innerHeight;
+            if (window.scrollY >= maxScroll - 10) {
+                pauseScroll();
+                document.getElementById('doneOverlay').classList.add('show');
+                return;
+            }
+            window.scrollBy(0, getScrollPxPerInterval());
+            updateProgress();
+        }, 16);
+    }
+
+    function pauseScroll() {
+        isPlaying = false;
+        clearInterval(scrollInterval);
+        document.getElementById('playBtn').classList.add('paused');
+        document.getElementById('playIcon').className = 'fas fa-play';
+        document.getElementById('playLabel').textContent = 'Resume';
+    }
+
+    function changeSpeed() {
+        currentSpeed = parseInt(document.getElementById('speedReader').value);
+        updateSpeedLabel();
+    }
+
+    function updateSpeedLabel() {
+        const labels = ['','0.3x','0.5x','0.7x','0.9x','1x','1.2x','1.5x','1.8x','2.2x','3x'];
+        document.getElementById('speedLabelReader').textContent = labels[currentSpeed];
+    }
+
+    function changeFontSize(delta) {
+        currentFontSize = Math.min(3.5, Math.max(0.9, currentFontSize + delta));
+        document.getElementById('readerContent').style.fontSize = currentFontSize + 'rem';
+    }
+
+    function toggleMirror() {
+        isMirrored = !isMirrored;
+        document.getElementById('readerContent').classList.toggle('mirror', isMirrored);
+        document.getElementById('mirrorBtn').classList.toggle('active', isMirrored);
+    }
+
+    function toggleFocusLine() {
+        showFocusLine = !showFocusLine;
+        document.getElementById('focusLine').classList.toggle('show', showFocusLine);
+        document.getElementById('focusBtn').classList.toggle('active', showFocusLine);
+    }
+
+    function restartReader() {
+        pauseScroll();
+        window.scrollTo(0, 0);
+        document.getElementById('progressFill').style.width = '0%';
+        document.getElementById('playLabel').textContent = 'Start';
+        isPlaying = false;
+    }
+
+    function exitReader() {
+        pauseScroll();
+        document.getElementById('readerScreen').style.display = 'none';
+        document.getElementById('setupScreen').style.display = 'block';
+        window.scrollTo(0, 0);
+        document.body.style.background = '';
+        document.body.style.color = '';
+    }
+
+    function updateProgress() {
+        const maxScroll = document.body.scrollHeight - window.innerHeight;
+        const pct = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
+        document.getElementById('progressFill').style.width = pct + '%';
+    }
+
+    function closeDone() {
+        document.getElementById('doneOverlay').classList.remove('show');
+    }
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+        if (document.getElementById('readerScreen').style.display !== 'block') return;
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+        if (e.code === 'Space') { e.preventDefault(); togglePlay(); }
+        if (e.code === 'ArrowUp') { currentSpeed = Math.max(1, currentSpeed - 1); document.getElementById('speedReader').value = currentSpeed; updateSpeedLabel(); }
+        if (e.code === 'ArrowDown') { currentSpeed = Math.min(10, currentSpeed + 1); document.getElementById('speedReader').value = currentSpeed; updateSpeedLabel(); }
+        if (e.code === 'KeyR') restartReader();
+        if (e.code === 'Escape') exitReader();
+    });
+
+    // Init
+    updateSpeedDisplay();
+    window.addEventListener('scroll', updateProgress);
+</script>
+</body>
+</html>
