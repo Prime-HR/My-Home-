@@ -1,156 +1,38 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-
   "cleanUrls": true,
   "trailingSlash": false,
-
   "redirects": [
-    {
-      "source": "/home",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/index",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/index.html",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/products.html",
-      "destination": "/products",
-      "permanent": true
-    },
-    {
-      "source": "/categories.html",
-      "destination": "/categories",
-      "permanent": true
-    },
-    {
-      "source": "/contact.html",
-      "destination": "/contact",
-      "permanent": true
-    },
-    {
-      "source": "/privacy.html",
-      "destination": "/privacy",
-      "permanent": true
-    },
-    {
-      "source": "/terms.html",
-      "destination": "/terms",
-      "permanent": true
-    },
-    {
-      "source": "/tiktok-tool.html",
-      "destination": "/tiktok-tool",
-      "permanent": true
-    }
+    { "source": "/home", "destination": "/", "permanent": true },
+    { "source": "/index", "destination": "/", "permanent": true },
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/products.html", "destination": "/products", "permanent": true },
+    { "source": "/categories.html", "destination": "/categories", "permanent": true },
+    { "source": "/contact.html", "destination": "/contact", "permanent": true },
+    { "source": "/privacy.html", "destination": "/privacy", "permanent": true },
+    { "source": "/terms.html", "destination": "/terms", "permanent": true },
+    { "source": "/tiktok-tool.html", "destination": "/tiktok-tool", "permanent": true }
   ],
-
   "rewrites": [
-    {
-      "source": "/tiktokzFgB1sJnDcJkCZseYaNIBgFXjUffTVdt.txt/",
-      "destination": "/tiktokzFgB1sJnDcJkCZseYaNIBgFXjUffTVdt.txt"
-    },
-    {
-      "source": "/tiktokd6XOZEYEGnxzmR8UxYP6IIB2dpU0VxHs.txt/",
-      "destination": "/tiktokd6XOZEYEGnxzmR8UxYP6IIB2dpU0VxHs.txt"
-    },
-    {
-      "source": "/tiktokpZFBjDpOj0czeaPtAZNNZhVOawcnGrv6.txt/",
-      "destination": "/tiktokpZFBjDpOj0czeaPtAZNNZhVOawcnGrv6.txt"
-    },
-    {
-      "source": "/privacy/",
-      "destination": "/privacy.html"
-    },
-    {
-      "source": "/terms/",
-      "destination": "/terms.html"
-    },
-    {
-      "source": "/products",
-      "destination": "/products.html"
-    },
-    {
-      "source": "/categories",
-      "destination": "/categories.html"
-    },
-    {
-      "source": "/contact",
-      "destination": "/contact.html"
-    },
-    {
-      "source": "/privacy",
-      "destination": "/privacy.html"
-    },
-    {
-      "source": "/terms",
-      "destination": "/terms.html"
-    },
-    {
-      "source": "/tiktok-tool",
-      "destination": "/tiktok-tool.html"
-    }
+    { "source": "/products", "destination": "/products.html" },
+    { "source": "/categories", "destination": "/categories.html" },
+    { "source": "/contact", "destination": "/contact.html" },
+    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/terms", "destination": "/terms.html" },
+    { "source": "/tiktok-tool", "destination": "/tiktok-tool.html" }
   ],
-
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
-        },
-        {
-          "key": "Permissions-Policy",
-          "value": "camera=(), microphone=(), geolocation=()"
-        }
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
       ]
     },
-    {
-      "source": "/styles.css",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/script.js",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/(.*\\.html)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate"
-        }
-      ]
-    }
+    { "source": "/styles.css", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
+    { "source": "/script.js", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] }
   ]
 }
