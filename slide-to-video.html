@@ -96,6 +96,8 @@ video{width:100%;max-width:340px;border-radius:14px;border:1px solid var(--borde
 .note{background:rgba(0,107,63,.08);border:1px solid rgba(0,107,63,.3);border-radius:12px;padding:.9rem 1.1rem;font-size:.82rem;color:var(--text-dim);margin-top:1rem}
 .note b{color:#fff}
 .cap-box{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;color:#fff;padding:.7rem;font-family:var(--font-body);font-size:.85rem;resize:vertical;min-height:70px;margin-top:.5rem}
+.toast{position:fixed;left:50%;bottom:1.5rem;transform:translateX(-50%) translateY(140%);background:var(--gh-green);color:#fff;padding:.85rem 1.4rem;border-radius:50px;font-size:.85rem;font-weight:600;box-shadow:0 12px 40px rgba(0,0,0,.4);z-index:999;transition:transform .35s cubic-bezier(.34,1.56,.64,1);max-width:90vw;text-align:center}
+.toast.show{transform:translateX(-50%) translateY(0)}
 footer{text-align:center;padding:2rem 1rem;color:var(--text-dim);font-size:.78rem;font-family:var(--font-mono);border-top:1px solid var(--border);margin-top:2rem}
 footer a{color:var(--gh-gold);text-decoration:none}
 </style>
@@ -195,12 +197,14 @@ footer a{color:var(--gh-gold);text-decoration:none}
       <button class="btn btn-green" id="shareBtn"><i class="fas fa-share-nodes"></i> Share to apps</button>
     </div>
 
-    <label style="display:block;font-size:.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;margin-top:1.5rem;font-family:var(--font-mono)">Caption (saved automatically · tap to copy)</label>
-    <textarea class="cap-box" id="caption">Free AI &amp; tech education for every Ghanaian 🇬🇭 Follow @AIForGhana for more. #AIForGhana #PromptGhana #TechGhana</textarea>
-    <button class="btn btn-ghost" id="copyCap" style="margin-top:.6rem;font-size:.8rem;padding:.55rem 1.1rem"><i class="fas fa-copy"></i> Copy caption</button>
+    <label style="display:block;font-size:.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;margin-top:1.5rem;font-family:var(--font-mono)">Your caption / message <span style="color:var(--gh-gold)">· becomes the video's file name</span></label>
+    <textarea class="cap-box" id="caption">Free AI &amp; tech education for every Ghanaian 🇬🇭 Follow @AIForGhana for more.</textarea>
+    <label style="display:block;font-size:.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;margin-top:1rem;font-family:var(--font-mono)">🇬🇭 Ghana hashtags · added automatically for max reach <button type="button" id="resetTags" style="background:none;border:none;color:var(--gh-gold);cursor:pointer;font-size:.7rem;font-family:var(--font-mono)">↺ reset</button></label>
+    <textarea class="cap-box" id="tags" style="min-height:54px">#AIForGhana #PromptGhana #Ghana #GhanaTikTok #TikTokGhana #Accra #Kumasi #GhanaYouth #TechGhana #EduTok #LearnOnTikTok #fyp #foryou #fypシ #viral #trending</textarea>
+    <button class="btn btn-ghost" id="copyCap" style="margin-top:.6rem;font-size:.8rem;padding:.55rem 1.1rem"><i class="fas fa-copy"></i> Copy caption + hashtags</button>
 
     <div class="note">
-      <b>How sharing works (no API, by design):</b> On your <b>phone</b>, tap <b>“Share to apps”</b> and pick TikTok, Instagram, Facebook or WhatsApp — your video goes straight in. On a <b>computer</b>, click <b>Download</b>, then use a button below to open that platform and upload the saved video.
+      <b>One-click posting:</b> On your <b>phone</b>, tap <b>“Share to apps”</b> — your video + caption go straight into TikTok, Instagram, Facebook or WhatsApp. On a <b>computer</b>, tapping any account button below will <b>auto-save the video and copy your caption + Ghana hashtags</b> — then just paste and pick the file. (Browsers block sending a file directly through a link, so this is the fastest possible way without logging in.)
     </div>
 
     <label style="display:block;font-size:.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;margin-top:1.5rem;font-family:var(--font-mono)">Open your accounts to post</label>
@@ -219,6 +223,7 @@ footer a{color:var(--gh-gold);text-decoration:none}
   <canvas id="previewCanvas"></canvas>
 </div>
 
+<div class="toast" id="toast"></div>
 <footer>
   Built with ❤️ for Ghana · <a href="/">raufhusein.site</a> · AI For Ghana<br>
   Your files never leave your device — everything runs locally in your browser.
@@ -240,7 +245,7 @@ function saveSettings(){
   try{localStorage.setItem('s2v',JSON.stringify({
     secs:$('secs').value,shape:$('shape').value,quality:$('quality').value,bg,
     cross:$('tCross').checked,fade:$('tFade').checked,music:$('tMusic').checked,
-    vol:$('musicVol').value,caption:$('caption').value
+    vol:$('musicVol').value,caption:$('caption').value,tags:$('tags').value
   }));}catch(e){}
 }
 function loadSettings(){
@@ -249,7 +254,7 @@ function loadSettings(){
     if(s.bg){bg=s.bg;document.querySelectorAll('.bg-chip').forEach(c=>c.classList.toggle('on',c.dataset.bg===bg));}
     if(s.cross)$('tCross').checked=true; if(s.fade)$('tFade').checked=true;
     if(s.music){$('tMusic').checked=true;$('musicRow').classList.remove('hidden');}
-    if(s.vol)$('musicVol').value=s.vol; if(s.caption)$('caption').value=s.caption;
+    if(s.vol)$('musicVol').value=s.vol; if(s.caption)$('caption').value=s.caption; if(s.tags)$('tags').value=s.tags;
   }catch(e){}
 }
 
@@ -332,6 +337,7 @@ genBtn.addEventListener('click',generate);
 
 async function generate(){
   if(!slides.length)return;
+  downloadedOnce=false;
   const useMusic=$('tMusic').checked&&musicFileObj;
   const mime=pickMime(useMusic);
   if(!mime||!window.MediaRecorder){alert('Your browser cannot record video. Please use an updated Chrome or Safari.');return;}
@@ -374,7 +380,7 @@ async function generate(){
     if(audioEl){audioEl.pause();}if(actx){actx.close().catch(()=>{});}
     blob=new Blob(chunks,{type:mime});
     const url=URL.createObjectURL(blob);
-    $('player').src=url;const dl=$('dlBtn');dl.href=url;dl.download=`${fileName}.${ext}`;
+    $('player').src=url;const dl=$('dlBtn');dl.href=url;dl.download=safeName()+'.'+ext;
     $('result').classList.add('show');$('result').scrollIntoView({behavior:'smooth'});
     prog.classList.remove('show');genBtn.disabled=false;
     genMeta.textContent=`Done · ${ext.toUpperCase()} · ${(blob.size/1048576).toFixed(1)} MB`;
@@ -404,17 +410,38 @@ async function generate(){
   frame();
 }
 
-// ---- share + caption ----
+// ---- captions, hashtags, sharing ----
+const DEFAULT_TAGS='#AIForGhana #PromptGhana #Ghana #GhanaTikTok #TikTokGhana #Accra #Kumasi #GhanaYouth #TechGhana #EduTok #LearnOnTikTok #fyp #foryou #fypシ #viral #trending';
+let toastT;
+function toast(m){const el=$('toast');el.textContent=m;el.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),3500);}
+function fullCaption(){const c=($('caption').value||'').trim();const h=($('tags').value||'').trim();return h?(c+'\n\n'+h):c;}
+function safeName(){
+  let t=($('caption').value||'').replace(/#[^\s#]+/g,'').replace(/[\u{1F000}-\u{1FAFF}←-⇿⌀-➿️‍]/gu,'');
+  t=t.replace(/[\\/:*?"<>|\n\r\t]+/g,' ').replace(/\s+/g,' ').trim().slice(0,70);
+  return t||'AIForGhana-video';
+}
+function curExt(){return (blob&&blob.type.includes('mp4'))?'mp4':'webm';}
+let downloadedOnce=false;
+function downloadVideo(){if(!blob)return;const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=safeName()+'.'+curExt();document.body.appendChild(a);a.click();a.remove();downloadedOnce=true;}
+function prepForPost(){
+  if(!blob){toast('Make the video first ⬆️');return;}
+  if(!downloadedOnce)downloadVideo();
+  navigator.clipboard.writeText(fullCaption()).catch(()=>{});
+  toast('✅ Video saved + caption copied — paste & pick the file');
+}
+// platform buttons: auto-save video + copy caption with Ghana hashtags, then open the platform
+document.querySelector('.share-grid').addEventListener('click',e=>{const a=e.target.closest('.sbtn');if(a)prepForPost();});
+
 $('shareBtn').addEventListener('click',async()=>{
-  if(!blob){alert('Make the video first.');return;}
-  const ext=blob.type.includes('mp4')?'mp4':'webm';
-  const file=new File([blob],`${fileName}.${ext}`,{type:blob.type});
-  const cap=$('caption').value;
+  if(!blob){toast('Make the video first ⬆️');return;}
+  const file=new File([blob],safeName()+'.'+curExt(),{type:blob.type});
   if(navigator.canShare&&navigator.canShare({files:[file]})){
-    try{await navigator.share({files:[file],title:'AI For Ghana',text:cap});}catch(e){}
-  }else{alert('Direct app-sharing works best on a phone. On a computer, click “Download video”, then open a platform below and upload it.');}
+    try{await navigator.share({files:[file],title:safeName(),text:fullCaption()});}catch(e){}
+  }else{downloadVideo();navigator.clipboard.writeText(fullCaption()).catch(()=>{});toast('Saved + caption copied. Open your app to upload.');}
 });
-$('copyCap').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('caption').value);const b=$('copyCap');b.innerHTML='<i class="fas fa-check"></i> Copied!';setTimeout(()=>b.innerHTML='<i class="fas fa-copy"></i> Copy caption',1600);}catch(e){alert('Select the text and copy manually.');}});
+$('copyCap').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(fullCaption());const b=$('copyCap');b.innerHTML='<i class="fas fa-check"></i> Copied!';setTimeout(()=>b.innerHTML='<i class="fas fa-copy"></i> Copy caption + hashtags',1600);}catch(e){toast('Select the text and copy it manually.');}});
+$('resetTags').addEventListener('click',()=>{$('tags').value=DEFAULT_TAGS;saveSettings();toast('Ghana hashtags reset 🇬🇭');});
+$('tags').addEventListener('change',saveSettings);
 
 loadSettings();
 </script>
