@@ -1,752 +1,596 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rauf Husein | Software Marketplace — Enterprise Solutions for Africa</title>
-    <meta name="description" content="World-class enterprise software built for Africa. 90+ systems across healthcare, finance, agriculture, education and more. Buy, license or customize.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <meta name="tiktok-developers-site-verification" content="zFgB1sJnDcJkCZseYaNIBgFXjUffTVdt">
-    <meta name="tiktok-developers-site-verification" content="d6XOZEYEGnxzmR8UxYP6IIB2dpU0VxHs">
-    <meta name="tiktok-developers-site-verification" content="pZFBjDpOj0czeaPtAZNNZhVOawcnGrv6">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rauf Husein | Software Marketplace — Enterprise Solutions for Africa</title>
+<meta name="description" content="Ghana's premier enterprise software studio. 90+ systems across healthcare, finance, agriculture, education and more. Home of AI For Ghana.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{--bg:#060608;--gh-green:#006B3F;--gh-gold:#FCD116;--gh-red:#CE1126;--text:#fff;--text-dim:rgba(255,255,255,0.45);--border:rgba(255,255,255,0.07);--card:rgba(255,255,255,0.03);--radius:20px;--font-head:'Syne',sans-serif;--font-body:'Outfit',sans-serif;--font-mono:'DM Mono',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);overflow-x:hidden;cursor:none}
+
+/* CURSOR */
+.cur-dot{position:fixed;width:8px;height:8px;background:var(--gh-gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.1s}
+.cur-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(252,209,22,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all 0.15s ease}
+#bgCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.25rem 2rem;display:flex;align-items:center;justify-content:space-between;transition:all 0.4s}
+.nav.solid{background:rgba(6,6,8,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.brand{display:flex;align-items:center;gap:0.75rem;text-decoration:none}
+.brand-mark{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,var(--gh-green),var(--gh-gold));display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-weight:800;font-size:1rem;color:#000}
+.brand-info{display:flex;flex-direction:column}
+.brand-name{font-family:var(--font-head);font-size:0.78rem;font-weight:800;letter-spacing:0.12em;color:#fff}
+.brand-tag{font-family:var(--font-mono);font-size:0.62rem;color:var(--gh-gold);letter-spacing:0.06em}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{color:var(--text-dim);text-decoration:none;font-size:0.85rem;font-weight:500;transition:color 0.2s}
+.nav-links a:hover{color:#fff}
+.nav-cta{background:var(--gh-gold);color:#000;padding:0.55rem 1.4rem;border-radius:50px;font-size:0.82rem;font-weight:700;text-decoration:none;font-family:var(--font-head);transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem}
+.nav-cta:hover{background:#fff;transform:translateY(-1px)}
+.mobile-toggle{display:none;background:none;border:1px solid var(--border);border-radius:8px;padding:0.4rem 0.6rem;cursor:pointer;color:#fff}
+@media(max-width:900px){.nav-links{display:none}.mobile-toggle{display:block}}
+
+/* MOBILE NAV */
+.mobile-nav{position:fixed;inset:0;z-index:450;background:rgba(6,6,8,0.98);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;transform:translateY(-100%);transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1)}
+.mobile-nav.open{transform:translateY(0)}
+.mobile-nav a{font-family:var(--font-head);font-size:1.5rem;font-weight:700;color:#fff;text-decoration:none;opacity:0.7;transition:opacity 0.2s}
+.mobile-nav a:hover{opacity:1}
+.mobile-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:1px solid var(--border);border-radius:8px;color:#fff;width:40px;height:40px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center}
+
+/* ENTRY */
+#entry{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;z-index:10;overflow:hidden}
+.entry-inner{text-align:center;padding:2rem;max-width:900px;animation:fadeUp 1s ease 0.2s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.entry-tag{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(252,209,22,0.08);border:1px solid rgba(252,209,22,0.2);border-radius:50px;padding:0.4rem 1.1rem;margin-bottom:2rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--gh-gold);letter-spacing:0.06em}
+.entry-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--gh-gold);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.entry-title{font-family:var(--font-head);font-size:clamp(3rem,8vw,6.5rem);font-weight:800;line-height:0.95;letter-spacing:-0.03em;margin-bottom:1.5rem}
+.entry-title .line1{display:block;color:#fff}
+.entry-title .line2{display:block;background:linear-gradient(90deg,var(--gh-green),var(--gh-gold),var(--gh-red));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.entry-title .line3{display:block;color:rgba(255,255,255,0.1);font-size:0.35em;letter-spacing:0.25em;margin-top:0.75rem;-webkit-text-fill-color:rgba(255,255,255,0.1)}
+.entry-sub{font-size:1.1rem;color:var(--text-dim);max-width:560px;margin:0 auto 3rem;line-height:1.7}
+.entry-actions{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap}
+.btn-enter{background:var(--gh-gold);color:#000;padding:0.9rem 2.5rem;border-radius:50px;font-family:var(--font-head);font-weight:800;font-size:1rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;transition:all 0.3s;cursor:pointer;border:none}
+.btn-enter:hover{background:#fff;transform:translateY(-2px);box-shadow:0 12px 40px rgba(252,209,22,0.25)}
+.btn-ghost{border:1px solid var(--border);color:#fff;padding:0.9rem 2rem;border-radius:50px;font-size:0.9rem;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;transition:all 0.2s}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.04)}
+.entry-stats{display:flex;align-items:center;justify-content:center;gap:3rem;margin-top:5rem;padding-top:3rem;border-top:1px solid var(--border);flex-wrap:wrap}
+.stat-num{font-family:var(--font-head);font-size:2rem;font-weight:800;color:#fff;display:block}
+.stat-num .sa{color:var(--gh-gold)}
+.stat-label{font-size:0.72rem;color:var(--text-dim);letter-spacing:0.06em;text-transform:uppercase;margin-top:0.2rem}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;color:var(--text-dim);font-size:0.72rem;letter-spacing:0.12em;animation:bob 2s infinite}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+
+/* CMD BAR */
+.cmd-bar{position:relative;z-index:10;padding:0 2rem}
+.cmd-inner{max-width:1200px;margin:0 auto;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:16px;padding:1.5rem 2.5rem;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;backdrop-filter:blur(10px)}
+@media(max-width:700px){.cmd-inner{grid-template-columns:1fr 1fr}}
+.cmd-stat-label{font-family:var(--font-mono);font-size:0.6rem;color:var(--text-dim);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:0.2rem}
+.cmd-stat-val{font-family:var(--font-head);font-size:1.4rem;font-weight:800;color:#fff;display:block}
+.cmd-stat-val .a{color:var(--gh-gold)}
+.cmd-stat-sub{font-size:0.7rem;color:var(--text-dim)}
+
+/* HUB */
+#hub{position:relative;z-index:10;padding:8rem 2rem}
+.hub-header{text-align:center;margin-bottom:4rem}
+.sec-label{font-family:var(--font-mono);font-size:0.7rem;color:var(--gh-gold);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1rem;display:block}
+.hub-title{font-family:var(--font-head);font-size:clamp(2.5rem,5vw,4rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:1rem}
+.hub-sub{color:var(--text-dim);font-size:1rem;max-width:460px;margin:0 auto}
+.hub-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:1rem;max-width:1200px;margin:0 auto}
+.zone{border:1px solid var(--border);border-radius:var(--radius);background:var(--card);padding:2rem;cursor:pointer;transition:all 0.35s;position:relative;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;justify-content:flex-end;min-height:240px}
+.zone::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity 0.3s;border-radius:inherit}
+.zone:hover{transform:translateY(-4px);border-color:rgba(255,255,255,0.14)}
+.zone:hover::before{opacity:1}
+.z-marketplace{grid-column:1/7;background:linear-gradient(135deg,rgba(0,107,63,0.1),transparent)}
+.z-marketplace:hover{border-color:rgba(0,107,63,0.5);box-shadow:0 24px 48px rgba(0,107,63,0.12)}
+.z-marketplace::before{background:linear-gradient(135deg,rgba(0,107,63,0.15),transparent)}
+.z-ai{grid-column:7/13;background:linear-gradient(135deg,rgba(252,209,22,0.07),transparent)}
+.z-ai:hover{border-color:rgba(252,209,22,0.4);box-shadow:0 24px 48px rgba(252,209,22,0.08)}
+.z-ai::before{background:linear-gradient(135deg,rgba(252,209,22,0.1),transparent)}
+.z-edu{grid-column:1/5;background:linear-gradient(135deg,rgba(100,60,200,0.07),transparent)}
+.z-edu:hover{border-color:rgba(120,80,220,0.4)}
+.z-demos{grid-column:5/9;background:linear-gradient(135deg,rgba(0,180,200,0.07),transparent)}
+.z-demos:hover{border-color:rgba(0,180,200,0.4)}
+.z-tools{grid-column:9/13;background:linear-gradient(135deg,rgba(255,120,50,0.07),transparent)}
+.z-tools:hover{border-color:rgba(255,120,50,0.4)}
+.z-cta{grid-column:1/8;background:linear-gradient(135deg,rgba(206,17,38,0.08),transparent)}
+.z-cta:hover{border-color:rgba(206,17,38,0.4);box-shadow:0 24px 48px rgba(206,17,38,0.1)}
+.z-about{grid-column:8/13;background:linear-gradient(135deg,rgba(255,255,255,0.03),transparent)}
+@media(max-width:900px){
+  .hub-grid{grid-template-columns:1fr 1fr}
+  .z-marketplace,.z-ai,.z-cta{grid-column:1/3}
+  .z-edu,.z-demos,.z-tools,.z-about{grid-column:auto}
+}
+@media(max-width:580px){
+  .hub-grid{grid-template-columns:1fr}
+  .zone{grid-column:1/-1!important;min-height:180px}
+}
+.z-icon{font-size:2.5rem;margin-bottom:auto;padding-bottom:1.5rem;opacity:0.8}
+.z-tag{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem;color:var(--text-dim)}
+.z-name{font-family:var(--font-head);font-size:1.35rem;font-weight:800;margin-bottom:0.4rem;line-height:1.1}
+.z-desc{font-size:0.8rem;color:var(--text-dim);line-height:1.5;margin-bottom:1.25rem}
+.z-arr{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.78rem;font-weight:600;font-family:var(--font-head);color:var(--text-dim);transition:all 0.2s}
+.zone:hover .z-arr{color:#fff;gap:0.7rem}
+.z-badge{position:absolute;top:1.5rem;right:1.5rem;font-family:var(--font-mono);font-size:0.65rem;color:var(--text-dim);background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:50px;padding:0.2rem 0.65rem}
+.z-live{position:absolute;top:1.5rem;right:1.5rem;display:flex;align-items:center;gap:0.35rem;font-family:var(--font-mono);font-size:0.62rem;color:var(--gh-gold)}
+.z-live-dot{width:5px;height:5px;border-radius:50%;background:var(--gh-gold);animation:pulse 2s infinite}
+
+/* MARKETPLACE PREVIEW */
+#marketplace{position:relative;z-index:10;padding:8rem 2rem;background:linear-gradient(180deg,transparent,rgba(0,107,63,0.03) 50%,transparent)}
+.sec-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;gap:1rem;flex-wrap:wrap;max-width:1200px;margin-left:auto;margin-right:auto}
+.sec-title{font-family:var(--font-head);font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-0.02em}
+.sec-link{display:inline-flex;align-items:center;gap:0.5rem;color:var(--gh-gold);font-size:0.85rem;font-weight:600;text-decoration:none;font-family:var(--font-head);transition:gap 0.2s;white-space:nowrap}
+.sec-link:hover{gap:0.8rem}
+.cat-pills{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2.5rem;max-width:1200px;margin-left:auto;margin-right:auto}
+.pill{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:50px;padding:0.4rem 1rem;font-size:0.78rem;color:var(--text-dim);cursor:pointer;transition:all 0.2s;font-family:var(--font-head);font-weight:600}
+.pill:hover,.pill.active{background:rgba(252,209,22,0.1);border-color:rgba(252,209,22,0.3);color:var(--gh-gold)}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;max-width:1200px;margin:0 auto}
+.pc{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;transition:all 0.3s;cursor:pointer;position:relative;overflow:hidden}
+.pc:hover{border-color:rgba(255,255,255,0.14);transform:translateY(-2px);box-shadow:0 16px 40px rgba(0,0,0,0.3)}
+.pc-cat{font-family:var(--font-mono);font-size:0.6rem;color:var(--gh-gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.75rem}
+.pc-name{font-family:var(--font-head);font-size:1rem;font-weight:700;margin-bottom:0.4rem;line-height:1.3}
+.pc-desc{font-size:0.78rem;color:var(--text-dim);line-height:1.5;margin-bottom:1.25rem}
+.pc-foot{display:flex;align-items:center;justify-content:space-between}
+.pc-price{font-size:0.78rem;font-weight:700;color:rgba(255,255,255,0.5)}
+.pc-btn{background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:50px;padding:0.3rem 0.8rem;font-size:0.7rem;font-weight:600;color:#fff;cursor:pointer;transition:all 0.2s;font-family:var(--font-head)}
+.pc-btn:hover{background:var(--gh-green);border-color:var(--gh-green)}
+.pc-icon{position:absolute;top:1.5rem;right:1.5rem;font-size:1.4rem;opacity:0.25}
+
+/* AI FOR GHANA */
+#aiforghana{position:relative;z-index:10;padding:8rem 2rem}
+.aig-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+@media(max-width:800px){.aig-inner{grid-template-columns:1fr;gap:3rem}}
+.aig-title{font-family:var(--font-head);font-size:clamp(2.5rem,4vw,3.5rem);font-weight:800;letter-spacing:-0.02em;line-height:1.05;margin-bottom:1.25rem}
+.aig-title em{font-style:normal;background:linear-gradient(90deg,var(--gh-green),var(--gh-gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.aig-desc{color:var(--text-dim);line-height:1.8;margin-bottom:2rem;font-size:1rem}
+.aig-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-green{background:var(--gh-green);color:#fff;padding:0.75rem 1.75rem;border-radius:50px;font-family:var(--font-head);font-weight:700;font-size:0.88rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;transition:all 0.2s}
+.btn-green:hover{background:#008a4f;transform:translateY(-1px)}
+.btn-outline{border:1px solid var(--border);color:var(--text-dim);padding:0.75rem 1.5rem;border-radius:50px;font-size:0.85rem;font-weight:500;text-decoration:none;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.5rem}
+.btn-outline:hover{border-color:rgba(255,255,255,0.3);color:#fff}
+.phase-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:flex-start;gap:1rem;margin-bottom:0.75rem;transition:border-color 0.2s}
+.phase-card:hover{border-color:rgba(252,209,22,0.2)}
+.phase-num{font-family:var(--font-mono);font-size:0.62rem;color:var(--gh-gold);background:rgba(252,209,22,0.08);border:1px solid rgba(252,209,22,0.15);border-radius:50px;padding:0.2rem 0.6rem;white-space:nowrap;margin-top:0.1rem}
+.phase-name{font-family:var(--font-head);font-size:0.9rem;font-weight:700;margin-bottom:0.2rem}
+.phase-desc{font-size:0.76rem;color:var(--text-dim);line-height:1.5}
+
+/* EDUCATION */
+#education{position:relative;z-index:10;padding:8rem 2rem;background:linear-gradient(180deg,transparent,rgba(100,60,200,0.03) 50%,transparent)}
+.pillars-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1rem;margin-top:3rem;max-width:1200px;margin-left:auto;margin-right:auto}
+.pillar-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;transition:all 0.25s;cursor:pointer}
+.pillar-card:hover{border-color:rgba(255,255,255,0.14);transform:translateY(-2px)}
+.pillar-icon{font-size:1.8rem;margin-bottom:1rem}
+.pillar-title{font-family:var(--font-head);font-size:0.95rem;font-weight:700;margin-bottom:0.4rem}
+.pillar-desc{font-size:0.76rem;color:var(--text-dim);line-height:1.5}
+
+/* ABOUT */
+#about{position:relative;z-index:10;padding:8rem 2rem}
+.about-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+@media(max-width:800px){.about-inner{grid-template-columns:1fr;gap:3rem}}
+.about-card{background:linear-gradient(135deg,rgba(0,107,63,0.12),rgba(252,209,22,0.04));border:1px solid rgba(0,107,63,0.25);border-radius:var(--radius);padding:2.5rem;text-align:center}
+.about-initials{font-family:var(--font-head);font-size:4rem;font-weight:800;background:linear-gradient(135deg,var(--gh-green),var(--gh-gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1rem}
+.about-name{font-family:var(--font-head);font-size:1.2rem;font-weight:700;margin-bottom:0.2rem}
+.about-role{font-size:0.8rem;color:var(--text-dim);margin-bottom:1.5rem}
+.about-socials{display:flex;justify-content:center;gap:0.6rem}
+.soc{width:34px;height:34px;border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--text-dim);text-decoration:none;font-size:0.8rem;transition:all 0.2s}
+.soc:hover{border-color:var(--gh-gold);color:var(--gh-gold)}
+.skill-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:1.25rem;justify-content:center}
+.sk{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:50px;padding:0.2rem 0.7rem;font-size:0.68rem;color:var(--text-dim);font-family:var(--font-mono)}
+.about-text p{color:var(--text-dim);line-height:1.8;margin-bottom:1.25rem;font-size:1rem}
+.hl{color:#fff;font-weight:600}
+.cities-row{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.5rem}
+.city{display:inline-flex;align-items:center;gap:0.35rem;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:50px;padding:0.25rem 0.75rem;font-size:0.73rem;color:var(--text-dim)}
+.city i{font-size:0.6rem;color:var(--gh-gold)}
+
+/* CTA */
+#cta{position:relative;z-index:10;padding:6rem 2rem}
+.cta-inner{max-width:900px;margin:0 auto;text-align:center;background:linear-gradient(135deg,rgba(206,17,38,0.08),rgba(252,209,22,0.04),rgba(0,107,63,0.06));border:1px solid rgba(255,255,255,0.07);border-radius:var(--radius);padding:5rem 3rem;position:relative;overflow:hidden}
+.cta-inner::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 50% 50%,rgba(252,209,22,0.04),transparent 60%);pointer-events:none}
+.cta-title{font-family:var(--font-head);font-size:clamp(2rem,4vw,3.5rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:1rem}
+.cta-sub{color:var(--text-dim);margin:0 auto 2.5rem;font-size:1rem;max-width:480px;line-height:1.7}
+.cta-actions{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap}
+.btn-red{background:var(--gh-red);color:#fff;padding:0.9rem 2.5rem;border-radius:50px;font-family:var(--font-head);font-weight:700;font-size:0.95rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;transition:all 0.2s}
+.btn-red:hover{background:#e01020;transform:translateY(-2px)}
+
+/* FOOTER */
+footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:4rem 2rem 2rem}
+.footer-inner{max-width:1200px;margin:0 auto}
+.ft{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+@media(max-width:900px){.ft{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.ft{grid-template-columns:1fr}}
+.fb-mark{display:flex;align-items:center;gap:0.6rem;margin-bottom:1rem}
+.fb-mark .bm{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--gh-green),var(--gh-gold));display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-weight:800;color:#000;font-size:0.85rem}
+.fb-name{font-family:var(--font-head);font-size:0.82rem;font-weight:700;color:#fff}
+.fb-desc{font-size:0.8rem;color:var(--text-dim);line-height:1.6;margin-bottom:1.25rem;max-width:270px}
+.fb-soc{display:flex;gap:0.4rem}
+.fsoc{width:30px;height:30px;border:1px solid var(--border);border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--text-dim);text-decoration:none;font-size:0.72rem;transition:all 0.2s}
+.fsoc:hover{border-color:var(--gh-gold);color:var(--gh-gold)}
+.fc h5{font-family:var(--font-head);font-size:0.76rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:1rem}
+.fc ul{list-style:none}
+.fc ul li{margin-bottom:0.55rem}
+.fc ul li a,.fc ul li{color:var(--text-dim);text-decoration:none;font-size:0.8rem;transition:color 0.2s}
+.fc ul li a:hover{color:#fff}
+.fc ul li i{color:var(--gh-gold);margin-right:0.35rem;font-size:0.65rem}
+.fb-bot{display:flex;align-items:center;justify-content:space-between;padding-top:2rem;border-top:1px solid var(--border);flex-wrap:wrap;gap:1rem}
+.fb-copy{font-size:0.75rem;color:var(--text-dim);font-family:var(--font-mono)}
+.fb-legal{display:flex;gap:1.5rem}
+.fb-legal a{color:var(--text-dim);font-size:0.72rem;text-decoration:none;transition:color 0.2s}
+.fb-legal a:hover{color:#fff}
+.scroll-top{position:fixed;bottom:2rem;right:2rem;z-index:400;width:44px;height:44px;background:rgba(255,255,255,0.07);border:1px solid var(--border);border-radius:12px;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.88rem;backdrop-filter:blur(10px);transition:all 0.2s;opacity:0;transform:translateY(10px)}
+.scroll-top.show{opacity:1;transform:translateY(0)}
+.scroll-top:hover{background:var(--gh-gold);color:#000;border-color:var(--gh-gold)}
+</style>
 </head>
 <body>
 
-<!-- CURSOR -->
-<div class="cursor-dot"></div>
-<div class="cursor-ring"></div>
+<div class="cur-dot" id="curDot"></div>
+<div class="cur-ring" id="curRing"></div>
+<canvas id="bgCanvas"></canvas>
 
-<!-- NOISE OVERLAY -->
-<div class="noise-overlay"></div>
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" id="mobileClose"><i class="fas fa-times"></i></button>
+  <a href="#hub" onclick="closeMobileNav()">Explore Hub</a>
+  <a href="products.html" onclick="closeMobileNav()">Products</a>
+  <a href="tiktok-tool" onclick="closeMobileNav()">AI For Ghana</a>
+  <a href="teleprompter" onclick="closeMobileNav()">Education</a>
+  <a href="contact.html" onclick="closeMobileNav()">Contact</a>
+  <a href="https://calendly.com/raufhusein/demo" target="_blank" rel="noopener" style="color:var(--gh-gold)">Book Demo</a>
+</div>
 
 <!-- NAV -->
 <nav class="nav" id="mainNav">
-    <div class="nav-inner">
-        <a href="index.html" class="brand">
-            <div class="brand-mark">RH</div>
-            <div class="brand-text">
-                <span class="brand-name">RAUF HUSEIN</span>
-                <span class="brand-tagline">Software Marketplace</span>
-            </div>
-        </a>
-
-        <ul class="nav-links">
-            <li><a href="index.html" class="nav-link active">Home</a></li>
-            <li><a href="products.html" class="nav-link">Products</a></li>
-            <li><a href="categories.html" class="nav-link">Categories</a></li>
-            <li><a href="contact.html" class="nav-link">Contact</a></li>
-        </ul>
-
-        <div class="nav-actions">
-            <div class="search-trigger" id="searchTrigger">
-                <i class="fas fa-search"></i>
-                <span>Search products...</span>
-                <kbd>⌘K</kbd>
-            </div>
-            <a href="https://calendly.com/raufhusein/demo" target="_blank" rel="noopener" class="nav-cta">Book Free Demo</a>
-            <button class="mobile-toggle" id="mobileToggle" title="Toggle navigation menu" aria-label="Toggle navigation menu">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
+  <a href="#" class="brand">
+    <div class="brand-mark">RH</div>
+    <div class="brand-info">
+      <span class="brand-name">RAUF HUSEIN</span>
+      <span class="brand-tag">Software Marketplace</span>
     </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#hub">Explore</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="#aiforghana">AI For Ghana</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="https://calendly.com/raufhusein/demo" target="_blank" rel="noopener" class="nav-cta"><i class="fas fa-calendar-check"></i> Book Free Demo</a>
+  <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
 </nav>
 
-<!-- SEARCH OVERLAY -->
-<div class="search-overlay" id="searchOverlay">
-    <div class="search-modal">
-        <div class="search-header">
-            <i class="fas fa-search"></i>
-            <input type="text" id="globalSearch" placeholder="Search 90+ enterprise systems..." autofocus>
-            <button type="button" class="search-close" id="searchClose" aria-label="Close search"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="search-results" id="searchResults">
-            <div class="search-hint">Type to search across all products and categories</div>
-        </div>
+<!-- ENTRY -->
+<section id="entry">
+  <div class="entry-inner">
+    <div class="entry-tag"><span class="entry-tag-dot"></span>Ghana's Premier Enterprise Software Studio</div>
+    <h1 class="entry-title">
+      <span class="line1">Software</span>
+      <span class="line2">Built for Africa</span>
+      <span class="line3">RAUFHUSEIN.SITE &nbsp;·&nbsp; EST. 2024 &nbsp;·&nbsp; GHANA</span>
+    </h1>
+    <p class="entry-sub">90+ enterprise systems across healthcare, finance, agriculture, education, and more. Now home to <strong>AI For Ghana</strong> — free AI education for every Ghanaian.</p>
+    <div class="entry-actions">
+      <button class="btn-enter" onclick="document.getElementById('hub').scrollIntoView({behavior:'smooth'})"><i class="fas fa-compass"></i> Explore the Hub</button>
+      <a href="products.html" class="btn-ghost"><i class="fas fa-th-large"></i> Browse Products</a>
     </div>
+    <div class="entry-stats">
+      <div><span class="stat-num"><span class="sa" data-count="90">0</span>+</span><div class="stat-label">Enterprise Systems</div></div>
+      <div><span class="stat-num"><span class="sa" data-count="5">0</span></span><div class="stat-label">Cities Served</div></div>
+      <div><span class="stat-num"><span class="sa" data-count="10">0</span>+</span><div class="stat-label">Industries</div></div>
+      <div><span class="stat-num"><span class="sa" data-count="2026">0</span></span><div class="stat-label">Year</div></div>
+    </div>
+  </div>
+  <div class="scroll-hint"><i class="fas fa-chevron-down"></i><span>SCROLL TO EXPLORE</span></div>
+</section>
+
+<!-- CMD BAR -->
+<div class="cmd-bar">
+  <div class="cmd-inner">
+    <div><span class="cmd-stat-label">System Status</span><span class="cmd-stat-val"><span class="a">●</span> Live</span><span class="cmd-stat-sub">All systems operational</span></div>
+    <div><span class="cmd-stat-label">AI For Ghana</span><span class="cmd-stat-val"><span class="a">@</span>AIForGhana</span><span class="cmd-stat-sub">TikTok App In Review</span></div>
+    <div><span class="cmd-stat-label">Active Projects</span><span class="cmd-stat-val"><span class="a">2</span></span><span class="cmd-stat-sub">Marketplace + AI Education</span></div>
+    <div><span class="cmd-stat-label">Base</span><span class="cmd-stat-val">🇬🇭 Ghana</span><span class="cmd-stat-sub">Serving all of Africa</span></div>
+  </div>
 </div>
 
-<!-- HERO -->
-<section class="hero" id="home">
-    <canvas id="heroCanvas"></canvas>
-    <div class="hero-inner">
-        <div class="hero-label">
-            <span class="label-dot"></span>
-            Ghana's Premier Enterprise Software Studio
-        </div>
-        <h1 class="hero-title">
-            <span class="title-row">Software</span>
-            <span class="title-row accent-row">
-                <em>that moves</em>
-                <div class="title-badge">90+ Systems</div>
-            </span>
-            <span class="title-row">Africa forward.</span>
-        </h1>
-        <p class="hero-desc">Enterprise-grade software systems across healthcare, finance, agriculture, education, government and beyond — built for the African context, ready to scale globally.</p>
-        <div class="hero-actions">
-            <a href="products.html" class="btn-primary">
-                <span>Browse All Products</span>
-                <i class="fas fa-arrow-right"></i>
-            </a>
-            <a href="https://calendly.com/raufhusein/demo" target="_blank" rel="noopener" class="btn-ghost">
-                <i class="fas fa-play-circle"></i>
-                <span>Request Live Demo</span>
-            </a>
-        </div>
-        <div class="hero-stats">
-            <div class="hstat">
-                <span class="hstat-num" data-count="90">0</span><span class="hstat-plus">+</span>
-                <span class="hstat-label">Systems Built</span>
-            </div>
-            <div class="hstat-sep"></div>
-            <div class="hstat">
-                <span class="hstat-num" data-count="15">0</span><span class="hstat-plus">+</span>
-                <span class="hstat-label">Industry Verticals</span>
-            </div>
-            <div class="hstat-sep"></div>
-            <div class="hstat">
-                <span class="hstat-num" data-count="5">0</span><span class="hstat-plus">+</span>
-                <span class="hstat-label">Cities Deployed</span>
-            </div>
-            <div class="hstat-sep"></div>
-            <div class="hstat">
-                <span class="hstat-num" data-count="100">0</span><span class="hstat-plus">%</span>
-                <span class="hstat-label">Custom-built</span>
-            </div>
-        </div>
-    </div>
-    <div class="hero-scroll">
-        <div class="scroll-line"></div>
-        <span>Scroll</span>
-    </div>
+<!-- HUB -->
+<section id="hub">
+  <div class="hub-header">
+    <span class="sec-label">Central Hub — The Directory</span>
+    <h2 class="hub-title">Where do you want to go?</h2>
+    <p class="hub-sub">Everything we build, in one place. Click any zone to enter.</p>
+  </div>
+  <div class="hub-grid">
+    <a href="products.html" class="zone z-marketplace">
+      <span class="z-badge">90+ Systems</span>
+      <div class="z-icon">🏢</div>
+      <div class="z-tag">Zone 01</div>
+      <div class="z-name">Software Marketplace</div>
+      <div class="z-desc">Enterprise software built for Africa — healthcare, finance, agriculture, education, government and more.</div>
+      <span class="z-arr">Enter Marketplace <i class="fas fa-arrow-right"></i></span>
+    </a>
+    <a href="tiktok-tool" class="zone z-ai">
+      <div class="z-live"><span class="z-live-dot"></span>LIVE</div>
+      <div class="z-icon">🤖</div>
+      <div class="z-tag">Zone 02</div>
+      <div class="z-name">AI For Ghana</div>
+      <div class="z-desc">Free AI education for every Ghanaian via TikTok. The #PromptGhana movement starts here.</div>
+      <span class="z-arr">Enter AI Lab <i class="fas fa-arrow-right"></i></span>
+    </a>
+    <a href="teleprompter" class="zone z-edu">
+      <div class="z-icon">📚</div>
+      <div class="z-tag">Zone 03</div>
+      <div class="z-name">Education Hub</div>
+      <div class="z-desc">Ghana curriculum + STEM + Future Skills 2050. Lesson reader &amp; teleprompter tool included.</div>
+      <span class="z-arr">Enter Hub <i class="fas fa-arrow-right"></i></span>
+    </a>
+    <a href="products.html?cat=healthcare" class="zone z-demos">
+      <div class="z-icon">🏥</div>
+      <div class="z-tag">Zone 04</div>
+      <div class="z-name">Healthcare Systems</div>
+      <div class="z-desc">Hospital management, patient records, pharmacy, lab — live demos available on request.</div>
+      <span class="z-arr">View Demos <i class="fas fa-arrow-right"></i></span>
+    </a>
+    <a href="teleprompter" class="zone z-tools">
+      <div class="z-icon">🛠️</div>
+      <div class="z-tag">Zone 05</div>
+      <div class="z-name">Tools</div>
+      <div class="z-desc">Lesson teleprompter, TikTok posting tool, and productivity tools for creators and educators.</div>
+      <span class="z-arr">Use Tools <i class="fas fa-arrow-right"></i></span>
+    </a>
+    <a href="https://calendly.com/raufhusein/demo" target="_blank" rel="noopener" class="zone z-cta">
+      <div class="z-icon">📞</div>
+      <div class="z-tag">Zone 06</div>
+      <div class="z-name">Book a Free Demo</div>
+      <div class="z-desc">Get a live, customized demo of any system — built to your requirements. 45-minute call. Zero commitment.</div>
+      <span class="z-arr">Book Now — Free <i class="fas fa-arrow-right"></i></span>
+    </a>
+    <a href="#about" class="zone z-about">
+      <div class="z-icon">👤</div>
+      <div class="z-tag">Zone 07</div>
+      <div class="z-name">About Rauf</div>
+      <div class="z-desc">Software entrepreneur, Ghana's enterprise tech builder, and AI educator.</div>
+      <span class="z-arr">Learn More <i class="fas fa-arrow-right"></i></span>
+    </a>
+  </div>
 </section>
 
-<!-- MARQUEE TICKER -->
-<div class="ticker-wrap">
-    <div class="ticker-track">
-        <span>Agricultural Intelligence Platform</span>
-        <span class="ticker-dot">◆</span>
-        <span>Hotel Management Systems</span>
-        <span class="ticker-dot">◆</span>
-        <span>Core Banking Systems</span>
-        <span class="ticker-dot">◆</span>
-        <span>MediCare Ghana</span>
-        <span class="ticker-dot">◆</span>
-        <span>Enterprise Resource Planning</span>
-        <span class="ticker-dot">◆</span>
-        <span>Electronic Health Records</span>
-        <span class="ticker-dot">◆</span>
-        <span>E-Government Platforms</span>
-        <span class="ticker-dot">◆</span>
-        <span>GhanaSchoolApp</span>
-        <span class="ticker-dot">◆</span>
-        <span>CRM Systems</span>
-        <span class="ticker-dot">◆</span>
-        <span>Farm Management Systems</span>
-        <span class="ticker-dot">◆</span>
-        <!-- duplicate for seamless loop -->
-        <span>Agricultural Intelligence Platform</span>
-        <span class="ticker-dot">◆</span>
-        <span>Hotel Management Systems</span>
-        <span class="ticker-dot">◆</span>
-        <span>Core Banking Systems</span>
-        <span class="ticker-dot">◆</span>
-        <span>MediCare Ghana</span>
-        <span class="ticker-dot">◆</span>
-        <span>Enterprise Resource Planning</span>
-        <span class="ticker-dot">◆</span>
-        <span>Electronic Health Records</span>
-        <span class="ticker-dot">◆</span>
-        <span>E-Government Platforms</span>
-        <span class="ticker-dot">◆</span>
-        <span>GhanaSchoolApp</span>
-        <span class="ticker-dot">◆</span>
-    </div>
-</div>
-
-<!-- FEATURED PRODUCTS -->
-<section class="section" id="featured">
-    <div class="container">
-        <div class="section-head">
-            <div class="section-label">Featured Systems</div>
-            <h2 class="section-title">Our Flagship Products</h2>
-            <a href="products.html" class="see-all-link">View All 90+ Products <i class="fas fa-arrow-right"></i></a>
-        </div>
-
-        <div class="featured-grid">
-            <!-- Card 1 - Agricultural Intelligence -->
-            <div class="product-card featured-card" data-category="agriculture">
-                <div class="card-badge new">NEW</div>
-                <div class="card-icon-wrap" style="--icon-color: #22c55e;">
-                    <i class="fas fa-seedling"></i>
-                </div>
-                <div class="card-body">
-                    <div class="card-meta">Agriculture • AI-Powered</div>
-                    <h3 class="card-title">Agricultural Intelligence Platform</h3>
-                    <p class="card-desc">AI-driven crop management, yield prediction, and precision farming tools tailored for African agriculture.</p>
-                    <div class="card-tags">
-                        <span>AI/ML</span><span>IoT</span><span>Analytics</span>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="card-price">
-                        <span class="price-label">Starting from</span>
-                        <span class="price-amount">Contact for Pricing</span>
-                    </div>
-                    <div class="card-actions">
-                        <a href="contact.html?product=agricultural-intelligence" class="btn-card-primary">Get Demo</a>
-                        <a href="products.html#agri-intel" class="btn-card-ghost"><i class="fas fa-info-circle"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 2 - Hotel Management -->
-            <div class="product-card featured-card" data-category="hospitality">
-                <div class="card-badge hot">HOT</div>
-                <div class="card-icon-wrap" style="--icon-color: #f59e0b;">
-                    <i class="fas fa-hotel"></i>
-                </div>
-                <div class="card-body">
-                    <div class="card-meta">Hospitality • Enterprise</div>
-                    <h3 class="card-title">Hotel Management System (HMS)</h3>
-                    <p class="card-desc">Complete hotel operations platform: reservations, billing, housekeeping, analytics and guest management.</p>
-                    <div class="card-tags">
-                        <span>PMS</span><span>Booking Engine</span><span>Reports</span>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="card-price">
-                        <span class="price-label">Starting from</span>
-                        <span class="price-amount">Contact for Pricing</span>
-                    </div>
-                    <div class="card-actions">
-                        <a href="contact.html?product=hms" class="btn-card-primary">Get Demo</a>
-                        <a href="products.html#hms" class="btn-card-ghost"><i class="fas fa-info-circle"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 3 - Core Banking -->
-            <div class="product-card featured-card large-card" data-category="finance">
-                <div class="card-icon-wrap" style="--icon-color: #6366f1;">
-                    <i class="fas fa-landmark"></i>
-                </div>
-                <div class="card-body">
-                    <div class="card-meta">Finance • Banking</div>
-                    <h3 class="card-title">Core Banking System</h3>
-                    <p class="card-desc">Full-featured banking platform supporting accounts, loans, deposits, transfers, and regulatory reporting for financial institutions across Ghana.</p>
-                    <div class="card-tags">
-                        <span>Accounts</span><span>Loans</span><span>Compliance</span><span>Reporting</span>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="card-price">
-                        <span class="price-label">Starting from</span>
-                        <span class="price-amount">Contact for Pricing</span>
-                    </div>
-                    <div class="card-actions">
-                        <a href="contact.html?product=core-banking" class="btn-card-primary">Get Demo</a>
-                        <a href="products.html#core-banking" class="btn-card-ghost"><i class="fas fa-info-circle"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 4 - Medicare Ghana -->
-            <div class="product-card featured-card" data-category="healthcare">
-                <div class="card-icon-wrap" style="--icon-color: #ef4444;">
-                    <i class="fas fa-heart-pulse"></i>
-                </div>
-                <div class="card-body">
-                    <div class="card-meta">Healthcare • Ghana</div>
-                    <h3 class="card-title">MediCare Ghana</h3>
-                    <p class="card-desc">Comprehensive hospital and clinic management system integrating patient records, billing, and scheduling.</p>
-                    <div class="card-tags">
-                        <span>EHR</span><span>Billing</span><span>Pharmacy</span>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="card-price">
-                        <span class="price-label">Starting from</span>
-                        <span class="price-amount">Contact for Pricing</span>
-                    </div>
-                    <div class="card-actions">
-                        <a href="contact.html?product=medicare" class="btn-card-primary">Get Demo</a>
-                        <a href="products.html#medicare" class="btn-card-ghost"><i class="fas fa-info-circle"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 5 - ERP -->
-            <div class="product-card featured-card" data-category="business">
-                <div class="card-icon-wrap" style="--icon-color: #8b5cf6;">
-                    <i class="fas fa-cubes"></i>
-                </div>
-                <div class="card-body">
-                    <div class="card-meta">Business • Enterprise</div>
-                    <h3 class="card-title">Enterprise Resource Planning (ERP)</h3>
-                    <p class="card-desc">Unified business management: finance, HR, inventory, procurement, and operations in one powerful system.</p>
-                    <div class="card-tags">
-                        <span>Finance</span><span>HR</span><span>Inventory</span>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="card-price">
-                        <span class="price-label">Starting from</span>
-                        <span class="price-amount">Contact for Pricing</span>
-                    </div>
-                    <div class="card-actions">
-                        <a href="contact.html?product=erp" class="btn-card-primary">Get Demo</a>
-                        <a href="products.html#erp" class="btn-card-ghost"><i class="fas fa-info-circle"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 6 - Ghana School App -->
-            <div class="product-card featured-card" data-category="education">
-                <div class="card-badge popular">POPULAR</div>
-                <div class="card-icon-wrap" style="--icon-color: #06b6d4;">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
-                <div class="card-body">
-                    <div class="card-meta">Education • Schools</div>
-                    <h3 class="card-title">GhanaSchoolApp</h3>
-                    <p class="card-desc">Complete school management: student records, grades, attendance, fees, parent portal and staff management.</p>
-                    <div class="card-tags">
-                        <span>SMS</span><span>Portal</span><span>Mobile</span>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="card-price">
-                        <span class="price-label">Starting from</span>
-                        <span class="price-amount">Contact for Pricing</span>
-                    </div>
-                    <div class="card-actions">
-                        <a href="contact.html?product=ghana-school" class="btn-card-primary">Get Demo</a>
-                        <a href="products.html#school" class="btn-card-ghost"><i class="fas fa-info-circle"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- MARKETPLACE PREVIEW -->
+<section id="marketplace">
+  <div class="sec-header">
+    <div><span class="sec-label">Zone 01 — Preview</span><h2 class="sec-title">Software Marketplace</h2></div>
+    <a href="products.html" class="sec-link">View all 90+ systems <i class="fas fa-arrow-right"></i></a>
+  </div>
+  <div class="cat-pills" id="catPills">
+    <span class="pill active" data-cat="all">All Systems</span>
+    <span class="pill" data-cat="healthcare">Healthcare</span>
+    <span class="pill" data-cat="finance">Finance</span>
+    <span class="pill" data-cat="agriculture">Agriculture</span>
+    <span class="pill" data-cat="education">Education</span>
+    <span class="pill" data-cat="government">Government</span>
+  </div>
+  <div class="products-grid" id="productsGrid"></div>
+  <div style="text-align:center;margin-top:3rem"><a href="products.html" class="btn-enter" style="display:inline-flex"><i class="fas fa-th-large"></i> Browse All 90+ Systems</a></div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="section how-section">
-    <div class="container">
-        <div class="section-head" style="justify-content:center;flex-direction:column;align-items:center;text-align:center;">
-            <div class="section-label">Simple Process</div>
-             <h2 class="section-title" style="flex:unset;">From Demo to Live in Days</h2>
-            <p style="color:var(--text-dim);max-width:520px;margin-top:0.75rem;">No long procurement. No confusing contracts. Three steps and your system is running.</p>
-        </div>
-        <div class="how-grid">
-            <div class="how-step">
-                <div class="how-num">01</div>
-                <div class="how-icon"><i class="fas fa-calendar-check"></i></div>
-                <h3>Book a Free Demo</h3>
-                <p>Pick any 20-minute slot on Calendly. We show you the exact system live — no slides, no fluff, just the real product.</p>
-                <a href="https://calendly.com/raufhusein/demo" target="_blank" rel="noopener" class="how-link">Book Now <i class="fas fa-arrow-right"></i></a>
-            </div>
-            <div class="how-connector"><div class="how-line"></div></div>
-            <div class="how-step">
-                <div class="how-num">02</div>
-                <div class="how-icon"><i class="fas fa-sliders"></i></div>
-                <h3>We Customize for You</h3>
-                <p>We configure the system to your business: your logo, your workflows, your currency, your staff roles. No generic setup.</p>
-                <span class="how-tag">2–5 Business Days</span>
-            </div>
-            <div class="how-connector"><div class="how-line"></div></div>
-            <div class="how-step">
-                <div class="how-num">03</div>
-                <div class="how-icon"><i class="fas fa-rocket"></i></div>
-                <h3>Go Live &amp; Scale</h3>
-                <p>Your team gets full training. We stay on for support. You get real-time reports, automation, and control from day one.</p>
-                <span class="how-tag">Ongoing Support Included</span>
-            </div>
-        </div>
+<!-- AI FOR GHANA -->
+<section id="aiforghana">
+  <div class="aig-inner">
+    <div>
+      <span class="sec-label">Zone 02 — AI For Ghana</span>
+      <h2 class="aig-title">Empowering <em>every Ghanaian</em> with AI</h2>
+      <p class="aig-desc">Free, practical, culturally relevant AI education delivered through TikTok. Teaching Ghanaians to understand and use artificial intelligence — through examples from Kejetia market, trotro rides, and everyday Ghanaian life.</p>
+      <div class="aig-btns">
+        <a href="https://www.tiktok.com/@AIForGhana" target="_blank" rel="noopener" class="btn-green"><i class="fab fa-tiktok"></i> Follow @AIForGhana</a>
+        <a href="tiktok-tool" class="btn-outline"><i class="fas fa-tools"></i> Open Posting Tool</a>
+      </div>
     </div>
+    <div>
+      <div class="phase-card"><span class="phase-num">Phase 1</span><div><div class="phase-name">Foundation — What is AI?</div><div class="phase-desc">10 videos explaining AI using Ghana everyday life examples. Starting with Kejetia market woman analogy.</div></div></div>
+      <div class="phase-card"><span class="phase-num">Phase 2</span><div><div class="phase-name">Prompting Skills</div><div class="phase-desc">One technique per video. Before/after format for Ghanaian students and professionals.</div></div></div>
+      <div class="phase-card"><span class="phase-num">Phase 3</span><div><div class="phase-name">#PromptGhana Challenge</div><div class="phase-desc">Community challenge powered by TikTok API. Automated posting. Ghana's biggest AI movement.</div></div></div>
+    </div>
+  </div>
 </section>
 
-<!-- CATEGORIES SECTION -->
-<section class="section categories-section" id="categories">
-    <div class="container">
-        <div class="section-head">
-            <div class="section-label">Browse by Industry</div>
-            <h2 class="section-title">Solutions for Every Sector</h2>
-        </div>
-        <div class="categories-grid">
-            <a href="products.html?cat=healthcare" class="cat-card">
-                <div class="cat-icon" style="--c: #ef4444;"><i class="fas fa-stethoscope"></i></div>
-                <div class="cat-info">
-                    <h3>Healthcare</h3>
-                    <span>4 Systems</span>
-                </div>
-                <i class="fas fa-arrow-right cat-arrow"></i>
-            </a>
-            <a href="products.html?cat=finance" class="cat-card">
-                <div class="cat-icon" style="--c: #f59e0b;"><i class="fas fa-coins"></i></div>
-                <div class="cat-info">
-                    <h3>Finance & Banking</h3>
-                    <span>3 Systems</span>
-                </div>
-                <i class="fas fa-arrow-right cat-arrow"></i>
-            </a>
-            <a href="products.html?cat=agriculture" class="cat-card">
-                <div class="cat-icon" style="--c: #22c55e;"><i class="fas fa-tractor"></i></div>
-                <div class="cat-info">
-                    <h3>Agriculture</h3>
-                    <span>3 Systems</span>
-                </div>
-                <i class="fas fa-arrow-right cat-arrow"></i>
-            </a>
-            <a href="products.html?cat=education" class="cat-card">
-                <div class="cat-icon" style="--c: #06b6d4;"><i class="fas fa-book-open"></i></div>
-                <div class="cat-info">
-                    <h3>Education</h3>
-                    <span>3 Systems</span>
-                </div>
-                <i class="fas fa-arrow-right cat-arrow"></i>
-            </a>
-            <a href="products.html?cat=government" class="cat-card">
-                <div class="cat-icon" style="--c: #6366f1;"><i class="fas fa-landmark"></i></div>
-                <div class="cat-info">
-                    <h3>Government</h3>
-                    <span>3 Systems</span>
-                </div>
-                <i class="fas fa-arrow-right cat-arrow"></i>
-            </a>
-            <a href="products.html?cat=business" class="cat-card">
-                <div class="cat-icon" style="--c: #8b5cf6;"><i class="fas fa-briefcase"></i></div>
-                <div class="cat-info">
-                    <h3>Business Management</h3>
-                    <span>8 Systems</span>
-                </div>
-                <i class="fas fa-arrow-right cat-arrow"></i>
-            </a>
-            <a href="products.html?cat=hospitality" class="cat-card">
-                <div class="cat-icon" style="--c: #ec4899;"><i class="fas fa-concierge-bell"></i></div>
-                <div class="cat-info">
-                    <h3>Hospitality & Events</h3>
-                    <span>3 Systems</span>
-                </div>
-                <i class="fas fa-arrow-right cat-arrow"></i>
-            </a>
-            <a href="products.html?cat=hr" class="cat-card">
-                <div class="cat-icon" style="--c: #f97316;"><i class="fas fa-users"></i></div>
-                <div class="cat-info">
-                    <h3>HR & Workforce</h3>
-                    <span>3 Systems</span>
-                </div>
-                <i class="fas fa-arrow-right cat-arrow"></i>
-            </a>
-        </div>
+<!-- EDUCATION -->
+<section id="education">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="sec-header" style="margin-bottom:0">
+      <div><span class="sec-label">Zone 03 — Education</span><h2 class="sec-title">Ghana Education Framework 2025–2050</h2></div>
+      <a href="teleprompter" class="sec-link">Open Lesson Reader <i class="fas fa-arrow-right"></i></a>
     </div>
+    <div class="pillars-grid">
+      <div class="pillar-card"><div class="pillar-icon">📚</div><div class="pillar-title">Ghana Core Curriculum</div><div class="pillar-desc">Mathematics, Science, English, Social Studies, ICT, Ghanaian Languages, RME, Creative Arts.</div></div>
+      <div class="pillar-card"><div class="pillar-icon">🔬</div><div class="pillar-title">STEM & Technology</div><div class="pillar-desc">AI, Coding, Data Science, Robotics, Digital Literacy — building Ghana's tech workforce.</div></div>
+      <div class="pillar-card"><div class="pillar-icon">🚀</div><div class="pillar-title">Future Skills 2050</div><div class="pillar-desc">Critical Thinking, Entrepreneurship, Climate Science, Global Citizenship, Financial Literacy.</div></div>
+      <div class="pillar-card"><div class="pillar-icon">🎬</div><div class="pillar-title">AI For Ghana Content</div><div class="pillar-desc">20+ TikTok scripts, lesson plans, and the #PromptGhana community challenge framework.</div></div>
+      <div class="pillar-card" onclick="window.location='teleprompter'"><div class="pillar-icon">📜</div><div class="pillar-title">Lesson Teleprompter</div><div class="pillar-desc">Paste NotebookLM slides and read them in auto-scrolling teleprompter mode — hands-free.</div></div>
+      <div class="pillar-card"><div class="pillar-icon">📖</div><div class="pillar-title">Research Hub</div><div class="pillar-desc">Curated links to Ghana NaCCA, WAEC, WEF Future of Jobs, and OECD 2030 Learning Compass.</div></div>
+    </div>
+  </div>
 </section>
 
-<!-- WHY RAUF HUSEIN -->
-<section class="section why-section">
-    <div class="container">
-        <div class="why-grid">
-            <div class="why-left">
-                <div class="section-label">Why Choose Us</div>
-                <h2 class="section-title">Built for Africa.<br>Ready for the World.</h2>
-                <p class="why-desc">Every system is crafted with deep knowledge of African business challenges — from multi-currency support to offline-first capabilities and local regulatory compliance.</p>
-                <a href="contact.html" class="btn-primary">Start a Conversation <i class="fas fa-arrow-right"></i></a>
-            </div>
-            <div class="why-right">
-                <div class="why-item">
-                    <div class="why-icon"><i class="fas fa-code-branch"></i></div>
-                    <div>
-                        <h4>Custom-Built, Not Adapted</h4>
-                        <p>Every product is designed from scratch for specific African market needs — not repurposed Western software.</p>
-                    </div>
-                </div>
-                <div class="why-item">
-                    <div class="why-icon"><i class="fas fa-shield-halved"></i></div>
-                    <div>
-                        <h4>Enterprise Security</h4>
-                        <p>Bank-grade security, role-based access control, audit logs, and compliance with local data regulations.</p>
-                    </div>
-                </div>
-                <div class="why-item">
-                    <div class="why-icon"><i class="fas fa-mobile-screen"></i></div>
-                    <div>
-                        <h4>Mobile-First & Offline-Ready</h4>
-                        <p>Designed for Ghana's connectivity realities — systems that work reliably on mobile, even with intermittent internet.</p>
-                    </div>
-                </div>
-                <div class="why-item">
-                    <div class="why-icon"><i class="fas fa-headset"></i></div>
-                    <div>
-                        <h4>Dedicated Local Support</h4>
-                        <p>Full implementation, training, and ongoing support from teams based across Ghana's major cities.</p>
-                    </div>
-                </div>
-            </div>
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div>
+      <div class="about-card">
+        <div class="about-initials">RH</div>
+        <div class="about-name">Rauf Husein</div>
+        <div class="about-role">Software Entrepreneur · Ghana 🇬🇭</div>
+        <div class="about-socials">
+          <a href="https://www.linkedin.com/in/rauf-husein" target="_blank" rel="noopener" class="soc"><i class="fab fa-linkedin"></i></a>
+          <a href="https://x.com/RaufSwestika" target="_blank" rel="noopener" class="soc"><i class="fab fa-twitter"></i></a>
+          <a href="https://github.com/raufhusein" target="_blank" rel="noopener" class="soc"><i class="fab fa-github"></i></a>
+          <a href="https://www.instagram.com/rauf_husein/" target="_blank" rel="noopener" class="soc"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.tiktok.com/@primehr.gh" target="_blank" rel="noopener" class="soc"><i class="fab fa-tiktok"></i></a>
         </div>
+        <div class="skill-tags">
+          <span class="sk">Enterprise Software</span><span class="sk">AI Education</span><span class="sk">Healthcare Tech</span><span class="sk">EdTech</span><span class="sk">FinTech</span>
+        </div>
+      </div>
     </div>
+    <div>
+      <span class="sec-label">Zone 07 — About</span>
+      <h2 class="sec-title" style="margin-bottom:1.5rem">Building Africa's digital future, one system at a time.</h2>
+      <div class="about-text">
+        <p>I'm a Ghanaian software entrepreneur building <span class="hl">enterprise solutions for Africa's fastest-growing sectors</span> — healthcare, finance, agriculture, education, and government.</p>
+        <p>My marketplace has grown to <span class="hl">90+ enterprise systems</span>, serving clients from Accra to Tamale. Every system is built and deployed to your specific requirements — not off-the-shelf.</p>
+        <p>In 2026, I launched <span class="hl">AI For Ghana</span> — a free TikTok-based AI education movement teaching Ghanaians to understand and use artificial intelligence through culturally relevant, practical content.</p>
+        <p>The mission: make Ghana the AI capital of West Africa by 2030. 🇬🇭</p>
+      </div>
+      <div class="cities-row">
+        <span class="city"><i class="fas fa-map-marker-alt"></i>Accra</span>
+        <span class="city"><i class="fas fa-map-marker-alt"></i>Kumasi</span>
+        <span class="city"><i class="fas fa-map-marker-alt"></i>Tamale</span>
+        <span class="city"><i class="fas fa-map-marker-alt"></i>Techiman</span>
+        <span class="city"><i class="fas fa-map-marker-alt"></i>Takoradi</span>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ALL PRODUCTS PREVIEW GRID -->
-<section class="section all-preview-section">
-    <div class="container">
-        <div class="section-head">
-            <div class="section-label">Complete Portfolio</div>
-            <h2 class="section-title">90+ Enterprise Systems</h2>
-            <a href="products.html" class="see-all-link">View Full Catalog <i class="fas fa-arrow-right"></i></a>
-        </div>
-        <div class="mini-grid">
-            <a href="products.html?cat=agriculture" class="mini-card" data-category="agriculture"><i class="fas fa-seedling"></i> Agricultural Intelligence Platform</a>
-            <a href="products.html?cat=hospitality" class="mini-card" data-category="hospitality"><i class="fas fa-hotel"></i> Hotel Management Systems</a>
-            <a href="products.html?cat=hr" class="mini-card" data-category="hr"><i class="fas fa-file-invoice-dollar"></i> Ghana Payroll & HR System</a>
-            <a href="products.html?cat=government" class="mini-card" data-category="government"><i class="fas fa-vote-yea"></i> Ghana Election Backend</a>
-            <a href="products.html?cat=community" class="mini-card" data-category="community"><i class="fas fa-church"></i> Church Management System</a>
-            <a href="products.html?cat=healthcare" class="mini-card" data-category="healthcare"><i class="fas fa-heart-pulse"></i> MediCare Ghana</a>
-            <a href="products.html?cat=education" class="mini-card" data-category="education"><i class="fas fa-school"></i> GhanaSchoolApp</a>
-            <a href="products.html?cat=construction" class="mini-card" data-category="construction"><i class="fas fa-drafting-compass"></i> Architecture & Engineering PM</a>
-            <a href="products.html?cat=agriculture" class="mini-card" data-category="agriculture"><i class="fas fa-store"></i> Agricultural Marketplace</a>
-            <a href="products.html?cat=hospitality" class="mini-card" data-category="hospitality"><i class="fas fa-calendar-check"></i> Appointment Scheduling</a>
-            <a href="products.html?cat=finance" class="mini-card" data-category="finance"><i class="fas fa-landmark"></i> Core Banking Systems</a>
-            <a href="products.html?cat=hr" class="mini-card" data-category="hr"><i class="fas fa-user-tie"></i> Applicant Tracking Systems</a>
-            <a href="products.html?cat=agriculture" class="mini-card" data-category="agriculture"><i class="fas fa-tractor"></i> Farm Management Systems</a>
-            <a href="products.html?cat=hospitality" class="mini-card" data-category="hospitality"><i class="fas fa-ticket"></i> Event Ticketing Systems</a>
-            <a href="products.html?cat=finance" class="mini-card" data-category="finance"><i class="fas fa-calculator"></i> Accounting Practice Management</a>
-            <a href="products.html?cat=finance" class="mini-card" data-category="finance"><i class="fas fa-chart-bar"></i> Accounting Software</a>
-            <a href="products.html?cat=media" class="mini-card" data-category="media"><i class="fas fa-broadcast-tower"></i> Broadcasting Systems</a>
-            <a href="products.html?cat=construction" class="mini-card" data-category="construction"><i class="fas fa-building"></i> BIM Systems</a>
-            <a href="products.html?cat=business" class="mini-card" data-category="business"><i class="fas fa-gavel"></i> Case Management Systems</a>
-            <a href="products.html?cat=government" class="mini-card" data-category="government"><i class="fas fa-city"></i> Citizen Service Portals</a>
-            <a href="products.html?cat=healthcare" class="mini-card" data-category="healthcare"><i class="fas fa-flask"></i> Clinical Trial Management (CTMS)</a>
-            <a href="products.html?cat=business" class="mini-card" data-category="business"><i class="fas fa-handshake"></i> Consulting Management Systems</a>
-            <a href="products.html?cat=business" class="mini-card" data-category="business"><i class="fas fa-file-alt"></i> Content Management Systems</a>
-            <a href="products.html?cat=business" class="mini-card" data-category="business"><i class="fas fa-users-cog"></i> Customer Relationship Management</a>
-            <a href="products.html?cat=business" class="mini-card" data-category="business"><i class="fas fa-photo-film"></i> Digital Asset Management</a>
-            <a href="products.html?cat=business" class="mini-card" data-category="business"><i class="fas fa-robot"></i> Document Automation Systems</a>
-            <a href="products.html?cat=business" class="mini-card" data-category="business"><i class="fas fa-folder-open"></i> Document Management Systems</a>
-            <a href="products.html?cat=ecommerce" class="mini-card" data-category="ecommerce"><i class="fas fa-shopping-cart"></i> E-commerce Platforms</a>
-            <a href="products.html?cat=education" class="mini-card" data-category="education"><i class="fas fa-graduation-cap"></i> Education Department Systems</a>
-            <a href="products.html?cat=government" class="mini-card" data-category="government"><i class="fas fa-landmark"></i> E-Government Platforms</a>
-            <a href="products.html?cat=healthcare" class="mini-card" data-category="healthcare"><i class="fas fa-notes-medical"></i> Electronic Health Records (EHR)</a>
-            <a href="products.html?cat=hr" class="mini-card" data-category="hr"><i class="fas fa-id-badge"></i> Employee Self-Service Portals</a>
-            <a href="products.html?cat=energy" class="mini-card" data-category="energy"><i class="fas fa-bolt"></i> Energy Management Systems</a>
-            <a href="products.html?cat=business" class="mini-card" data-category="business"><i class="fas fa-cubes"></i> Enterprise Resource Planning</a>
-        </div>
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner">
+    <span class="sec-label">Ready to transform your business?</span>
+    <h2 class="cta-title">Let's build something<br>remarkable together.</h2>
+    <p class="cta-sub">Get a customized demo of any system — built and deployed to your specific requirements, anywhere in Africa.</p>
+    <div class="cta-actions">
+      <a href="https://calendly.com/raufhusein/demo" target="_blank" rel="noopener" class="btn-red"><i class="fas fa-calendar-check"></i> Book Free Demo</a>
+      <a href="contact.html" class="btn-ghost"><i class="fas fa-envelope"></i> Send a Message</a>
     </div>
-</section>
-
-<!-- TESTIMONIALS / TRUST STRIP -->
-<section class="section testimonials-section" style="background:var(--bg2);padding:4rem 2rem;">
-    <div class="container">
-        <div class="section-head" style="justify-content:center;flex-direction:column;align-items:center;text-align:center;margin-bottom:2.5rem;">
-            <div class="section-label">Client Results</div>
-            <h2 class="section-title" style="flex:unset;">What Businesses Are Saying</h2>
-        </div>
-        <div class="testi-grid">
-            <div class="testi-card">
-                <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p>"We went from 3 hours of daily paperwork to 15 minutes. The hospital system tracks every patient, bill, and prescription automatically. It paid for itself in the first month."</p>
-                <div class="testi-author">
-                    <div class="testi-avatar"><i class="fas fa-user-md"></i></div>
-                    <div>
-                        <strong>Dr. Mensah K.</strong>
-                        <span>Private Clinic, Kumasi</span>
-                    </div>
-                </div>
-            </div>
-            <div class="testi-card">
-                <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p>"Our school fees collection used to be chaos — missed payments, lost receipts. Now parents get instant receipts, I get live reports, and we've reduced fee arrears by 70%."</p>
-                <div class="testi-author">
-                    <div class="testi-avatar"><i class="fas fa-school"></i></div>
-                    <div>
-                        <strong>Principal A. Boateng</strong>
-                        <span>Private School, Accra</span>
-                    </div>
-                </div>
-            </div>
-            <div class="testi-card">
-                <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p>"I was skeptical at first — I thought this was too advanced for our guesthouse. But the system is simple, the team trained us in a day, and reservations are now fully automated."</p>
-                <div class="testi-author">
-                    <div class="testi-avatar"><i class="fas fa-hotel"></i></div>
-                    <div>
-                        <strong>Madam Adjei F.</strong>
-                        <span>Guesthouse Owner, Takoradi</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- FOUNDER SECTION -->
-<section class="section founder-section">
-    <div class="container">
-        <div class="founder-grid">
-            <div class="founder-visual">
-                <div class="founder-rings">
-                    <div class="f-ring r1"></div>
-                    <div class="f-ring r2"></div>
-                    <div class="f-ring r3"></div>
-                    <div class="f-avatar"><i class="fas fa-user-tie"></i></div>
-                </div>
-                <div class="founder-badge-float">
-                    <i class="fas fa-star"></i>
-                    <span>Founder & CEO</span>
-                </div>
-            </div>
-            <div class="founder-content">
-                <div class="section-label">The Visionary Behind It All</div>
-                <h2>Rauf Husein</h2>
-                <h3 class="founder-role">Entrepreneur · Builder · Innovator</h3>
-                <p>As the founder of PrimeHR and creator of 90+ enterprise software systems, Rauf Husein is on a mission to solve Africa's most critical business challenges through technology. From banking systems to agricultural intelligence, each product is born from deep market research and a relentless drive to create value.</p>
-                <div class="founder-highlights">
-                    <div class="f-highlight">
-                        <span class="f-num">5+</span>
-                        <span class="f-text">Cities across Ghana</span>
-                    </div>
-                    <div class="f-highlight">
-                        <span class="f-num">90+</span>
-                        <span class="f-text">Systems delivered</span>
-                    </div>
-                    <div class="f-highlight">
-                        <span class="f-num">PrimeHR</span>
-                        <span class="f-text">HR solutions leader</span>
-                    </div>
-                </div>
-                <a href="contact.html" class="btn-primary">Work with Rauf <i class="fas fa-arrow-right"></i></a>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<!-- SHOWCASE STRIP -->
-<section class="section showcase-strip" style="background:var(--bg-card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:3rem 0;">
-    <div class="container">
-        <div style="text-align:center;margin-bottom:2rem;">
-            <div class="section-label">Start in Minutes</div>
-            <h2 style="font-size:1.75rem;margin-top:0.5rem;">3 Ways to Get a Demo Today</h2>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;">
-            <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.75rem;text-align:center;">
-                <div style="width:52px;height:52px;background:rgba(37,211,102,0.12);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
-                    <i class="fab fa-whatsapp" style="color:#25D366;font-size:1.5rem;"></i>
-                </div>
-                <h4 style="margin-bottom:0.5rem;">Chat on WhatsApp</h4>
-                <p style="color:var(--text-dim);font-size:0.9rem;margin-bottom:1.25rem;">Message Rauf directly. Get a reply within the hour.</p>
-                <a href="https://wa.me/233248837001?text=Hi%20Rauf%2C%20I%20would%20like%20a%20software%20demo" target="_blank" rel="noopener"
-                   style="display:inline-block;background:#25D366;color:white;padding:0.65rem 1.4rem;border-radius:50px;font-size:0.9rem;font-weight:600;text-decoration:none;">
-                   +233 24 883 7001
-                </a>
-            </div>
-            <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.75rem;text-align:center;">
-                <div style="width:52px;height:52px;background:rgba(245,166,35,0.12);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
-                    <i class="fas fa-calendar-check" style="color:var(--accent);font-size:1.5rem;"></i>
-                </div>
-                <h4 style="margin-bottom:0.5rem;">Book a Demo Slot</h4>
-                <p style="color:var(--text-dim);font-size:0.9rem;margin-bottom:1.25rem;">Pick a time that works for you. 20 minutes, free.</p>
-                <a href="https://calendly.com/raufhusein/demo" target="_blank" rel="noopener"
-                   style="display:inline-block;background:var(--accent);color:var(--dark);padding:0.65rem 1.4rem;border-radius:50px;font-size:0.9rem;font-weight:700;text-decoration:none;">
-                   Book Free Demo
-                </a>
-            </div>
-            <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.75rem;text-align:center;">
-                <div style="width:52px;height:52px;background:rgba(0,184,148,0.12);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
-                    <i class="fas fa-envelope" style="color:var(--teal,#00b894);font-size:1.5rem;"></i>
-                </div>
-                <h4 style="margin-bottom:0.5rem;">Send an Email</h4>
-                <p style="color:var(--text-dim);font-size:0.9rem;margin-bottom:1.25rem;">We respond to every email within 24 hours.</p>
-                <a href="mailto:infoprime.hr.gh@gmail.com"
-                   style="display:inline-block;background:var(--bg-card);border:1px solid var(--border);color:var(--text);padding:0.65rem 1.4rem;border-radius:50px;font-size:0.9rem;font-weight:600;text-decoration:none;">
-                   infoprime.hr.gh@gmail.com
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CTA BANNER -->
-<section class="cta-banner">
-    <div class="cta-banner-bg"></div>
-    <div class="container">
-        <div class="cta-content">
-            <h2>Ready to transform your business?</h2>
-            <p>Get a customized demo of any system — built and deployed to your specific requirements.</p>
-            <div class="cta-actions">
-                <a href="contact.html" class="btn-cta-white">Request a Demo <i class="fas fa-arrow-right"></i></a>
-                <a href="products.html" class="btn-cta-outline">Browse Products</a>
-            </div>
-        </div>
-        <div class="cta-decoration">
-            <div class="cta-hex h1"></div>
-            <div class="cta-hex h2"></div>
-            <div class="cta-hex h3"></div>
-        </div>
-    </div>
+  </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="footer">
-    <div class="container">
-        <div class="footer-top">
-            <div class="footer-brand">
-                <div class="brand-mark">RH</div>
-                <p>Rauf Husein Software Marketplace — Enterprise solutions built for Africa's growth economy.</p>
-                <div class="footer-socials">
-                    <a href="https://www.linkedin.com/in/rauf-husein" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://x.com/RaufSwestika" target="_blank" rel="noopener" aria-label="X / Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://github.com/raufhusein" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://web.facebook.com/rauf.husein1" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/rauf_husein/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@primehr.gh" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://www.youtube.com/@primehr" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-            <div class="footer-links-group">
-                <h5>Products</h5>
-                <ul>
-                    <li><a href="products.html?cat=healthcare">Healthcare Systems</a></li>
-                    <li><a href="products.html?cat=finance">Finance & Banking</a></li>
-                    <li><a href="products.html?cat=agriculture">Agriculture</a></li>
-                    <li><a href="products.html?cat=education">Education</a></li>
-                    <li><a href="products.html?cat=government">Government</a></li>
-                </ul>
-            </div>
-            <div class="footer-links-group">
-                <h5>Company</h5>
-                <ul>
-                    <li><a href="index.html#about">About Rauf</a></li>
-                    <li><a href="categories.html">All Categories</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="contact.html">Request Demo</a></li>
-                </ul>
-            </div>
-            <div class="footer-links-group">
-                <h5>Contact</h5>
-                <ul>
-                    <li><i class="fas fa-envelope"></i> <a href="mailto:infoprime.hr.gh@gmail.com">infoprime.hr.gh@gmail.com</a></li>
-                    <li><i class="fas fa-phone"></i> +233 24 883 7001</li>
-                    <li><i class="fas fa-map-marker-alt"></i> Accra · Kumasi · Tamale</li>
-                    <li><i class="fas fa-map-marker-alt"></i> Techiman · Takoradi</li>
-                </ul>
-            </div>
+<footer>
+  <div class="footer-inner">
+    <div class="ft">
+      <div>
+        <div class="fb-mark"><div class="bm">RH</div><span class="fb-name">RAUF HUSEIN</span></div>
+        <p class="fb-desc">Ghana's premier enterprise software studio. Building the digital infrastructure of Africa's future economy.</p>
+        <div class="fb-soc">
+          <a href="https://www.linkedin.com/in/rauf-husein" target="_blank" rel="noopener" class="fsoc"><i class="fab fa-linkedin"></i></a>
+          <a href="https://x.com/RaufSwestika" target="_blank" rel="noopener" class="fsoc"><i class="fab fa-twitter"></i></a>
+          <a href="https://github.com/raufhusein" target="_blank" rel="noopener" class="fsoc"><i class="fab fa-github"></i></a>
+          <a href="https://web.facebook.com/rauf.husein1" target="_blank" rel="noopener" class="fsoc"><i class="fab fa-facebook"></i></a>
+          <a href="https://www.instagram.com/rauf_husein/" target="_blank" rel="noopener" class="fsoc"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.tiktok.com/@primehr.gh" target="_blank" rel="noopener" class="fsoc"><i class="fab fa-tiktok"></i></a>
+          <a href="https://www.youtube.com/@primehr" target="_blank" rel="noopener" class="fsoc"><i class="fab fa-youtube"></i></a>
         </div>
-        <div class="footer-bottom">
-            <p>© 2026 Rauf Husein. All rights reserved. | PrimeHR — Ghana's HR Excellence</p>
-            <div class="footer-legal">
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-                <a href="#">License Agreement</a>
-            </div>
-        </div>
+      </div>
+      <div class="fc"><h5>Products</h5><ul>
+        <li><a href="products.html?cat=healthcare">Healthcare Systems</a></li>
+        <li><a href="products.html?cat=finance">Finance &amp; Banking</a></li>
+        <li><a href="products.html?cat=agriculture">Agriculture</a></li>
+        <li><a href="products.html?cat=education">Education</a></li>
+        <li><a href="products.html?cat=government">Government</a></li>
+      </ul></div>
+      <div class="fc"><h5>Projects</h5><ul>
+        <li><a href="tiktok-tool">AI For Ghana</a></li>
+        <li><a href="teleprompter">Lesson Reader</a></li>
+        <li><a href="categories.html">All Categories</a></li>
+        <li><a href="contact.html">Request Demo</a></li>
+      </ul></div>
+      <div class="fc"><h5>Contact</h5><ul>
+        <li><i class="fas fa-envelope"></i><a href="mailto:infoprime.hr.gh@gmail.com">infoprime.hr.gh@gmail.com</a></li>
+        <li><i class="fas fa-phone"></i>+233 24 883 7001</li>
+        <li><i class="fas fa-map-marker-alt"></i>Accra · Kumasi · Tamale</li>
+      </ul></div>
     </div>
+    <div class="fb-bot">
+      <span class="fb-copy">© 2026 Rauf Husein. All rights reserved. | PrimeHR — Ghana's HR Excellence</span>
+      <div class="fb-legal"><a href="privacy">Privacy Policy</a><a href="terms">Terms of Service</a></div>
+    </div>
+  </div>
 </footer>
 
-<!-- SCROLL TOP -->
-<button class="scroll-top" id="scrollTop" aria-label="Scroll to top" title="Scroll to top"><i class="fas fa-arrow-up"></i></button>
+<button class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></button>
 
-<script src="script.js"></script>
+<script>
+// PRODUCTS
+const PRODUCTS=[
+  {name:'Hospital Management System',cat:'healthcare',desc:'Patient management, billing, pharmacy, lab, and ward management in one integrated system.',icon:'🏥'},
+  {name:'Agriculture Farm Manager',cat:'agriculture',desc:'Crop planning, yield tracking, fertilizer management, and market price integration.',icon:'🌾'},
+  {name:'School Management System',cat:'education',desc:'Student enrollment, fees, timetables, results, and parent portal for schools.',icon:'🏫'},
+  {name:'Microfinance & SACCO System',cat:'finance',desc:'Loan management, savings, member accounts, and mobile money integration.',icon:'💰'},
+  {name:'Local Government Platform',cat:'government',desc:'Revenue collection, property rates, birth/death registration, and citizen services.',icon:'🏛️'},
+  {name:'Pharmacy Management System',cat:'healthcare',desc:'Drug inventory, expiry tracking, sales, prescriptions, and supplier management.',icon:'💊'},
+  {name:'Poultry Farm System',cat:'agriculture',desc:'Bird count, feed management, mortality tracking, egg production, and sales records.',icon:'🐔'},
+  {name:'University ERP System',cat:'education',desc:'Admissions, courses, results, fees, hostel, and alumni management.',icon:'🎓'},
+];
+
+function renderProducts(cat){
+  const g=document.getElementById('productsGrid');
+  const f=cat==='all'?PRODUCTS:PRODUCTS.filter(p=>p.cat===cat);
+  g.innerHTML=f.map(p=>`<div class="pc" onclick="window.location='products.html'"><span class="pc-icon">${p.icon}</span><div class="pc-cat">${p.cat}</div><div class="pc-name">${p.name}</div><div class="pc-desc">${p.desc}</div><div class="pc-foot"><span class="pc-price">Custom Pricing</span><button class="pc-btn">Get Demo</button></div></div>`).join('');
+}
+document.getElementById('catPills').addEventListener('click',e=>{
+  const p=e.target.closest('.pill');if(!p)return;
+  document.querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));
+  p.classList.add('active');renderProducts(p.dataset.cat);
+});
+renderProducts('all');
+
+// CANVAS BACKGROUND
+const canvas=document.getElementById('bgCanvas');
+const ctx=canvas.getContext('2d');
+let W,H,pts=[];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+function Pt(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.25;this.vy=(Math.random()-.5)*.25;this.r=Math.random()*1.2+.4;this.a=Math.random()*.35+.08;const c=['252,209,22','0,107,63','206,17,38','255,255,255'];this.c=c[Math.floor(Math.random()*c.length)]}
+function initPts(){pts=[];const n=Math.min(70,Math.floor(W*H/14000));for(let i=0;i<n;i++)pts.push(new Pt())}
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(${p.c},${p.a})`;ctx.fill()});
+  for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<110){ctx.beginPath();ctx.strokeStyle=`rgba(252,209,22,${.05*(1-d/110)})`;ctx.lineWidth=.5;ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.stroke()}}
+  requestAnimationFrame(draw);
+}
+resize();initPts();draw();
+window.addEventListener('resize',()=>{resize();initPts()});
+
+// CURSOR
+const dot=document.getElementById('curDot'),ring=document.getElementById('curRing');
+document.addEventListener('mousemove',e=>{dot.style.left=e.clientX+'px';dot.style.top=e.clientY+'px';setTimeout(()=>{ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px'},60)});
+document.querySelectorAll('a,button,.zone,.pc,.pillar-card,.pill').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(1.8)';ring.style.borderColor='rgba(252,209,22,0.8)'});
+  el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='rgba(252,209,22,0.4)'});
+});
+
+// NAV + SCROLL TOP
+window.addEventListener('scroll',()=>{
+  document.getElementById('mainNav').classList.toggle('solid',window.scrollY>60);
+  document.getElementById('scrollTop').classList.toggle('show',window.scrollY>400);
+});
+document.getElementById('scrollTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+// MOBILE NAV
+document.getElementById('mobileToggle').addEventListener('click',()=>document.getElementById('mobileNav').classList.add('open'));
+document.getElementById('mobileClose').addEventListener('click',()=>document.getElementById('mobileNav').classList.remove('open'));
+function closeMobileNav(){document.getElementById('mobileNav').classList.remove('open')}
+
+// COUNTERS
+function animCounters(){
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const t=parseInt(el.dataset.count);let c=0;const s=t/60;
+    const tm=setInterval(()=>{c=Math.min(c+s,t);el.textContent=Math.floor(c);if(c>=t)clearInterval(tm)},16);
+  });
+}
+new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){animCounters();e.target._ob.disconnect()}})},{threshold:0.3}).observe(Object.assign(document.getElementById('entry'),{_ob:new IntersectionObserver(()=>{})}));
+// simpler approach
+setTimeout(animCounters,800);
+
+// ZONE 3D TILT
+document.querySelectorAll('.zone').forEach(z=>{
+  z.addEventListener('mousemove',e=>{const r=z.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;z.style.transform=`translateY(-4px) rotateX(${-y*5}deg) rotateY(${x*5}deg)`;z.style.transformStyle='preserve-3d'});
+  z.addEventListener('mouseleave',()=>{z.style.transform='';z.style.transformStyle=''});
+});
+</script>
+</body>
 </html>
