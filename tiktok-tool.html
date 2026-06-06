@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI For Ghana — TikTok Content Tool</title>
+    <meta name="description" content="Post and schedule AI education videos to @AIForGhana on TikTok — powered by the TikTok Content Posting API.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ── Tool-specific overrides ── */
+        body { background: #0a0a0a; }
+
+        .tool-nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(10,10,10,0.95);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding: 1rem 2rem;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .tool-brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .tool-logo {
+            width: 40px; height: 40px; border-radius: 10px;
+            background: linear-gradient(135deg, #006B3F, #FCD116, #CE1126);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; color: #fff;
+        }
+        .tool-brand-text { display: flex; flex-direction: column; }
+        .tool-brand-name {
+            font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700;
+            color: #fff; letter-spacing: 0.05em;
+        }
+        .tool-brand-sub { font-size: 0.7rem; color: rgba(255,255,255,0.4); }
+        .tool-nav-right { display: flex; align-items: center; gap: 1rem; }
+        .btn-tiktok-login {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: #fff; color: #000; border: none;
+            padding: 0.5rem 1.25rem; border-radius: 50px;
+            font-family: 'Outfit', sans-serif; font-size: 0.85rem; font-weight: 600;
+            cursor: pointer; text-decoration: none; transition: opacity 0.2s;
+        }
+        .btn-tiktok-login:hover { opacity: 0.85; }
+        .back-link {
+            color: rgba(255,255,255,0.5); font-size: 0.85rem; text-decoration: none;
+            display: flex; align-items: center; gap: 0.4rem;
+        }
+        .back-link:hover { color: #fff; }
+
+        /* ── Hero ── */
+        .tool-hero {
+            padding: 8rem 2rem 3rem;
+            text-align: center;
+            background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0,107,63,0.15) 0%, transparent 70%);
+        }
+        .tool-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50px; padding: 0.4rem 1rem; margin-bottom: 1.5rem;
+            font-family: 'DM Mono', monospace; font-size: 0.78rem; color: rgba(255,255,255,0.6);
+        }
+        .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #FCD116; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+        .tool-hero h1 {
+            font-family: 'Syne', sans-serif; font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 800; color: #fff; margin-bottom: 1rem; line-height: 1.1;
+        }
+        .tool-hero h1 .gh-accent {
+            background: linear-gradient(90deg, #006B3F, #FCD116, #CE1126);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .tool-hero p {
+            color: rgba(255,255,255,0.5); font-size: 1.05rem; max-width: 560px; margin: 0 auto 2rem;
+        }
+
+        /* ── Main layout ── */
+        .tool-main {
+            max-width: 900px; margin: 0 auto; padding: 0 1.5rem 6rem;
+            display: grid; grid-template-columns: 1fr 340px; gap: 1.5rem;
+        }
+        @media(max-width:768px){ .tool-main{ grid-template-columns:1fr; } }
+
+        /* ── Cards ── */
+        .tool-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px; padding: 1.75rem;
+        }
+        .tool-card h3 {
+            font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700;
+            color: #fff; margin-bottom: 1.25rem;
+            display: flex; align-items: center; gap: 0.6rem;
+        }
+        .tool-card h3 i { color: rgba(255,255,255,0.4); font-size: 0.9rem; }
+
+        /* ── Form fields ── */
+        .field { margin-bottom: 1.25rem; }
+        .field label {
+            display: block; font-size: 0.8rem; font-weight: 600;
+            color: rgba(255,255,255,0.5); margin-bottom: 0.5rem;
+            text-transform: uppercase; letter-spacing: 0.05em;
+        }
+        .field input, .field textarea, .field select {
+            width: 100%; background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 10px;
+            color: #fff; font-family: 'Outfit', sans-serif; font-size: 0.95rem;
+            padding: 0.75rem 1rem; outline: none; transition: border-color 0.2s;
+            box-sizing: border-box;
+        }
+        .field input:focus, .field textarea:focus, .field select:focus {
+            border-color: rgba(252,209,22,0.5);
+        }
+        .field textarea { resize: vertical; min-height: 100px; }
+        .field select option { background: #1a1a1a; }
+
+        /* ── Upload zone ── */
+        .upload-zone {
+            border: 2px dashed rgba(255,255,255,0.12);
+            border-radius: 12px; padding: 2.5rem 1rem;
+            text-align: center; cursor: pointer; transition: all 0.2s;
+            position: relative;
+        }
+        .upload-zone:hover, .upload-zone.dragover {
+            border-color: rgba(252,209,22,0.4);
+            background: rgba(252,209,22,0.04);
+        }
+        .upload-zone input[type=file] {
+            position: absolute; inset: 0; opacity: 0; cursor: pointer;
+            width: 100%; height: 100%;
+        }
+        .upload-icon { font-size: 2rem; color: rgba(255,255,255,0.2); margin-bottom: 0.75rem; }
+        .upload-title { font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 0.3rem; }
+        .upload-hint { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+        .upload-preview {
+            display: none; align-items: center; gap: 1rem;
+            background: rgba(255,255,255,0.05); border-radius: 8px; padding: 0.75rem 1rem;
+            margin-top: 1rem;
+        }
+        .upload-preview.show { display: flex; }
+        .preview-icon { font-size: 1.5rem; color: rgba(252,209,22,0.7); }
+        .preview-name { font-size: 0.85rem; color: rgba(255,255,255,0.7); flex: 1; }
+        .preview-remove {
+            background: none; border: none; color: rgba(255,255,255,0.3);
+            cursor: pointer; font-size: 1rem; padding: 0;
+        }
+        .preview-remove:hover { color: #CE1126; }
+
+        /* ── Hashtag pills ── */
+        .hashtag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+        .hashtag-pill {
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50px; padding: 0.3rem 0.75rem;
+            font-family: 'DM Mono', monospace; font-size: 0.78rem; color: rgba(255,255,255,0.6);
+            cursor: pointer; transition: all 0.2s; user-select: none;
+        }
+        .hashtag-pill.active {
+            background: rgba(252,209,22,0.12); border-color: rgba(252,209,22,0.4);
+            color: #FCD116;
+        }
+
+        /* ── Submit button ── */
+        .btn-post {
+            width: 100%; background: linear-gradient(135deg, #006B3F, #1a8a52);
+            color: #fff; border: none; border-radius: 12px; padding: 1rem;
+            font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700;
+            cursor: pointer; transition: all 0.2s; display: flex; align-items: center;
+            justify-content: center; gap: 0.6rem; margin-top: 1.5rem;
+        }
+        .btn-post:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,107,63,0.3); }
+        .btn-post:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+        /* ── Status panel ── */
+        .status-panel { display: flex; flex-direction: column; gap: 1rem; }
+        .status-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px; padding: 1.25rem;
+        }
+        .status-row {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .status-row:last-child { border-bottom: none; padding-bottom: 0; }
+        .status-label { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+        .status-value { font-size: 0.85rem; font-weight: 600; color: rgba(255,255,255,0.8); }
+        .status-dot {
+            width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 0.4rem;
+        }
+        .dot-green { background: #00b894; }
+        .dot-yellow { background: #FCD116; animation: pulse 2s infinite; }
+        .dot-red { background: #CE1126; }
+        .dot-grey { background: rgba(255,255,255,0.2); }
+
+        /* ── Recent posts log ── */
+        .log-entry {
+            display: flex; align-items: flex-start; gap: 0.75rem;
+            padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .log-entry:last-child { border-bottom: none; }
+        .log-thumb {
+            width: 36px; height: 36px; border-radius: 6px; flex-shrink: 0;
+            background: rgba(255,255,255,0.06); display: flex; align-items: center;
+            justify-content: center; font-size: 1rem;
+        }
+        .log-info { flex: 1; }
+        .log-title { font-size: 0.82rem; color: rgba(255,255,255,0.7); margin-bottom: 0.15rem; }
+        .log-meta { font-size: 0.72rem; color: rgba(255,255,255,0.3); font-family: 'DM Mono', monospace; }
+
+        /* ── Connect banner ── */
+        .connect-banner {
+            background: linear-gradient(135deg, rgba(0,107,63,0.15), rgba(252,209,22,0.05));
+            border: 1px solid rgba(0,107,63,0.3); border-radius: 16px;
+            padding: 1.5rem; text-align: center;
+        }
+        .connect-banner h4 {
+            font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700;
+            color: #fff; margin-bottom: 0.5rem;
+        }
+        .connect-banner p { font-size: 0.82rem; color: rgba(255,255,255,0.45); margin-bottom: 1.25rem; }
+
+        /* ── Toast ── */
+        .toast {
+            position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
+            background: #1a1a1a; border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px; padding: 1rem 1.5rem;
+            display: flex; align-items: center; gap: 0.75rem;
+            transform: translateY(100px); opacity: 0;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            max-width: 320px;
+        }
+        .toast.show { transform: translateY(0); opacity: 1; }
+        .toast.success { border-color: rgba(0,184,148,0.3); }
+        .toast.error { border-color: rgba(206,17,38,0.3); }
+        .toast-icon { font-size: 1.2rem; }
+        .toast-text { font-size: 0.85rem; color: rgba(255,255,255,0.8); }
+
+        /* ── Footer strip ── */
+        .tool-footer {
+            text-align: center; padding: 2rem;
+            font-size: 0.78rem; color: rgba(255,255,255,0.2);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .tool-footer a { color: rgba(255,255,255,0.35); text-decoration: none; }
+        .tool-footer a:hover { color: rgba(255,255,255,0.7); }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="tool-nav">
+    <a href="index.html" class="tool-brand">
+        <div class="tool-logo">AI</div>
+        <div class="tool-brand-text">
+            <span class="tool-brand-name">AI FOR GHANA</span>
+            <span class="tool-brand-sub">TikTok Content Tool</span>
+        </div>
+    </a>
+    <div class="tool-nav-right">
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Marketplace</a>
+        <a href="#" class="btn-tiktok-login" id="loginBtn" onclick="handleLogin(event)">
+            <i class="fab fa-tiktok"></i> Connect TikTok
+        </a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="tool-hero">
+    <div class="tool-badge">
+        <span class="badge-dot"></span>
+        Content Posting API · @AIForGhana
+    </div>
+    <h1>Post AI Videos<br>to <span class="gh-accent">Ghana</span></h1>
+    <p>Schedule and post AI education content directly to @AIForGhana on TikTok — no manual uploading.</p>
+</section>
+
+<!-- MAIN TOOL -->
+<div class="tool-main">
+
+    <!-- LEFT — Post form -->
+    <div>
+        <div class="tool-card" style="margin-bottom:1.5rem;">
+            <h3><i class="fas fa-video"></i> Upload Video</h3>
+            <div class="upload-zone" id="uploadZone">
+                <input type="file" id="videoFile" accept="video/mp4,video/mov,video/avi,video/webm" onchange="handleFileSelect(this)">
+                <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                <div class="upload-title">Drop your video here</div>
+                <div class="upload-hint">MP4, MOV, AVI · Max 500MB · 3s–10min</div>
+            </div>
+            <div class="upload-preview" id="uploadPreview">
+                <div class="preview-icon"><i class="fas fa-film"></i></div>
+                <span class="preview-name" id="previewName">—</span>
+                <button class="preview-remove" onclick="clearFile()" title="Remove"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+
+        <div class="tool-card" style="margin-bottom:1.5rem;">
+            <h3><i class="fas fa-pen"></i> Post Details</h3>
+            <div class="field">
+                <label>Caption</label>
+                <textarea id="caption" placeholder="AI is like a very fast market woman — she has seen a million transactions and knows exactly what you need before you ask. 🇬🇭" maxlength="2200" oninput="updateCharCount()"></textarea>
+                <div style="text-align:right;font-size:0.75rem;color:rgba(255,255,255,0.3);margin-top:0.25rem;">
+                    <span id="charCount">0</span>/2200
+                </div>
+            </div>
+            <div class="field">
+                <label>Hashtags</label>
+                <div class="hashtag-row" id="hashtagRow">
+                    <span class="hashtag-pill active" onclick="toggleTag(this)">#AIGhana</span>
+                    <span class="hashtag-pill active" onclick="toggleTag(this)">#PromptGhana</span>
+                    <span class="hashtag-pill active" onclick="toggleTag(this)">#AIForGhana</span>
+                    <span class="hashtag-pill" onclick="toggleTag(this)">#GhanaTwitter</span>
+                    <span class="hashtag-pill" onclick="toggleTag(this)">#TechGhana</span>
+                    <span class="hashtag-pill" onclick="toggleTag(this)">#LearnAI</span>
+                    <span class="hashtag-pill" onclick="toggleTag(this)">#Kejetia</span>
+                    <span class="hashtag-pill" onclick="toggleTag(this)">#Kumasi</span>
+                    <span class="hashtag-pill" onclick="toggleTag(this)">#Accra</span>
+                </div>
+            </div>
+            <div class="field">
+                <label>Who can view this video</label>
+                <select id="privacy">
+                    <option value="SELF_ONLY">Only me (draft)</option>
+                    <option value="FOLLOWER_OF_CREATOR">Followers only</option>
+                    <option value="PUBLIC_TO_EVERYONE" selected>Everyone (public)</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Allow viewers to</label>
+                <div style="display:flex;gap:1.5rem;margin-top:0.25rem;">
+                    <label style="display:flex;align-items:center;gap:0.4rem;font-size:0.85rem;color:rgba(255,255,255,0.6);text-transform:none;letter-spacing:0;cursor:pointer;">
+                        <input type="checkbox" id="allowComment" checked style="width:auto;background:none;border:none;padding:0;accent-color:#FCD116;">
+                        Comments
+                    </label>
+                    <label style="display:flex;align-items:center;gap:0.4rem;font-size:0.85rem;color:rgba(255,255,255,0.6);text-transform:none;letter-spacing:0;cursor:pointer;">
+                        <input type="checkbox" id="allowDuet" checked style="width:auto;background:none;border:none;padding:0;accent-color:#FCD116;">
+                        Duet
+                    </label>
+                    <label style="display:flex;align-items:center;gap:0.4rem;font-size:0.85rem;color:rgba(255,255,255,0.6);text-transform:none;letter-spacing:0;cursor:pointer;">
+                        <input type="checkbox" id="allowStitch" checked style="width:auto;background:none;border:none;padding:0;accent-color:#FCD116;">
+                        Stitch
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn-post" id="postBtn" onclick="handlePost()">
+            <i class="fab fa-tiktok"></i> Post to @AIForGhana
+        </button>
+    </div>
+
+    <!-- RIGHT — Status & log -->
+    <div class="status-panel">
+
+        <!-- Account status -->
+        <div class="status-card">
+            <h3 style="font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;color:#fff;margin-bottom:1rem;"><i class="fab fa-tiktok" style="color:rgba(255,255,255,0.4);margin-right:0.4rem;"></i> Account Status</h3>
+            <div class="status-row">
+                <span class="status-label">TikTok Account</span>
+                <span class="status-value" id="accountStatus">
+                    <span class="status-dot dot-yellow"></span>Not connected
+                </span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Content Posting API</span>
+                <span class="status-value">
+                    <span class="status-dot dot-yellow"></span>Pending review
+                </span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Login Kit</span>
+                <span class="status-value">
+                    <span class="status-dot dot-yellow"></span>Pending review
+                </span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">App Status</span>
+                <span class="status-value">
+                    <span class="status-dot dot-yellow"></span>Draft — not submitted
+                </span>
+            </div>
+        </div>
+
+        <!-- Connect banner -->
+        <div class="connect-banner">
+            <h4>🇬🇭 Connect Your TikTok</h4>
+            <p>Sign in with TikTok to start posting AI education videos directly to @AIForGhana without manual uploading.</p>
+            <a href="#" class="btn-tiktok-login" onclick="handleLogin(event)" style="display:inline-flex;margin:0 auto;">
+                <i class="fab fa-tiktok"></i> Sign in with TikTok
+            </a>
+        </div>
+
+        <!-- Content plan -->
+        <div class="status-card">
+            <h3 style="font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;color:#fff;margin-bottom:1rem;"><i class="fas fa-list-check" style="color:rgba(255,255,255,0.4);margin-right:0.4rem;"></i> Phase 1 — Video Plan</h3>
+            <div class="log-entry">
+                <div class="log-thumb">🛒</div>
+                <div class="log-info">
+                    <div class="log-title">Video 1 — AI is like a market woman</div>
+                    <div class="log-meta">Kejetia market · Script ready · 30s</div>
+                </div>
+            </div>
+            <div class="log-entry">
+                <div class="log-thumb">🚕</div>
+                <div class="log-info">
+                    <div class="log-title">Video 2 — AI and the Trotro driver</div>
+                    <div class="log-meta">Transport analogy · Coming soon</div>
+                </div>
+            </div>
+            <div class="log-entry">
+                <div class="log-thumb">🌾</div>
+                <div class="log-info">
+                    <div class="log-title">Video 3 — AI for the farmer</div>
+                    <div class="log-meta">Agriculture use case · Coming soon</div>
+                </div>
+            </div>
+            <div class="log-entry">
+                <div class="log-thumb">🏥</div>
+                <div class="log-info">
+                    <div class="log-title">Video 4 — AI in the clinic</div>
+                    <div class="log-meta">Healthcare use case · Coming soon</div>
+                </div>
+            </div>
+            <div class="log-entry" style="border:none;">
+                <div class="log-thumb" style="background:rgba(252,209,22,0.08);color:#FCD116;">+6</div>
+                <div class="log-info">
+                    <div class="log-title" style="color:rgba(255,255,255,0.4);">6 more videos planned</div>
+                    <div class="log-meta">Phase 1 — Foundation Series</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div class="tool-footer">
+    <p>
+        AI For Ghana — <a href="https://www.tiktok.com/@AIForGhana" target="_blank" rel="noopener">@AIForGhana</a> ·
+        Built by <a href="index.html">Rauf Husein</a> ·
+        <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a>
+    </p>
+    <p style="margin-top:0.4rem;font-size:0.72rem;">Powered by TikTok Content Posting API · raufhusein.site</p>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+    <span class="toast-icon" id="toastIcon"></span>
+    <span class="toast-text" id="toastText"></span>
+</div>
+
+<script>
+    // ── File handling ──
+    function handleFileSelect(input) {
+        const file = input.files[0];
+        if (!file) return;
+        document.getElementById('previewName').textContent = file.name + ' (' + (file.size / 1024 / 1024).toFixed(1) + 'MB)';
+        document.getElementById('uploadPreview').classList.add('show');
+        document.getElementById('uploadZone').style.borderColor = 'rgba(252,209,22,0.4)';
+    }
+    function clearFile() {
+        document.getElementById('videoFile').value = '';
+        document.getElementById('uploadPreview').classList.remove('show');
+        document.getElementById('uploadZone').style.borderColor = '';
+    }
+
+    // ── Drag and drop ──
+    const zone = document.getElementById('uploadZone');
+    zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
+    zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+    zone.addEventListener('drop', e => {
+        e.preventDefault(); zone.classList.remove('dragover');
+        const file = e.dataTransfer.files[0];
+        if (file && file.type.startsWith('video/')) {
+            document.getElementById('videoFile').files = e.dataTransfer.files;
+            handleFileSelect(document.getElementById('videoFile'));
+        }
+    });
+
+    // ── Char count ──
+    function updateCharCount() {
+        document.getElementById('charCount').textContent = document.getElementById('caption').value.length;
+    }
+
+    // ── Hashtag toggle ──
+    function toggleTag(el) { el.classList.toggle('active'); }
+
+    // ── Get selected hashtags ──
+    function getHashtags() {
+        return Array.from(document.querySelectorAll('.hashtag-pill.active')).map(el => el.textContent);
+    }
+
+    // ── Login ──
+    function handleLogin(e) {
+        e.preventDefault();
+        showToast('info', '⏳ TikTok app is pending review. Login will be enabled once approved.');
+    }
+
+    // ── Post ──
+    function handlePost() {
+        const file = document.getElementById('videoFile').files[0];
+        const caption = document.getElementById('caption').value.trim();
+        if (!file) { showToast('error', 'Please select a video file first.'); return; }
+        if (!caption) { showToast('error', 'Please add a caption.'); return; }
+        // In production: call TikTok Content Posting API here
+        showToast('info', '⏳ TikTok app pending review. API posting will be live once approved.');
+    }
+
+    // ── Toast ──
+    function showToast(type, msg) {
+        const toast = document.getElementById('toast');
+        const icons = { success: '✅', error: '❌', info: 'ℹ️' };
+        document.getElementById('toastIcon').textContent = icons[type] || 'ℹ️';
+        document.getElementById('toastText').textContent = msg;
+        toast.className = 'toast ' + type + ' show';
+        setTimeout(() => toast.classList.remove('show'), 4500);
+    }
+</script>
+</body>
+</html>
