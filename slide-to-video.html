@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide → Video | AI For Ghana — Rauf Husein</title>
+<meta name="description" content="Turn your slides (PDF or images) into a powerful slide video with optional music and share it to all your social media. No watermark, no upload, no API. By AI For Ghana.">
+<meta name="theme-color" content="#060608">
+<meta property="og:title" content="Slide → Video | AI For Ghana">
+<meta property="og:description" content="Turn slides into a clean video with music and share to all your socials. Runs in your browser, no upload, no API.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{--bg:#060608;--gh-green:#006B3F;--gh-gold:#FCD116;--gh-red:#CE1126;--text:#fff;--text-dim:rgba(255,255,255,0.5);--border:rgba(255,255,255,0.09);--card:rgba(255,255,255,0.03);--radius:18px;--font-head:'Syne',sans-serif;--font-body:'Outfit',sans-serif;--font-mono:'DM Mono',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-height:100vh;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto;padding:1.5rem 1.25rem 5rem}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.brand .bm{width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,var(--gh-green),var(--gh-gold));display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-weight:800;color:#000}
+.brand b{font-family:var(--font-head);letter-spacing:.08em;font-size:.85rem}
+.back{font-size:.82rem;color:var(--text-dim);text-decoration:none;border:1px solid var(--border);padding:.5rem 1rem;border-radius:50px}
+.back:hover{color:#fff;border-color:rgba(255,255,255,.25)}
+.htag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(252,209,22,.08);border:1px solid rgba(252,209,22,.2);border-radius:50px;padding:.35rem 1rem;font-family:var(--font-mono);font-size:.7rem;color:var(--gh-gold);letter-spacing:.06em;margin-bottom:1.1rem}
+h1{font-family:var(--font-head);font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-.02em;line-height:1.02;margin-bottom:.75rem}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--gh-green),var(--gh-gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.lead{color:var(--text-dim);max-width:660px;margin-bottom:2rem}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1.25rem}
+.step-h{display:flex;align-items:center;gap:.6rem;font-family:var(--font-head);font-weight:700;font-size:1.05rem;margin-bottom:1rem}
+.step-n{width:26px;height:26px;border-radius:50%;background:var(--gh-gold);color:#000;font-family:var(--font-mono);font-size:.8rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.drop{border:2px dashed rgba(255,255,255,.18);border-radius:14px;padding:2.5rem 1.5rem;text-align:center;cursor:pointer;transition:all .2s;background:rgba(255,255,255,.015)}
+.drop:hover,.drop.over{border-color:var(--gh-gold);background:rgba(252,209,22,.05)}
+.drop i{font-size:2rem;color:var(--gh-gold);margin-bottom:.75rem}
+.drop b{display:block;font-family:var(--font-head);margin-bottom:.25rem}
+.drop span{font-size:.82rem;color:var(--text-dim)}
+.hint{font-size:.78rem;color:var(--text-dim);margin-top:.85rem;line-height:1.6}
+.hint b{color:#fff;font-weight:600}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.6rem;margin-top:1.1rem}
+.thumb{position:relative;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#000;cursor:grab}
+.thumb.dragging{opacity:.4}
+.thumb .pic{aspect-ratio:9/16;display:flex;align-items:center;justify-content:center;background:#000}
+.thumb img{width:100%;height:100%;object-fit:contain;pointer-events:none}
+.thumb .idx{position:absolute;top:4px;left:4px;background:rgba(0,0,0,.7);color:#fff;font-family:var(--font-mono);font-size:.62rem;padding:.1rem .4rem;border-radius:50px}
+.thumb .del{position:absolute;top:4px;right:4px;background:rgba(206,17,38,.85);color:#fff;border:none;width:20px;height:20px;border-radius:50%;cursor:pointer;font-size:.62rem;display:flex;align-items:center;justify-content:center}
+.thumb .durbar{display:flex;align-items:center;gap:.25rem;padding:.3rem .35rem;background:rgba(0,0,0,.5)}
+.thumb .durbar input{width:100%;background:rgba(255,255,255,.08);border:1px solid var(--border);border-radius:6px;color:#fff;font-size:.7rem;padding:.2rem .3rem;font-family:var(--font-mono)}
+.thumb .durbar span{font-size:.6rem;color:var(--text-dim);font-family:var(--font-mono)}
+.thumb .mv{position:absolute;top:50%;transform:translateY(-50%);width:100%;display:flex;justify-content:space-between;padding:0 3px;opacity:0;transition:opacity .15s}
+.thumb:hover .mv{opacity:1}
+.thumb .mv button{background:rgba(0,0,0,.65);color:#fff;border:none;width:24px;height:30px;border-radius:6px;cursor:pointer;font-size:.7rem}
+.thumb .mv button:hover{background:var(--gh-green)}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem}
+.opt label{display:block;font-size:.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem;font-family:var(--font-mono)}
+select,input[type=number],input[type=text]{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;color:#fff;padding:.6rem .75rem;font-family:var(--font-body);font-size:.9rem}
+input[type=range]{width:100%}
+.bg-row{display:flex;gap:.5rem;margin-top:.4rem}
+.bg-chip{flex:1;border:1px solid var(--border);border-radius:8px;padding:.45rem;font-size:.72rem;cursor:pointer;text-align:center;color:var(--text-dim)}
+.bg-chip.on{border-color:var(--gh-gold);color:#fff;background:rgba(252,209,22,.08)}
+.toggles{display:flex;flex-wrap:wrap;gap:1.25rem;margin-top:1.25rem}
+.tg{display:flex;align-items:center;gap:.6rem;font-size:.85rem;cursor:pointer;user-select:none}
+.tg input{display:none}
+.tg .sw{width:40px;height:22px;border-radius:50px;background:rgba(255,255,255,.12);position:relative;transition:background .2s;flex-shrink:0}
+.tg .sw::after{content:'';position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .2s}
+.tg input:checked + .sw{background:var(--gh-green)}
+.tg input:checked + .sw::after{transform:translateX(18px)}
+.music-row{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;margin-top:1rem;padding:1rem;border:1px dashed var(--border);border-radius:12px}
+.music-row.hidden{display:none}
+.mini-btn{display:inline-flex;align-items:center;gap:.45rem;border:1px solid var(--border);background:rgba(255,255,255,.03);color:#fff;border-radius:50px;padding:.5rem 1rem;font-size:.82rem;cursor:pointer;font-weight:600}
+.mini-btn:hover{border-color:var(--gh-gold)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;border:none;cursor:pointer;font-family:var(--font-head);font-weight:700;font-size:.92rem;padding:.85rem 1.75rem;border-radius:50px;text-decoration:none;transition:all .2s}
+.btn-gold{background:var(--gh-gold);color:#000}
+.btn-gold:hover{background:#fff;transform:translateY(-1px)}
+.btn-gold:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn-green{background:var(--gh-green);color:#fff}
+.btn-green:hover{background:#008a4f}
+.btn-ghost{border:1px solid var(--border);color:#fff;background:transparent}
+.btn-ghost:hover{border-color:rgba(255,255,255,.3)}
+.gen-row{display:flex;gap:.75rem;flex-wrap:wrap;align-items:center;margin-top:1.25rem}
+.prog{margin-top:1rem;display:none}
+.prog.show{display:block}
+.bar{height:8px;background:rgba(255,255,255,.07);border-radius:50px;overflow:hidden}
+.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gh-green),var(--gh-gold));transition:width .2s}
+.prog small{display:block;margin-top:.5rem;color:var(--text-dim);font-family:var(--font-mono);font-size:.74rem}
+#previewCanvas{display:none}
+#result{display:none}
+#result.show{display:block}
+video{width:100%;max-width:340px;border-radius:14px;border:1px solid var(--border);background:#000;display:block;margin:0 auto 1rem}
+.share-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.6rem;margin-top:1rem}
+.sbtn{display:flex;align-items:center;gap:.6rem;border:1px solid var(--border);border-radius:12px;padding:.7rem .9rem;text-decoration:none;color:#fff;font-size:.84rem;font-weight:600;transition:all .2s;background:rgba(255,255,255,.02)}
+.sbtn:hover{border-color:rgba(255,255,255,.3);transform:translateY(-1px)}
+.sbtn i{font-size:1.1rem;width:22px;text-align:center}
+.fa-tiktok{color:#fff}.fa-instagram{color:#E1306C}.fa-facebook{color:#1877F2}.fa-linkedin{color:#0A66C2}.fa-globe{color:var(--gh-gold)}
+.note{background:rgba(0,107,63,.08);border:1px solid rgba(0,107,63,.3);border-radius:12px;padding:.9rem 1.1rem;font-size:.82rem;color:var(--text-dim);margin-top:1rem}
+.note b{color:#fff}
+.cap-box{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;color:#fff;padding:.7rem;font-family:var(--font-body);font-size:.85rem;resize:vertical;min-height:70px;margin-top:.5rem}
+footer{text-align:center;padding:2rem 1rem;color:var(--text-dim);font-size:.78rem;font-family:var(--font-mono);border-top:1px solid var(--border);margin-top:2rem}
+footer a{color:var(--gh-gold);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <a href="/" class="brand"><span class="bm">RH</span><b>AI FOR GHANA</b></a>
+    <a href="/" class="back"><i class="fas fa-arrow-left"></i> Back to site</a>
+  </div>
+
+  <div class="htag"><i class="fas fa-clapperboard"></i> FREE TOOL · RUNS 100% IN YOUR BROWSER</div>
+  <h1>Slide → <em>Video</em> <span style="font-size:.4em;color:var(--text-dim);font-family:var(--font-mono)">PRO</span></h1>
+  <p class="lead">Turn your slides into a powerful video — add music, set the timing, then share to all your socials. Nothing is forced onto your slides: by default it's a clean, watermark-free cut of exactly what you made. Everything runs on your own device — your files are never uploaded.</p>
+
+  <!-- STEP 1 -->
+  <div class="panel">
+    <div class="step-h"><span class="step-n">1</span> Add your slides</div>
+    <div class="drop" id="drop">
+      <i class="fas fa-cloud-arrow-up"></i>
+      <b>Tap to choose, or drag &amp; drop here</b>
+      <span>PDF of your slides, or slide images (PNG / JPG)</span>
+    </div>
+    <input type="file" id="file" accept="application/pdf,image/png,image/jpeg" multiple hidden>
+    <p class="hint"><b>From PowerPoint:</b> File → Save As → <b>PDF</b> (or Export → “Save as Pictures”). &nbsp; <b>From NotebookLM:</b> open the slides → Print / Download as PDF. Then drop it here — your slides stay <b>exactly</b> as you made them. <b>Drag thumbnails to reorder</b>, and set each slide's own seconds.</p>
+    <div class="thumbs" id="thumbs"></div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="panel">
+    <div class="step-h"><span class="step-n">2</span> Video settings</div>
+    <div class="opts">
+      <div class="opt">
+        <label>Shape</label>
+        <select id="shape">
+          <option value="9:16">Vertical · TikTok / Reels / Shorts (1080×1920)</option>
+          <option value="1:1">Square · Feed post (1080×1080)</option>
+          <option value="16:9">Widescreen · YouTube / LinkedIn (1920×1080)</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label>Default seconds / slide</label>
+        <input type="number" id="secs" value="4" min="1" max="60" step="0.5">
+      </div>
+      <div class="opt">
+        <label>Quality</label>
+        <select id="quality">
+          <option value="8000000">Standard (smaller file)</option>
+          <option value="14000000" selected>High (crisp text)</option>
+          <option value="24000000">Max (largest file)</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label>Letterbox background</label>
+        <div class="bg-row" id="bgRow">
+          <div class="bg-chip on" data-bg="#000000">Black</div>
+          <div class="bg-chip" data-bg="#ffffff">White</div>
+          <div class="bg-chip" data-bg="#060608">Dark</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="toggles">
+      <label class="tg"><input type="checkbox" id="tCross"><span class="sw"></span> Smooth crossfade between slides</label>
+      <label class="tg"><input type="checkbox" id="tFade"><span class="sw"></span> Fade in &amp; out (start/end)</label>
+      <label class="tg"><input type="checkbox" id="tMusic"><span class="sw"></span> Add background music</label>
+    </div>
+
+    <div class="music-row hidden" id="musicRow">
+      <button class="mini-btn" id="musicBtn"><i class="fas fa-music"></i> Choose audio (MP3 / M4A)</button>
+      <input type="file" id="musicFile" accept="audio/*" hidden>
+      <span id="musicName" style="font-size:.82rem;color:var(--text-dim)">No music selected</span>
+      <div style="display:flex;align-items:center;gap:.5rem;min-width:160px;flex:1">
+        <i class="fas fa-volume-low" style="color:var(--text-dim)"></i>
+        <input type="range" id="musicVol" min="0" max="1" step="0.05" value="0.8">
+      </div>
+      <span style="font-size:.72rem;color:var(--text-dim)">Auto fades out at the end. Use music you have the rights to.</span>
+    </div>
+
+    <div class="gen-row">
+      <button class="btn btn-gold" id="genBtn" disabled><i class="fas fa-wand-magic-sparkles"></i> Make my video</button>
+      <span id="genMeta" style="font-size:.8rem;color:var(--text-dim)"></span>
+    </div>
+    <div class="prog" id="prog">
+      <div class="bar"><i id="barFill"></i></div>
+      <small id="progText">Preparing…</small>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="panel" id="result">
+    <div class="step-h"><span class="step-n">3</span> Download &amp; share</div>
+    <video id="player" controls playsinline></video>
+    <div class="gen-row" style="justify-content:center;margin-top:0">
+      <a class="btn btn-gold" id="dlBtn" download><i class="fas fa-download"></i> Download video</a>
+      <button class="btn btn-green" id="shareBtn"><i class="fas fa-share-nodes"></i> Share to apps</button>
+    </div>
+
+    <label style="display:block;font-size:.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;margin-top:1.5rem;font-family:var(--font-mono)">Caption (saved automatically · tap to copy)</label>
+    <textarea class="cap-box" id="caption">Free AI &amp; tech education for every Ghanaian 🇬🇭 Follow @AIForGhana for more. #AIForGhana #PromptGhana #TechGhana</textarea>
+    <button class="btn btn-ghost" id="copyCap" style="margin-top:.6rem;font-size:.8rem;padding:.55rem 1.1rem"><i class="fas fa-copy"></i> Copy caption</button>
+
+    <div class="note">
+      <b>How sharing works (no API, by design):</b> On your <b>phone</b>, tap <b>“Share to apps”</b> and pick TikTok, Instagram, Facebook or WhatsApp — your video goes straight in. On a <b>computer</b>, click <b>Download</b>, then use a button below to open that platform and upload the saved video.
+    </div>
+
+    <label style="display:block;font-size:.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;margin-top:1.5rem;font-family:var(--font-mono)">Open your accounts to post</label>
+    <div class="share-grid">
+      <a class="sbtn" href="https://www.tiktok.com/upload" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i> TikTok — Upload</a>
+      <a class="sbtn" href="https://www.tiktok.com/@AIForGhana" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i> @AIForGhana</a>
+      <a class="sbtn" href="https://www.instagram.com/aiforghana1/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a>
+      <a class="sbtn" href="https://www.linkedin.com/feed/?shareActive=true" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn Post</a>
+      <a class="sbtn" href="https://web.facebook.com/ghanaveniceis1" target="_blank" rel="noopener"><i class="fab fa-facebook"></i> FB · GhanaVenice</a>
+      <a class="sbtn" href="https://web.facebook.com/aquansuo/" target="_blank" rel="noopener"><i class="fab fa-facebook"></i> FB · Aquansuo</a>
+      <a class="sbtn" href="https://web.facebook.com/rauf.husein1" target="_blank" rel="noopener"><i class="fab fa-facebook"></i> FB · Rauf Husein</a>
+      <a class="sbtn" href="https://www.raufhusein.site/" target="_blank" rel="noopener"><i class="fas fa-globe"></i> raufhusein.site</a>
+    </div>
+  </div>
+
+  <canvas id="previewCanvas"></canvas>
+</div>
+
+<footer>
+  Built with ❤️ for Ghana · <a href="/">raufhusein.site</a> · AI For Ghana<br>
+  Your files never leave your device — everything runs locally in your browser.
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+const PDFJS_OK=!!(window.pdfjsLib);
+if(PDFJS_OK){pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';}
+
+let slides=[]; // {src,w,h,thumb,dur(null=use global)}
+let bg='#000000', blob=null, fileName='aiforghana-slides', musicFileObj=null;
+
+const $=id=>document.getElementById(id);
+const drop=$('drop'),fileInput=$('file'),thumbsEl=$('thumbs'),genBtn=$('genBtn'),genMeta=$('genMeta');
+
+// ---- settings persistence ----
+function saveSettings(){
+  try{localStorage.setItem('s2v',JSON.stringify({
+    secs:$('secs').value,shape:$('shape').value,quality:$('quality').value,bg,
+    cross:$('tCross').checked,fade:$('tFade').checked,music:$('tMusic').checked,
+    vol:$('musicVol').value,caption:$('caption').value
+  }));}catch(e){}
+}
+function loadSettings(){
+  try{const s=JSON.parse(localStorage.getItem('s2v')||'{}');
+    if(s.secs)$('secs').value=s.secs; if(s.shape)$('shape').value=s.shape; if(s.quality)$('quality').value=s.quality;
+    if(s.bg){bg=s.bg;document.querySelectorAll('.bg-chip').forEach(c=>c.classList.toggle('on',c.dataset.bg===bg));}
+    if(s.cross)$('tCross').checked=true; if(s.fade)$('tFade').checked=true;
+    if(s.music){$('tMusic').checked=true;$('musicRow').classList.remove('hidden');}
+    if(s.vol)$('musicVol').value=s.vol; if(s.caption)$('caption').value=s.caption;
+  }catch(e){}
+}
+
+// ---- file intake ----
+drop.addEventListener('click',()=>fileInput.click());
+['dragover','dragenter'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('over')}));
+['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('over')}));
+drop.addEventListener('drop',e=>handleFiles(e.dataTransfer.files));
+fileInput.addEventListener('change',e=>handleFiles(e.target.files));
+
+async function handleFiles(files){
+  for(const f of files){
+    if(f.type==='application/pdf'){await addPdf(f);fileName=f.name.replace(/\.pdf$/i,'')||fileName;}
+    else if(f.type.startsWith('image/')){await addImage(f);}
+  }
+  renderThumbs();
+}
+function addImage(file){return new Promise(res=>{const img=new Image();img.onload=()=>{slides.push({src:img,w:img.naturalWidth,h:img.naturalHeight,thumb:img.src,dur:null});res();};img.src=URL.createObjectURL(file);});}
+async function addPdf(file){
+  if(!PDFJS_OK){alert('PDF reader could not load (check internet). You can still drop slide images instead.');return;}
+  const pdf=await pdfjsLib.getDocument({data:await file.arrayBuffer()}).promise;
+  for(let p=1;p<=pdf.numPages;p++){
+    const page=await pdf.getPage(p), base=page.getViewport({scale:1});
+    const scale=Math.min(2200/base.width,2.5), vp=page.getViewport({scale});
+    const c=document.createElement('canvas');c.width=vp.width;c.height=vp.height;
+    await page.render({canvasContext:c.getContext('2d'),viewport:vp}).promise;
+    slides.push({src:c,w:c.width,h:c.height,thumb:c.toDataURL('image/jpeg',0.6),dur:null});
+  }
+}
+
+// ---- thumbnails + drag reorder ----
+let dragFrom=null;
+function renderThumbs(){
+  const gs=parseFloat($('secs').value)||4;
+  thumbsEl.innerHTML=slides.map((s,i)=>`
+    <div class="thumb" draggable="true" data-i="${i}">
+      <div class="pic"><img src="${s.thumb}" alt="slide ${i+1}"></div>
+      <span class="idx">${i+1}</span>
+      <button class="del" title="Remove" onclick="removeSlide(${i})"><i class="fas fa-times"></i></button>
+      <div class="mv"><button onclick="moveSlide(${i},-1)">◀</button><button onclick="moveSlide(${i},1)">▶</button></div>
+      <div class="durbar"><input type="number" min="0.5" max="60" step="0.5" value="${s.dur??''}" placeholder="${gs}" onchange="setDur(${i},this.value)"><span>sec</span></div>
+    </div>`).join('');
+  thumbsEl.querySelectorAll('.thumb').forEach(t=>{
+    t.addEventListener('dragstart',e=>{dragFrom=+t.dataset.i;t.classList.add('dragging');});
+    t.addEventListener('dragend',()=>t.classList.remove('dragging'));
+    t.addEventListener('dragover',e=>e.preventDefault());
+    t.addEventListener('drop',e=>{e.preventDefault();const to=+t.dataset.i;if(dragFrom===null||dragFrom===to)return;const[it]=slides.splice(dragFrom,1);slides.splice(to,0,it);dragFrom=null;renderThumbs();});
+  });
+  const ok=slides.length>0;genBtn.disabled=!ok;updateMeta();
+}
+function updateMeta(){
+  const gs=parseFloat($('secs').value)||4;
+  const total=slides.reduce((a,s)=>a+(s.dur||gs),0);
+  genMeta.textContent=slides.length?`${slides.length} slide${slides.length>1?'s':''} · ~${total.toFixed(1)}s video`:'';
+}
+window.removeSlide=i=>{slides.splice(i,1);renderThumbs();};
+window.moveSlide=(i,d)=>{const j=i+d;if(j<0||j>=slides.length)return;[slides[i],slides[j]]=[slides[j],slides[i]];renderThumbs();};
+window.setDur=(i,v)=>{const n=parseFloat(v);slides[i].dur=(v===''||isNaN(n))?null:Math.max(0.5,n);updateMeta();};
+
+// ---- options ----
+$('bgRow').addEventListener('click',e=>{const c=e.target.closest('.bg-chip');if(!c)return;document.querySelectorAll('.bg-chip').forEach(x=>x.classList.remove('on'));c.classList.add('on');bg=c.dataset.bg;saveSettings();});
+$('secs').addEventListener('input',()=>{renderThumbs();saveSettings();});
+['shape','quality','tCross','tFade','musicVol','caption'].forEach(id=>$(id).addEventListener('change',saveSettings));
+$('tMusic').addEventListener('change',e=>{$('musicRow').classList.toggle('hidden',!e.target.checked);saveSettings();});
+$('musicBtn').addEventListener('click',()=>$('musicFile').click());
+$('musicFile').addEventListener('change',e=>{const f=e.target.files[0];if(f){musicFileObj=f;$('musicName').textContent=f.name;}});
+
+function dims(){const s=$('shape').value;if(s==='1:1')return[1080,1080];if(s==='16:9')return[1920,1080];return[1080,1920];}
+function sup(m){try{return window.MediaRecorder&&MediaRecorder.isTypeSupported(m);}catch(e){return false;}}
+function pickMime(hasAudio){
+  const a=['video/mp4;codecs=avc1.42E01E,mp4a.40.2','video/mp4','video/webm;codecs=vp9,opus','video/webm;codecs=vp8,opus','video/webm'];
+  const v=['video/mp4;codecs=avc1.42E01E','video/mp4','video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'];
+  for(const m of (hasAudio?a:v))if(sup(m))return m; return '';
+}
+
+const canvas=$('previewCanvas'),ctx=canvas.getContext('2d');
+function blit(s,W,H,alpha){const sc=Math.min(W/s.w,H/s.h),dw=s.w*sc,dh=s.h*sc;ctx.globalAlpha=alpha;ctx.drawImage(s.src,(W-dw)/2,(H-dh)/2,dw,dh);ctx.globalAlpha=1;}
+
+genBtn.addEventListener('click',generate);
+
+async function generate(){
+  if(!slides.length)return;
+  const useMusic=$('tMusic').checked&&musicFileObj;
+  const mime=pickMime(useMusic);
+  if(!mime||!window.MediaRecorder){alert('Your browser cannot record video. Please use an updated Chrome or Safari.');return;}
+  const [W,H]=dims();canvas.width=W;canvas.height=H;
+  const gs=Math.max(0.5,parseFloat($('secs').value)||4);
+  const durs=slides.map(s=>s.dur||gs);
+  const starts=[];let acc=0;for(const d of durs){starts.push(acc);acc+=d;}
+  const totalSec=acc, total=totalSec*1000;
+  const cross=$('tCross').checked, fade=$('tFade').checked, TRANS=0.5, FADE=0.6;
+  const fps=30, bitrate=parseInt($('quality').value)||14000000;
+
+  const prog=$('prog'),bar=$('barFill'),pt=$('progText');
+  prog.classList.add('show');genBtn.disabled=true;$('result').classList.remove('show');
+  pt.textContent='Recording…';bar.style.width='0%';
+
+  // streams
+  const vstream=canvas.captureStream(fps);
+  let tracks=[vstream.getVideoTracks()[0]], actx=null, audioEl=null;
+  if(useMusic){
+    try{
+      actx=new (window.AudioContext||window.webkitAudioContext)();
+      audioEl=new Audio(URL.createObjectURL(musicFileObj));audioEl.loop=true;
+      const srcN=actx.createMediaElementSource(audioEl);
+      const gain=actx.createGain();gain.gain.value=parseFloat($('musicVol').value);
+      const dest=actx.createMediaStreamDestination();
+      srcN.connect(gain);gain.connect(dest);
+      tracks.push(dest.stream.getAudioTracks()[0]);
+      await actx.resume();audioEl.currentTime=0;await audioEl.play();
+      const t0=actx.currentTime;
+      gain.gain.setValueAtTime(gain.gain.value,t0+Math.max(0,totalSec-1.5));
+      gain.gain.linearRampToValueAtTime(0.0001,t0+totalSec);
+    }catch(e){console.warn('audio failed',e);}
+  }
+  const mixed=new MediaStream(tracks);
+  let rec;try{rec=new MediaRecorder(mixed,{mimeType:mime,videoBitsPerSecond:bitrate});}catch(e){rec=new MediaRecorder(mixed);}
+  const chunks=[];rec.ondataavailable=e=>{if(e.data&&e.data.size)chunks.push(e.data);};
+  const ext=mime.includes('mp4')?'mp4':'webm';
+
+  rec.onstop=()=>{
+    if(audioEl){audioEl.pause();}if(actx){actx.close().catch(()=>{});}
+    blob=new Blob(chunks,{type:mime});
+    const url=URL.createObjectURL(blob);
+    $('player').src=url;const dl=$('dlBtn');dl.href=url;dl.download=`${fileName}.${ext}`;
+    $('result').classList.add('show');$('result').scrollIntoView({behavior:'smooth'});
+    prog.classList.remove('show');genBtn.disabled=false;
+    genMeta.textContent=`Done · ${ext.toUpperCase()} · ${(blob.size/1048576).toFixed(1)} MB`;
+  };
+
+  rec.start();
+  const start=performance.now();
+  function frame(){
+    const el=performance.now()-start, e=el/1000;
+    ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+    // current slide index
+    let idx=0;while(idx<starts.length-1 && e>=starts[idx+1])idx++;
+    const localT=e-starts[idx], remain=durs[idx]-localT;
+    blit(slides[idx],W,H,1);
+    if(cross && idx<slides.length-1 && remain<TRANS){blit(slides[idx+1],W,H,(TRANS-remain)/TRANS);}
+    if(fade){
+      let ov=0;
+      if(e<FADE)ov=1-e/FADE;
+      else if(totalSec-e<FADE)ov=(FADE-(totalSec-e))/FADE;
+      if(ov>0){ctx.fillStyle='rgba(0,0,0,'+Math.min(1,ov)+')';ctx.fillRect(0,0,W,H);}
+    }
+    const pct=Math.min(100,Math.round(el/total*100));
+    bar.style.width=pct+'%';pt.textContent=`Recording… ${pct}%`;
+    if(el<total){requestAnimationFrame(frame);}
+    else{try{vstream.getVideoTracks().forEach(t=>t.requestFrame&&t.requestFrame());}catch(e){}setTimeout(()=>{try{rec.stop();}catch(e){}},150);}
+  }
+  frame();
+}
+
+// ---- share + caption ----
+$('shareBtn').addEventListener('click',async()=>{
+  if(!blob){alert('Make the video first.');return;}
+  const ext=blob.type.includes('mp4')?'mp4':'webm';
+  const file=new File([blob],`${fileName}.${ext}`,{type:blob.type});
+  const cap=$('caption').value;
+  if(navigator.canShare&&navigator.canShare({files:[file]})){
+    try{await navigator.share({files:[file],title:'AI For Ghana',text:cap});}catch(e){}
+  }else{alert('Direct app-sharing works best on a phone. On a computer, click “Download video”, then open a platform below and upload it.');}
+});
+$('copyCap').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('caption').value);const b=$('copyCap');b.innerHTML='<i class="fas fa-check"></i> Copied!';setTimeout(()=>b.innerHTML='<i class="fas fa-copy"></i> Copy caption',1600);}catch(e){alert('Select the text and copy manually.');}});
+
+loadSettings();
+</script>
+</body>
+</html>
