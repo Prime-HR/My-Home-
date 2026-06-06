@@ -5,6 +5,65 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rauf Husein | Software Marketplace — Enterprise Solutions for Africa</title>
 <meta name="description" content="Ghana's premier enterprise software studio. 90+ systems across healthcare, finance, agriculture, education and more. Home of AI For Ghana.">
+<meta name="theme-color" content="#060608">
+<meta name="author" content="Rauf Husein">
+<meta name="keywords" content="Ghana software, enterprise software Africa, AI For Ghana, Ghana Education Framework 2050, EdTech Ghana, FinTech, healthcare systems, Rauf Husein">
+<link rel="canonical" href="https://raufhusein.site/">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rauf Husein — Software Marketplace">
+<meta property="og:title" content="Rauf Husein | Software Built for Africa — Home of AI For Ghana">
+<meta property="og:description" content="90+ enterprise systems across healthcare, finance, agriculture & education. Home of AI For Ghana — free AI education for every Ghanaian.">
+<meta property="og:url" content="https://raufhusein.site/">
+<meta property="og:locale" content="en_GH">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@RaufSwestika">
+<meta name="twitter:title" content="Rauf Husein | Software Built for Africa">
+<meta name="twitter:description" content="90+ enterprise systems + AI For Ghana. Free AI education for every Ghanaian.">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://raufhusein.site/#org",
+      "name": "Rauf Husein Software Marketplace",
+      "url": "https://raufhusein.site/",
+      "email": "infoprime.hr.gh@gmail.com",
+      "telephone": "+233248837001",
+      "description": "Ghana's premier enterprise software studio building 90+ systems across healthcare, finance, agriculture, education and government. Home of AI For Ghana.",
+      "areaServed": "Africa",
+      "address": {"@type": "PostalAddress", "addressCountry": "GH", "addressLocality": "Accra"},
+      "sameAs": [
+        "https://www.linkedin.com/in/rauf-husein",
+        "https://x.com/RaufSwestika",
+        "https://github.com/raufhusein",
+        "https://www.tiktok.com/@AIForGhana"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://raufhusein.site/#rauf",
+      "name": "Rauf Husein",
+      "jobTitle": "Software Entrepreneur & AI Educator",
+      "worksFor": {"@id": "https://raufhusein.site/#org"},
+      "nationality": "Ghanaian"
+    },
+    {
+      "@type": "WebSite",
+      "url": "https://raufhusein.site/",
+      "name": "Rauf Husein — Software Marketplace",
+      "publisher": {"@id": "https://raufhusein.site/#org"}
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -225,17 +284,72 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:4
 .scroll-top{position:fixed;bottom:2rem;right:2rem;z-index:400;width:44px;height:44px;background:rgba(255,255,255,0.07);border:1px solid var(--border);border-radius:12px;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.88rem;backdrop-filter:blur(10px);transition:all 0.2s;opacity:0;transform:translateY(10px)}
 .scroll-top.show{opacity:1;transform:translateY(0)}
 .scroll-top:hover{background:var(--gh-gold);color:#000;border-color:var(--gh-gold)}
+
+/* ===== FUTURISTIC LAYER ===== */
+/* Aurora glow + tech grid behind hero */
+.fx-aurora{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.fx-aurora span{position:absolute;border-radius:50%;filter:blur(90px);opacity:0.62;animation:auroraFloat 14s ease-in-out infinite}
+.fx-aurora .a1{width:48vw;height:48vw;top:-12vw;left:-8vw;background:radial-gradient(circle,rgba(0,107,63,0.6),transparent 70%)}
+.fx-aurora .a2{width:42vw;height:42vw;top:-6vw;right:-10vw;background:radial-gradient(circle,rgba(252,209,22,0.4),transparent 70%);animation-delay:-5s}
+.fx-aurora .a3{width:40vw;height:40vw;bottom:-14vw;left:30vw;background:radial-gradient(circle,rgba(206,17,38,0.34),transparent 70%);animation-delay:-9s}
+@keyframes auroraFloat{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(6vw,4vh) scale(1.15)}50%{transform:translate(-4vw,6vh) scale(1.05)}75%{transform:translate(3vw,-3vh) scale(0.92)}}
+/* sweeping gold light beam */
+.fx-aurora::after{content:'';position:absolute;top:-40%;left:-30%;width:60%;height:180%;background:linear-gradient(90deg,transparent,rgba(252,209,22,0.06),transparent);transform:rotate(18deg);animation:beamSweep 9s ease-in-out infinite}
+@keyframes beamSweep{0%,100%{transform:translateX(-30vw) rotate(18deg);opacity:0}50%{transform:translateX(90vw) rotate(18deg);opacity:1}}
+.fx-grid{position:fixed;inset:0;z-index:1;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at 50% 0%,#000 0%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 50% 0%,#000 0%,transparent 70%)}
+
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* Animated gradient text shimmer on hero line2 */
+.entry-title .line2{background-size:200% auto;animation:shimmer 6s linear infinite}
+@keyframes shimmer{to{background-position:200% center}}
+
+/* Magnetic / glow buttons */
+.btn-enter,.nav-cta,.btn-red,.btn-green{will-change:transform}
+.btn-enter::after{content:'';position:absolute;inset:0;border-radius:inherit;box-shadow:0 0 0 0 rgba(252,209,22,0.5);transition:box-shadow 0.4s;pointer-events:none}
+.btn-enter{position:relative}
+.btn-enter:hover::after{box-shadow:0 0 32px 4px rgba(252,209,22,0.35)}
+
+/* Tech capability ticker */
+.fx-ticker{position:relative;z-index:10;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(255,255,255,0.015);overflow:hidden;padding:0.9rem 0;margin-top:-1px}
+.fx-ticker-track{display:flex;gap:3rem;white-space:nowrap;width:max-content;animation:tickerScroll 38s linear infinite;font-family:var(--font-mono);font-size:0.78rem;color:var(--text-dim);letter-spacing:0.04em}
+.fx-ticker-track span{display:inline-flex;align-items:center;gap:0.6rem}
+.fx-ticker-track i{color:var(--gh-gold);font-size:0.55rem}
+.fx-ticker:hover .fx-ticker-track{animation-play-state:paused}
+@keyframes tickerScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* Education framework link button */
+.edu-link-row{display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:2.5rem;max-width:1200px;margin-left:auto;margin-right:auto}
+.pillar-card .pillar-num{font-family:var(--font-mono);font-size:0.6rem;color:var(--gh-gold);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:0.5rem}
+
+/* Accessibility: touch devices restore native cursor + hide custom cursor */
+@media (hover:none),(pointer:coarse){
+  body{cursor:auto}
+  .cur-dot,.cur-ring{display:none}
+}
+/* Respect reduced motion */
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:0.001ms!important;animation-iteration-count:1!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}
+  .fx-aurora span,.fx-aurora::after,.fx-ticker-track{animation:none}
+  .fx-aurora::after{display:none}
+  .reveal{opacity:1;transform:none}
+}
 </style>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
 
 <div class="cur-dot" id="curDot"></div>
 <div class="cur-ring" id="curRing"></div>
+<div class="fx-aurora" aria-hidden="true"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
+<div class="fx-grid" aria-hidden="true"></div>
 <canvas id="bgCanvas"></canvas>
 
 <!-- MOBILE NAV -->
 <div class="mobile-nav" id="mobileNav">
-  <button class="mobile-close" id="mobileClose"><i class="fas fa-times"></i></button>
+  <button class="mobile-close" id="mobileClose" aria-label="Close menu"><i class="fas fa-times"></i></button>
   <a href="#hub" onclick="closeMobileNav()">Explore Hub</a>
   <a href="products.html" onclick="closeMobileNav()">Products</a>
   <a href="tiktok-tool" onclick="closeMobileNav()">AI For Ghana</a>
@@ -261,7 +375,7 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:4
     <li><a href="contact.html">Contact</a></li>
   </ul>
   <a href="https://calendly.com/raufhusein/demo" target="_blank" rel="noopener" class="nav-cta"><i class="fas fa-calendar-check"></i> Book Free Demo</a>
-  <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu"><i class="fas fa-bars"></i></button>
 </nav>
 
 <!-- ENTRY -->
@@ -295,6 +409,29 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:4
     <div><span class="cmd-stat-label">AI For Ghana</span><span class="cmd-stat-val"><span class="a">@</span>AIForGhana</span><span class="cmd-stat-sub">TikTok App In Review</span></div>
     <div><span class="cmd-stat-label">Active Projects</span><span class="cmd-stat-val"><span class="a">2</span></span><span class="cmd-stat-sub">Marketplace + AI Education</span></div>
     <div><span class="cmd-stat-label">Base</span><span class="cmd-stat-val">🇬🇭 Ghana</span><span class="cmd-stat-sub">Serving all of Africa</span></div>
+  </div>
+</div>
+
+<!-- CAPABILITY TICKER -->
+<div class="fx-ticker" aria-hidden="true">
+  <div class="fx-ticker-track">
+    <span><i class="fas fa-circle"></i> AI &amp; Machine Learning</span>
+    <span><i class="fas fa-circle"></i> Healthcare Systems</span>
+    <span><i class="fas fa-circle"></i> Core Banking</span>
+    <span><i class="fas fa-circle"></i> Agricultural Intelligence</span>
+    <span><i class="fas fa-circle"></i> E-Government</span>
+    <span><i class="fas fa-circle"></i> EdTech &amp; Future Skills 2050</span>
+    <span><i class="fas fa-circle"></i> Cloud &amp; Mobile-First</span>
+    <span><i class="fas fa-circle"></i> AI For Ghana</span>
+    <!-- duplicate for seamless loop -->
+    <span><i class="fas fa-circle"></i> AI &amp; Machine Learning</span>
+    <span><i class="fas fa-circle"></i> Healthcare Systems</span>
+    <span><i class="fas fa-circle"></i> Core Banking</span>
+    <span><i class="fas fa-circle"></i> Agricultural Intelligence</span>
+    <span><i class="fas fa-circle"></i> E-Government</span>
+    <span><i class="fas fa-circle"></i> EdTech &amp; Future Skills 2050</span>
+    <span><i class="fas fa-circle"></i> Cloud &amp; Mobile-First</span>
+    <span><i class="fas fa-circle"></i> AI For Ghana</span>
   </div>
 </div>
 
@@ -401,17 +538,22 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:4
 <!-- EDUCATION -->
 <section id="education">
   <div style="max-width:1200px;margin:0 auto">
-    <div class="sec-header" style="margin-bottom:0">
+    <div class="sec-header" style="margin-bottom:0.5rem">
       <div><span class="sec-label">Zone 03 — Education</span><h2 class="sec-title">Ghana Education Framework 2025–2050</h2></div>
       <a href="teleprompter" class="sec-link">Open Lesson Reader <i class="fas fa-arrow-right"></i></a>
     </div>
+    <p style="color:var(--text-dim);max-width:620px;line-height:1.7;font-size:0.95rem">“An education system rooted in Ghanaian identity, powered by technology, and designed for the world of 2050.” Six pillars — from the NaCCA core curriculum to AI and future skills — mirrored from our live framework.</p>
     <div class="pillars-grid">
-      <div class="pillar-card"><div class="pillar-icon">📚</div><div class="pillar-title">Ghana Core Curriculum</div><div class="pillar-desc">Mathematics, Science, English, Social Studies, ICT, Ghanaian Languages, RME, Creative Arts.</div></div>
-      <div class="pillar-card"><div class="pillar-icon">🔬</div><div class="pillar-title">STEM & Technology</div><div class="pillar-desc">AI, Coding, Data Science, Robotics, Digital Literacy — building Ghana's tech workforce.</div></div>
-      <div class="pillar-card"><div class="pillar-icon">🚀</div><div class="pillar-title">Future Skills 2050</div><div class="pillar-desc">Critical Thinking, Entrepreneurship, Climate Science, Global Citizenship, Financial Literacy.</div></div>
-      <div class="pillar-card"><div class="pillar-icon">🎬</div><div class="pillar-title">AI For Ghana Content</div><div class="pillar-desc">20+ TikTok scripts, lesson plans, and the #PromptGhana community challenge framework.</div></div>
-      <div class="pillar-card" onclick="window.location='teleprompter'"><div class="pillar-icon">📜</div><div class="pillar-title">Lesson Teleprompter</div><div class="pillar-desc">Paste NotebookLM slides and read them in auto-scrolling teleprompter mode — hands-free.</div></div>
-      <div class="pillar-card"><div class="pillar-icon">📖</div><div class="pillar-title">Research Hub</div><div class="pillar-desc">Curated links to Ghana NaCCA, WAEC, WEF Future of Jobs, and OECD 2030 Learning Compass.</div></div>
+      <div class="pillar-card"><span class="pillar-num">Pillar 1 · Foundation</span><div class="pillar-icon">📚</div><div class="pillar-title">Ghana Core Curriculum</div><div class="pillar-desc">Mathematics, Science, English, Social Studies, ICT, Ghanaian Languages, RME &amp; Creative Arts — aligned to NaCCA.</div></div>
+      <div class="pillar-card"><span class="pillar-num">Pillar 2 · Acceleration</span><div class="pillar-icon">🔬</div><div class="pillar-title">STEM &amp; Technology</div><div class="pillar-desc">AI, Coding, Data Science, Robotics &amp; Digital Literacy — building Ghana's tech workforce.</div></div>
+      <div class="pillar-card"><span class="pillar-num">Pillar 3 · Transformation</span><div class="pillar-icon">🚀</div><div class="pillar-title">Future Skills 2025–2050</div><div class="pillar-desc">Critical Thinking, Entrepreneurship, Climate &amp; Sustainability, Global Citizenship, Financial Literacy, Health &amp; Wellbeing.</div></div>
+      <div class="pillar-card"><span class="pillar-num">Pillar 4 · Application</span><div class="pillar-icon">🤖</div><div class="pillar-title">AI For Ghana Content</div><div class="pillar-desc">TikTok scripts, lesson plans &amp; the #PromptGhana community challenge — culturally relevant AI for everyone.</div></div>
+      <div class="pillar-card"><span class="pillar-num">Pillar 5 · Depth</span><div class="pillar-icon">📖</div><div class="pillar-title">Research &amp; Resources</div><div class="pillar-desc">NaCCA, WAEC, WEF Future of Jobs &amp; OECD 2030 Learning Compass — the evidence behind the framework.</div></div>
+      <div class="pillar-card"><span class="pillar-num">Pillar 6 · Delivery</span><div class="pillar-icon">🏛️</div><div class="pillar-title">Implementation &amp; Governance</div><div class="pillar-desc">Phased 2025–2050 rollout, teacher training, financing, partnerships &amp; measurable KPIs.</div></div>
+    </div>
+    <div class="edu-link-row">
+      <a href="teleprompter" class="btn-green"><i class="fas fa-book-open"></i> Open Lesson Teleprompter</a>
+      <a href="tiktok-tool" class="btn-outline"><i class="fab fa-tiktok"></i> AI For Ghana Content</a>
     </div>
   </div>
 </section>
@@ -512,7 +654,7 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:4
   </div>
 </footer>
 
-<button class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></button>
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
 
 <script>
 // PRODUCTS
@@ -539,21 +681,43 @@ document.getElementById('catPills').addEventListener('click',e=>{
 });
 renderProducts('all');
 
-// CANVAS BACKGROUND
+// CANVAS BACKGROUND — interactive constellation + data comets
 const canvas=document.getElementById('bgCanvas');
 const ctx=canvas.getContext('2d');
-let W,H,pts=[];
-function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
-function Pt(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.25;this.vy=(Math.random()-.5)*.25;this.r=Math.random()*1.2+.4;this.a=Math.random()*.35+.08;const c=['252,209,22','0,107,63','206,17,38','255,255,255'];this.c=c[Math.floor(Math.random()*c.length)]}
-function initPts(){pts=[];const n=Math.min(70,Math.floor(W*H/14000));for(let i=0;i<n;i++)pts.push(new Pt())}
+const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isTouch=window.matchMedia('(hover:none),(pointer:coarse)').matches;
+let W,H,pts=[],comets=[],t=0;
+const DPR=Math.min(window.devicePixelRatio||1,isTouch?1:2);
+const PALETTE=['252,209,22','0,107,63','206,17,38','255,255,255'];
+const mouse={x:-9999,y:-9999,active:false};
+function resize(){W=window.innerWidth;H=window.innerHeight;canvas.width=W*DPR;canvas.height=H*DPR;canvas.style.width=W+'px';canvas.style.height=H+'px';ctx.setTransform(DPR,0,0,DPR,0,0)}
+function Pt(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.3;this.vy=(Math.random()-.5)*.3;this.baseR=Math.random()*1.3+.5;this.r=this.baseR;this.a=Math.random()*.4+.12;this.c=PALETTE[Math.floor(Math.random()*PALETTE.length)];this.ph=Math.random()*Math.PI*2}
+function initPts(){pts=[];const cap=isTouch?42:95;const n=Math.min(cap,Math.floor(W*H/12000));for(let i=0;i<n;i++)pts.push(new Pt())}
+function Comet(){const fromLeft=Math.random()<.5;this.x=fromLeft?-30:Math.random()*W;this.y=fromLeft?Math.random()*H*.6:-30;const ang=(Math.random()*.45+.2)*Math.PI;const sp=Math.random()*3+3.5;this.vx=Math.cos(ang)*sp;this.vy=Math.sin(ang)*sp;this.len=Math.random()*90+70;this.life=1;this.c=Math.random()<.6?'252,209,22':'255,255,255'}
 function draw(){
+  t+=.016;
   ctx.clearRect(0,0,W,H);
-  pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(${p.c},${p.a})`;ctx.fill()});
-  for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<110){ctx.beginPath();ctx.strokeStyle=`rgba(252,209,22,${.05*(1-d/110)})`;ctx.lineWidth=.5;ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.stroke()}}
-  requestAnimationFrame(draw);
+  // PARTICLES
+  for(const p of pts){
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+    if(mouse.active){const dx=p.x-mouse.x,dy=p.y-mouse.y,d2=dx*dx+dy*dy;if(d2<13000){const d=Math.sqrt(d2)||1,f=(115-d)/115*1.6;p.x+=dx/d*f;p.y+=dy/d*f}}
+    p.r=p.baseR+Math.sin(t*2+p.ph)*.45;
+    ctx.beginPath();ctx.arc(p.x,p.y,Math.max(p.r,.3),0,Math.PI*2);
+    ctx.fillStyle=`rgba(${p.c},${p.a})`;ctx.shadowBlur=7;ctx.shadowColor=`rgba(${p.c},.85)`;ctx.fill();ctx.shadowBlur=0;
+  }
+  // PARTICLE LINKS
+  for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.hypot(dx,dy);if(d<125){ctx.beginPath();ctx.strokeStyle=`rgba(252,209,22,${.07*(1-d/125)})`;ctx.lineWidth=.6;ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.stroke()}}
+  // LINKS TO CURSOR
+  if(mouse.active){for(const p of pts){const dx=p.x-mouse.x,dy=p.y-mouse.y,d=Math.hypot(dx,dy);if(d<170){ctx.beginPath();ctx.strokeStyle=`rgba(252,209,22,${.2*(1-d/170)})`;ctx.lineWidth=.7;ctx.moveTo(p.x,p.y);ctx.lineTo(mouse.x,mouse.y);ctx.stroke()}}}
+  // DATA COMETS
+  if(comets.length<3&&Math.random()<.014)comets.push(new Comet());
+  for(let k=comets.length-1;k>=0;k--){const c=comets[k];c.x+=c.vx;c.y+=c.vy;c.life-=.006;const m=Math.hypot(c.vx,c.vy),tx=c.x-c.vx/m*c.len,ty=c.y-c.vy/m*c.len;const g=ctx.createLinearGradient(c.x,c.y,tx,ty);g.addColorStop(0,`rgba(${c.c},${.9*c.life})`);g.addColorStop(1,`rgba(${c.c},0)`);ctx.strokeStyle=g;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(c.x,c.y);ctx.lineTo(tx,ty);ctx.stroke();ctx.beginPath();ctx.arc(c.x,c.y,1.9,0,Math.PI*2);ctx.fillStyle=`rgba(${c.c},${c.life})`;ctx.shadowBlur=10;ctx.shadowColor=`rgba(${c.c},1)`;ctx.fill();ctx.shadowBlur=0;if(c.life<=0||c.x>W+60||c.y>H+60)comets.splice(k,1)}
+  if(!reduceMotion)requestAnimationFrame(draw);
 }
+if(!isTouch){window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;mouse.active=true});window.addEventListener('mouseout',()=>{mouse.active=false})}
 resize();initPts();draw();
-window.addEventListener('resize',()=>{resize();initPts()});
+window.addEventListener('resize',()=>{resize();initPts();if(reduceMotion)draw()});
 
 // CURSOR
 const dot=document.getElementById('curDot'),ring=document.getElementById('curRing');
@@ -575,16 +739,24 @@ document.getElementById('mobileToggle').addEventListener('click',()=>document.ge
 document.getElementById('mobileClose').addEventListener('click',()=>document.getElementById('mobileNav').classList.remove('open'));
 function closeMobileNav(){document.getElementById('mobileNav').classList.remove('open')}
 
-// COUNTERS
+// COUNTERS (runs once)
+let countersDone=false;
 function animCounters(){
+  if(countersDone)return;countersDone=true;
   document.querySelectorAll('[data-count]').forEach(el=>{
-    const t=parseInt(el.dataset.count);let c=0;const s=t/60;
-    const tm=setInterval(()=>{c=Math.min(c+s,t);el.textContent=Math.floor(c);if(c>=t)clearInterval(tm)},16);
+    const t=parseInt(el.dataset.count);let c=0;const s=Math.max(t/60,1);
+    const tm=setInterval(()=>{c=Math.min(c+s,t);el.textContent=Math.floor(c);if(c>=t){el.textContent=t;clearInterval(tm)}},16);
   });
 }
-new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){animCounters();e.target._ob.disconnect()}})},{threshold:0.3}).observe(Object.assign(document.getElementById('entry'),{_ob:new IntersectionObserver(()=>{})}));
-// simpler approach
-setTimeout(animCounters,800);
+setTimeout(animCounters,600);
+
+// SCROLL REVEAL
+const revealEls=document.querySelectorAll('.zone,.pc,.pillar-card,.phase-card,.sec-header,.aig-inner > div,.about-card,.about-text,.cta-inner');
+revealEls.forEach(el=>el.classList.add('reveal'));
+const revObs=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){e.target.style.transitionDelay=Math.min(i*40,200)+'ms';e.target.classList.add('in');revObs.unobserve(e.target)}});
+},{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+revealEls.forEach(el=>revObs.observe(el));
 
 // ZONE 3D TILT
 document.querySelectorAll('.zone').forEach(z=>{
