@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls \"C:\\\\Users\\\\Admin\\\\.claude\\\\\" 2>/dev/null || echo \"not found\")",
+      "mcp__4033e50b-99cb-467e-a20a-7136282ef4c2__notion-search",
+      "mcp__4033e50b-99cb-467e-a20a-7136282ef4c2__notion-fetch",
+      "Bash(pip install *)",
+      "Bash(python generate_post101.py)",
+      "PowerShell(New-Item -ItemType Directory -Force \"C:\\\\Project Template A-Z\\\\PROJECT THAT I HAVE TOCH\\\\AI FOR GHANA\\\\CATEGORY 1 - AI Basics & Explainers � Ideas 1-15 \\(Full Production Content\\)\")",
+      "Bash(python generate_post01.py)",
+      "Bash(python generate_post02.py)",
+      "Bash(python generate_post03.py)",
+      "Bash(python generate_post04.py)",
+      "Bash(python generate_post05.py)",
+      "Bash(python generate_post06.py)",
+      "Bash(dir /b *.png)",
+      "mcp__4033e50b-99cb-467e-a20a-7136282ef4c2__notion-update-page"
+    ]
+  }
+}
