@@ -74,6 +74,12 @@ select optgroup{background:#101016;color:#fff}
 .card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.16);box-shadow:0 18px 44px rgba(0,0,0,.34)}
 .card-top{height:118px;display:flex;align-items:center;justify-content:center;font-size:2.6rem;position:relative;overflow:hidden}
 .card-top img{width:100%;height:100%;object-fit:cover}
+.card-top video{width:100%;height:100%;object-fit:cover;pointer-events:none}
+.card-top .pdfthumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transition:opacity .35s;background:#fff}
+.card-top .pdfthumb.loaded{opacity:1}
+.card-top .ph-fallback{position:absolute}
+.playover{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.playover i{background:rgba(0,0,0,.5);width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;backdrop-filter:blur(2px)}
 .t-slide{background:linear-gradient(135deg,rgba(252,209,22,.2),transparent)}
 .t-pdf{background:linear-gradient(135deg,rgba(206,17,38,.2),transparent)}
 .t-text{background:linear-gradient(135deg,rgba(0,107,63,.22),transparent)}
@@ -210,6 +216,7 @@ footer a{color:var(--gh-gold);text-decoration:none}
 
 <div class="toast" id="toast"></div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="resources.js"></script>
 <script>
 const RES = (window.RESOURCES||[]).slice();
@@ -248,8 +255,17 @@ function buildSubjects(){
 }
 
 /* ---- card html ---- */
+function thumbHTML(r){
+  const play='<span class="playover"><i class="fas fa-play"></i></span>';
+  if(r.thumb) return `<img src="${esc(r.thumb)}" alt="" loading="lazy">`;
+  if(r.type==='image'||isImg(r.url)) return `<img src="${esc(r.url)}" alt="" loading="lazy">`;
+  const yt=ytId(r.url); if(yt) return `<img src="https://img.youtube.com/vi/${yt}/hqdefault.jpg" alt="" loading="lazy">${play}`;
+  if(isVid(r.url)) return `<video src="${esc(r.url)}#t=0.5" muted preload="metadata" playsinline></video>${play}`;
+  if(isPdf(r.url)) return `<img class="pdfthumb" data-pdf="${esc(r.url)}" alt="" loading="lazy"><i class="fas ${ICONS[r.type]||'fa-file-pdf'} ph-fallback"></i>`;
+  return `<i class="fas ${ICONS[r.type]||'fa-file'}"></i>`;
+}
 function cardHTML(r){
-  const top=r.thumb?`<img src="${esc(r.thumb)}" alt="">`:`<i class="fas ${ICONS[r.type]||'fa-file'}"></i>`;
+  const top=thumbHTML(r);
   const star=saved.includes(r.id)?'on':'';
   const starIcon=saved.includes(r.id)?'fas fa-star':'far fa-star';
   return `<div class="card" onclick="openRes('${r.id}')">
@@ -269,6 +285,24 @@ function renderSpot(){
   if(!f.length)return;
   $('spotWrap').style.display='block';
   $('spot').innerHTML=f.map(cardHTML).join('');
+  renderPdfThumbs();
+}
+/* ---- auto PDF thumbnails (first page) ---- */
+let PDFJS_READY=false;
+function renderPdfThumbs(){
+  if(!window.pdfjsLib){return;}
+  if(!PDFJS_READY){pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';PDFJS_READY=true;}
+  document.querySelectorAll('img.pdfthumb:not([data-done])').forEach(img=>{
+    img.setAttribute('data-done','1');
+    const url=img.getAttribute('data-pdf'); if(!url)return;
+    pdfjsLib.getDocument(url).promise.then(pdf=>pdf.getPage(1)).then(page=>{
+      const vp0=page.getViewport({scale:1});
+      const scale=Math.min(360/vp0.width,1.4);
+      const vp=page.getViewport({scale});
+      const c=document.createElement('canvas');c.width=vp.width;c.height=vp.height;
+      return page.render({canvasContext:c.getContext('2d'),viewport:vp}).promise.then(()=>{img.src=c.toDataURL('image/jpeg',0.72);img.classList.add('loaded');});
+    }).catch(()=>{});
+  });
 }
 
 /* ---- filter + sort ---- */
@@ -295,6 +329,7 @@ function render(){
   $('empty').style.display=list.length?'none':'block';
   $('emptyMsg').textContent=state.savedOnly&&!saved.length?'No saved resources yet. Tap the ☆ on any card to save it.':'No resources match. Try another search or filter.';
   save('lc_state',state);
+  renderPdfThumbs();
 }
 
 /* ---- save/bookmark ---- */
