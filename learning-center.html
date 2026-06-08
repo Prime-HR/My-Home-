@@ -62,8 +62,11 @@ h1 em{font-style:normal;background:linear-gradient(90deg,var(--gh-green),var(--g
 .chip:hover{color:#fff}
 .chip.on{background:rgba(252,209,22,.12);border-color:rgba(252,209,22,.4);color:var(--gh-gold)}
 select{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:50px;color:#fff;padding:.45rem 1rem;font-family:var(--font-body);font-size:.78rem;cursor:pointer;outline:none}
-.toggle{display:inline-flex;align-items:center;gap:.45rem;font-size:.78rem;color:var(--text-dim);cursor:pointer;border:1px solid var(--border);border-radius:50px;padding:.4rem .9rem;font-weight:600}
-.toggle.on{color:var(--gh-gold);border-color:rgba(252,209,22,.4);background:rgba(252,209,22,.1)}
+select option{background:#101016;color:#fff}
+select optgroup{background:#101016;color:#fff}
+.toggle{display:inline-flex;align-items:center;gap:.45rem;font-size:.78rem;color:rgba(255,255,255,.85);background:rgba(255,255,255,.05);cursor:pointer;border:1px solid var(--border);border-radius:50px;padding:.4rem .9rem;font-weight:600}
+.toggle:hover{color:#fff;border-color:rgba(255,255,255,.25)}
+.toggle.on{color:#000;border-color:var(--gh-gold);background:var(--gh-gold)}
 .count{font-size:.78rem;color:var(--text-dim);margin-bottom:1rem;font-family:var(--font-mono)}
 /* grid */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(245px,1fr));gap:1rem}
@@ -111,8 +114,8 @@ select{background:rgba(255,255,255,.04);border:1px solid var(--border);border-ra
 .m-actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
 .m-actions a,.m-actions button{display:inline-flex;align-items:center;gap:.5rem;border-radius:50px;padding:.6rem 1.3rem;text-decoration:none;font-weight:700;font-family:var(--font-head);font-size:.84rem;cursor:pointer;border:1px solid var(--border)}
 .m-dl{background:var(--gh-gold);color:#000;border:none}
-.m-share{background:transparent;color:#fff}
-.m-share:hover{border-color:rgba(255,255,255,.3)}
+.m-share{background:rgba(255,255,255,.08);color:#fff}
+.m-share:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.3)}
 .toast{position:fixed;left:50%;bottom:1.5rem;transform:translateX(-50%) translateY(140%);background:var(--gh-green);color:#fff;padding:.8rem 1.3rem;border-radius:50px;font-size:.84rem;font-weight:600;z-index:999;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
 .toast.show{transform:translateX(-50%) translateY(0)}
 footer{text-align:center;padding:2rem 1rem;color:var(--text-dim);font-size:.78rem;font-family:var(--font-mono);border-top:1px solid var(--border);margin-top:3rem;position:relative;z-index:2}
@@ -158,6 +161,7 @@ footer a{color:var(--gh-gold);text-decoration:none}
       </div>
       <div class="rowflex">
         <select id="subject" aria-label="Filter by subject"></select>
+        <select id="topic" aria-label="Filter by topic"></select>
         <select id="level" aria-label="Filter by level">
           <option value="all">All levels</option>
           <option value="Everyone">Everyone</option>
@@ -213,7 +217,7 @@ const $=id=>document.getElementById(id);
 const ICONS={slide:'fa-display',pdf:'fa-file-pdf',text:'fa-file-lines',image:'fa-image',video:'fa-play'};
 const NEW_DAYS=21, DAY=86400000;
 let saved = load('lc_saved',[]);
-let state = Object.assign({type:'all',subject:'all',level:'all',q:'',sort:'new',savedOnly:false}, load('lc_state',{}));
+let state = Object.assign({type:'all',subject:'all',topic:'all',level:'all',q:'',sort:'new',savedOnly:false}, load('lc_state',{}));
 let viewList=[], viewIdx=0;
 
 function load(k,d){try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}}
@@ -238,7 +242,9 @@ function renderStats(){
 function buildSubjects(){
   const subs=[...new Set(RES.map(r=>r.subject).filter(Boolean))].sort();
   $('subject').innerHTML='<option value="all">All subjects</option>'+subs.map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join('');
-  $('subject').value=state.subject; $('level').value=state.level; $('sort').value=state.sort;
+  const tops=[...new Set(RES.map(r=>r.topic).filter(Boolean))].sort();
+  $('topic').innerHTML='<option value="all">All topics</option>'+tops.map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join('');
+  $('subject').value=state.subject; $('topic').value=state.topic; $('level').value=state.level; $('sort').value=state.sort;
 }
 
 /* ---- card html ---- */
@@ -250,7 +256,7 @@ function cardHTML(r){
     <button class="star ${star}" title="Save" onclick="event.stopPropagation();toggleSave('${r.id}')"><i class="${starIcon}"></i></button>
     <div class="card-top t-${r.type}"><span class="badge">${r.type}</span>${isNew(r)?'<span class="new">NEW</span>':''}${top}</div>
     <div class="card-body">
-      <div class="card-meta"><span class="card-subj">${esc(r.subject||'')}</span>${r.level?`<span class="lvl">${esc(r.level)}</span>`:''}</div>
+      <div class="card-meta"><span class="card-subj">${esc(r.subject||'')}</span>${r.topic?`<span class="lvl">${esc(r.topic)}</span>`:''}${r.level?`<span class="lvl">${esc(r.level)}</span>`:''}</div>
       <div class="card-title">${esc(r.title)}</div>
       <div class="card-desc">${esc(r.desc||'')}</div>
       <span class="card-action">Open <i class="fas fa-arrow-right"></i></span>
@@ -270,10 +276,11 @@ function filtered(){
   let list=RES.filter(r=>{
     if(state.type!=='all'&&r.type!==state.type)return false;
     if(state.subject!=='all'&&r.subject!==state.subject)return false;
+    if(state.topic!=='all'&&r.topic!==state.topic)return false;
     if(state.level!=='all'&&r.level!==state.level)return false;
     if(state.savedOnly&&!saved.includes(r.id))return false;
     const q=state.q.trim().toLowerCase();
-    if(q&&!(r.title+' '+r.subject+' '+(r.desc||'')+' '+(r.level||'')).toLowerCase().includes(q))return false;
+    if(q&&!(r.title+' '+r.subject+' '+(r.topic||'')+' '+(r.desc||'')+' '+(r.level||'')).toLowerCase().includes(q))return false;
     return true;
   });
   if(state.sort==='az')list.sort((a,b)=>a.title.localeCompare(b.title));
@@ -356,6 +363,7 @@ let tT;function toast(m){const e=$('toast');e.textContent=m;e.classList.add('sho
 /* ---- controls ---- */
 $('chips').addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;document.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));c.classList.add('on');state.type=c.dataset.type;render();});
 $('subject').onchange=e=>{state.subject=e.target.value;render();};
+$('topic').onchange=e=>{state.topic=e.target.value;render();};
 $('level').onchange=e=>{state.level=e.target.value;render();};
 $('sort').onchange=e=>{state.sort=e.target.value;render();};
 $('search').addEventListener('input',e=>{state.q=e.target.value;render();});
