@@ -31,7 +31,11 @@ h1{font-family:var(--font-head);font-size:clamp(1.7rem,4vw,2.4rem);margin-bottom
 /* certificate */
 .cert-shell{display:flex;justify-content:center}
 .cert{width:100%;max-width:900px;aspect-ratio:1.414/1;background:linear-gradient(135deg,#0c1a14,#0d0d12 55%,#1a140a);border:2px solid var(--gh-gold);border-radius:14px;position:relative;overflow:hidden;padding:5%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-.cert::before{content:'';position:absolute;inset:14px;border:1px solid rgba(252,209,22,.35);border-radius:8px;pointer-events:none}
+.cert::before{content:'';position:absolute;inset:14px;border:1px solid rgba(252,209,22,.35);border-radius:8px;pointer-events:none;z-index:2}
+.cert .flag{position:absolute;inset:0;z-index:0;opacity:.13;background:linear-gradient(to bottom,#CE1126 0 33.34%,#FCD116 33.34% 66.67%,#006B3F 66.67% 100%)}
+.cert .flag .stargh{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:min(26vw,300px);line-height:1;color:#000}
+.cert .logo,.cert .ttl,.cert .sub,.cert .name,.cert .course,.cert .foot{position:relative;z-index:1}
+.cert .stripe,.cert .seal{z-index:2}
 .cert .stripe{position:absolute;top:0;left:0;right:0;height:8px;background:linear-gradient(90deg,var(--gh-green) 33%,var(--gh-gold) 33% 66%,var(--gh-red) 66%)}
 .cert .stripe.b{top:auto;bottom:0}
 .cert .seal{position:absolute;bottom:7%;right:8%;width:84px;height:84px;border-radius:50%;background:radial-gradient(circle,var(--gh-gold),#caa50f);display:flex;align-items:center;justify-content:center;color:#000;font-family:var(--font-head);font-weight:800;font-size:.6rem;text-align:center;line-height:1.1;box-shadow:0 0 0 4px rgba(252,209,22,.25)}
@@ -78,6 +82,7 @@ h1{font-family:var(--font-head);font-size:clamp(1.7rem,4vw,2.4rem);margin-bottom
 
   <div class="cert-shell">
     <div class="cert" id="cert">
+      <div class="flag"><span class="stargh">★</span></div>
       <div class="stripe"></div><div class="stripe b"></div>
       <div class="logo">🇬🇭 AI FOR GHANA · raufhusein.site</div>
       <div class="ttl">Certificate of Completion</div>
