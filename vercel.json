@@ -13,7 +13,8 @@
     { "source": "/terms.html", "destination": "/terms", "permanent": true },
     { "source": "/tiktok-tool.html", "destination": "/tiktok-tool", "permanent": true },
     { "source": "/teleprompter.html", "destination": "/teleprompter", "permanent": true },
-    { "source": "/slide-to-video.html", "destination": "/slide-to-video", "permanent": true }
+    { "source": "/slide-to-video.html", "destination": "/slide-to-video", "permanent": true },
+    { "source": "/learning-center.html", "destination": "/learning-center", "permanent": true }
   ],
   "rewrites": [
     { "source": "/products", "destination": "/products.html" },
@@ -23,14 +24,15 @@
     { "source": "/terms", "destination": "/terms.html" },
     { "source": "/tiktok-tool", "destination": "/tiktok-tool.html" },
     { "source": "/teleprompter", "destination": "/teleprompter.html" },
-    { "source": "/slide-to-video", "destination": "/slide-to-video.html" }
+    { "source": "/slide-to-video", "destination": "/slide-to-video.html" },
+    { "source": "/learning-center", "destination": "/learning-center.html" }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
         { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
         { "key": "X-XSS-Protection", "value": "1; mode=block" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
