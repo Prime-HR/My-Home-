@@ -6,6 +6,8 @@
 <title>Rauf Husein | Software Marketplace — Enterprise Solutions for Africa</title>
 <meta name="description" content="Ghana's premier enterprise software studio. 90+ systems across healthcare, finance, agriculture, education and more. Home of AI For Ghana.">
 <meta name="theme-color" content="#060608">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="author" content="Rauf Husein">
 <meta name="keywords" content="Ghana software, enterprise software Africa, AI For Ghana, Ghana Education Framework 2050, EdTech Ghana, FinTech, healthcare systems, Rauf Husein">
 <link rel="canonical" href="https://raufhusein.site/">
@@ -553,6 +555,7 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:4
     </div>
     <div class="edu-link-row">
       <a href="learning-center" class="btn-green"><i class="fas fa-graduation-cap"></i> Open Learning Center</a>
+      <a href="quiz" class="btn-green"><i class="fas fa-circle-question"></i> Take a Quiz</a>
       <a href="teleprompter" class="btn-green"><i class="fas fa-book-open"></i> Lesson Teleprompter</a>
       <a href="slide-to-video" class="btn-green"><i class="fas fa-clapperboard"></i> Slide → Video</a>
       <a href="tiktok-tool" class="btn-outline"><i class="fab fa-tiktok"></i> AI For Ghana Content</a>
@@ -639,6 +642,7 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:4
       </ul></div>
       <div class="fc"><h5>Projects</h5><ul>
         <li><a href="learning-center">Learning Center</a></li>
+        <li><a href="quiz">Quizzes &amp; Self-Test</a></li>
         <li><a href="tiktok-tool">AI For Ghana</a></li>
         <li><a href="teleprompter">Lesson Reader</a></li>
         <li><a href="slide-to-video">Slide → Video</a></li>
@@ -767,6 +771,9 @@ document.querySelectorAll('.zone').forEach(z=>{
   z.addEventListener('mousemove',e=>{const r=z.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;z.style.transform=`translateY(-4px) rotateX(${-y*5}deg) rotateY(${x*5}deg)`;z.style.transformStyle='preserve-3d'});
   z.addEventListener('mouseleave',()=>{z.style.transform='';z.style.transformStyle=''});
 });
+
+// PWA service worker
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}
 </script>
 </body>
 </html>

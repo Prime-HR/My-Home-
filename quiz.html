@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quizzes & Self-Test | AI For Ghana</title>
+<meta name="description" content="Free self-test quizzes for every Ghanaian — test yourself on AI, ICT, Maths, Science and English. Instant scoring, progress tracking and certificates.">
+<meta name="theme-color" content="#060608">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{--bg:#060608;--gh-green:#006B3F;--gh-gold:#FCD116;--gh-red:#CE1126;--text:#fff;--text-dim:rgba(255,255,255,0.5);--border:rgba(255,255,255,0.09);--card:rgba(255,255,255,0.03);--radius:18px;--font-head:'Syne',sans-serif;--font-body:'Outfit',sans-serif;--font-mono:'DM Mono',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-height:100vh;line-height:1.6}
+.wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.25rem 5rem}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.brand .bm{width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,var(--gh-green),var(--gh-gold));display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-weight:800;color:#000}
+.brand b{font-family:var(--font-head);letter-spacing:.08em;font-size:.85rem}
+.back{font-size:.82rem;color:var(--text-dim);text-decoration:none;border:1px solid var(--border);padding:.5rem 1rem;border-radius:50px}
+.back:hover{color:#fff;border-color:rgba(255,255,255,.25)}
+.htag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(252,209,22,.08);border:1px solid rgba(252,209,22,.2);border-radius:50px;padding:.35rem 1rem;font-family:var(--font-mono);font-size:.7rem;color:var(--gh-gold);letter-spacing:.06em;margin-bottom:1rem}
+h1{font-family:var(--font-head);font-size:clamp(1.9rem,5vw,3rem);font-weight:800;letter-spacing:-.02em;margin-bottom:.5rem}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--gh-green),var(--gh-gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.lead{color:var(--text-dim);margin-bottom:1.6rem}
+.prog{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1rem 1.2rem;margin-bottom:1.6rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;justify-content:space-between}
+.prog .bar{flex:1;min-width:160px;height:10px;background:rgba(255,255,255,.08);border-radius:50px;overflow:hidden}
+.prog .bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--gh-green),var(--gh-gold));width:0;transition:width .5s}
+.prog small{font-family:var(--font-mono);font-size:.74rem;color:var(--text-dim)}
+.prog a{font-size:.78rem;color:var(--gh-gold);text-decoration:none;font-weight:700;font-family:var(--font-head)}
+.chips{display:flex;gap:.45rem;flex-wrap:wrap;margin-bottom:1.4rem}
+.chip{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:50px;padding:.4rem .9rem;font-size:.78rem;color:var(--text-dim);cursor:pointer;font-weight:600}
+.chip.on{background:rgba(252,209,22,.12);border-color:rgba(252,209,22,.4);color:var(--gh-gold)}
+.qgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
+.qcard{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.2rem;cursor:pointer;transition:all .2s;position:relative}
+.qcard:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.16)}
+.qcard .s{font-family:var(--font-mono);font-size:.6rem;color:var(--gh-gold);text-transform:uppercase;letter-spacing:.07em}
+.qcard h3{font-family:var(--font-head);font-size:1.02rem;margin:.3rem 0 .5rem}
+.qcard .meta{font-size:.78rem;color:var(--text-dim)}
+.qcard .score{position:absolute;top:1rem;right:1rem;font-family:var(--font-mono);font-size:.62rem;padding:.15rem .5rem;border-radius:50px;border:1px solid var(--border)}
+.qcard .score.pass{background:rgba(0,107,63,.2);border-color:rgba(0,107,63,.5);color:#7CFFB0}
+/* runner */
+.runner{display:none}
+.runner.on{display:block}
+.qhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;gap:1rem}
+.qnum{font-family:var(--font-mono);font-size:.8rem;color:var(--text-dim)}
+.qbar{height:8px;background:rgba(255,255,255,.08);border-radius:50px;overflow:hidden;margin-bottom:1.5rem}
+.qbar>i{display:block;height:100%;background:var(--gh-gold);width:0;transition:width .3s}
+.qtext{font-family:var(--font-head);font-size:1.25rem;font-weight:700;margin-bottom:1.2rem;line-height:1.35}
+.opts{display:flex;flex-direction:column;gap:.6rem}
+.opt{text-align:left;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:.85rem 1.1rem;color:#fff;cursor:pointer;font-size:.95rem;font-family:var(--font-body);transition:all .15s}
+.opt:hover{border-color:rgba(255,255,255,.3)}
+.opt.correct{background:rgba(0,107,63,.25);border-color:var(--gh-green)}
+.opt.wrong{background:rgba(206,17,38,.22);border-color:var(--gh-red)}
+.opt:disabled{cursor:default}
+.explain{margin-top:1rem;background:rgba(252,209,22,.07);border:1px solid rgba(252,209,22,.2);border-radius:12px;padding:.85rem 1.1rem;font-size:.88rem;color:var(--text-dim);display:none}
+.explain.show{display:block}
+.explain b{color:var(--gh-gold)}
+.qfoot{display:flex;gap:.6rem;margin-top:1.4rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;border:none;cursor:pointer;font-family:var(--font-head);font-weight:700;font-size:.9rem;padding:.75rem 1.6rem;border-radius:50px;text-decoration:none}
+.btn-gold{background:var(--gh-gold);color:#000}.btn-gold:hover{background:#fff}
+.btn-ghost{border:1px solid var(--border);color:#fff;background:transparent}.btn-ghost:hover{border-color:rgba(255,255,255,.3)}
+.listen{margin-left:auto;background:rgba(255,255,255,.06);border:1px solid var(--border);color:#fff;border-radius:50px;padding:.45rem .9rem;font-size:.78rem;cursor:pointer;font-weight:600}
+.listen.on{background:var(--gh-green);border-color:var(--gh-green)}
+/* result */
+.result{display:none;text-align:center;padding:1rem}
+.result.on{display:block}
+.result .ring{font-family:var(--font-head);font-size:3.4rem;font-weight:800;margin:.4rem 0}
+.result .verdict{font-family:var(--font-head);font-size:1.3rem;margin-bottom:.4rem}
+.result p{color:var(--text-dim);margin-bottom:1.4rem}
+footer{text-align:center;padding:2rem 1rem;color:var(--text-dim);font-size:.78rem;font-family:var(--font-mono);border-top:1px solid var(--border);margin-top:3rem}
+footer a{color:var(--gh-gold);text-decoration:none}
+select{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:50px;color:#fff;padding:.45rem 1rem;font-family:var(--font-body);font-size:.78rem;cursor:pointer}
+select option{background:#101016;color:#fff}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a href="/" class="brand"><span class="bm">RH</span><b>AI FOR GHANA</b></a>
+    <a href="/learning-center" class="back"><i class="fas fa-arrow-left"></i> Learning Center</a>
+  </div>
+
+  <!-- LIST VIEW -->
+  <div id="listView">
+    <div class="htag"><i class="fas fa-circle-question"></i> FREE SELF-TEST · 🇬🇭</div>
+    <h1>Quizzes &amp; <em>Self-Test</em></h1>
+    <p class="lead">Test yourself, see instant answers and explanations, track your progress, and earn a certificate. Perfect for BECE &amp; WASSCE prep.</p>
+
+    <div class="prog">
+      <div class="bar"><i id="progBar"></i></div>
+      <small id="progText">0 of 0 quizzes passed</small>
+      <a href="/certificate" id="certLink">🎓 Get certificate</a>
+    </div>
+
+    <div class="chips" id="chips"></div>
+    <div class="qgrid" id="qgrid"></div>
+  </div>
+
+  <!-- RUNNER -->
+  <div class="runner" id="runner">
+    <div class="qhead">
+      <span class="qnum" id="qnum"></span>
+      <button class="listen" id="listenBtn"><i class="fas fa-volume-high"></i> Listen</button>
+    </div>
+    <div class="qbar"><i id="qbar"></i></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="explain" id="explain"></div>
+    <div class="qfoot">
+      <button class="btn btn-ghost" id="quitBtn"><i class="fas fa-xmark"></i> Quit</button>
+      <button class="btn btn-gold" id="nextBtn" style="display:none"><i class="fas fa-arrow-right"></i> Next</button>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="result" id="result">
+    <div class="htag" id="resTag">RESULT</div>
+    <div class="ring" id="resRing">0%</div>
+    <div class="verdict" id="resVerdict"></div>
+    <p id="resText"></p>
+    <div class="qfoot" style="justify-content:center">
+      <button class="btn btn-ghost" id="retryBtn"><i class="fas fa-rotate-right"></i> Try again</button>
+      <a class="btn btn-ghost" href="/learning-center"><i class="fas fa-book-open"></i> Resources</a>
+      <a class="btn btn-gold" id="resCert" href="/certificate"><i class="fas fa-graduation-cap"></i> Get certificate</a>
+    </div>
+  </div>
+</div>
+
+<footer>Built with ❤️ for Ghana · <a href="/">raufhusein.site</a> · AI For Ghana</footer>
+
+<script src="quizzes.js"></script>
+<script>
+const QZ=(window.QUIZZES||[]);
+const $=id=>document.getElementById(id);
+const PASS=0.7;
+let prog=load('lc_progress',{});
+let cur=null, qi=0, score=0, subject='all';
+function load(k,d){try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}}
+function saveP(){try{localStorage.setItem('lc_progress',JSON.stringify(prog))}catch(e){}}
+function esc(s){return (s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}
+
+/* progress summary */
+function renderProg(){
+  const total=QZ.length;
+  const passed=QZ.filter(q=>prog[q.id]&&prog[q.id].passed).length;
+  $('progBar').style.width=total?Math.round(passed/total*100)+'%':'0%';
+  $('progText').textContent=`${passed} of ${total} quizzes passed`;
+}
+
+/* chips */
+function renderChips(){
+  const subs=['all',...new Set(QZ.map(q=>q.subject))];
+  $('chips').innerHTML=subs.map(s=>`<span class="chip ${s===subject?'on':''}" data-s="${esc(s)}">${s==='all'?'All':esc(s)}</span>`).join('');
+}
+$('chips').addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;subject=c.dataset.s;renderChips();renderList();});
+
+/* list */
+function renderList(){
+  const list=subject==='all'?QZ:QZ.filter(q=>q.subject===subject);
+  $('qgrid').innerHTML=list.map(q=>{
+    const p=prog[q.id];
+    const badge=p?`<span class="score ${p.passed?'pass':''}">${p.best}%</span>`:'';
+    return `<div class="qcard" onclick="startQuiz('${q.id}')">${badge}<div class="s">${esc(q.subject)}</div><h3>${esc(q.title)}</h3><div class="meta">${q.questions.length} questions · ${p?'Best '+p.best+'%':'Not tried yet'}</div></div>`;
+  }).join('');
+}
+
+/* runner */
+window.startQuiz=function(id){
+  cur=QZ.find(q=>q.id===id); if(!cur)return;
+  qi=0;score=0;
+  $('listView').style.display='none';$('result').classList.remove('on');$('runner').classList.add('on');
+  showQ();
+};
+function showQ(){
+  stopSpeak();
+  const q=cur.questions[qi];
+  $('qnum').textContent=`Question ${qi+1} of ${cur.questions.length}`;
+  $('qbar').style.width=Math.round(qi/cur.questions.length*100)+'%';
+  $('qtext').textContent=q.q;
+  $('explain').classList.remove('show');$('explain').innerHTML='';
+  $('nextBtn').style.display='none';
+  $('opts').innerHTML=q.options.map((o,i)=>`<button class="opt" data-i="${i}">${esc(o)}</button>`).join('');
+  $('opts').querySelectorAll('.opt').forEach(b=>b.onclick=()=>pick(+b.dataset.i));
+}
+function pick(i){
+  const q=cur.questions[qi];
+  $('opts').querySelectorAll('.opt').forEach(b=>{b.disabled=true;const bi=+b.dataset.i;if(bi===q.answer)b.classList.add('correct');else if(bi===i)b.classList.add('wrong');});
+  if(i===q.answer)score++;
+  $('explain').innerHTML=(i===q.answer?'<b>Correct! </b>':'<b>Not quite. </b>')+esc(q.explain);
+  $('explain').classList.add('show');
+  $('nextBtn').style.display='inline-flex';
+  $('nextBtn').innerHTML=(qi<cur.questions.length-1)?'<i class="fas fa-arrow-right"></i> Next':'<i class="fas fa-flag-checkered"></i> See result';
+}
+$('nextBtn').onclick=()=>{ if(qi<cur.questions.length-1){qi++;showQ();} else finish(); };
+$('quitBtn').onclick=()=>{stopSpeak();$('runner').classList.remove('on');$('listView').style.display='block';};
+
+function finish(){
+  stopSpeak();
+  const pct=Math.round(score/cur.questions.length*100);
+  const passed=pct>=PASS*100;
+  const prev=prog[cur.id]||{best:0,passed:false};
+  prog[cur.id]={best:Math.max(prev.best,pct),passed:prev.passed||passed};saveP();
+  $('runner').classList.remove('on');$('result').classList.add('on');
+  $('resRing').textContent=pct+'%';
+  $('resRing').style.color=passed?'#7CFFB0':'var(--gh-gold)';
+  $('resVerdict').textContent=passed?'Well done! 🎉':'Good try — review and retry 💪';
+  $('resText').textContent=`You scored ${score} of ${cur.questions.length} on "${cur.title}". ${passed?'You passed!':'Pass mark is 70%. Read the lesson and try again.'}`;
+  $('resCert').href='/certificate?course='+encodeURIComponent(cur.subject);
+  renderProg();renderList();renderChips();
+}
+$('retryBtn').onclick=()=>startQuiz(cur.id);
+
+/* listen (text-to-speech) */
+let speaking=false;
+function stopSpeak(){try{speechSynthesis.cancel();}catch(e){}speaking=false;$('listenBtn').classList.remove('on');$('listenBtn').innerHTML='<i class="fas fa-volume-high"></i> Listen';}
+$('listenBtn').onclick=()=>{
+  if(!('speechSynthesis'in window)){alert('Your browser does not support read-aloud.');return;}
+  if(speaking){stopSpeak();return;}
+  const q=cur.questions[qi];
+  const text=q.q+'. '+q.options.map((o,i)=>`Option ${i+1}: ${o}.`).join(' ');
+  const u=new SpeechSynthesisUtterance(text);u.rate=.95;u.onend=()=>stopSpeak();
+  speechSynthesis.speak(u);speaking=true;$('listenBtn').classList.add('on');$('listenBtn').innerHTML='<i class="fas fa-stop"></i> Stop';
+};
+
+renderProg();renderChips();renderList();
+if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').catch(()=>{});}
+</script>
+</body>
+</html>

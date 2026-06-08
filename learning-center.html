@@ -6,6 +6,8 @@
 <title>Learning Center | AI For Ghana — Rauf Husein</title>
 <meta name="description" content="The AI For Ghana Learning Center — free slides, PDFs, articles, images and videos for every Ghanaian. A world-class curriculum library for students, teachers and creators.">
 <meta name="theme-color" content="#060608">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:title" content="Learning Center | AI For Ghana">
 <meta property="og:description" content="Free, world-class learning resources for every Ghanaian — slides, PDFs, articles, images and videos.">
 <meta property="og:type" content="website">
@@ -141,6 +143,11 @@ footer a{color:var(--gh-gold);text-decoration:none}
   <h1>Learning <em>Center</em></h1>
   <p class="lead">Everything you need to learn, teach, and grow — slides, PDFs, articles, images and videos, free for every Ghanaian. Search, filter, save your favourites, and open any resource right here. Built on the Ghana Education Framework 2025–2050.</p>
 
+  <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.6rem">
+    <a href="/quiz" style="display:inline-flex;align-items:center;gap:.5rem;background:var(--gh-gold);color:#000;padding:.65rem 1.4rem;border-radius:50px;text-decoration:none;font-weight:700;font-family:var(--font-head);font-size:.85rem"><i class="fas fa-circle-question"></i> Take a Quiz</a>
+    <a href="/certificate" style="display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--border);color:#fff;padding:.65rem 1.4rem;border-radius:50px;text-decoration:none;font-weight:700;font-family:var(--font-head);font-size:.85rem"><i class="fas fa-graduation-cap"></i> Get Certificate</a>
+  </div>
+
   <div class="stats" id="stats"></div>
 
   <!-- SPOTLIGHT -->
@@ -207,6 +214,7 @@ footer a{color:var(--gh-gold);text-decoration:none}
       <p id="modalDesc"></p>
       <div class="m-actions">
         <a class="m-dl" id="modalDl" target="_blank" rel="noopener"><i class="fas fa-up-right-from-square"></i> Open / Download</a>
+        <button class="m-share" id="modalListen"><i class="fas fa-volume-high"></i> Listen</button>
         <button class="m-share" id="modalShare"><i class="fas fa-share-nodes"></i> Share</button>
         <button class="m-share" id="modalSave"><i class="far fa-star"></i> Save</button>
       </div>
@@ -350,6 +358,7 @@ window.openRes=function(id){
 };
 function showCurrent(){
   const r=viewList[viewIdx]; if(!r)return;
+  lcStop();
   $('modalSubj').textContent=r.subject||''; $('modalLvl').textContent=r.level||'';
   $('modalTitle').textContent=r.title; $('modalDesc').textContent=r.desc||'';
   $('modalDl').href=r.url;
@@ -372,11 +381,33 @@ function syncSaveBtn(){
   $('modalSave').innerHTML=`<i class="${on?'fas':'far'} fa-star"></i> ${on?'Saved':'Save'}`;
 }
 function nav(d){ if(!viewList.length)return; viewIdx=(viewIdx+d+viewList.length)%viewList.length; showCurrent(); }
-function closeModal(){$('modal').classList.remove('open');$('modalMedia').innerHTML='';history.replaceState(null,'',location.pathname);}
+function closeModal(){lcStop();$('modal').classList.remove('open');$('modalMedia').innerHTML='';history.replaceState(null,'',location.pathname);}
+/* ---- Listen (read-aloud) ---- */
+let lcSpeaking=false;
+function updateListenBtn(){const b=$('modalListen');if(b)b.innerHTML=lcSpeaking?'<i class="fas fa-stop"></i> Stop':'<i class="fas fa-volume-high"></i> Listen';}
+function lcStop(){try{speechSynthesis.cancel();}catch(e){}lcSpeaking=false;updateListenBtn();}
+function speakText(text){lcStop();if(!text)return;const u=new SpeechSynthesisUtterance(text.slice(0,8000));u.rate=.95;u.onend=()=>{lcSpeaking=false;updateListenBtn();};speechSynthesis.speak(u);lcSpeaking=true;updateListenBtn();}
+async function listenCurrent(){
+  if(!('speechSynthesis' in window)){toast('Read-aloud is not supported on this browser.');return;}
+  if(lcSpeaking){lcStop();return;}
+  const r=viewList[viewIdx]; let text=r.title+'. '+(r.desc||'');
+  if(isPdf(r.url)&&window.pdfjsLib){
+    try{
+      toast('Preparing read-aloud…');
+      if(!PDFJS_READY){pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';PDFJS_READY=true;}
+      const pdf=await pdfjsLib.getDocument(r.url).promise;
+      const n=Math.min(pdf.numPages,12); const parts=[];
+      for(let p=1;p<=n;p++){const pg=await pdf.getPage(p);const tc=await pg.getTextContent();parts.push(tc.items.map(it=>it.str).join(' '));}
+      const t=parts.join(' . ').replace(/\s+/g,' ').trim(); if(t)text=t;
+    }catch(e){}
+  }
+  speakText(text);
+}
 $('modalClose').onclick=closeModal;
 $('mPrev').onclick=()=>nav(-1); $('mNext').onclick=()=>nav(1);
 $('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal();});
 $('modalSave').onclick=()=>{const r=viewList[viewIdx];toggleSave(r.id);};
+$('modalListen').onclick=listenCurrent;
 $('modalShare').onclick=async()=>{
   const r=viewList[viewIdx];
   const link=location.origin+location.pathname+'#r='+r.id;
@@ -416,6 +447,7 @@ renderStats(); buildSubjects(); restoreUI(); renderSpot(); render();
 // deep link
 const m=location.hash.match(/r=([\w-]+)/);
 if(m){const r=RES.find(x=>x.id===m[1]);if(r)openRes(r.id);}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').catch(()=>{});}
 </script>
 </body>
 </html>
