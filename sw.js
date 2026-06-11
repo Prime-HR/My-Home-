@@ -1,11 +1,13 @@
 /* AI For Ghana — Service Worker (offline support) */
-const CACHE = 'aig-v1';
+const CACHE = 'aig-v2';
 const CORE = [
   '/', '/learning-center', '/quiz', '/certificate',
   '/slide-to-video', '/teleprompter',
-  '/resources.js', '/quizzes.js', '/manifest.webmanifest',
+  '/quizzes.js', '/manifest.webmanifest',
   '/icon-192.png', '/icon-512.png'
 ];
+/* Files that change often — always try the network first */
+const NETWORK_FIRST = /\/(resources\.js|quizzes\.js)(\?|$)/;
 
 self.addEventListener('install', e => {
   e.waitUntil((async () => {
@@ -27,8 +29,8 @@ self.addEventListener('fetch', e => {
   const req = e.request;
   if (req.method !== 'GET') return;
 
-  // Page navigations: network-first, fall back to cached page, then to Learning Center
-  if (req.mode === 'navigate') {
+  // Pages + data files: network-first, fall back to cache
+  if (req.mode === 'navigate' || NETWORK_FIRST.test(req.url)) {
     e.respondWith((async () => {
       try {
         const fresh = await fetch(req);
@@ -36,7 +38,8 @@ self.addEventListener('fetch', e => {
         c.put(req, fresh.clone());
         return fresh;
       } catch (err) {
-        return (await caches.match(req)) || (await caches.match('/learning-center')) || (await caches.match('/'));
+        return (await caches.match(req)) ||
+               (req.mode === 'navigate' ? (await caches.match('/learning-center')) || (await caches.match('/')) : Response.error());
       }
     })());
     return;
