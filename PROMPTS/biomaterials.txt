@@ -1,0 +1,18 @@
+Category,Subcategory,ID,Prompt,Difficulty,Ideal Response Format
+Fundamentals,Definitions,1,"Define ""biomaterial"" and list 5 essential properties for cardiovascular implants.",★☆☆,Concise list
+Fundamentals,Properties,2,"Compare tensile strength/degradation rates of PLA vs. PCL for soft tissue repair.",★★☆,Comparative table
+Material Types,Polymers,3,"Design a synthesis protocol for injectable thermosensitive hydrogel (e.g., PLGA-PEG-PLGA).",★★★,Step-by-step
+Material Types,Metals,4,"How do surface treatments (e.g., anodization) improve osseointegration of titanium implants?",★★☆,Detailed explanation
+Applications,Drug Delivery,5,"Optimize chitosan nanoparticles for oral insulin delivery: address pH/enzyme challenges.",★★★,Mechanism + diagram
+Applications,Tissue Engineering,6,"Propose a 3-layer biomaterial scaffold for skin regeneration (epidermis/dermis/hypodermis).",★★★,Layered diagram
+Characterization,Testing,7,"Describe 3 ISO 10993-compliant assays for evaluating biomaterial cytotoxicity.",★★☆,Bullet points
+Safety,Biocompatibility,8,"How do you assess macrophage polarization (M1/M2) when testing implant biocompatibility?",★★★,Experimental flow
+Advanced Materials,Smart Biomaterials,9,"Design a glucose-responsive hydrogel for closed-loop insulin release.",★★★,Schematic + text
+3D Bioprinting,Bioinks,10,"Adjust alginate-gelatin bioink parameters for high-resolution bioprinting of vascular networks.",★★★,Parameter table
+[...]
+Regulation,Clinical,70,"Outline FDA PMA requirements for a novel spinal fusion biomaterial.",★★☆,Checklist
+Ethics,Sustainability,71,"Debate ecological impacts of marine-sourced biomaterials (e.g., chitosan from crustaceans).",★★☆,Pros/cons table
+Emerging Trends,Nanotech,72,"Evaluate diamond nanoparticles (nanodiamonds) for targeted cancer drug delivery.",★★★,Risk/benefit analysis
+Troubleshooting,Implants,73,"Solve stress-shielding in cobalt-chromium femoral stems using composite materials.",★★★,Engineering solution
+Global Health,Accessibility,74,"Design a solar-sterilizable wound dressing from banana fibers for rural clinics.",★★☆,Material list + diagram
+Future,AI Discovery,75,"Predict how AlphaFold 3 could accelerate de novo biomaterial protein design by 2030.",★★☆,Trend forecast

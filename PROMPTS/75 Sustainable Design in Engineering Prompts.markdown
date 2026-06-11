@@ -1,0 +1,92 @@
+# 75 Effective Prompts for Sustainable Design in Engineering
+
+## Materials Selection
+1. "What are some sustainable materials that can be used in construction?"
+2. "How can engineers choose materials that minimize environmental impact?"
+3. "What are the benefits of using recycled materials in product design?"
+4. "What are some alternatives to traditional plastics in packaging?"
+5. "How can engineers evaluate the sustainability of a material?"
+6. "What are some sustainable materials for use in electronics?"
+7. "How can engineers reduce the use of hazardous materials in manufacturing?"
+8. "What are some sustainable materials for use in transportation?"
+9. "How can engineers promote the use of locally sourced materials?"
+10. "What are some sustainable materials for use in furniture design?"
+
+## Energy Efficiency
+11. "How can engineers design buildings that are energy-efficient?"
+12. "What are some renewable energy sources that can be integrated into engineering projects?"
+13. "How can energy-efficient systems reduce greenhouse gas emissions?"
+14. "What are some strategies for reducing energy consumption in industrial processes?"
+15. "How can engineers optimize the energy efficiency of HVAC systems?"
+16. "What are some energy-efficient lighting solutions for buildings?"
+17. "How can engineers design energy-efficient transportation systems?"
+18. "What are some energy-efficient technologies for use in manufacturing?"
+19. "How can engineers promote the use of renewable energy in communities?"
+20. "What are some energy-efficient solutions for use in agriculture?"
+
+## Waste Reduction
+21. "What strategies can engineers use to minimize waste generation in manufacturing?"
+22. "How can products be designed to be easily recyclable or reusable?"
+23. "What are the benefits of implementing a closed-loop system in production?"
+24. "How can engineers reduce packaging waste in product design?"
+25. "What are some innovative waste reduction technologies for use in construction?"
+26. "How can engineers promote waste reduction in the workplace?"
+27. "What are some waste reduction strategies for use in the food industry?"
+28. "How can engineers design systems that minimize waste in transportation?"
+29. "What are some waste reduction technologies for use in water treatment?"
+30. "How can engineers educate consumers about waste reduction?"
+
+## Water Conservation
+31. "How can engineers design systems that reduce water consumption?"
+32. "What are some innovative water-saving technologies for residential use?"
+33. "How can water conservation be integrated into urban planning?"
+34. "What are some water-efficient irrigation systems for agriculture?"
+35. "How can engineers design buildings that minimize water usage?"
+36. "What are some water conservation strategies for use in manufacturing?"
+37. "How can engineers promote water conservation in communities?"
+38. "What are some water-efficient technologies for use in transportation?"
+39. "How can engineers design systems that recycle water?"
+40. "What are some water conservation policies that engineers should be aware of?"
+
+## Life Cycle Assessment
+41. "What is a life cycle assessment, and why is it important in sustainable design?"
+42. "How can engineers use life cycle assessment to evaluate the environmental impact of a product?"
+43. "What are some tools or software that can be used for life cycle assessment?"
+44. "How can engineers incorporate life cycle assessment into the design process?"
+45. "What are some challenges associated with conducting a life cycle assessment?"
+46. "How can engineers communicate the results of a life cycle assessment to stakeholders?"
+47. "What are some examples of products that have undergone a life cycle assessment?"
+48. "How can life cycle assessment be used to compare different design options?"
+49. "What are some best practices for conducting a life cycle assessment?"
+50. "How can engineers use life cycle assessment to identify areas for improvement?"
+
+## Green Building Design
+51. "What are the key principles of green building design?"
+52. "How can engineers incorporate passive solar design into buildings?"
+53. "What are some sustainable building materials that can be used in construction?"
+54. "How can engineers design buildings that are energy-efficient?"
+55. "What are some green building certification programs that engineers should be aware of?"
+56. "How can engineers promote indoor air quality in building design?"
+57. "What are some strategies for reducing water consumption in buildings?"
+58. "How can engineers design buildings that are resilient to climate change?"
+59. "What are some green building technologies for use in urban areas?"
+60. "How can engineers educate clients about the benefits of green building design?"
+
+## Transportation Systems
+61. "How can engineers design transportation systems that reduce emissions?"
+62. "What are some sustainable modes of transportation that can be promoted?"
+63. "How can public transportation be made more efficient and environmentally friendly?"
+64. "What are some innovative transportation technologies for reducing congestion?"
+65. "How can engineers design transportation systems that are accessible to all?"
+66. "What are some strategies for reducing the environmental impact of freight transportation?"
+67. "How can engineers promote the use of electric vehicles?"
+68. "What are some sustainable transportation policies that engineers should be aware of?"
+69. "How can engineers design transportation systems that are resilient to natural disasters?"
+70. "What are some best practices for integrating transportation systems with land use planning?"
+
+## Manufacturing Processes
+71. "What are some sustainable manufacturing practices that can be implemented?"
+72. "How can engineers reduce energy consumption in manufacturing processes?"
+73. "What are the benefits of using lean manufacturing principles in sustainable design?"
+74. "How can engineers minimize waste generation in manufacturing?"
+75. "What are some innovative manufacturing technologies for reducing environmental impact?"
