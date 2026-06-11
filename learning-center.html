@@ -190,6 +190,23 @@ select option{background:#101016;color:var(--text)}
 #modalMedia .frame{position:relative;width:100%;padding-top:56.25%}
 #modalMedia iframe,#modalMedia video{position:absolute;inset:0;width:100%;height:100%;border:0}
 
+
+/* ---- prompt viewer ---- */
+.prompt-list{background:var(--card);max-height:72vh;overflow:auto;padding:1rem 1.1rem}
+.p-loading{color:var(--muted);font-size:.9rem;padding:1.5rem;text-align:center}
+.p-tools{display:flex;gap:.5rem;align-items:center;margin-bottom:.8rem;position:sticky;top:-1rem;background:var(--card);padding:.6rem 0;z-index:2;flex-wrap:wrap}
+.p-filter{flex:1;min-width:140px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--r-btn);padding:.45rem .7rem;color:var(--text);font-family:var(--body);font-size:.8rem;outline:none}
+.p-filter:focus{border-color:var(--green)}
+.p-copyall,.p-copy{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:var(--r-btn);padding:.35rem .7rem;font-size:.72rem;font-weight:600;white-space:nowrap;cursor:pointer}
+.p-copyall:hover,.p-copy:hover{color:var(--text);border-color:var(--green);box-shadow:var(--glow)}
+.p-copy.done,.p-copyall.done{color:#7BE2AE;border-color:var(--green)}
+.p-dl{font-size:.72rem;font-weight:600;border:1px solid var(--border);border-radius:var(--r-btn);padding:.35rem .7rem;color:var(--muted);text-decoration:none}
+.p-dl:hover{color:var(--text);border-color:var(--green)}
+.p-items{list-style:none;margin:0;padding:0}
+.p-item{display:flex;gap:.7rem;align-items:flex-start;border-bottom:1px solid var(--border);padding:.6rem 0;font-size:.84rem}
+.p-num{flex:none;min-width:2em;color:var(--gold);font-family:var(--head);font-size:.74rem;padding-top:.15rem}
+.p-text{flex:1;color:var(--text);font-weight:300}
+
 /* ============ NOTE + FOOTER ============ */
 .rauf-note{max-width:1400px;margin:0 auto;padding:1.4rem 1.25rem;font-size:.74rem;color:var(--muted);opacity:.75}
 .rauf-note code{font-family:var(--head);color:var(--gold)}
@@ -436,6 +453,7 @@ const SUBJECTS_CUR = [
 const SUBJECTS_AI = [
   ['all','🤖','All AI Content'], ['ai-basics','🌱','AI Basics (Lessons 1–15)'],
   ['ai-tools','🛠️','AI Tools Deep Dives (16–30)'], ['prompt-quran','☪️','Ghana Prompt Quran'],
+  ['prompt-library','🧰','Prompt Library'],
   ['gaep','📚','GAEP School Curriculum'], ['documentary','🎬','Documentary Series'],
   ['ai-business','💼','AI for Business'], ['ai-agriculture','🌾','AI for Agriculture'],
   ['ai-health','🏥','AI for Health'], ['ai-students','🎓','AI for Students'],
@@ -643,6 +661,7 @@ function inlineAudio(cardEl, r){
   a.play().catch(()=>{});
 }
 function openResource(r, cardEl){
+  if(r.subject==='prompt-library'){ openPromptViewer(r); return; }
   switch(r.type){
     case 'video': openModal(r); break;
     case 'audio': case 'podcast': inlineAudio(cardEl, r); break;
@@ -719,6 +738,51 @@ if('IntersectionObserver' in window){
     });
   },{rootMargin:'-40% 0px -55% 0px'});
   secObs.observe($('curriculum')); secObs.observe($('ai-ghana'));
+}
+
+/* ============ PROMPT LIBRARY VIEWER ============ */
+let promptsLoading = null;
+function ensurePrompts(){
+  if(window.PROMPT_PACKS) return Promise.resolve();
+  if(promptsLoading) return promptsLoading;
+  promptsLoading = new Promise((res,rej)=>{
+    const s=document.createElement('script'); s.src='prompts.js?v=1';
+    s.onload=res; s.onerror=rej; document.head.appendChild(s);
+  });
+  return promptsLoading;
+}
+async function copyText(t,btn){
+  try{ await navigator.clipboard.writeText(t); }
+  catch(e){
+    const ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta);
+    ta.select(); try{ document.execCommand('copy'); }catch(_){ } ta.remove();
+  }
+  if(btn){ const old=btn.textContent; btn.textContent='✓ Copied'; btn.classList.add('done');
+    setTimeout(()=>{ btn.textContent=old; btn.classList.remove('done'); },1400); }
+}
+async function openPromptViewer(r){
+  const media=$('modalMedia');
+  $('modalTitle').textContent=r.title;
+  media.innerHTML='<div class="prompt-list"><p class="p-loading">Loading prompts…</p></div>';
+  $('modal').classList.add('open'); document.body.style.overflow='hidden';
+  try{ await ensurePrompts(); }
+  catch(e){ media.innerHTML='<div class="prompt-list"><p class="p-loading">Could not load prompts — check your connection and try again.</p></div>'; return; }
+  const list=(window.PROMPT_PACKS||{})[r.id]||[];
+  if(!list.length){ window.open(r.url,'_blank','noopener'); closeModal(); return; }
+  const wrap=document.createElement('div'); wrap.className='prompt-list';
+  wrap.innerHTML=`<div class="p-tools">
+      <input type="search" class="p-filter" placeholder="Filter ${list.length} prompts…">
+      <button class="p-copyall">⧉ Copy all</button>
+      <a class="p-dl" href="${esc(r.downloadUrl||r.url)}" download>⬇ File</a>
+    </div>
+    <ol class="p-items">${list.map((p,i)=>`<li class="p-item"><span class="p-num">${i+1}</span><span class="p-text">${esc(p)}</span><button class="p-copy" data-i="${i}">Copy</button></li>`).join('')}</ol>`;
+  media.innerHTML=''; media.appendChild(wrap);
+  wrap.querySelector('.p-copyall').onclick=e=>copyText(list.map((p,i)=>`${i+1}. ${p}`).join('\n'), e.target);
+  wrap.addEventListener('click',e=>{ const b=e.target.closest('.p-copy'); if(b) copyText(list[+b.dataset.i], b); });
+  wrap.querySelector('.p-filter').addEventListener('input',e=>{
+    const q=e.target.value.toLowerCase();
+    wrap.querySelectorAll('.p-item').forEach(li=>{ li.style.display=li.querySelector('.p-text').textContent.toLowerCase().includes(q)?'':'none'; });
+  });
 }
 
 /* ============ INIT ============ */

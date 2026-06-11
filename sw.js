@@ -7,7 +7,7 @@ const CORE = [
   '/icon-192.png', '/icon-512.png'
 ];
 /* Files that change often — always try the network first */
-const NETWORK_FIRST = /\/(resources\.js|quizzes\.js)(\?|$)/;
+const NETWORK_FIRST = /\/(resources\.js|quizzes\.js|prompts\.js)(\?|$)/;
 
 self.addEventListener('install', e => {
   e.waitUntil((async () => {
