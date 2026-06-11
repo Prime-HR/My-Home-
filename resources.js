@@ -105,7 +105,7 @@ window.RESOURCES = [
   { id: 'ai-002', title: 'The Ghana Prompt Formula — Master Guide',
     description: 'The complete guide to Role + Task + Context + Format + Constraint. 14 chapters.',
     section: 'ai-ghana', subject: 'prompt-quran', type: 'pdf', level: 'intermediate',
-    waec: false, featured: true, url: '/resources/ghana-prompt-quran.pdf',
+    waec: false, featured: true, url: 'SLIDE%20DOC/The_Ghana_Prompt_Quran.pdf', downloadUrl: 'SLIDE%20DOC/The_Ghana_Prompt_Quran.pptx',
     tags: ['prompting','formula'], dateAdded: '2026-07-01' },
 
   { id: 'ai-003', title: 'Lesson 5 — AI Tools You Can Use TODAY (Free)',
@@ -164,6 +164,50 @@ window.RESOURCES = [
     section: 'ai-ghana', subject: 'ai-students', type: 'video', level: 'beginner',
     waec: false, url: 'https://www.tiktok.com/@AIForGhana',
     language: 'en+twi', tags: ['tiktok','channel'], dateAdded: '2026-06-01' },
+
+
+  /* ================= SLIDE DOC LIBRARY ================= */
+  { id: 'slide-001', title: "Ghana AI Health Guide",
+    description: "How AI is transforming healthcare in Ghana — for students, nurses and health workers.",
+    section: 'ai-ghana', subject: 'ai-health', type: 'slides', level: 'intermediate',
+    waec: false, url: 'SLIDE%20DOC/Ghana_AI_Health_Guide.pdf', downloadUrl: 'SLIDE%20DOC/Ghana_AI_Health_Guide.pptx',
+    tags: ['slides','deck'], dateAdded: '2026-06-11' },
+
+  { id: 'slide-002', title: "Ghana AI Structural Engineering",
+    description: "AI tools and workflows for structural engineering — designed for Ghanaian engineers and students.",
+    section: 'curriculum', subject: 'engineering', type: 'slides', level: 'university',
+    waec: false, url: 'SLIDE%20DOC/Ghana_AI_Structural_Engineering.pdf', downloadUrl: 'SLIDE%20DOC/Ghana_AI_Structural_Engineering.pptx',
+    tags: ['slides','deck'], dateAdded: '2026-06-11' },
+
+  { id: 'slide-003', title: "Ghana Digital Armoury",
+    description: "The complete toolkit of digital and AI tools every Ghanaian should master.",
+    section: 'ai-ghana', subject: 'ai-tools', type: 'slides', level: 'beginner',
+    waec: false, featured: true, url: 'SLIDE%20DOC/Ghana_Digital_Armoury.pdf', downloadUrl: 'SLIDE%20DOC/Ghana_Digital_Armoury.pptx',
+    tags: ['slides','deck'], dateAdded: '2026-06-11' },
+
+  { id: 'slide-004', title: "Ghana Mobile App Blueprint",
+    description: "From idea to app store — the blueprint for building mobile apps in Ghana.",
+    section: 'ai-ghana', subject: 'ai-business', type: 'slides', level: 'intermediate',
+    waec: false, url: 'SLIDE%20DOC/Ghana_Mobile_App_Blueprint.pdf', downloadUrl: 'SLIDE%20DOC/Ghana_Mobile_App_Blueprint.pptx',
+    tags: ['slides','deck'], dateAdded: '2026-06-11' },
+
+  { id: 'slide-005', title: "The Digital Skills for Everyone",
+    description: "Essential digital skills every Ghanaian needs — explained simply, step by step.",
+    section: 'curriculum', subject: 'ict', type: 'slides', level: 'jhs',
+    waec: false, url: 'SLIDE%20DOC/The%20Digital%20Skills%20for%20Every.pdf', downloadUrl: 'SLIDE%20DOC/The%20Digital%20Skills%20for%20Every.pptx',
+    tags: ['slides','deck'], dateAdded: '2026-06-11' },
+
+  { id: 'slide-006', title: "The Telco & Mobile Money Context Block (MTN, Telecel, AirtelTigo)",
+    description: "Understanding Ghana's telco and mobile money landscape — context for builders and entrepreneurs.",
+    section: 'ai-ghana', subject: 'ai-business', type: 'slides', level: 'intermediate',
+    waec: false, url: 'SLIDE%20DOC/The%20Telco%20%26%20Mobile%20Money%20Context%20Block%20%28MTN%2C%20Telecel%2C%20AirtelTigo%29.pdf', downloadUrl: 'SLIDE%20DOC/The%20Telco%20%26%20Mobile%20Money%20Context%20Block%20%28MTN%2C%20Telecel%2C%20AirtelTigo%29.pptx',
+    tags: ['slides','deck'], dateAdded: '2026-06-11' },
+
+  { id: 'slide-007', title: "The AI Lesson Architect",
+    description: "Design world-class lessons with AI — the complete guide for Ghanaian teachers.",
+    section: 'ai-ghana', subject: 'gaep', type: 'slides', level: 'educators',
+    waec: false, url: 'SLIDE%20DOC/The_AI_Lesson_Architect.pdf',
+    tags: ['slides','teacher','lesson design'], dateAdded: '2026-06-11' },
 
   /* ================= PROMPT LIBRARY (PROMPTS folder) ================= */
 
