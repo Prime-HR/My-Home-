@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI For Ghana — Lesson Reader</title>
     <meta name="description" content="Follow along with AI For Ghana lessons at your own pace. Paste your lesson content and read it in teleprompter mode.">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
@@ -15,12 +15,12 @@
             --text: #fff;
             --text-dim: rgba(255,255,255,0.5);
             --accent: #FCD116;
-            --green: #006B3F;
+            --green: #006B3C;
             --red: #CE1126;
             --radius: 12px;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; min-height: 100vh; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; }
 
         /* ── NAV ── */
         .nav {
@@ -33,11 +33,11 @@
         .nav-brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
         .nav-logo {
             width: 36px; height: 36px; border-radius: 8px;
-            background: linear-gradient(135deg, #006B3F, #FCD116, #CE1126);
+            background: linear-gradient(135deg, #006B3C, #FCD116, #CE1126);
             display: flex; align-items: center; justify-content: center;
-            font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.85rem; color: #fff;
+            font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 0.85rem; color: #fff;
         }
-        .nav-title { font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; color: #fff; }
+        .nav-title { font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; font-weight: 700; color: #fff; }
         .nav-sub { font-size: 0.7rem; color: var(--text-dim); }
         .nav-back { color: var(--text-dim); font-size: 0.82rem; text-decoration: none; display: flex; align-items: center; gap: 0.4rem; }
         .nav-back:hover { color: #fff; }
@@ -55,7 +55,7 @@
         }
         .setup-badge i { font-size: 0.7rem; }
         .setup-title {
-            font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem);
             font-weight: 800; line-height: 1.15; margin-bottom: 0.75rem;
         }
         .setup-title span { color: var(--accent); }
@@ -66,7 +66,7 @@
             border-radius: 16px; padding: 1.75rem; margin-bottom: 1.5rem;
         }
         .setup-card h3 {
-            font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 700;
             margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;
         }
         .setup-card h3 i { color: var(--text-dim); }
@@ -76,7 +76,7 @@
         .field input, .field textarea, .field select {
             width: 100%; background: rgba(255,255,255,0.05);
             border: 1px solid var(--border); border-radius: 10px;
-            color: #fff; font-family: 'Outfit', sans-serif; font-size: 0.95rem;
+            color: #fff; font-family: 'Inter', sans-serif; font-size: 0.95rem;
             padding: 0.75rem 1rem; outline: none; transition: border-color 0.2s;
         }
         .field input:focus, .field textarea:focus, .field select:focus { border-color: rgba(252,209,22,0.4); }
@@ -87,7 +87,7 @@
         @media(max-width:600px){ .settings-row { grid-template-columns: 1fr 1fr; } }
 
         .speed-display {
-            font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800;
+            font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 800;
             color: var(--accent); text-align: center; margin-top: 0.25rem;
         }
         input[type=range] {
@@ -96,9 +96,9 @@
         }
 
         .btn-start {
-            width: 100%; background: linear-gradient(135deg, #006B3F, #1a8a52);
+            width: 100%; background: linear-gradient(135deg, #006B3C, #1a8a52);
             color: #fff; border: none; border-radius: 12px; padding: 1.1rem;
-            font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700;
             cursor: pointer; display: flex; align-items: center; justify-content: center;
             gap: 0.6rem; transition: all 0.2s;
         }
@@ -123,7 +123,7 @@
             display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
         }
         .lesson-title-bar {
-            font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem;
+            font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.9rem;
             color: #fff; flex: 1; min-width: 120px;
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
@@ -142,7 +142,7 @@
             background: var(--green); border: none; border-radius: 8px;
             color: #fff; padding: 0 1.25rem; height: 36px;
             display: flex; align-items: center; gap: 0.4rem;
-            cursor: pointer; font-family: 'Syne', sans-serif; font-weight: 700;
+            cursor: pointer; font-family: 'Space Grotesk', sans-serif; font-weight: 700;
             font-size: 0.85rem; transition: all 0.15s; white-space: nowrap;
         }
         .play-btn:hover { opacity: 0.85; }
@@ -150,7 +150,7 @@
 
         .speed-ctrl { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--text-dim); }
         .speed-ctrl input[type=range] { width: 80px; padding: 0; }
-        .speed-label { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--accent); font-size: 0.85rem; min-width: 28px; }
+        .speed-label { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent); font-size: 0.85rem; min-width: 28px; }
 
         .font-ctrl { display: flex; align-items: center; gap: 0.3rem; }
         .font-ctrl button {
@@ -171,9 +171,9 @@
             font-weight: 400; color: rgba(255,255,255,0.9);
         }
         #readerContent.mirror { transform: scaleX(-1); }
-        #readerContent h1 { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; margin: 2rem 0 1rem; color: #fff; }
-        #readerContent h2 { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 700; margin: 1.5rem 0 0.75rem; color: var(--accent); }
-        #readerContent h3 { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 600; margin: 1.25rem 0 0.5rem; color: rgba(255,255,255,0.7); }
+        #readerContent h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 800; margin: 2rem 0 1rem; color: #fff; }
+        #readerContent h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; margin: 1.5rem 0 0.75rem; color: var(--accent); }
+        #readerContent h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 600; margin: 1.25rem 0 0.5rem; color: rgba(255,255,255,0.7); }
         #readerContent p { margin-bottom: 1.25rem; }
         #readerContent ul, #readerContent ol { padding-left: 1.5rem; margin-bottom: 1.25rem; }
         #readerContent li { margin-bottom: 0.5rem; }
@@ -205,11 +205,11 @@
         }
         .done-overlay.show { display: flex; }
         .done-icon { font-size: 4rem; margin-bottom: 1rem; }
-        .done-title { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .done-title { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
         .done-sub { color: var(--text-dim); margin-bottom: 2rem; }
         .done-actions { display: flex; gap: 1rem; }
         .done-btn {
-            padding: 0.75rem 1.5rem; border-radius: 10px; font-family: 'Syne', sans-serif;
+            padding: 0.75rem 1.5rem; border-radius: 10px; font-family: 'Space Grotesk', sans-serif;
             font-weight: 700; cursor: pointer; font-size: 0.9rem; border: none;
         }
         .done-btn.primary { background: var(--green); color: #fff; }

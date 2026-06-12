@@ -55,6 +55,15 @@ img,video{max-width:100%}
 #savedCount{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;border-radius:9px;background:var(--red);color:#fff;font-size:.62rem;font-weight:700;padding:0 4px}
 #savedToggle.on #savedCount{background:#060608;color:var(--gold)}
 
+/* ============ TOP BAR + BRAND ============ */
+.top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:2.2rem;position:relative;z-index:2}
+.tb-brand{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--head);font-weight:700;font-size:.82rem;letter-spacing:.1em;text-decoration:none;color:var(--text)}
+.tb-brand .bm,.nav-brand .bm{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,var(--green),var(--gold));display:inline-flex;align-items:center;justify-content:center;font-family:var(--head);font-weight:700;color:#000;font-size:.8rem}
+.tb-back{font-size:.78rem;color:var(--muted);text-decoration:none;border:1px solid var(--border);border-radius:var(--r-pill);padding:.4rem 1rem;transition:all .2s}
+.tb-back:hover{color:var(--text);border-color:var(--green);box-shadow:var(--glow)}
+.nav-brand{flex:none;text-decoration:none;display:inline-flex}
+.nav-brand .bm{width:30px;height:30px;font-size:.72rem}
+
 /* ============ HERO ============ */
 #hero{position:relative;padding:4.5rem 0 3.2rem;text-align:center;overflow:hidden}
 #hero .kente{position:absolute;inset:0;opacity:.03;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke-width='3'%3E%3Cpath stroke='%23006B3C' d='M0 120L120 0M-30 90L90-30M30 150L150 30'/%3E%3Cpath stroke='%23FCD116' d='M0 0l120 120M-30 30L90 150M30-30l120 120'/%3E%3C/g%3E%3C/svg%3E")}
@@ -255,6 +264,7 @@ footer{border-top:1px solid var(--border);background:var(--bg);padding:3rem 0 2r
 <!-- ============ STICKY NAV ============ -->
 <nav id="stickyNav" aria-label="Section navigation">
   <div class="inner">
+    <a class="nav-brand" href="/" title="Back to raufhusein.site"><span class="bm">RH</span></a>
     <button class="nav-tab green" data-goto="curriculum">🇬🇭 Core Curriculum</button>
     <span class="nav-arrows">←→</span>
     <button class="nav-tab" data-goto="ai-ghana">🤖 AI For Ghana</button>
@@ -268,6 +278,10 @@ footer{border-top:1px solid var(--border);background:var(--bg);padding:3rem 0 2r
 <header id="hero">
   <div class="kente"></div><div class="glow1"></div><div class="glow2"></div>
   <div class="wrap">
+    <div class="top-bar">
+      <a class="tb-brand" href="/"><span class="bm">RH</span> RAUF HUSEIN</a>
+      <a class="tb-back" href="/">← Back to main site</a>
+    </div>
     <div class="hero-tag">Free World-Class Learning · 🇬🇭</div>
     <h1>Ghana <em>Learning</em> Hub</h1>
     <p class="hero-lead">Two worlds of knowledge in one place — the complete Ghana Core Curriculum and AI For Ghana education, all free, all yours.</p>

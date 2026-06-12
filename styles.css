@@ -1,7 +1,7 @@
 /* ================================================
    RAUF HUSEIN SOFTWARE MARKETPLACE
    Premium Dark Marketplace — African Tech Edition
-   Fonts: Syne (display) · DM Mono (code) · Outfit (body)
+   Fonts: Space Grotesk (display) · DM Mono (code) · Inter (body)
    ================================================ */
 
 :root {
@@ -29,9 +29,9 @@
   --shadow: 0 4px 24px rgba(0,0,0,0.4);
   --shadow-gold: 0 0 40px rgba(245,166,35,0.2);
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --font-display: 'Syne', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
   --font-mono: 'DM Mono', monospace;
-  --font-body: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
