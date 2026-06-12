@@ -240,6 +240,19 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);overflo
 @media(max-width:800px){.about-inner{grid-template-columns:1fr;gap:3rem}}
 .about-card{background:linear-gradient(135deg,rgba(0,107,63,0.12),rgba(252,209,22,0.04));border:1px solid rgba(0,107,63,0.25);border-radius:var(--radius);padding:2.5rem;text-align:center}
 .about-initials{font-family:var(--font-head);font-size:4rem;font-weight:800;background:linear-gradient(135deg,var(--gh-green),var(--gh-gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1rem}
+.about-photo{width:100%;max-width:280px;aspect-ratio:4/5;object-fit:cover;border-radius:16px;border:1px solid rgba(255,255,255,.12);box-shadow:0 0 30px rgba(0,107,60,.25);margin-bottom:1.2rem}
+#testimonials{padding:5rem 2rem}
+.t-inner{max-width:1200px;margin:0 auto}
+.t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+@media(max-width:900px){.t-grid{grid-template-columns:1fr}}
+.t-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:1.6rem;display:flex;flex-direction:column;gap:.9rem;transition:border-color .25s,box-shadow .25s,transform .25s}
+.t-card:hover{border-color:var(--gh-green);box-shadow:0 0 20px rgba(0,107,60,.25);transform:translateY(-3px)}
+.t-stars{color:var(--gh-gold);letter-spacing:.2em;font-size:.9rem}
+.t-quote{color:rgba(255,255,255,.85);font-size:.95rem;line-height:1.7;flex:1}
+.t-author{display:flex;align-items:center;gap:.8rem}
+.t-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--gh-green),var(--gh-gold));display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-head);font-weight:700;color:#000;font-size:.8rem;flex:none}
+.t-name{font-weight:600;font-size:.9rem}
+.t-role{color:rgba(255,255,255,.5);font-size:.78rem}
 .about-name{font-family:var(--font-head);font-size:1.2rem;font-weight:700;margin-bottom:0.2rem}
 .about-role{font-size:0.8rem;color:var(--text-dim);margin-bottom:1.5rem}
 .about-socials{display:flex;justify-content:center;gap:0.6rem}
@@ -521,6 +534,34 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:4
   <div style="text-align:center;margin-top:3rem"><a href="products.html" class="btn-enter" style="display:inline-flex"><i class="fas fa-th-large"></i> Browse All 90+ Systems</a></div>
 </section>
 
+
+<!-- TESTIMONIALS -->
+<!-- ⚠️ RAUF: these three quotes are PLACEHOLDERS. Replace each quote/author with a real client's words (ask permission) before relying on them. -->
+<section id="testimonials">
+  <div class="t-inner">
+    <div class="sec-header" style="margin-bottom:2rem">
+      <div><span class="sec-label">Trusted Across Ghana</span><h2 class="sec-title">What clients &amp; teachers say</h2></div>
+    </div>
+    <div class="t-grid">
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"Rauf built our hospital management system and had us running in weeks, not months. The support after launch is why we added two more modules."</p>
+        <div class="t-author"><span class="t-avatar">KO</span><div><div class="t-name">Hospital Administrator</div><div class="t-role">Private Hospital · Kumasi</div></div></div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"Our students use the Ghana Learning Hub every week — free WAEC prep and AI prompts in one place. It has changed how our ICT classes run."</p>
+        <div class="t-author"><span class="t-avatar">HT</span><div><div class="t-name">Headteacher</div><div class="t-role">Senior High School · Ashanti Region</div></div></div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"The demo became our exact system. He listened, adjusted, delivered — we now process records in minutes instead of days."</p>
+        <div class="t-author"><span class="t-avatar">OM</span><div><div class="t-name">Operations Manager</div><div class="t-role">Agribusiness · Techiman</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- AI FOR GHANA -->
 <section id="aiforghana">
   <div class="aig-inner">
@@ -572,7 +613,7 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:4
   <div class="about-inner">
     <div>
       <div class="about-card">
-        <div class="about-initials">RH</div>
+        <img class="about-photo" src="assets/rauf-profile.jpg" alt="Rauf Husein — software entrepreneur, Ghana" width="280" height="350" loading="lazy">
         <div class="about-name">Rauf Husein</div>
         <div class="about-role">Software Entrepreneur · Ghana 🇬🇭</div>
         <div class="about-socials">
