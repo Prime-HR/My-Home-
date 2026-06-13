@@ -166,6 +166,57 @@ window.RESOURCES = [
     language: 'en+twi', tags: ['tiktok','channel'], dateAdded: '2026-06-01' },
 
 
+
+  /* ================= LESSON SLIDES LIBRARY (NotebookLM decks) ================= */
+
+  { id: 'slide-ca-001', title: 'The Ghana Creator Economy — Slide Deck',
+    description: 'Turn your creativity into income: the five money roads, the hustle ladder and the pricing formula. Companion to Creative Arts Lesson 2.',
+    section: 'curriculum', subject: 'creative-arts', type: 'slides', level: 'shs2',
+    waec: false, featured: true, url: 'lesson-slides/creative-arts/The_Ghana_Creator_Economy.pdf',
+    tags: ['slides','creator economy','income'], dateAdded: '2026-06-13' },
+
+  { id: 'slide-ca-002', title: 'Ancestral Code — Adinkra & Kente Slide Deck',
+    description: 'Ghana\'s design language decoded: Adinkra symbols, kente mathematics and meaning. Companion to Creative Arts Lesson 3.',
+    section: 'curriculum', subject: 'creative-arts', type: 'slides', level: 'shs1',
+    waec: false, url: 'lesson-slides/creative-arts/ANCESTRAL_CODE.pdf',
+    tags: ['slides','adinkra','kente','design'], dateAdded: '2026-06-13' },
+
+  { id: 'slide-ca-003', title: 'Ancestral UI — Ghanaian Design Goes Digital',
+    description: 'From cloth to screen: using Adinkra and kente in modern digital design and AI art — honestly.',
+    section: 'curriculum', subject: 'creative-arts', type: 'slides', level: 'shs2',
+    waec: false, url: 'lesson-slides/creative-arts/Ancestral_UI.pdf',
+    tags: ['slides','digital design','adinkra','ai art'], dateAdded: '2026-06-13' },
+
+  { id: 'slide-ca-004', title: 'The Ghanaian Music Blueprint — Highlife to Hiplife',
+    description: 'The story and business of Ghanaian music: highlife, hiplife, afrobeats and the money behind the sound. Companion to Creative Arts Lesson 4.',
+    section: 'curriculum', subject: 'creative-arts', type: 'slides', level: 'shs2',
+    waec: false, url: 'lesson-slides/creative-arts/The_Ghanaian_Music_Blueprint.pdf',
+    tags: ['slides','highlife','hiplife','music business'], dateAdded: '2026-06-13' },
+
+  { id: 'slide-ca-005', title: 'Drawing Decoded — Train Your Hand and Eye',
+    description: 'Drawing is a learnable skill: the five elements, the shapes-first method and the daily sketch ritual. Companion to Creative Arts Lesson 5.',
+    section: 'curriculum', subject: 'creative-arts', type: 'slides', level: 'jhs',
+    waec: false, url: 'lesson-slides/creative-arts/Drawing_Decoded.pdf',
+    tags: ['slides','drawing','art skills'], dateAdded: '2026-06-13' },
+
+  { id: 'slide-pe-001', title: 'Your Human Hardware Manual — Body Basics',
+    description: 'Your body is your first machine: how to fuel, move and maintain it. Companion to PE & Health Lesson 1.',
+    section: 'curriculum', subject: 'pe', type: 'slides', level: 'jhs',
+    waec: false, url: 'lesson-slides/pe-health/Your_Human_Hardware_Manual.pdf',
+    tags: ['slides','fitness','body','health'], dateAdded: '2026-06-13' },
+
+  { id: 'slide-pe-002', title: 'Ghanaian Budget Superfood Guide — Slide Deck',
+    description: 'The cheapest foods in the market are the most nutritious: the plate rule, the budget hall of fame and the three traps. Companion to PE & Health Lesson 2.',
+    section: 'curriculum', subject: 'pe', type: 'slides', level: 'jhs',
+    waec: false, featured: true, url: 'lesson-slides/pe-health/Ghanaian_Budget_Superfood_Guide.pdf',
+    tags: ['slides','nutrition','food','budget'], dateAdded: '2026-06-13' },
+
+  { id: 'slide-pe-003', title: 'Ghanaian Student Mental Playbook — Slide Deck',
+    description: 'Strong mind, strong life: the four free tools, warning signs and where to get help in Ghana. Companion to PE & Health Lesson 3.',
+    section: 'curriculum', subject: 'pe', type: 'slides', level: 'shs1',
+    waec: false, url: 'lesson-slides/pe-health/Ghanaian_Student_Mental_Playbook.pdf',
+    tags: ['slides','mental health','wellbeing'], dateAdded: '2026-06-13' },
+
   /* ================= SLIDE DOC LIBRARY ================= */
   { id: 'slide-001', title: "Ghana AI Health Guide",
     description: "How AI is transforming healthcare in Ghana — for students, nurses and health workers.",
