@@ -99,7 +99,7 @@ window.RESOURCES = [
   { id: 'ai-001', title: 'Lesson 1 — What is Artificial Intelligence?',
     description: 'AI explained through the Kejetia market woman analogy. Perfect for complete beginners.',
     section: 'ai-ghana', subject: 'ai-basics', type: 'video', level: 'beginner',
-    waec: false, featured: true, url: 'https://www.youtube.com/watch?v=PLACEHOLDER',
+    waec: false, featured: true, url: 'https://youtu.be/2jdLfVRu8WY',
     duration: '8 min', language: 'en', tags: ['lesson 1','beginner'], dateAdded: '2026-07-01' },
 
   { id: 'ai-002', title: 'The Ghana Prompt Formula — Master Guide',
@@ -108,11 +108,11 @@ window.RESOURCES = [
     waec: false, featured: true, url: 'SLIDE%20DOC/The_Ghana_Prompt_Quran.pdf', downloadUrl: 'SLIDE%20DOC/The_Ghana_Prompt_Quran.pptx',
     tags: ['prompting','formula'], dateAdded: '2026-07-01' },
 
-  { id: 'ai-003', title: 'Lesson 5 — AI Tools You Can Use TODAY (Free)',
-    description: 'ChatGPT, Gemini, Perplexity, and more — all explained for Ghanaian students and professionals.',
+  { id: 'ai-003', title: 'Lesson 2 — How Machines Learn (The Tailor\'s Apprentice)',
+    description: 'Machines learn like a tailor\'s apprentice — examples, try, correct, improve. Train one yourself with the bean test.',
     section: 'ai-ghana', subject: 'ai-basics', type: 'video', level: 'beginner',
-    waec: false, url: 'https://www.youtube.com/watch?v=PLACEHOLDER2',
-    duration: '12 min', language: 'en', tags: ['tools','chatgpt','gemini'], dateAdded: '2026-07-01' },
+    waec: false, featured: true, url: 'https://youtu.be/aOX__KH50Bg',
+    duration: '8 min', language: 'en', tags: ['lesson 2','machine learning','apprentice'], dateAdded: '2026-06-12' },
 
   { id: 'ai-004', title: 'GAEP Lesson Plan — What is AI? (Teacher Copy)',
     description: 'Complete 45-minute lesson plan for SHS teachers. NaCCA-aligned. Print-ready.',
