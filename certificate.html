@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificate | AI For Ghana</title>
+<meta name="description" content="Earn and print your AI For Ghana certificate of completion.">
+<meta name="theme-color" content="#060608">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{--bg:#060608;--gh-green:#006B3C;--gh-gold:#FCD116;--gh-red:#CE1126;--text:#fff;--text-dim:rgba(255,255,255,0.5);--border:rgba(255,255,255,0.09);--font-head:'Space Grotesk',sans-serif;--font-body:'Inter',sans-serif;--font-mono:'DM Mono',monospace;--serif:'Playfair Display',serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-height:100vh;padding:1.5rem 1.25rem 4rem}
+.wrap{max-width:1000px;margin:0 auto}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.6rem;flex-wrap:wrap;gap:1rem}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.brand .bm{width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,var(--gh-green),var(--gh-gold));display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-weight:800;color:#000}
+.brand b{font-family:var(--font-head);letter-spacing:.08em;font-size:.85rem}
+.back{font-size:.82rem;color:var(--text-dim);text-decoration:none;border:1px solid var(--border);padding:.5rem 1rem;border-radius:50px}
+h1{font-family:var(--font-head);font-size:clamp(1.7rem,4vw,2.4rem);margin-bottom:.4rem}
+.lead{color:var(--text-dim);margin-bottom:1.4rem}
+.form{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin-bottom:1.6rem}
+.form input,.form select{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;color:#fff;padding:.7rem 1rem;font-family:var(--font-body);font-size:.95rem}
+.form input{flex:1;min-width:200px}
+.form select option{background:#101016;color:#fff}
+.btn{display:inline-flex;align-items:center;gap:.5rem;border:none;cursor:pointer;font-family:var(--font-head);font-weight:700;font-size:.9rem;padding:.7rem 1.5rem;border-radius:50px;text-decoration:none}
+.btn-gold{background:var(--gh-gold);color:#000}.btn-gold:hover{background:#fff}
+/* certificate */
+.cert-shell{display:flex;justify-content:center}
+.cert{width:100%;max-width:900px;aspect-ratio:1.414/1;background:linear-gradient(135deg,#0c1a14,#0d0d12 55%,#1a140a);border:2px solid var(--gh-gold);border-radius:14px;position:relative;overflow:hidden;padding:5%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.cert::before{content:'';position:absolute;inset:14px;border:1px solid rgba(252,209,22,.35);border-radius:8px;pointer-events:none;z-index:2}
+.cert .flag{position:absolute;inset:0;z-index:0;opacity:.13;background:linear-gradient(to bottom,#CE1126 0 33.34%,#FCD116 33.34% 66.67%,#006B3C 66.67% 100%)}
+.cert .flag .stargh{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:min(26vw,300px);line-height:1;color:#000}
+.cert .logo,.cert .ttl,.cert .sub,.cert .name,.cert .course,.cert .foot{position:relative;z-index:1}
+.cert .stripe,.cert .seal{z-index:2}
+.cert .stripe{position:absolute;top:0;left:0;right:0;height:8px;background:linear-gradient(90deg,var(--gh-green) 33%,var(--gh-gold) 33% 66%,var(--gh-red) 66%)}
+.cert .stripe.b{top:auto;bottom:0}
+.cert .seal{position:absolute;bottom:7%;right:8%;width:84px;height:84px;border-radius:50%;background:radial-gradient(circle,var(--gh-gold),#caa50f);display:flex;align-items:center;justify-content:center;color:#000;font-family:var(--font-head);font-weight:800;font-size:.6rem;text-align:center;line-height:1.1;box-shadow:0 0 0 4px rgba(252,209,22,.25)}
+.cert .logo{font-family:var(--font-head);font-weight:800;letter-spacing:.12em;color:var(--gh-gold);font-size:.8rem;margin-bottom:.4rem}
+.cert .ttl{font-family:var(--serif);font-size:clamp(1.4rem,3.4vw,2.4rem);font-weight:700;margin-bottom:1rem}
+.cert .sub{color:rgba(255,255,255,.65);font-size:.8rem;letter-spacing:.04em;margin-bottom:.4rem}
+.cert .name{font-family:var(--serif);font-size:clamp(1.8rem,4.4vw,3rem);font-weight:700;color:var(--gh-gold);border-bottom:1px solid rgba(252,209,22,.4);padding:0 1rem .3rem;margin:.2rem 0 1rem}
+.cert .course{font-size:clamp(.9rem,2vw,1.15rem);max-width:80%;margin:0 auto 1.4rem}
+.cert .course b{color:#fff}
+.cert .foot{display:flex;justify-content:space-between;width:80%;margin-top:1rem;font-size:.72rem;color:rgba(255,255,255,.6)}
+.cert .foot .sig{font-family:var(--serif);font-style:italic;color:#fff;font-size:1rem;border-top:1px solid rgba(255,255,255,.3);padding-top:.3rem}
+.note{color:var(--text-dim);font-size:.82rem;margin-top:1.2rem;text-align:center}
+@media print{
+  body{background:#fff;padding:0}
+  .top,.form,.note,.actions{display:none!important}
+  .cert{max-width:100%;border-color:#caa50f;page-break-inside:avoid}
+  @page{size:A4 landscape;margin:0}
+}
+.actions{display:flex;gap:.6rem;justify-content:center;margin:1.4rem 0;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a href="/" class="brand"><span class="bm">RH</span><b>AI FOR GHANA</b></a>
+    <a href="/quiz" class="back"><i class="fas fa-arrow-left"></i> Quizzes</a>
+  </div>
+
+  <h1>Your Certificate 🎓</h1>
+  <p class="lead">Enter your name, choose what you completed, then download or print your certificate.</p>
+
+  <div class="form">
+    <input type="text" id="nameInput" placeholder="Enter your full name" maxlength="40">
+    <select id="courseSel">
+      <option value="AI For Ghana">AI For Ghana</option>
+      <option value="Mathematics">Mathematics</option>
+      <option value="Integrated Science">Integrated Science</option>
+      <option value="English Language">English Language</option>
+      <option value="ICT">ICT</option>
+      <option value="Ghana Education Framework 2025–2050">Whole Framework</option>
+    </select>
+    <button class="btn btn-gold" id="makeBtn"><i class="fas fa-wand-magic-sparkles"></i> Generate</button>
+  </div>
+
+  <div class="cert-shell">
+    <div class="cert" id="cert">
+      <div class="flag"><span class="stargh">★</span></div>
+      <div class="stripe"></div><div class="stripe b"></div>
+      <div class="logo">🇬🇭 AI FOR GHANA · raufhusein.site</div>
+      <div class="ttl">Certificate of Completion</div>
+      <div class="sub">This is proudly presented to</div>
+      <div class="name" id="cName">Your Name</div>
+      <div class="course">for successfully completing <b id="cCourse">AI For Ghana</b> in the Ghana Education Framework 2025–2050.</div>
+      <div class="foot">
+        <div><span class="sig">Rauf Husein</span><br>Founder, AI For Ghana</div>
+        <div><span class="sig" id="cDate"></span><br>Date</div>
+      </div>
+      <div class="seal">AI FOR<br>GHANA<br>★</div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-gold" id="printBtn"><i class="fas fa-download"></i> Download / Print</button>
+  </div>
+  <p class="note">Tip: in the print dialog choose “Save as PDF” to keep a copy, or print it out. Earn it by passing the quizzes!</p>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const params=new URLSearchParams(location.search);
+function setDate(){const d=new Date();$('cDate').textContent=d.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});}
+function render(){
+  const n=($('nameInput').value||'').trim();
+  $('cName').textContent=n||'Your Name';
+  $('cCourse').textContent=$('courseSel').value;
+  setDate();
+}
+$('makeBtn').onclick=render;
+$('nameInput').addEventListener('input',render);
+$('courseSel').addEventListener('change',render);
+$('printBtn').onclick=()=>{ if(!($('nameInput').value||'').trim()){$('nameInput').focus();$('nameInput').placeholder='Please enter your name first';return;} window.print(); };
+// prefill from quiz link
+if(params.get('course')){const v=params.get('course');const sel=$('courseSel');[...sel.options].forEach(o=>{if(o.value.toLowerCase().includes(v.toLowerCase())||v.toLowerCase().includes(o.value.toLowerCase()))sel.value=o.value;});}
+try{const n=localStorage.getItem('lc_name');if(n)$('nameInput').value=n;}catch(e){}
+$('nameInput').addEventListener('change',()=>{try{localStorage.setItem('lc_name',$('nameInput').value.trim());}catch(e){}});
+setDate();render();
+if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').catch(()=>{});}
+</script>
+</body>
+</html>
