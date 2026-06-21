@@ -1,0 +1,133 @@
+/* =====================================================================
+   enhance.css — global polish layer (bento + glass) for raufhusein.site
+   Additive only. Loaded LAST on every page so it refines the existing
+   design without rewriting it. Remove this file's <link> to fully revert.
+   Applies to BOTH design systems: home (pillar/zone/phase/t-card) and
+   subpages (product-card / cat-card / category-block / contact-card).
+   ===================================================================== */
+
+:root{
+  --gx-blur: 14px;
+  --gx-glass: rgba(255,255,255,0.045);
+  --gx-glass-strong: rgba(255,255,255,0.07);
+  --gx-stroke: rgba(255,255,255,0.10);
+  --gx-stroke-hi: rgba(255,255,255,0.18);
+  --gx-shadow: 0 10px 40px rgba(0,0,0,0.45);
+  --gx-shadow-lift: 0 18px 60px rgba(0,0,0,0.55);
+  --gx-ease: cubic-bezier(.4,0,.2,1);
+}
+
+/* ---------- universal quality + accessibility (safe on every page) ---------- */
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{ -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; text-rendering:optimizeLegibility; }
+img{ image-rendering:auto; }
+::selection{ background:rgba(245,166,35,.85); color:#0b0c10; }
+a, button{ -webkit-tap-highlight-color:transparent; }
+
+/* clear, consistent keyboard focus ring across the whole site */
+a:focus-visible, button:focus-visible, input:focus-visible,
+textarea:focus-visible, select:focus-visible, [tabindex]:focus-visible{
+  outline:2px solid var(--gh-gold, #f5a623);
+  outline-offset:2px;
+  border-radius:6px;
+}
+
+/* respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+}
+
+/* comfortable mobile tap targets */
+@media (max-width:600px){
+  .btn-primary,.btn-ghost,.btn-green,.btn-outline,.btn-enter,
+  .btn-cta-white,.btn-cta-outline,.btn-card-primary,.btn-card-ghost,
+  .filter-btn,.nav-cta{ min-height:44px; }
+}
+
+/* ---------- glassmorphism for cards (both design systems) ---------- */
+.product-card,.cat-card,.category-block,.contact-card,
+.pillar-card,.phase-card,.t-card,.zone,.feature-card,.featured-card,
+.cmd-stat,.stat-card{
+  background:var(--gx-glass);
+  -webkit-backdrop-filter:blur(var(--gx-blur)) saturate(135%);
+  backdrop-filter:blur(var(--gx-blur)) saturate(135%);
+  border:1px solid var(--gx-stroke);
+  box-shadow:var(--gx-shadow);
+  transition:transform .35s var(--gx-ease), box-shadow .35s var(--gx-ease),
+             border-color .35s var(--gx-ease), background .35s var(--gx-ease);
+  will-change:transform;
+}
+
+/* subtle top highlight that reads as a glass edge */
+.product-card,.cat-card,.category-block,.pillar-card,.phase-card,
+.t-card,.zone,.feature-card,.featured-card{
+  position:relative;
+}
+.product-card::before,.cat-card::before,.pillar-card::before,
+.phase-card::before,.t-card::before,.zone::before,.feature-card::before{
+  content:"";
+  position:absolute; inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0) 38%);
+}
+
+/* premium lift on hover */
+.product-card:hover,.cat-card:hover,.category-block:hover,
+.pillar-card:hover,.phase-card:hover,.t-card:hover,.zone:hover,
+.feature-card:hover,.featured-card:hover{
+  transform:translateY(-6px);
+  border-color:var(--gx-stroke-hi);
+  background:var(--gx-glass-strong);
+  box-shadow:var(--gx-shadow-lift);
+}
+
+/* ---------- glass navigation + footer ---------- */
+.nav, nav.nav, .navbar, header .nav{
+  -webkit-backdrop-filter:blur(16px) saturate(140%);
+  backdrop-filter:blur(16px) saturate(140%);
+  background:rgba(8,8,12,0.55);
+  border-bottom:1px solid var(--gx-stroke);
+}
+.footer{ border-top:1px solid var(--gx-stroke); }
+
+/* ---------- bento: tighter rhythm + unified rounding on grids ---------- */
+.featured-grid,.categories-grid,.category-block-grid,.products-grid,
+.founder-highlights,.contact-grid{
+  gap:18px;
+}
+.product-card,.cat-card,.category-block,.contact-card,
+.pillar-card,.phase-card,.t-card,.feature-card{
+  border-radius:20px;
+}
+
+/* ---------- buttons: gentle depth + glow ---------- */
+.btn-primary,.btn-green,.btn-cta-white,.btn-card-primary,.btn-enter{
+  transition:transform .25s var(--gx-ease), box-shadow .25s var(--gx-ease), filter .25s var(--gx-ease);
+}
+.btn-primary:hover,.btn-green:hover,.btn-cta-white:hover,
+.btn-card-primary:hover,.btn-enter:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 28px rgba(245,166,35,.28);
+  filter:saturate(108%);
+}
+.btn-ghost:hover,.btn-outline:hover,.btn-cta-outline:hover,.btn-card-ghost:hover{
+  border-color:var(--gx-stroke-hi);
+  background:var(--gx-glass);
+}
+
+/* ---------- icon chips get a soft glass puck ---------- */
+.card-icon-wrap,.cat-icon,.pillar-icon,.phase-icon,.z-icon,.category-block-icon{
+  -webkit-backdrop-filter:blur(8px);
+  backdrop-filter:blur(8px);
+}
+
+/* low-end devices: drop heavy blur to protect performance */
+@media (max-width:480px){
+  .product-card,.cat-card,.category-block,.contact-card,
+  .pillar-card,.phase-card,.t-card,.zone,.feature-card,.featured-card,
+  .cmd-stat,.stat-card{
+    -webkit-backdrop-filter:none; backdrop-filter:none;
+    background:rgba(255,255,255,0.05);
+  }
+}
