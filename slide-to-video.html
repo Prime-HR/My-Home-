@@ -101,6 +101,33 @@ video{width:100%;max-width:340px;border-radius:14px;border:1px solid var(--borde
 .toast.show{transform:translateX(-50%) translateY(0)}
 footer{text-align:center;padding:2rem 1rem;color:var(--text-dim);font-size:.78rem;font-family:var(--font-mono);border-top:1px solid var(--border);margin-top:2rem}
 footer a{color:var(--gh-gold);text-decoration:none}
+
+/* ── TEXT-TO-SLIDE ADDITIONS ── */
+.mode-bar{display:flex;gap:.4rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:50px;padding:.3rem;margin-bottom:1.5rem}
+.mode-btn{flex:1;border:none;border-radius:50px;padding:.65rem 1rem;font-family:var(--font-head);font-size:.88rem;font-weight:700;cursor:pointer;color:var(--text-dim);background:transparent;transition:all .2s}
+.mode-btn.on{background:var(--gh-gold);color:#000}
+.tpl-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:.5rem;margin:.8rem 0}
+.tpl{border:2px solid var(--border);border-radius:12px;padding:.65rem .3rem .5rem;text-align:center;cursor:pointer;transition:all .2s;font-size:.72rem;font-family:var(--font-head);font-weight:700;letter-spacing:.04em}
+.tpl:hover{border-color:rgba(255,255,255,.3)}
+.tpl.on{border-color:var(--gh-gold);box-shadow:0 0 0 1px var(--gh-gold)}
+.tpl .dot{width:28px;height:28px;border-radius:8px;margin:0 auto .4rem;border:1px solid rgba(255,255,255,.15)}
+.brand-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.85rem}
+.brand-row .opt{margin:0}
+.stxt{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;color:#fff;padding:.8rem .9rem;font-family:var(--font-mono);font-size:.82rem;line-height:1.6;resize:vertical;min-height:260px;outline:none;tab-size:2}
+.stxt:focus{border-color:rgba(252,209,22,.35)}
+.slide-prev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:.6rem;margin-top:1.1rem}
+.sp-thumb{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--border);cursor:pointer;background:#000}
+.sp-thumb canvas{width:100%;display:block}
+.sp-thumb .sp-n{position:absolute;top:4px;left:4px;background:rgba(0,0,0,.7);color:#fff;font-family:var(--font-mono);font-size:.6rem;padding:.1rem .38rem;border-radius:20px}
+.sp-thumb .sp-del{position:absolute;top:4px;right:4px;background:rgba(206,17,38,.85);color:#fff;border:none;width:20px;height:20px;border-radius:50%;cursor:pointer;font-size:.58rem;display:flex;align-items:center;justify-content:center}
+.format-hint{background:rgba(0,107,63,.07);border:1px solid rgba(0,107,63,.25);border-radius:10px;padding:.75rem .9rem;font-size:.76rem;color:var(--text-dim);line-height:1.7;margin-bottom:.8rem}
+.format-hint code{color:var(--gh-gold);font-family:var(--font-mono)}
+.gen-slides-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--gh-green);color:#fff;border:none;border-radius:50px;padding:.75rem 1.5rem;font-family:var(--font-head);font-weight:700;font-size:.9rem;cursor:pointer;transition:all .2s;margin-top:1rem}
+.gen-slides-btn:hover{background:#008a4f;transform:translateY(-1px)}
+.gen-slides-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.font-warn{display:none;font-size:.75rem;color:var(--text-dim);padding:.5rem .8rem;background:rgba(252,209,22,.07);border:1px solid rgba(252,209,22,.2);border-radius:8px;margin-top:.5rem}
+.inp{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;color:#fff;padding:.65rem .8rem;font-family:var(--font-mono);font-size:.85rem;outline:none}
+.inp:focus{border-color:rgba(252,209,22,.4)}
 </style>
   <link rel="stylesheet" href="/enhance.css">
 </head>
@@ -113,11 +140,87 @@ footer a{color:var(--gh-gold);text-decoration:none}
   </div>
 
   <div class="htag"><i class="fas fa-clapperboard"></i> FREE TOOL · RUNS 100% IN YOUR BROWSER</div>
-  <h1>Slide → <em>Video</em> <span style="font-size:.4em;color:var(--text-dim);font-family:var(--font-mono)">PRO</span></h1>
-  <p class="lead">Turn your slides into a powerful video — add music, set the timing, then share to all your socials. Nothing is forced onto your slides: by default it's a clean, watermark-free cut of exactly what you made. Everything runs on your own device — your files are never uploaded.</p>
+  <h1>Text → Slides → <em>Video</em></h1>
+  <p class="lead">Type your lesson or message and instantly get Ghana-branded slides — then turn them into a video ready for TikTok, Instagram, or YouTube. Or upload your own PDF or images. Everything runs on your own device — your files are never uploaded.</p>
+
+  <!-- MODE TOGGLE -->
+  <div class="mode-bar">
+    <button class="mode-btn on" id="modeCreate">✍️ Create from Text</button>
+    <button class="mode-btn" id="modeUpload">📁 Upload Slides</button>
+  </div>
+
+  <!-- TEXT-TO-SLIDES PANEL -->
+  <div class="panel" id="panelCreate">
+    <div class="step-h"><span class="step-n" style="background:var(--gh-green);font-size:1.1rem">✦</span> Text → Slides</div>
+
+    <div class="format-hint">
+      <b>Format:</b> Separate slides with <code>---</code> on its own line.<br>
+      <b>Line 1:</b> Kicker label — short, ALL CAPS (e.g. <code>CHAPTER 1</code>)<br>
+      <b>Line 2:</b> Headline — the big bold statement<br>
+      <b>Lines 3+:</b> Body text or subtitle<br>
+      <b>Bullets:</b> Start a line with <code>•</code> or <code>-</code>  &nbsp;·&nbsp;  Use <code>TERM — description</code> for colour-coded bullets
+    </div>
+
+    <label class="opt">Your slide content</label>
+    <textarea class="stxt" id="slideText" placeholder="CHAPTER 1
+YOU'RE USING AI WRONG.
+And it is quietly costing you free power.
+---
+THE REALITY
+Lazy questions get lazy answers.
+The AI is brilliant. Your instruction was weak.
+---
+WHAT IS A PROMPT
+A prompt is simply the instruction you give the AI.
+Clear instruction in. Clear answer out.
+---
+THE FORMULA
+Four parts make a powerful prompt.
+• WHO — the role the AI should play
+• WHAT — exactly what you want
+• SITUATION — your real context
+• FORMAT — how you want the answer
+---
+BETTER PROMPT
+= BETTER ANSWER.
+Every single time."></textarea>
+
+    <label class="opt" style="margin-top:1.1rem">Template style</label>
+    <div class="tpl-row" id="tplRow">
+      <div class="tpl on" data-tpl="auto"><div class="dot" style="background:linear-gradient(135deg,#1A1A1A 33%,#FCD116 33% 66%,#006B3C 66%)"></div>Auto Ghana</div>
+      <div class="tpl" data-tpl="dark"><div class="dot" style="background:#1A1A1A"></div>Dark</div>
+      <div class="tpl" data-tpl="light"><div class="dot" style="background:#FAFAF7;border-color:rgba(0,0,0,.15)"></div>Light</div>
+      <div class="tpl" data-tpl="green"><div class="dot" style="background:#006B3C"></div>Green</div>
+      <div class="tpl" data-tpl="gold"><div class="dot" style="background:#FCD116"></div>Gold</div>
+      <div class="tpl" data-tpl="red"><div class="dot" style="background:#CE1126"></div>Red</div>
+    </div>
+
+    <div class="brand-row">
+      <div>
+        <label class="opt">Brand name</label>
+        <input class="inp" id="brandName" value="AI FOR GHANA" placeholder="AI FOR GHANA">
+      </div>
+      <div>
+        <label class="opt">Handle</label>
+        <input class="inp" id="brandHandle" value="@AIForGhana" placeholder="@AIForGhana">
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:1rem">
+      <button class="gen-slides-btn" id="genSlidesBtn"><i class="fas fa-layer-group"></i> Generate Slides</button>
+      <span class="font-warn" id="fontWarn">⚠️ Font still loading — may use fallback font</span>
+    </div>
+
+    <div class="slide-prev-grid" id="textSlidePrev"></div>
+
+    <div class="gen-row" id="addSlidesRow" style="display:none;margin-top:1rem">
+      <button class="btn btn-gold" id="addSlidesBtn"><i class="fas fa-arrow-right"></i> Use these slides → go to settings</button>
+      <button class="btn btn-ghost" id="clearSlidesBtn"><i class="fas fa-rotate-left"></i> Clear</button>
+    </div>
+  </div>
 
   <!-- STEP 1 -->
-  <div class="panel">
+  <div class="panel" id="setup" style="display:none">
     <div class="step-h"><span class="step-n">1</span> Add your slides</div>
     <div class="drop" id="drop">
       <i class="fas fa-cloud-arrow-up"></i>
@@ -393,7 +496,6 @@ async function generate(){
   function frame(){
     const el=performance.now()-start, e=el/1000;
     ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
-    // current slide index
     let idx=0;while(idx<starts.length-1 && e>=starts[idx+1])idx++;
     const localT=e-starts[idx], remain=durs[idx]-localT;
     blit(slides[idx],W,H,1);
@@ -418,7 +520,7 @@ let toastT;
 function toast(m){const el=$('toast');el.textContent=m;el.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),3500);}
 function fullCaption(){const c=($('caption').value||'').trim();const h=($('tags').value||'').trim();return h?(c+'\n\n'+h):c;}
 function safeName(){
-  let t=($('caption').value||'').replace(/#[^\s#]+/g,'').replace(/[\u{1F000}-\u{1FAFF}←-⇿⌀-➿️‍]/gu,'');
+  let t=($('caption').value||'').replace(/#[^\s#]+/g,'').replace(/[\u{1F000}-\u{1FAFF}]/gu,'');
   t=t.replace(/[\\/:*?"<>|\n\r\t]+/g,' ').replace(/\s+/g,' ').trim().slice(0,70);
   return t||'AIForGhana-video';
 }
@@ -431,7 +533,6 @@ function prepForPost(){
   navigator.clipboard.writeText(fullCaption()).catch(()=>{});
   toast('✅ Video saved + caption copied — paste & pick the file');
 }
-// platform buttons: auto-save video + copy caption with Ghana hashtags, then open the platform
 document.querySelector('.share-grid').addEventListener('click',e=>{const a=e.target.closest('.sbtn');if(a)prepForPost();});
 
 $('shareBtn').addEventListener('click',async()=>{
@@ -445,6 +546,233 @@ $('copyCap').addEventListener('click',async()=>{try{await navigator.clipboard.wr
 $('resetTags').addEventListener('click',()=>{$('tags').value=DEFAULT_TAGS;saveSettings();toast('Ghana hashtags reset 🇬🇭');});
 $('tags').addEventListener('change',saveSettings);
 
+// ─────────────────────────────────────────────────────────────
+// TEXT-TO-SLIDE ENGINE
+// ─────────────────────────────────────────────────────────────
+let generatedSlides = [];
+let selectedTpl = 'auto';
+let fontsReady = false;
+document.fonts.ready.then(() => { fontsReady = true; });
+
+const TEMPLATES = {
+  dark:  { bg:'#1A1A1A', kickerC:'#FCD116', headC1:'#FFFFFF', headC2:'#FCD116', bodyC:'#DDDDDD', accentBar:'#FCD116', brandC:'#FFFFFF', handleC:'#AFAFAF' },
+  light: { bg:'#FAFAF7', kickerC:'#CE1126', headC1:'#1A1A1A', headC2:'#1A1A1A', bodyC:'#333333', accentBar:'#006B3C', brandC:'#006B3C', handleC:'#7A7A7A' },
+  green: { bg:'#006B3C', kickerC:'#FCD116', headC1:'#FFFFFF', headC2:'#FFFFFF', bodyC:'#FCD116',  accentBar:'#FCD116', brandC:'#FFFFFF', handleC:'#AFAFAF' },
+  gold:  { bg:'#FCD116', kickerC:'#006B3C', headC1:'#1A1A1A', headC2:'#1A1A1A', bodyC:'#5A4B00', accentBar:'#006B3C', brandC:'#006B3C', handleC:'#7A7A7A' },
+  red:   { bg:'#CE1126', kickerC:'#FCD116', headC1:'#FFFFFF', headC2:'#FCD116', bodyC:'#FFD0D5',  accentBar:'#FCD116', brandC:'#FFFFFF', handleC:'#FFB0B8' },
+};
+const TPL_CYCLE = ['dark','light','green','gold','light','red','green','dark'];
+
+function getTpl(name, idx) {
+  const key = (name === 'auto') ? TPL_CYCLE[idx % TPL_CYCLE.length] : name;
+  return TEMPLATES[key] || TEMPLATES.dark;
+}
+
+function parseSlideText(raw) {
+  return raw.split(/\n---\n|^---$/m).map(block => {
+    const lines = block.split('\n').map(l => l.trim()).filter(Boolean);
+    if (!lines.length) return null;
+    let kicker = '', headline = '', bodyLines = [], bullets = [], i = 0;
+    if (lines[0] && lines[0].length <= 42 && /^[A-Z0-9 .·&@#!?:'\-]+$/.test(lines[0])) {
+      kicker = lines[0]; i = 1;
+    }
+    if (lines[i]) { headline = lines[i]; i++; }
+    for (; i < lines.length; i++) {
+      if (/^[•\-★]/.test(lines[i])) bullets.push(lines[i].replace(/^[•\-★]\s*/, ''));
+      else bodyLines.push(lines[i]);
+    }
+    return { kicker, headline, body: bodyLines.join('\n'), bullets };
+  }).filter(Boolean);
+}
+
+function wrapText(ctx, text, maxW, font) {
+  ctx.font = font;
+  const words = text.split(' ');
+  const lines = []; let cur = '';
+  for (const w of words) {
+    const test = cur ? cur + ' ' + w : w;
+    if (ctx.measureText(test).width > maxW && cur) { lines.push(cur); cur = w; }
+    else cur = test;
+  }
+  if (cur) lines.push(cur);
+  return lines;
+}
+
+function renderTextSlide(data, tpl, W, H) {
+  const c = document.createElement('canvas');
+  c.width = W; c.height = H;
+  const ctx = c.getContext('2d');
+  const PAD = Math.round(W * 0.074);
+  const maxW = W - PAD * 2;
+  const isPort = H > W;
+
+  ctx.fillStyle = tpl.bg;
+  ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = tpl.accentBar;
+  ctx.fillRect(0, 0, W, Math.max(6, Math.round(H * 0.005)));
+
+  let y = isPort ? Math.round(H * 0.088) : Math.round(H * 0.1);
+
+  if (data.kicker) {
+    const kSz = Math.round(W * 0.032);
+    const kFont = `700 ${kSz}px "Space Grotesk","Arial Black",sans-serif`;
+    ctx.font = kFont; ctx.fillStyle = tpl.kickerC;
+    ctx.fillText(data.kicker, PAD, y);
+    y += Math.round(kSz * 1.75);
+  }
+
+  if (data.headline) {
+    let hSz = Math.round(W * (isPort ? 0.115 : 0.072));
+    if (data.headline.length > 60) hSz = Math.round(hSz * 0.60);
+    else if (data.headline.length > 40) hSz = Math.round(hSz * 0.74);
+    else if (data.headline.length > 25) hSz = Math.round(hSz * 0.87);
+    const hFont = `700 ${hSz}px "Space Grotesk","Arial Black",sans-serif`;
+    const wrapped = wrapText(ctx, data.headline, maxW, hFont);
+    ctx.font = hFont;
+    const lineH = Math.round(hSz * 1.12);
+    const half = Math.max(1, Math.ceil(wrapped.length / 2));
+    wrapped.forEach((line, i) => {
+      ctx.fillStyle = (i < half) ? tpl.headC1 : tpl.headC2;
+      ctx.fillText(line, PAD, y);
+      y += lineH;
+    });
+    y += Math.round(hSz * 0.45);
+  }
+
+  if (data.body && !data.bullets.length) {
+    const bSz = Math.round(W * 0.037);
+    const bFont = `400 ${bSz}px Inter,Arial,sans-serif`;
+    ctx.fillStyle = tpl.bodyC;
+    data.body.split('\n').forEach(line => {
+      if (!line.trim()) return;
+      const wrapped = wrapText(ctx, line, maxW, bFont);
+      ctx.font = bFont;
+      wrapped.forEach(wl => { ctx.fillText(wl, PAD, y); y += Math.round(bSz * 1.5); });
+    });
+  }
+
+  if (data.bullets.length) {
+    const bSz = Math.round(W * 0.032);
+    const starSz = Math.round(W * 0.026);
+    const lineH = Math.round(bSz * 1.7);
+    data.bullets.forEach(bullet => {
+      const starFont = `700 ${starSz}px "Space Grotesk",sans-serif`;
+      ctx.font = starFont; ctx.fillStyle = '#FCD116';
+      ctx.fillText('★', PAD, y);
+      const starW = ctx.measureText('★').width + Math.round(W * 0.016);
+      const bx = PAD + starW;
+      const parts = bullet.split(/\s*—\s*/);
+      if (parts.length > 1) {
+        const kFont2 = `700 ${bSz}px "Space Grotesk",sans-serif`;
+        const vFont = `400 ${bSz}px Inter,Arial,sans-serif`;
+        ctx.font = kFont2; ctx.fillStyle = tpl.accentBar;
+        const kLabel = parts[0] + '  —  ';
+        ctx.fillText(kLabel, bx, y);
+        const kW = ctx.measureText(kLabel).width;
+        ctx.font = vFont; ctx.fillStyle = tpl.bodyC;
+        ctx.fillText(parts.slice(1).join(' — '), bx + kW, y);
+      } else {
+        ctx.font = `400 ${bSz}px Inter,Arial,sans-serif`;
+        ctx.fillStyle = tpl.bodyC;
+        ctx.fillText(bullet, bx, y);
+      }
+      y += lineH;
+    });
+  }
+
+  const brandY = H - Math.round(H * 0.058);
+  const brandSz = Math.round(W * 0.026);
+  const handleSz = Math.round(W * 0.019);
+  ctx.font = `700 ${brandSz}px "Space Grotesk","Arial Black",sans-serif`;
+  ctx.fillStyle = tpl.brandC;
+  ctx.fillText($('brandName').value || 'AI FOR GHANA', PAD, brandY);
+  ctx.font = `400 ${handleSz}px Inter,Arial,sans-serif`;
+  ctx.fillStyle = tpl.handleC;
+  ctx.fillText($('brandHandle').value || '@AIForGhana', PAD, brandY + Math.round(handleSz * 1.7));
+
+  return c;
+}
+
+$('genSlidesBtn').addEventListener('click', () => {
+  const text = $('slideText').value.trim();
+  if (!text) { toast('Paste your slide content first ✍️'); return; }
+  if (!fontsReady) $('fontWarn').style.display = 'inline-block';
+  const [W, H] = dims();
+  const parsed = parseSlideText(text);
+  if (!parsed.length) { toast('No slides found. Use --- to separate slides.'); return; }
+  generatedSlides = [];
+  const prev = $('textSlidePrev');
+  prev.innerHTML = '';
+  parsed.forEach((data, i) => {
+    const tpl = getTpl(selectedTpl, i);
+    const c = renderTextSlide(data, tpl, W, H);
+    generatedSlides.push({ src: c, w: W, h: H, thumb: c.toDataURL('image/jpeg', 0.72), dur: null });
+    const div = document.createElement('div');
+    div.className = 'sp-thumb';
+    const pc = document.createElement('canvas');
+    pc.width = W; pc.height = H;
+    pc.getContext('2d').drawImage(c, 0, 0);
+    const n = document.createElement('span'); n.className = 'sp-n'; n.textContent = i + 1;
+    const del = document.createElement('button'); del.className = 'sp-del'; del.title = 'Remove';
+    del.innerHTML = '<i class="fas fa-times"></i>';
+    del.onclick = () => removeGenSlide(div);
+    div.appendChild(pc); div.appendChild(n); div.appendChild(del);
+    prev.appendChild(div);
+  });
+  $('addSlidesRow').style.display = 'flex';
+  toast(`${parsed.length} slide${parsed.length > 1 ? 's' : ''} created 🎉`);
+});
+
+function removeGenSlide(div) {
+  const all = [...$('textSlidePrev').querySelectorAll('.sp-thumb')];
+  const i = all.indexOf(div);
+  if (i >= 0) { generatedSlides.splice(i, 1); div.remove(); }
+  $('textSlidePrev').querySelectorAll('.sp-n').forEach((el, idx) => el.textContent = idx + 1);
+  if (!generatedSlides.length) $('addSlidesRow').style.display = 'none';
+}
+
+$('addSlidesBtn').addEventListener('click', () => {
+  if (!generatedSlides.length) { toast('Generate slides first'); return; }
+  slides.push(...generatedSlides);
+  renderThumbs();
+  setMode('upload');
+  $('setup').scrollIntoView({ behavior: 'smooth' });
+  toast(`${generatedSlides.length} slide${generatedSlides.length > 1 ? 's' : ''} added ✅`);
+});
+
+$('clearSlidesBtn').addEventListener('click', () => {
+  generatedSlides = [];
+  $('textSlidePrev').innerHTML = '';
+  $('addSlidesRow').style.display = 'none';
+});
+
+function setMode(mode) {
+  const isCreate = mode === 'create';
+  $('modeCreate').classList.toggle('on', isCreate);
+  $('modeUpload').classList.toggle('on', !isCreate);
+  $('panelCreate').style.display = isCreate ? '' : 'none';
+  $('setup').style.display = isCreate ? 'none' : '';
+}
+$('modeCreate').addEventListener('click', () => setMode('create'));
+$('modeUpload').addEventListener('click', () => setMode('upload'));
+
+document.querySelectorAll('.tpl').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.tpl').forEach(x => x.classList.remove('on'));
+    t.classList.add('on');
+    selectedTpl = t.dataset.tpl;
+  });
+});
+
+$('shape').addEventListener('change', () => {
+  if (generatedSlides.length) {
+    const btn = $('genSlidesBtn');
+    btn.textContent = '🔄 Re-generate for new shape';
+    setTimeout(() => { btn.innerHTML = '<i class="fas fa-layer-group"></i> Generate Slides'; }, 3000);
+  }
+});
+
+// ─────────────────────────────────────────────────────────────
 loadSettings();
 </script>
 </body>
