@@ -581,6 +581,44 @@ It is not a robot. It is not going to take over the world. It is a tool — and 
     // Init
     updateSpeedDisplay();
     window.addEventListener('scroll', updateProgress);
+
+    // ── ?file= URL pre-loader ──────────────────────────────────
+    // Usage: /teleprompter?file=/lessons/AI-Lesson-01-What-is-AI.md
+    // or:    /teleprompter?file=https://raufhusein.site/lessons/...md
+    (function preloadFromURL(){
+      const params = new URLSearchParams(location.search);
+      const fileParam = params.get('file');
+      const titleParam = params.get('title');
+      if(!fileParam) return;
+
+      // resolve relative vs absolute URL
+      const url = fileParam.startsWith('http') ? fileParam : fileParam;
+
+      // show loading state in textarea
+      const ta = document.getElementById('lessonContent');
+      const tl = document.getElementById('lessonTitle');
+      ta.value = 'Loading lesson…';
+      if(titleParam) tl.value = decodeURIComponent(titleParam);
+
+      fetch(url)
+        .then(r => {
+          if(!r.ok) throw new Error('HTTP ' + r.status);
+          return r.text();
+        })
+        .then(text => {
+          ta.value = text;
+          // try to extract title from first # heading if not provided
+          if(!titleParam){
+            const m = text.match(/^#\s+(.+)$/m);
+            if(m) tl.value = m[1].trim();
+          }
+          ta.dispatchEvent(new Event('input'));
+        })
+        .catch(err => {
+          ta.value = '';
+          ta.placeholder = '⚠️ Could not load lesson file: ' + err.message + '\n\nPaste your lesson content here instead.';
+        });
+    })();
 </script>
 </body>
 </html>

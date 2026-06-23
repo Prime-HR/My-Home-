@@ -269,6 +269,8 @@ footer{border-top:1px solid var(--border);background:var(--bg);padding:3rem 0 2r
     <button class="nav-tab green" data-goto="curriculum">🇬🇭 Core Curriculum</button>
     <span class="nav-arrows">←→</span>
     <button class="nav-tab" data-goto="ai-ghana">🤖 AI For Ghana</button>
+    <span class="nav-arrows">←→</span>
+    <button class="nav-tab" data-goto="prompt-bible">📖 Prompt Bible</button>
     <span class="grow"></span>
     <button id="navSearchBtn" title="Search all resources">🔍 Search all</button>
     <button id="savedToggle" title="Show saved resources">♡ Saved <span id="savedCount">0</span></button>
@@ -296,8 +298,8 @@ footer{border-top:1px solid var(--border);background:var(--bg);padding:3rem 0 2r
       <button class="clear-x" id="globalClear" aria-label="Clear search">✕</button>
     </div>
     <div class="stats">
-      <div class="stat"><b>24</b><span>Subjects</span></div>
-      <div class="stat"><b>7+</b><span>Media Types</span></div>
+      <div class="stat"><b>121+</b><span>Lessons</span></div>
+      <div class="stat"><b>8</b><span>Subjects</span></div>
       <div class="stat"><b>All</b><span>Levels</span></div>
       <div class="stat"><b>100%</b><span>Free</span></div>
     </div>
@@ -391,6 +393,53 @@ footer{border-top:1px solid var(--border);background:var(--bg);padding:3rem 0 2r
   </div>
 </section>
 
+<!-- ============ KENTE DIVIDER ============ -->
+<div class="divider" role="presentation"></div>
+
+<!-- ============ SECTION 3: GHANA PROMPT BIBLE ============ -->
+<section class="zone" id="prompt-bible">
+  <div class="wrap">
+    <div class="zone-head" style="border-left-color:var(--gold)">
+      <div class="kicker">Section Three</div>
+      <h2>📖 The Ghana Prompt Bible</h2>
+      <p class="tagline">"20 chapters. 200+ real-world prompts. Free forever."</p>
+      <p class="subline">The complete AI prompting guide for every Ghanaian — from students to entrepreneurs, teachers to leaders.</p>
+    </div>
+    <div class="badges">
+      <span class="bdg gold">Ghana Prompt Quran</span><span class="bdg green">All Levels</span>
+      <span class="bdg red">Free Forever</span><span class="bdg">20 Chapters</span>
+    </div>
+    <div class="tabs" id="tabs-pb" role="tablist" aria-label="Prompt Bible Chapters"></div>
+    <div class="fbar">
+      <div class="mtypes" id="mt-pb"></div>
+      <span class="push"></span>
+      <select id="level-pb" aria-label="Level filter">
+        <option value="all">All Levels</option><option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option><option value="advanced">Advanced</option>
+        <option value="educators">Educators</option>
+      </select>
+      <select id="sort-pb" aria-label="Sort">
+        <option value="newest">Default Order</option><option value="az">A → Z</option>
+      </select>
+    </div>
+    <div class="fbar">
+      <div class="sec-search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8A8F9A" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input id="search-pb" type="search" placeholder="Search prompts…" autocomplete="off">
+      </div>
+      <span class="push"></span>
+      <a class="cta ghost" href="/resources/slides/The_Ghana_Prompt_Quran.pdf" download style="padding:.45rem 1rem;font-size:.82rem;">⬇ Download Full PDF</a>
+    </div>
+    <div class="count" id="count-pb"></div>
+    <div class="grid" id="grid-pb"></div>
+    <div class="empty" id="empty-pb">
+      <div class="big">🔍</div>
+      No chapters found.<br>Try changing your filters.
+      <br><button data-clear="pb">Clear Filters</button>
+    </div>
+  </div>
+</section>
+
 <!-- ============ VIDEO MODAL ============ -->
 <div id="modal" role="dialog" aria-modal="true">
   <div class="box">
@@ -477,10 +526,15 @@ const SUBJECTS_AI = [
   ['ai-health','🏥','AI for Health'], ['ai-students','🎓','AI for Students'],
   ['ai-ethics','🌍','AI Ethics & Society'],
 ];
+const SUBJECTS_PB = [
+  ['all','📖','All Chapters'],
+  ['prompt-quran','📜','Ghana Prompt Quran'],
+];
+const MEDIA_PB = [['all','📄','All'],['notes','📝','Notes'],['pdf','📄','PDF'],['interactive','🧩','Interactive']];
 const MEDIA_CUR = [['all','📄','All'],['video','▶️','Video'],['audio','🎵','Audio'],['podcast','🎙️','Podcast'],['pdf','📄','PDF'],['slides','🖼️','Slides'],['notes','📝','Notes'],['article','📰','Article'],['interactive','🧩','Interactive']];
 const MEDIA_AI  = [['all','📄','All'],['video','▶️','Video'],['audio','🎵','Audio'],['podcast','🎙️','Podcast'],['pdf','📄','PDF'],['slides','🖼️','Slides'],['notes','📝','Notes'],['article','📰','Article']];
-const ICON = Object.fromEntries(SUBJECTS_CUR.concat(SUBJECTS_AI).map(s=>[s[0],s[1]]));
-const LABEL = Object.fromEntries(SUBJECTS_CUR.concat(SUBJECTS_AI).map(s=>[s[0],s[2]]));
+const ICON = Object.fromEntries(SUBJECTS_CUR.concat(SUBJECTS_AI).concat(SUBJECTS_PB).map(s=>[s[0],s[1]]));
+const LABEL = Object.fromEntries(SUBJECTS_CUR.concat(SUBJECTS_AI).concat(SUBJECTS_PB).map(s=>[s[0],s[2]]));
 const LEVEL_LABEL = {primary:'Primary',jhs:'JHS',shs1:'SHS 1',shs2:'SHS 2',shs3:'SHS 3',university:'University',beginner:'Beginner',intermediate:'Intermediate',advanced:'Advanced',educators:'Educators'};
 const LEVEL_ORDER = {primary:0,jhs:1,shs1:2,shs2:3,shs3:4,university:5,beginner:0,intermediate:1,advanced:2,educators:3};
 
@@ -488,6 +542,7 @@ const LEVEL_ORDER = {primary:0,jhs:1,shs1:2,shs2:3,shs3:4,university:5,beginner:
 const state = {
   cur:{subject:'all',type:'all',level:'all',sort:'newest',q:''},
   ai:{subject:'all',type:'all',level:'all',sort:'newest',q:''},
+  pb:{subject:'all',type:'all',level:'all',sort:'newest',q:''},
   globalQ:'', savedOnly:false,
 };
 let saved = [];
@@ -522,8 +577,10 @@ function buildMedia(elId, defs, sec){
 }
 buildTabs('tabs-cur', SUBJECTS_CUR, 'cur');
 buildTabs('tabs-ai',  SUBJECTS_AI,  'ai');
+buildTabs('tabs-pb',  SUBJECTS_PB,  'pb');
 buildMedia('mt-cur', MEDIA_CUR, 'cur');
 buildMedia('mt-ai',  MEDIA_AI,  'ai');
+buildMedia('mt-pb',  MEDIA_PB,  'pb');
 
 /* ============ FILTER + SORT ============ */
 function matches(r, sec){
@@ -610,8 +667,9 @@ function observeCards(grid){
   }
   grid.querySelectorAll('.card').forEach(c=>revealObs.observe(c));
 }
+const SEC_MAP = {cur:'curriculum', ai:'ai-ghana', pb:'prompt-bible'};
 function render(sec){
-  const all = RES.filter(r=>r.section === (sec==='cur'?'curriculum':'ai-ghana'));
+  const all = RES.filter(r=>r.section === (SEC_MAP[sec]||sec));
   const list = sortList(all.filter(r=>matches(r,sec)), state[sec].sort);
   const grid = $('grid-'+sec), empty = $('empty-'+sec);
   grid.innerHTML = list.map(card).join('');
@@ -619,7 +677,7 @@ function render(sec){
   $('count-'+sec).textContent = `Showing ${list.length} of ${all.length} resources`;
   observeCards(grid);
 }
-function renderAll(){ render('cur'); render('ai'); }
+function renderAll(){ render('cur'); render('ai'); render('pb'); }
 
 /* ============ SAVE / BOOKMARK ============ */
 function updateSavedUI(){
@@ -683,6 +741,15 @@ function openResource(r, cardEl){
   switch(r.type){
     case 'video': openModal(r); break;
     case 'audio': case 'podcast': inlineAudio(cardEl, r); break;
+    case 'notes':
+      // .md files → teleprompter with ?file= pre-loader
+      if(r.url && r.url.endsWith('.md')){
+        const titleEnc = encodeURIComponent(r.title);
+        window.open('/teleprompter?file=' + encodeURIComponent(r.url) + '&title=' + titleEnc, '_blank', 'noopener');
+      } else {
+        window.open(r.url, '_blank', 'noopener');
+      }
+      break;
     default: window.open(r.url, '_blank', 'noopener');
   }
 }
@@ -708,13 +775,17 @@ document.addEventListener('click',e=>{
 /* ============ FILTER CONTROLS ============ */
 $('level-cur').addEventListener('change',e=>{ state.cur.level=e.target.value; render('cur'); });
 $('level-ai').addEventListener('change', e=>{ state.ai.level =e.target.value; render('ai'); });
+$('level-pb').addEventListener('change', e=>{ state.pb.level =e.target.value; render('pb'); });
 $('sort-cur').addEventListener('change', e=>{ state.cur.sort=e.target.value; render('cur'); });
 $('sort-ai').addEventListener('change',  e=>{ state.ai.sort =e.target.value; render('ai'); });
+$('sort-pb').addEventListener('change',  e=>{ state.pb.sort =e.target.value; render('pb'); });
 $('search-cur').addEventListener('input',e=>{ state.cur.q=e.target.value; render('cur'); });
+$('search-pb').addEventListener('input', e=>{ state.pb.q =e.target.value; render('pb'); });
 function clearFilters(sec){
   state[sec] = {subject:'all',type:'all',level:'all',sort:'newest',q:''};
   state.globalQ=''; $('globalSearch').value=''; $('heroSearchWrap').classList.remove('has-q');
   if(sec==='cur') $('search-cur').value='';
+  if(sec==='pb')  $('search-pb').value='';
   const tabs = $('tabs-'+sec), mts = $('mt-'+sec);
   tabs.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.k==='all'));
   mts.querySelectorAll('.mt').forEach(t=>t.classList.toggle('on',t.dataset.k==='all'));
@@ -755,7 +826,7 @@ if('IntersectionObserver' in window){
       }
     });
   },{rootMargin:'-40% 0px -55% 0px'});
-  secObs.observe($('curriculum')); secObs.observe($('ai-ghana'));
+  secObs.observe($('curriculum')); secObs.observe($('ai-ghana')); secObs.observe($('prompt-bible'));
 }
 
 /* ============ PROMPT LIBRARY VIEWER ============ */

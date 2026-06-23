@@ -1,684 +1,205 @@
 /* ============================================================
-   AI FOR GHANA — LEARNING HUB DATA
-   How to add resources: copy one object in the array below.
-   Change the fields. Save & push. Or ask Claude to add them for you.
-
-   FIELDS:
-   {
-     id:          'unique-id',
-     title:       'Resource Title',
-     description: 'Short description, 1–2 sentences.',
-     section:     'curriculum' | 'ai-ghana',
-     subject:     // CURRICULUM:
-                  'mathematics' | 'science' | 'english' | 'social-studies' |
-                  'ict' | 'rme' | 'creative-arts' | 'ghanaian-languages' |
-                  'chemistry' | 'physics' | 'biology' | 'elective-maths' |
-                  'literature' | 'business' | 'economics' | 'government' |
-                  'agriculture' | 'home-economics' | 'music' | 'pe' |
-                  'french' | 'technical-drawing' | 'engineering' |
-                  // AI FOR GHANA:
-                  'ai-basics' | 'ai-tools' | 'prompt-quran' | 'gaep' |
-                  'documentary' | 'ai-business' | 'ai-agriculture' |
-                  'ai-health' | 'ai-students' | 'ai-ethics',
-     type:        'video' | 'audio' | 'podcast' | 'pdf' | 'slides' |
-                  'notes' | 'article' | 'interactive',
-     level:       'primary' | 'jhs' | 'shs1' | 'shs2' | 'shs3' | 'university' |
-                  'beginner' | 'intermediate' | 'advanced' | 'educators',
-     waec:        true | false,        // shows WAEC ✓ badge
-     featured:    true | false,        // full-width featured card
-     url:         'https://...' or 'resources/file.pdf',
-     downloadUrl: 'resources/file.pdf',   // optional separate download
-     audioUrl:    'resources/audio.mp3',  // optional audio version
-     thumbnail:   'resources/thumb.jpg',  // optional thumbnail
-     duration:    '12 min',               // video/audio/podcast
-     language:    'en' | 'twi' | 'en+twi',
-     tags:        ['waec','shs','core'],  // extra searchable words
-     dateAdded:   'YYYY-MM-DD'
-   }
+   AI FOR GHANA — LEARNING HUB DATA  (resources.js)
+   Auto-generated June 2026 — 150+ resources across 3 sections
    ============================================================ */
 window.RESOURCES = [
 
-  /* ================= SECTION 1 — GHANA CORE CURRICULUM ================= */
-
-  { id: 'math-001', title: 'WAEC Core Mathematics — Past Questions 2020–2024',
-    description: 'Complete past question papers with worked solutions for SHS 3 students.',
-    section: 'curriculum', subject: 'mathematics', type: 'pdf', level: 'shs3',
-    waec: true, featured: true, url: '/resources/waec-core-maths-2020-2024.pdf',
-    tags: ['waec','past questions','shs'], dateAdded: '2026-07-01' },
-
-  { id: 'eng-001', title: 'English Language Essay Writing Masterclass',
-    description: 'Step-by-step guide to scoring A1 in WAEC English Language essay section.',
-    section: 'curriculum', subject: 'english', type: 'notes', level: 'shs2',
-    waec: true, url: '/resources/english-essay-guide.pdf',
-    tags: ['essay','writing','waec'], dateAdded: '2026-07-01' },
-
-  { id: 'sci-001', title: 'Integrated Science Revision — JHS 3',
-    description: 'Full revision notes covering all BECE Integrated Science topics.',
-    section: 'curriculum', subject: 'science', type: 'pdf', level: 'jhs',
-    waec: true, url: '/resources/jhs3-science-revision.pdf',
-    tags: ['bece','revision','jhs'], dateAdded: '2026-07-01' },
-
-  { id: 'ict-001', title: 'ICT Practical Guide — SHS Level',
-    description: 'Hands-on exercises for SHS ICT covering spreadsheets, word processing, and databases.',
-    section: 'curriculum', subject: 'ict', type: 'slides', level: 'shs1',
-    waec: false, url: '/resources/shs-ict-practical.pdf',
-    tags: ['ict','practical','spreadsheets'], dateAdded: '2026-07-01' },
-
-  { id: 'biz-001', title: 'Business Management — Elective Concepts Explained',
-    description: 'Visual notes covering all Business Management elective topics for SHS 2 and 3.',
-    section: 'curriculum', subject: 'business', type: 'slides', level: 'shs2',
-    waec: true, url: '/resources/business-mgmt-notes.pdf',
-    tags: ['elective','business'], dateAdded: '2026-07-01' },
-
-  { id: 'agri-001', title: 'Agriculture Science — Crop Production & Soil',
-    description: 'Detailed notes on crop production, soil types, and farm management for SHS.',
-    section: 'curriculum', subject: 'agriculture', type: 'notes', level: 'shs2',
-    waec: true, url: '/resources/agri-crop-soil.pdf',
-    tags: ['crops','soil','farming'], dateAdded: '2026-07-01' },
-
-  { id: 'ict-002', title: 'Your Pocket Supercomputer',
-    description: 'The phone in your hand is more powerful than the computer that landed man on the moon.',
-    section: 'curriculum', subject: 'ict', type: 'slides', level: 'jhs',
-    waec: false, featured: true, url: 'resources/Slids/YOUR_POCKET_SUPERCOMPUTER.pdf',
-    tags: ['phones','technology'], dateAdded: '2026-06-08' },
-
-  { id: 'tool-001', title: 'Lesson Teleprompter',
-    description: 'Paste your slides and read them hands-free in auto-scroll. Built for teachers and creators.',
-    section: 'curriculum', subject: 'ict', type: 'interactive', level: 'university',
-    waec: false, url: '/teleprompter',
-    tags: ['tool','teacher'], dateAdded: '2026-06-06' },
-
-  { id: 'tool-002', title: 'Slide → Video Converter',
-    description: 'Turn a slide PDF into a shareable video for TikTok, Reels and more.',
-    section: 'curriculum', subject: 'ict', type: 'interactive', level: 'university',
-    waec: false, url: '/slide-to-video',
-    tags: ['tool','video','creator'], dateAdded: '2026-06-07' },
-
-  /* ================= SECTION 2 — AI FOR GHANA ================= */
-
-  { id: 'ai-001', title: 'Lesson 1 — What is Artificial Intelligence?',
-    description: 'AI explained through the Kejetia market woman analogy. Perfect for complete beginners.',
-    section: 'ai-ghana', subject: 'ai-basics', type: 'video', level: 'beginner',
-    waec: false, featured: true, url: 'https://youtu.be/2jdLfVRu8WY',
-    duration: '8 min', language: 'en', tags: ['lesson 1','beginner'], dateAdded: '2026-07-01' },
-
-  { id: 'ai-002', title: 'The Ghana Prompt Formula — Master Guide',
-    description: 'The complete guide to Role + Task + Context + Format + Constraint. 14 chapters.',
-    section: 'ai-ghana', subject: 'prompt-quran', type: 'pdf', level: 'intermediate',
-    waec: false, featured: true, url: 'SLIDE%20DOC/The_Ghana_Prompt_Quran.pdf', downloadUrl: 'SLIDE%20DOC/The_Ghana_Prompt_Quran.pptx',
-    tags: ['prompting','formula'], dateAdded: '2026-07-01' },
-
-  { id: 'ai-003', title: 'Lesson 2 — How Machines Learn (The Tailor\'s Apprentice)',
-    description: 'Machines learn like a tailor\'s apprentice — examples, try, correct, improve. Train one yourself with the bean test.',
-    section: 'ai-ghana', subject: 'ai-basics', type: 'video', level: 'beginner',
-    waec: false, featured: true, url: 'https://youtu.be/aOX__KH50Bg',
-    duration: '8 min', language: 'en', tags: ['lesson 2','machine learning','apprentice'], dateAdded: '2026-06-12' },
-
-  { id: 'ai-004', title: 'GAEP Lesson Plan — What is AI? (Teacher Copy)',
-    description: 'Complete 45-minute lesson plan for SHS teachers. NaCCA-aligned. Print-ready.',
-    section: 'ai-ghana', subject: 'gaep', type: 'pdf', level: 'educators',
-    waec: false, url: '/resources/gaep-lesson1-teacher.pdf',
-    tags: ['lesson plan','teacher','nacca'], dateAdded: '2026-07-01' },
-
-  { id: 'ai-005', title: 'AI for Your Chop Bar — Business Episode 1',
-    description: 'How Ghanaian entrepreneurs can use AI for marketing, customer service, and inventory.',
-    section: 'ai-ghana', subject: 'ai-business', type: 'podcast', level: 'beginner',
-    waec: false, url: '/resources/ai-chop-bar-ep1.mp3',
-    duration: '18 min', language: 'en', tags: ['business','entrepreneur'], dateAdded: '2026-07-01' },
-
-  { id: 'ai-006', title: 'AI Ethics — Bias, Truth, and Ghana',
-    description: 'What happens when AI gets Ghana wrong? A discussion on AI bias for SHS students.',
-    section: 'ai-ghana', subject: 'ai-ethics', type: 'article', level: 'shs2',
-    waec: false, url: '/resources/ai-ethics-ghana.html',
-    tags: ['ethics','bias'], dateAdded: '2026-07-01' },
-
-  { id: 'ai-007', title: 'Ghanaian AI Power (Video)',
-    description: 'How AI can power the next generation of Ghanaian innovators.',
-    section: 'ai-ghana', subject: 'documentary', type: 'video', level: 'beginner',
-    waec: false, featured: true, url: 'resources/Video/Ghanaian_AI_Power.mp4',
-    duration: '3 min', language: 'en', tags: ['documentary','innovators'], dateAdded: '2026-06-08' },
-
-  { id: 'ai-008', title: 'Ghanaian AI Power — Slides',
-    description: 'Slides: understanding and harnessing AI for Ghana\'s future.',
-    section: 'ai-ghana', subject: 'ai-basics', type: 'slides', level: 'beginner',
-    waec: false, url: 'resources/Slids/Ghanaian_AI_Power.pdf',
-    downloadUrl: 'resources/Slids/Ghanaian_AI_Power.pptx',
-    tags: ['slides','foundation'], dateAdded: '2026-06-08' },
-
-  { id: 'ai-009', title: 'Ghana AI Business Blueprint',
-    description: 'Use AI to start and grow a business right here in Ghana — Lesson 10: AI as an entrepreneur.',
-    section: 'ai-ghana', subject: 'ai-business', type: 'slides', level: 'shs3',
-    waec: false, url: 'resources/Slids/Ghana_AI_Business_Blueprint.pdf',
-    downloadUrl: 'resources/Slids/Ghana_AI_Business_Blueprint.pptx',
-    tags: ['business','blueprint'], dateAdded: '2026-06-08' },
-
-  { id: 'ai-010', title: 'The Digital Chop Bar',
-    description: 'Taking everyday Ghanaian business online with simple AI and digital tools.',
-    section: 'ai-ghana', subject: 'ai-business', type: 'slides', level: 'beginner',
-    waec: false, url: 'resources/Slids/The_Digital_Chop_Bar.pdf',
-    downloadUrl: 'resources/Slids/The_Digital_Chop_Bar.pptx',
-    tags: ['business','digital'], dateAdded: '2026-06-08' },
-
-  { id: 'ai-011', title: 'AI For Ghana — TikTok Channel',
-    description: 'Free, bite-size AI lessons in Ghanaian context. Follow @AIForGhana.',
-    section: 'ai-ghana', subject: 'ai-students', type: 'video', level: 'beginner',
-    waec: false, url: 'https://www.tiktok.com/@AIForGhana',
-    language: 'en+twi', tags: ['tiktok','channel'], dateAdded: '2026-06-01' },
-
-
-
-  /* ================= LESSON SLIDES LIBRARY (NotebookLM decks) ================= */
-
-  { id: 'slide-ca-001', title: 'The Ghana Creator Economy — Slide Deck',
-    description: 'Turn your creativity into income: the five money roads, the hustle ladder and the pricing formula. Companion to Creative Arts Lesson 2.',
-    section: 'curriculum', subject: 'creative-arts', type: 'slides', level: 'shs2',
-    waec: false, featured: true, url: 'lesson-slides/creative-arts/The_Ghana_Creator_Economy.pdf',
-    tags: ['slides','creator economy','income'], dateAdded: '2026-06-13' },
-
-  { id: 'slide-ca-002', title: 'Ancestral Code — Adinkra & Kente Slide Deck',
-    description: 'Ghana\'s design language decoded: Adinkra symbols, kente mathematics and meaning. Companion to Creative Arts Lesson 3.',
-    section: 'curriculum', subject: 'creative-arts', type: 'slides', level: 'shs1',
-    waec: false, url: 'lesson-slides/creative-arts/ANCESTRAL_CODE.pdf',
-    tags: ['slides','adinkra','kente','design'], dateAdded: '2026-06-13' },
-
-  { id: 'slide-ca-003', title: 'Ancestral UI — Ghanaian Design Goes Digital',
-    description: 'From cloth to screen: using Adinkra and kente in modern digital design and AI art — honestly.',
-    section: 'curriculum', subject: 'creative-arts', type: 'slides', level: 'shs2',
-    waec: false, url: 'lesson-slides/creative-arts/Ancestral_UI.pdf',
-    tags: ['slides','digital design','adinkra','ai art'], dateAdded: '2026-06-13' },
-
-  { id: 'slide-ca-004', title: 'The Ghanaian Music Blueprint — Highlife to Hiplife',
-    description: 'The story and business of Ghanaian music: highlife, hiplife, afrobeats and the money behind the sound. Companion to Creative Arts Lesson 4.',
-    section: 'curriculum', subject: 'creative-arts', type: 'slides', level: 'shs2',
-    waec: false, url: 'lesson-slides/creative-arts/The_Ghanaian_Music_Blueprint.pdf',
-    tags: ['slides','highlife','hiplife','music business'], dateAdded: '2026-06-13' },
-
-  { id: 'slide-ca-005', title: 'Drawing Decoded — Train Your Hand and Eye',
-    description: 'Drawing is a learnable skill: the five elements, the shapes-first method and the daily sketch ritual. Companion to Creative Arts Lesson 5.',
-    section: 'curriculum', subject: 'creative-arts', type: 'slides', level: 'jhs',
-    waec: false, url: 'lesson-slides/creative-arts/Drawing_Decoded.pdf',
-    tags: ['slides','drawing','art skills'], dateAdded: '2026-06-13' },
-
-  { id: 'slide-pe-001', title: 'Your Human Hardware Manual — Body Basics',
-    description: 'Your body is your first machine: how to fuel, move and maintain it. Companion to PE & Health Lesson 1.',
-    section: 'curriculum', subject: 'pe', type: 'slides', level: 'jhs',
-    waec: false, url: 'lesson-slides/pe-health/Your_Human_Hardware_Manual.pdf',
-    tags: ['slides','fitness','body','health'], dateAdded: '2026-06-13' },
-
-  { id: 'slide-pe-002', title: 'Ghanaian Budget Superfood Guide — Slide Deck',
-    description: 'The cheapest foods in the market are the most nutritious: the plate rule, the budget hall of fame and the three traps. Companion to PE & Health Lesson 2.',
-    section: 'curriculum', subject: 'pe', type: 'slides', level: 'jhs',
-    waec: false, featured: true, url: 'lesson-slides/pe-health/Ghanaian_Budget_Superfood_Guide.pdf',
-    tags: ['slides','nutrition','food','budget'], dateAdded: '2026-06-13' },
-
-  { id: 'slide-pe-003', title: 'Ghanaian Student Mental Playbook — Slide Deck',
-    description: 'Strong mind, strong life: the four free tools, warning signs and where to get help in Ghana. Companion to PE & Health Lesson 3.',
-    section: 'curriculum', subject: 'pe', type: 'slides', level: 'shs1',
-    waec: false, url: 'lesson-slides/pe-health/Ghanaian_Student_Mental_Playbook.pdf',
-    tags: ['slides','mental health','wellbeing'], dateAdded: '2026-06-13' },
-
-  /* ================= SLIDE DOC LIBRARY ================= */
-  { id: 'slide-001', title: "Ghana AI Health Guide",
-    description: "How AI is transforming healthcare in Ghana — for students, nurses and health workers.",
-    section: 'ai-ghana', subject: 'ai-health', type: 'slides', level: 'intermediate',
-    waec: false, url: 'SLIDE%20DOC/Ghana_AI_Health_Guide.pdf', downloadUrl: 'SLIDE%20DOC/Ghana_AI_Health_Guide.pptx',
-    tags: ['slides','deck'], dateAdded: '2026-06-11' },
-
-  { id: 'slide-002', title: "Ghana AI Structural Engineering",
-    description: "AI tools and workflows for structural engineering — designed for Ghanaian engineers and students.",
-    section: 'curriculum', subject: 'engineering', type: 'slides', level: 'university',
-    waec: false, url: 'SLIDE%20DOC/Ghana_AI_Structural_Engineering.pdf', downloadUrl: 'SLIDE%20DOC/Ghana_AI_Structural_Engineering.pptx',
-    tags: ['slides','deck'], dateAdded: '2026-06-11' },
-
-  { id: 'slide-003', title: "Ghana Digital Armoury",
-    description: "The complete toolkit of digital and AI tools every Ghanaian should master.",
-    section: 'ai-ghana', subject: 'ai-tools', type: 'slides', level: 'beginner',
-    waec: false, featured: true, url: 'SLIDE%20DOC/Ghana_Digital_Armoury.pdf', downloadUrl: 'SLIDE%20DOC/Ghana_Digital_Armoury.pptx',
-    tags: ['slides','deck'], dateAdded: '2026-06-11' },
-
-  { id: 'slide-004', title: "Ghana Mobile App Blueprint",
-    description: "From idea to app store — the blueprint for building mobile apps in Ghana.",
-    section: 'ai-ghana', subject: 'ai-business', type: 'slides', level: 'intermediate',
-    waec: false, url: 'SLIDE%20DOC/Ghana_Mobile_App_Blueprint.pdf', downloadUrl: 'SLIDE%20DOC/Ghana_Mobile_App_Blueprint.pptx',
-    tags: ['slides','deck'], dateAdded: '2026-06-11' },
-
-  { id: 'slide-005', title: "The Digital Skills for Everyone",
-    description: "Essential digital skills every Ghanaian needs — explained simply, step by step.",
-    section: 'curriculum', subject: 'ict', type: 'slides', level: 'jhs',
-    waec: false, url: 'SLIDE%20DOC/The%20Digital%20Skills%20for%20Every.pdf', downloadUrl: 'SLIDE%20DOC/The%20Digital%20Skills%20for%20Every.pptx',
-    tags: ['slides','deck'], dateAdded: '2026-06-11' },
-
-  { id: 'slide-006', title: "The Telco & Mobile Money Context Block (MTN, Telecel, AirtelTigo)",
-    description: "Understanding Ghana's telco and mobile money landscape — context for builders and entrepreneurs.",
-    section: 'ai-ghana', subject: 'ai-business', type: 'slides', level: 'intermediate',
-    waec: false, url: 'SLIDE%20DOC/The%20Telco%20%26%20Mobile%20Money%20Context%20Block%20%28MTN%2C%20Telecel%2C%20AirtelTigo%29.pdf', downloadUrl: 'SLIDE%20DOC/The%20Telco%20%26%20Mobile%20Money%20Context%20Block%20%28MTN%2C%20Telecel%2C%20AirtelTigo%29.pptx',
-    tags: ['slides','deck'], dateAdded: '2026-06-11' },
-
-  { id: 'slide-007', title: "The AI Lesson Architect",
-    description: "Design world-class lessons with AI — the complete guide for Ghanaian teachers.",
-    section: 'ai-ghana', subject: 'gaep', type: 'slides', level: 'educators',
-    waec: false, url: 'SLIDE%20DOC/The_AI_Lesson_Architect.pdf',
-    tags: ['slides','teacher','lesson design'], dateAdded: '2026-06-11' },
-
-  /* ================= PROMPT LIBRARY (PROMPTS folder) ================= */
-
-  { id: 'prompt-100', title: "Climate Change Mitigation — 75 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Climate Change Mitigation. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/75%20Climate%20Change%20Mitigation%20Prompts.markdown', downloadUrl: 'PROMPTS/75%20Climate%20Change%20Mitigation%20Prompts.markdown',
-    tags: ['prompts', "climate change mitigation"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-101', title: "Computer Architecture — 75 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Computer Architecture. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/75%20Computer%20Architecture%20Prompts.markdown', downloadUrl: 'PROMPTS/75%20Computer%20Architecture%20Prompts.markdown',
-    tags: ['prompts', "computer architecture"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-102', title: "Software Engineering — 75 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Software Engineering. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/75%20Software%20Engineering%20Prompts.markdown', downloadUrl: 'PROMPTS/75%20Software%20Engineering%20Prompts.markdown',
-    tags: ['prompts', "software engineering"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-103', title: "Sustainable Design in Engineering — 75 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Sustainable Design in Engineering. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/75%20Sustainable%20Design%20in%20Engineering%20Prompts.markdown', downloadUrl: 'PROMPTS/75%20Sustainable%20Design%20in%20Engineering%20Prompts.markdown',
-    tags: ['prompts', "sustainable design in"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-104', title: "Waste Management — 75 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Waste Management. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/75%20Waste%20Management%20Prompts.markdown', downloadUrl: 'PROMPTS/75%20Waste%20Management%20Prompts.markdown',
-    tags: ['prompts', "waste management"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-105', title: "Water Treatment — 75 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Water Treatment. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/75%20Water%20Treatment%20Prompts.markdown', downloadUrl: 'PROMPTS/75%20Water%20Treatment%20Prompts.markdown',
-    tags: ['prompts', "water treatment"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-106', title: "Cybersecurity — 75 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Cybersecurity. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/75_Cybersecurity_Prompts.xlsx', downloadUrl: 'PROMPTS/75_Cybersecurity_Prompts.xlsx',
-    tags: ['prompts', "cybersecurity"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-107', title: "Networking — 75 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Networking. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/75_Networking_Prompts.xlsx', downloadUrl: 'PROMPTS/75_Networking_Prompts.xlsx',
-    tags: ['prompts', "networking"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-108', title: "DSP — 80 AI Prompts",
-    description: "Ready-to-use AI prompt pack on DSP. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/80_DSP_Prompts.xlsx', downloadUrl: 'PROMPTS/80_DSP_Prompts.xlsx',
-    tags: ['prompts', "dsp"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-109', title: "Geotechnical — 92 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Geotechnical. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/92_Geotechnical_Prompts.xlsx', downloadUrl: 'PROMPTS/92_Geotechnical_Prompts.xlsx',
-    tags: ['prompts', "geotechnical"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-110', title: "Crop Production — 95 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Crop Production. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/95_Crop_Production_Prompts.xlsx', downloadUrl: 'PROMPTS/95_Crop_Production_Prompts.xlsx',
-    tags: ['prompts', "crop production"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-111', title: "AI Insemination — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on AI Insemination. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_AI_Insemination_Prompts.xlsx', downloadUrl: 'PROMPTS/99_AI_Insemination_Prompts.xlsx',
-    tags: ['prompts', "ai insemination"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-112', title: "Acids Bases pH — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Acids Bases pH. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_Acids_Bases_pH_Prompts.xlsx', downloadUrl: 'PROMPTS/99_Acids_Bases_pH_Prompts.xlsx',
-    tags: ['prompts', "acids bases ph"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-113', title: "Automated Machinery — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Automated Machinery. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_Automated_Machinery_Prompts.xlsx', downloadUrl: 'PROMPTS/99_Automated_Machinery_Prompts.xlsx',
-    tags: ['prompts', "automated machinery"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-114', title: "CRISPR Gene Editing — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on CRISPR Gene Editing. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_CRISPR_Gene_Editing_Prompts.xlsx', downloadUrl: 'PROMPTS/99_CRISPR_Gene_Editing_Prompts.xlsx',
-    tags: ['prompts', "crispr gene editing"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-115', title: "Chemical Equilibrium — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Chemical Equilibrium. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_Chemical_Equilibrium_Prompts.xlsx', downloadUrl: 'PROMPTS/99_Chemical_Equilibrium_Prompts.xlsx',
-    tags: ['prompts', "chemical equilibrium"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-116', title: "Chemical Formulas Equations — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Chemical Formulas Equations. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_Chemical_Formulas_Equations_Prompts.xlsx', downloadUrl: 'PROMPTS/99_Chemical_Formulas_Equations_Prompts.xlsx',
-    tags: ['prompts', "chemical formulas equations"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-117', title: "Chemical Formulas — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Chemical Formulas. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_Chemical_Formulas_Prompts.xlsx', downloadUrl: 'PROMPTS/99_Chemical_Formulas_Prompts.xlsx',
-    tags: ['prompts', "chemical formulas"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-118', title: "Chemical Kinetics — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Chemical Kinetics. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_Chemical_Kinetics_Prompts.xlsx', downloadUrl: 'PROMPTS/99_Chemical_Kinetics_Prompts.xlsx',
-    tags: ['prompts', "chemical kinetics"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-119', title: "Colligative Properties — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Colligative Properties. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_Colligative_Properties_Prompts.xlsx', downloadUrl: 'PROMPTS/99_Colligative_Properties_Prompts.xlsx',
-    tags: ['prompts', "colligative properties"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-120', title: "Drones Sensors — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Drones Sensors. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_Drones_Sensors_Prompts.xlsx', downloadUrl: 'PROMPTS/99_Drones_Sensors_Prompts.xlsx',
-    tags: ['prompts', "drones sensors"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-121', title: "Functional Groups — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Functional Groups. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_Functional_Groups_Prompts.xlsx', downloadUrl: 'PROMPTS/99_Functional_Groups_Prompts.xlsx',
-    tags: ['prompts', "functional groups"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-122', title: "GMO Crop — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on GMO Crop. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_GMO_Crop_Prompts.xlsx', downloadUrl: 'PROMPTS/99_GMO_Crop_Prompts.xlsx',
-    tags: ['prompts', "gmo crop"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-123', title: "GPS Mapping — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on GPS Mapping. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_GPS_Mapping_Prompts.xlsx', downloadUrl: 'PROMPTS/99_GPS_Mapping_Prompts.xlsx',
-    tags: ['prompts', "gps mapping"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-124', title: "Group Chemistry — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Group Chemistry. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_Group_Chemistry_Prompts.xlsx', downloadUrl: 'PROMPTS/99_Group_Chemistry_Prompts.xlsx',
-    tags: ['prompts', "group chemistry"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-125', title: "Hydrocarbons — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Hydrocarbons. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_Hydrocarbons_Prompts.xlsx', downloadUrl: 'PROMPTS/99_Hydrocarbons_Prompts.xlsx',
-    tags: ['prompts', "hydrocarbons"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-126', title: "Isomerism — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Isomerism. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_Isomerism_Prompts.xlsx', downloadUrl: 'PROMPTS/99_Isomerism_Prompts.xlsx',
-    tags: ['prompts', "isomerism"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-127', title: "Matter and Properties — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Matter and Properties. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_Matter_and_Properties_Prompts.xlsx', downloadUrl: 'PROMPTS/99_Matter_and_Properties_Prompts.xlsx',
-    tags: ['prompts', "matter and properties"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-128', title: "Metallurgy — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Metallurgy. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_Metallurgy_Prompts.xlsx', downloadUrl: 'PROMPTS/99_Metallurgy_Prompts.xlsx',
-    tags: ['prompts', "metallurgy"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-129', title: "Nonmetals Compounds — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Nonmetals Compounds. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_Nonmetals_Compounds_Prompts.xlsx', downloadUrl: 'PROMPTS/99_Nonmetals_Compounds_Prompts.xlsx',
-    tags: ['prompts', "nonmetals compounds"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-130', title: "Perfume Mixing — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Perfume Mixing. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_Perfume_Mixing_Prompts.xlsx', downloadUrl: 'PROMPTS/99_Perfume_Mixing_Prompts.xlsx',
-    tags: ['prompts', "perfume mixing"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-131', title: "Perfume Producing — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Perfume Producing. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_Perfume_Producing_Prompts.xlsx', downloadUrl: 'PROMPTS/99_Perfume_Producing_Prompts.xlsx',
-    tags: ['prompts', "perfume producing"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-132', title: "Periodic Trends — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Periodic Trends. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_Periodic_Trends_Prompts.xlsx', downloadUrl: 'PROMPTS/99_Periodic_Trends_Prompts.xlsx',
-    tags: ['prompts', "periodic trends"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-133', title: "Repro Management — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Repro Management. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_Repro_Management_Prompts.xlsx', downloadUrl: 'PROMPTS/99_Repro_Management_Prompts.xlsx',
-    tags: ['prompts', "repro management"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-134', title: "Solutions Solubility — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Solutions Solubility. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_Solutions_Solubility_Prompts.xlsx', downloadUrl: 'PROMPTS/99_Solutions_Solubility_Prompts.xlsx',
-    tags: ['prompts', "solutions solubility"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-135', title: "States of Matter — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on States of Matter. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_States_of_Matter_Prompts.xlsx', downloadUrl: 'PROMPTS/99_States_of_Matter_Prompts.xlsx',
-    tags: ['prompts', "states of matter"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-136', title: "Thermodynamics — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Thermodynamics. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_Thermodynamics_Prompts.xlsx', downloadUrl: 'PROMPTS/99_Thermodynamics_Prompts.xlsx',
-    tags: ['prompts', "thermodynamics"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-137', title: "Transition Metals Coordination — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Transition Metals Coordination. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/99_Transition_Metals_Coordination_Prompts.xlsx', downloadUrl: 'PROMPTS/99_Transition_Metals_Coordination_Prompts.xlsx',
-    tags: ['prompts', "transition metals coordination"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-138', title: "Bioinstrumentation — AI Prompts",
-    description: "Ready-to-use AI prompt pack on Bioinstrumentation. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Bioinstrumentation_Prompts.xlsx', downloadUrl: 'PROMPTS/Bioinstrumentation_Prompts.xlsx',
-    tags: ['prompts', "bioinstrumentation"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-139', title: "Biomechanics — AI Prompts",
-    description: "Ready-to-use AI prompt pack on Biomechanics. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Biomechanics%20Prompts%20for%20Excel.csv', downloadUrl: 'PROMPTS/Biomechanics%20Prompts%20for%20Excel.csv',
-    tags: ['prompts', "biomechanics"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-140', title: "Biomedical Device — AI Prompts",
-    description: "Ready-to-use AI prompt pack on Biomedical Device. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Biomedical_Device_Prompts.xlsx', downloadUrl: 'PROMPTS/Biomedical_Device_Prompts.xlsx',
-    tags: ['prompts', "biomedical device"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-141', title: "Cattle Feed Formulation Supplements — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Cattle Feed Formulation Supplements. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Cattle_Feed_Formulation_Supplements_99.xlsx', downloadUrl: 'PROMPTS/Cattle_Feed_Formulation_Supplements_99.xlsx',
-    tags: ['prompts', "cattle feed formulation"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-142', title: "Disease Prevention — AI Prompts",
-    description: "Ready-to-use AI prompt pack on Disease Prevention. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Disease_Prevention_Prompts.xlsx', downloadUrl: 'PROMPTS/Disease_Prevention_Prompts.xlsx',
-    tags: ['prompts', "disease prevention"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-143', title: "Environmental Impact Assessment — AI Prompts",
-    description: "Ready-to-use AI prompt pack on Environmental Impact Assessment. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Environmental_Impact_Assessment_Prompts.xlsx', downloadUrl: 'PROMPTS/Environmental_Impact_Assessment_Prompts.xlsx',
-    tags: ['prompts', "environmental impact assessment"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-144', title: "Heat Transfer — AI Prompts",
-    description: "Ready-to-use AI prompt pack on Heat Transfer. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Heat_Transfer_Prompts.xlsx', downloadUrl: 'PROMPTS/Heat_Transfer_Prompts.xlsx',
-    tags: ['prompts', "heat transfer"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-145', title: "Housing Environment Cattle With Measurements — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Housing Environment Cattle With Measurements. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Housing_Environment_Cattle_With_Measurements_99.xlsx', downloadUrl: 'PROMPTS/Housing_Environment_Cattle_With_Measurements_99.xlsx',
-    tags: ['prompts', "housing environment cattle"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-146', title: "Housing Environment Poultry — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Housing Environment Poultry. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Housing_Environment_Poultry_99.xlsx', downloadUrl: 'PROMPTS/Housing_Environment_Poultry_99.xlsx',
-    tags: ['prompts', "housing environment poultry"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-147', title: "Housing Environment Poultry With Measurements — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Housing Environment Poultry With Measurements. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Housing_Environment_Poultry_With_Measurements_99.xlsx', downloadUrl: 'PROMPTS/Housing_Environment_Poultry_With_Measurements_99.xlsx',
-    tags: ['prompts', "housing environment poultry"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-148', title: "Hydrology — AI Prompts",
-    description: "Ready-to-use AI prompt pack on Hydrology. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Hydrology_Prompts.xlsx', downloadUrl: 'PROMPTS/Hydrology_Prompts.xlsx',
-    tags: ['prompts', "hydrology"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-149', title: "Livestock Breeding Genetic Selection — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Livestock Breeding Genetic Selection. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Livestock_Breeding_Genetic_Selection_99.xlsx', downloadUrl: 'PROMPTS/Livestock_Breeding_Genetic_Selection_99.xlsx',
-    tags: ['prompts', "livestock breeding genetic"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-150', title: "Machine Design — AI Prompts",
-    description: "Ready-to-use AI prompt pack on Machine Design. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Machine_Design_Prompts.xlsx', downloadUrl: 'PROMPTS/Machine_Design_Prompts.xlsx',
-    tags: ['prompts', "machine design"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-151', title: "Manufacturing Processes — AI Prompts",
-    description: "Ready-to-use AI prompt pack on Manufacturing Processes. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Manufacturing_Processes_Prompts.xlsx', downloadUrl: 'PROMPTS/Manufacturing_Processes_Prompts.xlsx',
-    tags: ['prompts', "manufacturing processes"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-152', title: "Medical Imaging — AI Prompts",
-    description: "Ready-to-use AI prompt pack on Medical Imaging. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Medical%20Imaging%20Prompts%20for%20Excel.csv', downloadUrl: 'PROMPTS/Medical%20Imaging%20Prompts%20for%20Excel.csv',
-    tags: ['prompts', "medical imaging"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-153', title: "Medical Robotics — AI Prompts",
-    description: "Ready-to-use AI prompt pack on Medical Robotics. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Medical%20Robotics%20Prompts%20for%20Excel%20MORE%20DEEP.csv', downloadUrl: 'PROMPTS/Medical%20Robotics%20Prompts%20for%20Excel%20MORE%20DEEP.csv',
-    tags: ['prompts', "medical robotics"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-154', title: "Medical Robotics — AI Prompts",
-    description: "Ready-to-use AI prompt pack on Medical Robotics. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Medical_Robotics_Prompts.xlsx', downloadUrl: 'PROMPTS/Medical_Robotics_Prompts.xlsx',
-    tags: ['prompts', "medical robotics"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-155', title: "Nutrition FF Supplements Additional99 — AI Prompts",
-    description: "Ready-to-use AI prompt pack on Nutrition FF Supplements Additional99. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Nutrition_FF_Supplements_Additional99.xlsx', downloadUrl: 'PROMPTS/Nutrition_FF_Supplements_Additional99.xlsx',
-    tags: ['prompts', "nutrition ff supplements"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-156', title: "Nutrition Feed Formulation Supplements — AI Prompts",
-    description: "Ready-to-use AI prompt pack on Nutrition Feed Formulation Supplements. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Nutrition_Feed_Formulation_Supplements_Prompts.xlsx', downloadUrl: 'PROMPTS/Nutrition_Feed_Formulation_Supplements_Prompts.xlsx',
-    tags: ['prompts', "nutrition feed formulation"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-157', title: "Poultry Feed Formulation Supplements — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Poultry Feed Formulation Supplements. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Poultry_Feed_Formulation_Supplements_99.xlsx', downloadUrl: 'PROMPTS/Poultry_Feed_Formulation_Supplements_99.xlsx',
-    tags: ['prompts', "poultry feed formulation"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-158', title: "Regenerative Medicine — AI Prompts",
-    description: "Ready-to-use AI prompt pack on Regenerative Medicine. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Regenerative_Medicine_Prompts.xlsx', downloadUrl: 'PROMPTS/Regenerative_Medicine_Prompts.xlsx',
-    tags: ['prompts', "regenerative medicine"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-159', title: "Renewable Energy Systems — AI Prompts",
-    description: "Ready-to-use AI prompt pack on Renewable Energy Systems. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Renewable_Energy_Systems_Prompts.xlsx', downloadUrl: 'PROMPTS/Renewable_Energy_Systems_Prompts.xlsx',
-    tags: ['prompts', "renewable energy systems"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-160', title: "Sheep Goats Feed Formulation Supplements — 99 AI Prompts",
-    description: "Ready-to-use AI prompt pack on Sheep Goats Feed Formulation Supplements. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Sheep_Goats_Feed_Formulation_Supplements_99.xlsx', downloadUrl: 'PROMPTS/Sheep_Goats_Feed_Formulation_Supplements_99.xlsx',
-    tags: ['prompts', "sheep goats feed"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-161', title: "Sheep Goats Wool Milk Meat — AI Prompts",
-    description: "Ready-to-use AI prompt pack on Sheep Goats Wool Milk Meat. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Sheep_Goats_Wool_Milk_Meat_Prompts.xlsx', downloadUrl: 'PROMPTS/Sheep_Goats_Wool_Milk_Meat_Prompts.xlsx',
-    tags: ['prompts', "sheep goats wool"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-162', title: "Structural Engineering — AI Prompts",
-    description: "Ready-to-use AI prompt pack on Structural Engineering. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Structural_Engineering_Prompts.xlsx', downloadUrl: 'PROMPTS/Structural_Engineering_Prompts.xlsx',
-    tags: ['prompts', "structural engineering"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-163', title: "Technical Engineering Topics — AI Prompts",
-    description: "Ready-to-use AI prompt pack on Technical Engineering Topics. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Technical%20Engineering%20Topics.markdown', downloadUrl: 'PROMPTS/Technical%20Engineering%20Topics.markdown',
-    tags: ['prompts', "technical engineering topics"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-164', title: "Tissue Engineering — AI Prompts",
-    description: "Ready-to-use AI prompt pack on Tissue Engineering. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Tissue%20Engineering%20Prompts%20for%20Excel.csv', downloadUrl: 'PROMPTS/Tissue%20Engineering%20Prompts%20for%20Excel.csv',
-    tags: ['prompts', "tissue engineering"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-165', title: "Transportation Engineering — AI Prompts",
-    description: "Ready-to-use AI prompt pack on Transportation Engineering. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Transportation_Engineering_Prompts.xlsx', downloadUrl: 'PROMPTS/Transportation_Engineering_Prompts.xlsx',
-    tags: ['prompts', "transportation engineering"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-166', title: "Vibration and Dynamics — AI Prompts",
-    description: "Ready-to-use AI prompt pack on Vibration and Dynamics. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Vibration_and_Dynamics_Prompts.xlsx', downloadUrl: 'PROMPTS/Vibration_and_Dynamics_Prompts.xlsx',
-    tags: ['prompts', "vibration and dynamics"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-167', title: "Water Treatment — AI Prompts",
-    description: "Ready-to-use AI prompt pack on Water Treatment. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Water_Treatment_Prompts.xlsx', downloadUrl: 'PROMPTS/Water_Treatment_Prompts.xlsx',
-    tags: ['prompts', "water treatment"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-168', title: "Welding — AI Prompts",
-    description: "Ready-to-use AI prompt pack on Welding. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/Welding_Prompts.xlsx', downloadUrl: 'PROMPTS/Welding_Prompts.xlsx',
-    tags: ['prompts', "welding"], dateAdded: '2026-06-11' },
-
-  { id: 'prompt-169', title: "Biomaterials — AI Prompts",
-    description: "Ready-to-use AI prompt pack on biomaterials. Copy any prompt into ChatGPT, Gemini or Claude and learn step by step.",
-    section: 'ai-ghana', subject: 'prompt-library', type: 'notes', level: 'intermediate',
-    waec: false, url: 'PROMPTS/biomaterials.txt', downloadUrl: 'PROMPTS/biomaterials.txt',
-    tags: ['prompts', "biomaterials"], dateAdded: '2026-06-11' },
+  /* ═══════════════════════════════════════════════════════════
+     SECTION 1 — GHANA CORE CURRICULUM
+     121 structured lessons for Maths, Science, English, ICT,
+     Social Studies, Creative Arts, RME, PE & Ghanaian Languages
+  ═══════════════════════════════════════════════════════════ */
+
+  /* — MATHEMATICS (20 lessons) — */
+  { id:'math-l01', title:'Market Math & Profit', description:'Learn addition, subtraction and profit/loss calculations using Kejetia market examples — tomatoes, yam, kenkey.', section:'curriculum', subject:'mathematics', type:'notes', level:'jhs', waec:true, url:'/lessons/MATHS-Lesson-01-Market-Math-Profit.md', downloadUrl:'/lessons/MATHS-Lesson-01-Market-Math-Profit.md', tags:['market','profit','loss','bece'], dateAdded:'2026-06-23' },
+  { id:'math-l02', title:'Percentages, Interest & Loans', description:'Master percentages and simple interest with mobile money, bank loans, and susu examples from everyday Ghana.', section:'curriculum', subject:'mathematics', type:'notes', level:'jhs', waec:true, url:'/lessons/MATHS-Lesson-02-Percentages-Interest-Loans.md', downloadUrl:'/lessons/MATHS-Lesson-02-Percentages-Interest-Loans.md', tags:['percentages','interest','momo','loans','bece'], dateAdded:'2026-06-23' },
+  { id:'math-l03', title:'Measurement & Estimation', description:'Units of measurement, estimation techniques, and practical applications in Ghanaian construction and farming.', section:'curriculum', subject:'mathematics', type:'notes', level:'jhs', waec:false, url:'/lessons/MATHS-Lesson-03-Measurement-Estimation.md', downloadUrl:'/lessons/MATHS-Lesson-03-Measurement-Estimation.md', tags:['measurement','estimation'], dateAdded:'2026-06-23' },
+  { id:'math-l04', title:'Data & Charts', description:'Reading and drawing bar charts, pie charts, and line graphs using Ghana population, weather, and crop yield data.', section:'curriculum', subject:'mathematics', type:'notes', level:'jhs', waec:true, url:'/lessons/MATHS-Lesson-04-Data-And-Charts.md', downloadUrl:'/lessons/MATHS-Lesson-04-Data-And-Charts.md', tags:['charts','statistics','data','bece'], dateAdded:'2026-06-23' },
+  { id:'math-l05', title:'Fractions, Decimals & Ratios', description:'Breaking down fractions, converting decimals, and understanding ratios through sharing, cooking and market examples.', section:'curriculum', subject:'mathematics', type:'notes', level:'primary', waec:true, url:'/lessons/MATHS-Lesson-05-Fractions-Decimals-Ratios.md', downloadUrl:'/lessons/MATHS-Lesson-05-Fractions-Decimals-Ratios.md', tags:['fractions','decimals','ratios'], dateAdded:'2026-06-23' },
+  { id:'math-l06', title:'Algebra Made Simple', description:'Solve equations step by step. Algebra explained using prices, unknowns, and real Ghanaian business scenarios.', section:'curriculum', subject:'mathematics', type:'notes', level:'jhs', waec:true, url:'/lessons/MATHS-Lesson-06-Algebra-Made-Simple.md', downloadUrl:'/lessons/MATHS-Lesson-06-Algebra-Made-Simple.md', tags:['algebra','equations','bece'], dateAdded:'2026-06-23' },
+  { id:'math-l07', title:'Negative Numbers & Money', description:'Understand positive and negative numbers using debts, temperatures, and bank account examples.', section:'curriculum', subject:'mathematics', type:'notes', level:'jhs', waec:false, url:'/lessons/MATHS-Lesson-07-Negative-Numbers-Money.md', downloadUrl:'/lessons/MATHS-Lesson-07-Negative-Numbers-Money.md', tags:['negative numbers','integers'], dateAdded:'2026-06-23' },
+  { id:'math-l08', title:'Geometry & Shapes', description:'Angles, triangles, quadrilaterals and circles — using Ghanaian architecture, kente patterns and urban design.', section:'curriculum', subject:'mathematics', type:'notes', level:'jhs', waec:true, url:'/lessons/MATHS-Lesson-08-Geometry-Shapes.md', downloadUrl:'/lessons/MATHS-Lesson-08-Geometry-Shapes.md', tags:['geometry','shapes','angles','bece'], dateAdded:'2026-06-23' },
+  { id:'math-l09', title:'Perimeter, Area & Volume', description:'Calculate the size of shapes and spaces using land plots, rooms, water tanks and farm fields in Ghana.', section:'curriculum', subject:'mathematics', type:'notes', level:'jhs', waec:true, url:'/lessons/MATHS-Lesson-09-Perimeter-Area-Volume.md', downloadUrl:'/lessons/MATHS-Lesson-09-Perimeter-Area-Volume.md', tags:['area','perimeter','volume','bece'], dateAdded:'2026-06-23' },
+  { id:'math-l10', title:'Time, Speed & Distance', description:'Motion calculations using trotro trips, marathon races and driving between Accra and Kumasi.', section:'curriculum', subject:'mathematics', type:'notes', level:'jhs', waec:true, url:'/lessons/MATHS-Lesson-10-Time-Speed-Distance.md', downloadUrl:'/lessons/MATHS-Lesson-10-Time-Speed-Distance.md', tags:['time','speed','distance','bece'], dateAdded:'2026-06-23' },
+  { id:'math-l11', title:'Probability & Chance', description:'Understand probability through lottery, weather forecasting, and real-life chance events in Ghana.', section:'curriculum', subject:'mathematics', type:'notes', level:'jhs', waec:true, url:'/lessons/MATHS-Lesson-11-Probability-Chance.md', downloadUrl:'/lessons/MATHS-Lesson-11-Probability-Chance.md', tags:['probability','chance','statistics'], dateAdded:'2026-06-23' },
+  { id:'math-l12', title:'Mean, Median & Mode', description:'Averages explained using class exam scores, market prices, and football statistics.', section:'curriculum', subject:'mathematics', type:'notes', level:'jhs', waec:true, url:'/lessons/MATHS-Lesson-12-Mean-Median-Mode.md', downloadUrl:'/lessons/MATHS-Lesson-12-Mean-Median-Mode.md', tags:['mean','median','mode','statistics','bece'], dateAdded:'2026-06-23' },
+  { id:'math-l13', title:'Patterns & Sequences', description:'Number patterns, sequences, and series explained through kente weaving patterns and Fibonacci in nature.', section:'curriculum', subject:'mathematics', type:'notes', level:'jhs', waec:false, url:'/lessons/MATHS-Lesson-13-Patterns-Sequences.md', downloadUrl:'/lessons/MATHS-Lesson-13-Patterns-Sequences.md', tags:['patterns','sequences'], dateAdded:'2026-06-23' },
+  { id:'math-l14', title:'Mental Math Tricks', description:'Fast calculation shortcuts — multiply, divide and estimate in your head like a market pro.', section:'curriculum', subject:'mathematics', type:'notes', level:'primary', waec:false, url:'/lessons/MATHS-Lesson-14-Mental-Math-Tricks.md', downloadUrl:'/lessons/MATHS-Lesson-14-Mental-Math-Tricks.md', tags:['mental math','tricks','arithmetic'], dateAdded:'2026-06-23' },
+  { id:'math-l15', title:'Budgeting & Personal Finance', description:'Plan a personal budget, track income and expenses, and learn to save — for students and young adults.', section:'curriculum', subject:'mathematics', type:'notes', level:'jhs', waec:false, url:'/lessons/MATHS-Lesson-15-Budgeting-Personal-Finance.md', downloadUrl:'/lessons/MATHS-Lesson-15-Budgeting-Personal-Finance.md', tags:['budget','finance','saving'], dateAdded:'2026-06-23' },
+  { id:'math-l16', title:'Profit Margins & Pricing', description:'Calculate markup, gross and net profit — for entrepreneurs, traders and SHS Business students.', section:'curriculum', subject:'mathematics', type:'notes', level:'shs1', waec:true, url:'/lessons/MATHS-Lesson-16-Profit-Margins-Pricing.md', downloadUrl:'/lessons/MATHS-Lesson-16-Profit-Margins-Pricing.md', tags:['profit','pricing','business','waec'], dateAdded:'2026-06-23' },
+  { id:'math-l17', title:'Simple vs Compound Interest', description:'The powerful difference between simple and compound interest — and why it matters for loans and savings in Ghana.', section:'curriculum', subject:'mathematics', type:'notes', level:'shs1', waec:true, url:'/lessons/MATHS-Lesson-17-Simple-vs-Compound-Interest.md', downloadUrl:'/lessons/MATHS-Lesson-17-Simple-vs-Compound-Interest.md', tags:['interest','compound','savings'], dateAdded:'2026-06-23' },
+  { id:'math-l18', title:'Currency Exchange Rates', description:'Understand how the cedi to dollar rate works, travel money, and international trade calculations.', section:'curriculum', subject:'mathematics', type:'notes', level:'shs1', waec:false, url:'/lessons/MATHS-Lesson-18-Currency-Exchange-Rates.md', downloadUrl:'/lessons/MATHS-Lesson-18-Currency-Exchange-Rates.md', tags:['currency','exchange rate','cedi'], dateAdded:'2026-06-23' },
+  { id:'math-l19', title:'Scale, Maps & Proportion', description:'Read maps, use scale drawings, and understand direct and inverse proportion with Ghanaian geography.', section:'curriculum', subject:'mathematics', type:'notes', level:'jhs', waec:true, url:'/lessons/MATHS-Lesson-19-Scale-Maps-Proportion.md', downloadUrl:'/lessons/MATHS-Lesson-19-Scale-Maps-Proportion.md', tags:['scale','maps','proportion'], dateAdded:'2026-06-23' },
+  { id:'math-l20', title:'Maths for AI & the Future', description:'Linear algebra, probability, and data thinking — the maths behind artificial intelligence explained simply.', section:'curriculum', subject:'mathematics', type:'notes', level:'shs2', waec:false, url:'/lessons/MATHS-Lesson-20-Maths-For-AI-Future.md', downloadUrl:'/lessons/MATHS-Lesson-20-Maths-For-AI-Future.md', tags:['AI','future','linear algebra','data science'], dateAdded:'2026-06-23' },
+
+  /* — INTEGRATED SCIENCE (60 lessons) — */
+  { id:'sci-l01', title:'What Is Science?', description:'The scientific method, observation, and hypothesis — using Ghanaian examples from cocoa farming to medicine.', section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:true, url:'/lessons/SCIENCE-Lesson-01-What-Is-Science.md', downloadUrl:'/lessons/SCIENCE-Lesson-01-What-Is-Science.md', tags:['scientific method','observation'], dateAdded:'2026-06-23' },
+  { id:'sci-l02', title:'Living Things & the Human Body', description:'Classification of living organisms, cells, and human body systems — all with Ghana context.', section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:true, url:'/lessons/SCIENCE-Lesson-02-Living-Things-Body.md', downloadUrl:'/lessons/SCIENCE-Lesson-02-Living-Things-Body.md', tags:['living things','cells','body','bece'], dateAdded:'2026-06-23' },
+  { id:'sci-l03', title:'Matter & Energy', description:'States of matter, physical and chemical changes, and energy forms using everyday Ghanaian examples.', section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:true, url:'/lessons/SCIENCE-Lesson-03-Matter-And-Energy.md', downloadUrl:'/lessons/SCIENCE-Lesson-03-Matter-And-Energy.md', tags:['matter','energy','states'], dateAdded:'2026-06-23' },
+  { id:'sci-l04', title:'Environment & Climate', description:"Ghana's ecosystem, climate change impacts on the Sahel and coastal flooding in Accra.", section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:true, url:'/lessons/SCIENCE-Lesson-04-Environment-Climate.md', downloadUrl:'/lessons/SCIENCE-Lesson-04-Environment-Climate.md', tags:['environment','climate change','ecosystem'], dateAdded:'2026-06-23' },
+  { id:'sci-l05', title:'Food & Nutrition', description:'Macronutrients, micronutrients, and a healthy diet using Ghanaian foods — fufu, kenkey, waakye, banku.', section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:true, url:'/lessons/SCIENCE-Lesson-05-Food-And-Nutrition.md', downloadUrl:'/lessons/SCIENCE-Lesson-05-Food-And-Nutrition.md', tags:['nutrition','food','diet','health'], dateAdded:'2026-06-23' },
+  { id:'sci-l06', title:'Plants & Photosynthesis', description:"How plants make food, the chlorophyll process, and why Ghana's cocoa and yam farms thrive.", section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:true, url:'/lessons/SCIENCE-Lesson-06-Plants-Photosynthesis.md', downloadUrl:'/lessons/SCIENCE-Lesson-06-Plants-Photosynthesis.md', tags:['plants','photosynthesis','chlorophyll','cocoa'], dateAdded:'2026-06-23' },
+  { id:'sci-l07', title:'Water — The Science of Life', description:'Water cycle, purification, and access — from Volta River to home water treatment in Ghana.', section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:true, url:'/lessons/SCIENCE-Lesson-07-Water-Science-Of-Life.md', downloadUrl:'/lessons/SCIENCE-Lesson-07-Water-Science-Of-Life.md', tags:['water','volta river','purification'], dateAdded:'2026-06-23' },
+  { id:'sci-l08', title:'Air, Breathing & Pollution', description:"Composition of air, the respiratory system, and air pollution in Accra and other Ghanaian cities.", section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:false, url:'/lessons/SCIENCE-Lesson-08-Air-Breathing-Pollution.md', downloadUrl:'/lessons/SCIENCE-Lesson-08-Air-Breathing-Pollution.md', tags:['air','pollution','breathing','respiratory'], dateAdded:'2026-06-23' },
+  { id:'sci-l09', title:'Germs, Disease & Immunity', description:"How infections spread, Ghana's top diseases (malaria, typhoid), vaccines, and the immune system.", section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:true, url:'/lessons/SCIENCE-Lesson-09-Germs-Disease-Immunity.md', downloadUrl:'/lessons/SCIENCE-Lesson-09-Germs-Disease-Immunity.md', tags:['disease','malaria','immunity','vaccine'], dateAdded:'2026-06-23' },
+  { id:'sci-l10', title:'Forces & Motion', description:"Newton's laws applied to trotro vehicles, falling objects, and Ghana football — physics made real.", section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:true, url:'/lessons/SCIENCE-Lesson-10-Forces-And-Motion.md', downloadUrl:'/lessons/SCIENCE-Lesson-10-Forces-And-Motion.md', tags:['forces','motion','newton','physics'], dateAdded:'2026-06-23' },
+  { id:'sci-l11', title:'Electricity & Circuits', description:"Electric circuits, conductors, insulators, and Ghana's power grid — from ECG to solar panels.", section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:true, url:'/lessons/SCIENCE-Lesson-11-Electricity-Circuits.md', downloadUrl:'/lessons/SCIENCE-Lesson-11-Electricity-Circuits.md', tags:['electricity','circuits','ECG','solar'], dateAdded:'2026-06-23' },
+  { id:'sci-l12', title:'Light & Sight', description:'Reflection, refraction, the eye, and how cameras and phone screens work.', section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:false, url:'/lessons/SCIENCE-Lesson-12-Light-And-Sight.md', downloadUrl:'/lessons/SCIENCE-Lesson-12-Light-And-Sight.md', tags:['light','reflection','refraction','optics'], dateAdded:'2026-06-23' },
+  { id:'sci-l13', title:'Sound & Hearing', description:'How sound travels, the ear, highlife music acoustics, and noise pollution.', section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:false, url:'/lessons/SCIENCE-Lesson-13-Sound-And-Hearing.md', downloadUrl:'/lessons/SCIENCE-Lesson-13-Sound-And-Hearing.md', tags:['sound','waves','hearing','music'], dateAdded:'2026-06-23' },
+  { id:'sci-l14', title:'Heat & Temperature', description:'Heat transfer, thermometers, cooking, and the science of Ghanaian food preparation.', section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:false, url:'/lessons/SCIENCE-Lesson-14-Heat-And-Temperature.md', downloadUrl:'/lessons/SCIENCE-Lesson-14-Heat-And-Temperature.md', tags:['heat','temperature','conduction'], dateAdded:'2026-06-23' },
+  { id:'sci-l15', title:'Atoms, Elements & Reactions', description:'Introduction to chemistry — elements, compounds, and chemical reactions with Ghanaian minerals.', section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:true, url:'/lessons/SCIENCE-Lesson-15-Atoms-Elements-Reactions.md', downloadUrl:'/lessons/SCIENCE-Lesson-15-Atoms-Elements-Reactions.md', tags:['atoms','elements','reactions','chemistry'], dateAdded:'2026-06-23' },
+  { id:'sci-l16', title:'Acids, Bases & Everyday Life', description:'pH scale, acids and bases using tomatoes, baking soda, and local Ghanaian cleaning products.', section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:true, url:'/lessons/SCIENCE-Lesson-16-Acids-Bases-Everyday.md', downloadUrl:'/lessons/SCIENCE-Lesson-16-Acids-Bases-Everyday.md', tags:['acids','bases','pH','chemistry'], dateAdded:'2026-06-23' },
+  { id:'sci-l17', title:'Earth, Sun & Moon', description:"The solar system, seasons in Ghana, tides on the Gulf of Guinea, and day/night cycles.", section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:false, url:'/lessons/SCIENCE-Lesson-17-Earth-Sun-Moon.md', downloadUrl:'/lessons/SCIENCE-Lesson-17-Earth-Sun-Moon.md', tags:['solar system','earth','moon','seasons'], dateAdded:'2026-06-23' },
+  { id:'sci-l18', title:'Genetics & Heredity', description:"DNA, inheritance, sickle cell disease in Ghana, and why you look like your parents.", section:'curriculum', subject:'science', type:'notes', level:'shs1', waec:true, url:'/lessons/SCIENCE-Lesson-18-Genetics-Heredity.md', downloadUrl:'/lessons/SCIENCE-Lesson-18-Genetics-Heredity.md', tags:['genetics','DNA','sickle cell','heredity'], dateAdded:'2026-06-23' },
+  { id:'sci-l19', title:'Renewable Energy', description:"Solar, wind, hydro — Ghana's Akosombo Dam, BOST, and the energy future for West Africa.", section:'curriculum', subject:'science', type:'notes', level:'shs1', waec:false, url:'/lessons/SCIENCE-Lesson-19-Renewable-Energy.md', downloadUrl:'/lessons/SCIENCE-Lesson-19-Renewable-Energy.md', tags:['solar','renewable','akosombo','energy'], dateAdded:'2026-06-23' },
+  { id:'sci-l20', title:'Science, STEM & the Future', description:"Biotech, AI, nanotechnology, and how Ghana's scientists are shaping the 2050 world.", section:'curriculum', subject:'science', type:'notes', level:'shs2', waec:false, url:'/lessons/SCIENCE-Lesson-20-Science-STEM-Future.md', downloadUrl:'/lessons/SCIENCE-Lesson-20-Science-STEM-Future.md', tags:['STEM','future','biotech','AI'], dateAdded:'2026-06-23' },
+  { id:'sci-l21', title:'The Cell in Detail', description:'Cell structure, organelles, plant vs animal cells — with diagrams and explanations for SHS Biology.', section:'curriculum', subject:'science', type:'notes', level:'shs1', waec:true, url:'/lessons/SCIENCE-Lesson-21-The-Cell-In-Detail.md', downloadUrl:'/lessons/SCIENCE-Lesson-21-The-Cell-In-Detail.md', tags:['cell','organelles','biology','waec'], dateAdded:'2026-06-23' },
+  { id:'sci-l22', title:'The Digestive System', description:'How food is broken down from mouth to intestine — with Ghanaian meals as examples.', section:'curriculum', subject:'science', type:'notes', level:'shs1', waec:true, url:'/lessons/SCIENCE-Lesson-22-Digestive-System.md', downloadUrl:'/lessons/SCIENCE-Lesson-22-Digestive-System.md', tags:['digestion','gut','biology'], dateAdded:'2026-06-23' },
+  { id:'sci-l23', title:'The Circulatory System', description:'Heart, blood vessels, pulse, blood pressure, and heart disease in Ghana.', section:'curriculum', subject:'science', type:'notes', level:'shs1', waec:true, url:'/lessons/SCIENCE-Lesson-23-Circulatory-System.md', downloadUrl:'/lessons/SCIENCE-Lesson-23-Circulatory-System.md', tags:['heart','blood','circulatory','biology'], dateAdded:'2026-06-23' },
+  { id:'sci-l24', title:'The Respiratory System', description:'Lungs, gas exchange, breathing rate, asthma, and lung health in Ghanaian cities.', section:'curriculum', subject:'science', type:'notes', level:'shs1', waec:true, url:'/lessons/SCIENCE-Lesson-24-Respiratory-System.md', downloadUrl:'/lessons/SCIENCE-Lesson-24-Respiratory-System.md', tags:['lungs','breathing','respiratory','biology'], dateAdded:'2026-06-23' },
+  { id:'sci-l25', title:'The Nervous System & Brain', description:'Neurons, reflexes, the brain regions, and how mental health connects to brain science.', section:'curriculum', subject:'science', type:'notes', level:'shs1', waec:true, url:'/lessons/SCIENCE-Lesson-25-Nervous-System-Brain.md', downloadUrl:'/lessons/SCIENCE-Lesson-25-Nervous-System-Brain.md', tags:['brain','neurons','nervous system','mental health'], dateAdded:'2026-06-23' },
+  { id:'sci-l26', title:'Growing Up & Puberty', description:'Reproductive health, puberty changes, and responsible choices for Ghanaian teenagers.', section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:false, url:'/lessons/SCIENCE-Lesson-26-Growing-Up-Puberty.md', downloadUrl:'/lessons/SCIENCE-Lesson-26-Growing-Up-Puberty.md', tags:['puberty','reproductive health','teenagers'], dateAdded:'2026-06-23' },
+  { id:'sci-l27', title:'Microorganisms — Friend or Foe?', description:'Bacteria, viruses, fungi — useful and harmful. Fermentation, bread, yoghurt, and malaria.', section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:true, url:'/lessons/SCIENCE-Lesson-27-Microorganisms-Friend-Foe.md', downloadUrl:'/lessons/SCIENCE-Lesson-27-Microorganisms-Friend-Foe.md', tags:['bacteria','virus','microorganism','malaria'], dateAdded:'2026-06-23' },
+  { id:'sci-l28', title:'Plants in Depth', description:"Roots, stems, leaves, flowers, pollination, and seed dispersal in Ghana's tropical ecosystem.", section:'curriculum', subject:'science', type:'notes', level:'shs1', waec:true, url:'/lessons/SCIENCE-Lesson-28-Plants-In-Depth.md', downloadUrl:'/lessons/SCIENCE-Lesson-28-Plants-In-Depth.md', tags:['plants','botany','pollination','tropical'], dateAdded:'2026-06-23' },
+  { id:'sci-l29', title:'States of Matter & Particles', description:'Particle model of solids, liquids and gases — boiling, melting, evaporation in daily life.', section:'curriculum', subject:'science', type:'notes', level:'shs1', waec:true, url:'/lessons/SCIENCE-Lesson-29-States-Of-Matter-Particles.md', downloadUrl:'/lessons/SCIENCE-Lesson-29-States-Of-Matter-Particles.md', tags:['states of matter','particles','chemistry'], dateAdded:'2026-06-23' },
+  { id:'sci-l30', title:'Mixtures, Solutions & Separation', description:"Dissolving, filtration, distillation — using Ghanaian salt, gold, and local drinks as examples.", section:'curriculum', subject:'science', type:'notes', level:'shs1', waec:true, url:'/lessons/SCIENCE-Lesson-30-Mixtures-Solutions-Separation.md', downloadUrl:'/lessons/SCIENCE-Lesson-30-Mixtures-Solutions-Separation.md', tags:['mixture','solution','filtration','chemistry'], dateAdded:'2026-06-23' },
+  { id:'sci-l31', title:'Metals & Materials', description:"Properties of metals, alloys, corrosion, and Ghana's gold and bauxite mining industry.", section:'curriculum', subject:'science', type:'notes', level:'shs1', waec:true, url:'/lessons/SCIENCE-Lesson-31-Metals-And-Materials.md', downloadUrl:'/lessons/SCIENCE-Lesson-31-Metals-And-Materials.md', tags:['metals','gold','mining','materials'], dateAdded:'2026-06-23' },
+  { id:'sci-l32', title:'The Periodic Table', description:'Groups, periods, and elements — how to read and use the periodic table for WASSCE Chemistry.', section:'curriculum', subject:'science', type:'notes', level:'shs2', waec:true, url:'/lessons/SCIENCE-Lesson-32-The-Periodic-Table.md', downloadUrl:'/lessons/SCIENCE-Lesson-32-The-Periodic-Table.md', tags:['periodic table','chemistry','elements','waec'], dateAdded:'2026-06-23' },
+  { id:'sci-l33', title:'Carbon & Fuels', description:"Carbon chemistry, hydrocarbons, fossil fuels, and Ghana's oil fields at Jubilee.", section:'curriculum', subject:'science', type:'notes', level:'shs2', waec:true, url:'/lessons/SCIENCE-Lesson-33-Carbon-And-Fuels.md', downloadUrl:'/lessons/SCIENCE-Lesson-33-Carbon-And-Fuels.md', tags:['carbon','fuels','oil','jubilee','chemistry'], dateAdded:'2026-06-23' },
+  { id:'sci-l34', title:'Energy Forms & Transformations', description:'Kinetic, potential, thermal, electrical — energy changing forms in power stations and daily life.', section:'curriculum', subject:'science', type:'notes', level:'shs1', waec:true, url:'/lessons/SCIENCE-Lesson-34-Energy-Forms-Transformations.md', downloadUrl:'/lessons/SCIENCE-Lesson-34-Energy-Forms-Transformations.md', tags:['energy','kinetic','potential','physics'], dateAdded:'2026-06-23' },
+  { id:'sci-l35', title:'Magnetism', description:'Magnetic fields, compasses, electromagnets, and how motors in fans and fridges work.', section:'curriculum', subject:'science', type:'notes', level:'shs1', waec:false, url:'/lessons/SCIENCE-Lesson-35-Magnetism.md', downloadUrl:'/lessons/SCIENCE-Lesson-35-Magnetism.md', tags:['magnetism','electromagnet','motors'], dateAdded:'2026-06-23' },
+  { id:'sci-l36', title:'Pressure', description:'Atmospheric and water pressure — hydraulics, syringes, submarines, and traditional water pots.', section:'curriculum', subject:'science', type:'notes', level:'shs1', waec:false, url:'/lessons/SCIENCE-Lesson-36-Pressure.md', downloadUrl:'/lessons/SCIENCE-Lesson-36-Pressure.md', tags:['pressure','hydraulics','physics'], dateAdded:'2026-06-23' },
+  { id:'sci-l37', title:'Simple Machines & Work', description:'Levers, pulleys, inclined planes — how they reduce work in Ghanaian farming and construction.', section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:true, url:'/lessons/SCIENCE-Lesson-37-Simple-Machines-Work.md', downloadUrl:'/lessons/SCIENCE-Lesson-37-Simple-Machines-Work.md', tags:['machines','levers','pulleys','work'], dateAdded:'2026-06-23' },
+  { id:'sci-l38', title:'Weather & Climate Science', description:"How weather is measured, Ghana's rainy and dry seasons, climate change effects on farming.", section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:true, url:'/lessons/SCIENCE-Lesson-38-Weather-Climate-Science.md', downloadUrl:'/lessons/SCIENCE-Lesson-38-Weather-Climate-Science.md', tags:['weather','climate','seasons','farming'], dateAdded:'2026-06-23' },
+  { id:'sci-l39', title:'The Universe & Space', description:"Galaxies, stars, the solar system, and Africa's growing role in space exploration.", section:'curriculum', subject:'science', type:'notes', level:'shs1', waec:false, url:'/lessons/SCIENCE-Lesson-39-Universe-And-Space.md', downloadUrl:'/lessons/SCIENCE-Lesson-39-Universe-And-Space.md', tags:['space','universe','stars','solar system'], dateAdded:'2026-06-23' },
+  { id:'sci-l40', title:'Biotech & Future Medicine', description:'Gene editing, vaccines, AI diagnostics, and how biotech will transform healthcare in Ghana.', section:'curriculum', subject:'science', type:'notes', level:'shs2', waec:false, url:'/lessons/SCIENCE-Lesson-40-Biotech-Future-Medicine.md', downloadUrl:'/lessons/SCIENCE-Lesson-40-Biotech-Future-Medicine.md', tags:['biotech','CRISPR','medicine','future'], dateAdded:'2026-06-23' },
+  { id:'sci-l41', title:'Ecosystems & Food Webs', description:"Producers, consumers, decomposers — using Ghana's savanna, forest, and coastal ecosystems.", section:'curriculum', subject:'science', type:'notes', level:'shs1', waec:true, url:'/lessons/SCIENCE-Lesson-41-Ecosystems-Food-Webs.md', downloadUrl:'/lessons/SCIENCE-Lesson-41-Ecosystems-Food-Webs.md', tags:['ecosystem','food web','ecology'], dateAdded:'2026-06-23' },
+  { id:'sci-l42', title:'Biodiversity & Conservation', description:"Why biodiversity matters, Ghana's wildlife, deforestation, and conservation efforts.", section:'curriculum', subject:'science', type:'notes', level:'shs1', waec:false, url:'/lessons/SCIENCE-Lesson-42-Biodiversity-Conservation.md', downloadUrl:'/lessons/SCIENCE-Lesson-42-Biodiversity-Conservation.md', tags:['biodiversity','conservation','wildlife'], dateAdded:'2026-06-23' },
+  { id:'sci-l43', title:'Soil Science', description:'Soil types, fertility, erosion, and how Ghanaian farmers keep their land productive.', section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:true, url:'/lessons/SCIENCE-Lesson-43-Soil-Science.md', downloadUrl:'/lessons/SCIENCE-Lesson-43-Soil-Science.md', tags:['soil','fertility','erosion','farming'], dateAdded:'2026-06-23' },
+  { id:'sci-l44', title:'Modern Agriculture', description:"Smart farming, AI crop detection, drone spraying, and agritech transforming Ghana's food system.", section:'curriculum', subject:'science', type:'notes', level:'shs1', waec:false, url:'/lessons/SCIENCE-Lesson-44-Modern-Agriculture.md', downloadUrl:'/lessons/SCIENCE-Lesson-44-Modern-Agriculture.md', tags:['agriculture','drone','agritech','farming'], dateAdded:'2026-06-23' },
+  { id:'sci-l45', title:'Diet-Related Diseases', description:'Diabetes, hypertension, anaemia in Ghana — prevention through diet and lifestyle choices.', section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:false, url:'/lessons/SCIENCE-Lesson-45-Diet-Related-Diseases.md', downloadUrl:'/lessons/SCIENCE-Lesson-45-Diet-Related-Diseases.md', tags:['diabetes','diet','nutrition','health'], dateAdded:'2026-06-23' },
+  { id:'sci-l46', title:'First Aid & Emergency', description:'CPR, bleeding control, burns, and emergency response — practical skills every Ghanaian needs.', section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:false, url:'/lessons/SCIENCE-Lesson-46-First-Aid-Emergency.md', downloadUrl:'/lessons/SCIENCE-Lesson-46-First-Aid-Emergency.md', tags:['first aid','CPR','emergency'], dateAdded:'2026-06-23' },
+  { id:'sci-l47', title:'Drugs, Alcohol & the Body', description:'How substances affect the brain and body — honest science for Ghanaian teenagers.', section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:false, url:'/lessons/SCIENCE-Lesson-47-Drugs-Alcohol-Body.md', downloadUrl:'/lessons/SCIENCE-Lesson-47-Drugs-Alcohol-Body.md', tags:['drugs','alcohol','health','teenagers'], dateAdded:'2026-06-23' },
+  { id:'sci-l48', title:'Waste, Sanitation & Recycling', description:"Solid waste, wastewater, and how Accra is tackling its waste challenge with green innovation.", section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:false, url:'/lessons/SCIENCE-Lesson-48-Waste-Sanitation-Recycling.md', downloadUrl:'/lessons/SCIENCE-Lesson-48-Waste-Sanitation-Recycling.md', tags:['waste','sanitation','recycling','environment'], dateAdded:'2026-06-23' },
+  { id:'sci-l49', title:'Skeleton & Muscles', description:'Bones, joints, muscles, and movement — using Ghana sports stars as examples.', section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:true, url:'/lessons/SCIENCE-Lesson-49-Skeleton-And-Muscles.md', downloadUrl:'/lessons/SCIENCE-Lesson-49-Skeleton-And-Muscles.md', tags:['skeleton','muscles','bones','biology'], dateAdded:'2026-06-23' },
+  { id:'sci-l50', title:'Skin, Teeth & Personal Care', description:"Skin functions, dental hygiene, and how to protect yourself from Ghana's tropical climate.", section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:false, url:'/lessons/SCIENCE-Lesson-50-Skin-Teeth-Personal-Care.md', downloadUrl:'/lessons/SCIENCE-Lesson-50-Skin-Teeth-Personal-Care.md', tags:['skin','teeth','hygiene','health'], dateAdded:'2026-06-23' },
+  { id:'sci-l51', title:'Phones, Radio & Communication', description:'How radio waves carry calls and data — from 4G in Accra to satellite internet across Africa.', section:'curriculum', subject:'science', type:'notes', level:'shs1', waec:false, url:'/lessons/SCIENCE-Lesson-51-Phones-Radio-Communication.md', downloadUrl:'/lessons/SCIENCE-Lesson-51-Phones-Radio-Communication.md', tags:['communication','radio','phone','technology'], dateAdded:'2026-06-23' },
+  { id:'sci-l52', title:'How Computers Work', description:'Binary, CPU, RAM, storage — explained simply for Ghanaian students entering tech careers.', section:'curriculum', subject:'science', type:'notes', level:'shs1', waec:false, url:'/lessons/SCIENCE-Lesson-52-How-Computers-Work.md', downloadUrl:'/lessons/SCIENCE-Lesson-52-How-Computers-Work.md', tags:['computers','binary','CPU','technology'], dateAdded:'2026-06-23' },
+  { id:'sci-l53', title:'The Internet — How Data Travels', description:"Packets, Wi-Fi, fibre optics, and how the internet reaches Ghana's homes and schools.", section:'curriculum', subject:'science', type:'notes', level:'shs1', waec:false, url:'/lessons/SCIENCE-Lesson-53-Internet-How-Data-Travels.md', downloadUrl:'/lessons/SCIENCE-Lesson-53-Internet-How-Data-Travels.md', tags:['internet','data','network','wifi'], dateAdded:'2026-06-23' },
+  { id:'sci-l54', title:'Robotics & Automation', description:"How robots work, sensors, actuators, and Ghana's opportunity in the global robotics revolution.", section:'curriculum', subject:'science', type:'notes', level:'shs2', waec:false, url:'/lessons/SCIENCE-Lesson-54-Robotics-Automation.md', downloadUrl:'/lessons/SCIENCE-Lesson-54-Robotics-Automation.md', tags:['robotics','automation','future'], dateAdded:'2026-06-23' },
+  { id:'sci-l55', title:'Energy Efficiency at Home', description:'Reduce electricity bills — Ghana ECG-approved tips for homes, schools and small businesses.', section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:false, url:'/lessons/SCIENCE-Lesson-55-Energy-Efficiency-Home.md', downloadUrl:'/lessons/SCIENCE-Lesson-55-Energy-Efficiency-Home.md', tags:['energy','efficiency','ECG','electricity'], dateAdded:'2026-06-23' },
+  { id:'sci-l56', title:'Materials of the Future', description:'Graphene, smart polymers, nanotechnology — and why Africa must be part of materials science.', section:'curriculum', subject:'science', type:'notes', level:'shs2', waec:false, url:'/lessons/SCIENCE-Lesson-56-Materials-Of-The-Future.md', downloadUrl:'/lessons/SCIENCE-Lesson-56-Materials-Of-The-Future.md', tags:['materials','nanotechnology','future','science'], dateAdded:'2026-06-23' },
+  { id:'sci-l57', title:'The Chemistry of Cooking', description:'Maillard reaction, fermentation, rising dough — the science behind waakye, kenkey, and Ghanaian cuisine.', section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:false, url:'/lessons/SCIENCE-Lesson-57-Chemistry-Of-Cooking.md', downloadUrl:'/lessons/SCIENCE-Lesson-57-Chemistry-Of-Cooking.md', tags:['chemistry','cooking','food','fermentation'], dateAdded:'2026-06-23' },
+  { id:'sci-l58', title:'The Science of Sleep', description:'Circadian rhythm, sleep stages, and why good sleep matters for studying and health in Ghana.', section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:false, url:'/lessons/SCIENCE-Lesson-58-Science-Of-Sleep.md', downloadUrl:'/lessons/SCIENCE-Lesson-58-Science-Of-Sleep.md', tags:['sleep','health','brain'], dateAdded:'2026-06-23' },
+  { id:'sci-l59', title:'Disasters — Staying Safe', description:"Floods, bush fires, earthquakes — understanding natural disasters and emergency preparedness in Ghana.", section:'curriculum', subject:'science', type:'notes', level:'jhs', waec:false, url:'/lessons/SCIENCE-Lesson-59-Disasters-Staying-Safe.md', downloadUrl:'/lessons/SCIENCE-Lesson-59-Disasters-Staying-Safe.md', tags:['disaster','floods','safety','emergency'], dateAdded:'2026-06-23' },
+  { id:'sci-l60', title:'Becoming a Scientist', description:"Careers in science in Ghana — research institutions, CSIR, Noguchi Memorial, and global science paths.", section:'curriculum', subject:'science', type:'notes', level:'shs2', waec:false, url:'/lessons/SCIENCE-Lesson-60-Becoming-A-Scientist.md', downloadUrl:'/lessons/SCIENCE-Lesson-60-Becoming-A-Scientist.md', tags:['careers','CSIR','science','university'], dateAdded:'2026-06-23' },
+
+  /* — ENGLISH LANGUAGE (20 lessons) — */
+  { id:'eng-l01', title:'English — Your Passport to the World', description:"Why English is Ghana's global key. Overview of what you'll master in 20 lessons.", section:'curriculum', subject:'english', type:'notes', level:'jhs', waec:true, url:'/lessons/ENGLISH-Lesson-01-Your-Passport.md', downloadUrl:'/lessons/ENGLISH-Lesson-01-Your-Passport.md', tags:['english','introduction','bece'], dateAdded:'2026-06-23' },
+  { id:'eng-l02', title:'Speak with Confidence', description:"Oral communication, pronunciation, and the art of speaking clearly in Ghana's multilingual context.", section:'curriculum', subject:'english', type:'notes', level:'jhs', waec:true, url:'/lessons/ENGLISH-Lesson-02-Speak-With-Confidence.md', downloadUrl:'/lessons/ENGLISH-Lesson-02-Speak-With-Confidence.md', tags:['speaking','oral','communication','bece'], dateAdded:'2026-06-23' },
+  { id:'eng-l03', title:'Reading Comprehension', description:'How to read passages and answer questions correctly — with BECE and WASSCE past paper techniques.', section:'curriculum', subject:'english', type:'notes', level:'jhs', waec:true, url:'/lessons/ENGLISH-Lesson-03-Reading-Comprehension.md', downloadUrl:'/lessons/ENGLISH-Lesson-03-Reading-Comprehension.md', tags:['reading','comprehension','bece','waec'], dateAdded:'2026-06-23' },
+  { id:'eng-l04', title:'Writing That Works', description:'Structure, clarity, and purpose — how to write correctly for any audience, job, or exam.', section:'curriculum', subject:'english', type:'notes', level:'jhs', waec:true, url:'/lessons/ENGLISH-Lesson-04-Writing-That-Works.md', downloadUrl:'/lessons/ENGLISH-Lesson-04-Writing-That-Works.md', tags:['writing','structure','english'], dateAdded:'2026-06-23' },
+  { id:'eng-l05', title:'Parts of Speech', description:'Nouns, verbs, adjectives, adverbs, prepositions — mastered through Ghanaian sentences and stories.', section:'curriculum', subject:'english', type:'notes', level:'jhs', waec:true, url:'/lessons/ENGLISH-Lesson-05-Parts-Of-Speech.md', downloadUrl:'/lessons/ENGLISH-Lesson-05-Parts-Of-Speech.md', tags:['grammar','nouns','verbs','bece'], dateAdded:'2026-06-23' },
+  { id:'eng-l06', title:'Building Sentences', description:'Sentence types, clauses, and conjunctions — from simple to complex to compound.', section:'curriculum', subject:'english', type:'notes', level:'jhs', waec:true, url:'/lessons/ENGLISH-Lesson-06-Building-Sentences.md', downloadUrl:'/lessons/ENGLISH-Lesson-06-Building-Sentences.md', tags:['sentences','grammar','clauses'], dateAdded:'2026-06-23' },
+  { id:'eng-l07', title:'Verb Tenses', description:'Present, past, future, and perfect tenses — common errors Ghanaian students make and how to fix them.', section:'curriculum', subject:'english', type:'notes', level:'jhs', waec:true, url:'/lessons/ENGLISH-Lesson-07-Verb-Tenses.md', downloadUrl:'/lessons/ENGLISH-Lesson-07-Verb-Tenses.md', tags:['verbs','tenses','grammar','bece'], dateAdded:'2026-06-23' },
+  { id:'eng-l08', title:'Common Mistakes — Fixed!', description:'The top 20 grammar mistakes Ghanaian English speakers make — and how to correct them permanently.', section:'curriculum', subject:'english', type:'notes', level:'jhs', waec:true, url:'/lessons/ENGLISH-Lesson-08-Common-Mistakes.md', downloadUrl:'/lessons/ENGLISH-Lesson-08-Common-Mistakes.md', tags:['mistakes','grammar','correction','english'], dateAdded:'2026-06-23' },
+  { id:'eng-l09', title:'Vocabulary Power', description:'300 essential words for BECE and WASSCE — with definitions, example sentences, and context.', section:'curriculum', subject:'english', type:'notes', level:'jhs', waec:true, url:'/lessons/ENGLISH-Lesson-09-Vocabulary-Power.md', downloadUrl:'/lessons/ENGLISH-Lesson-09-Vocabulary-Power.md', tags:['vocabulary','words','bece','waec'], dateAdded:'2026-06-23' },
+  { id:'eng-l10', title:'Spelling Made Easy', description:"Ghana's most misspelled words + patterns and tricks for perfect spelling in exams.", section:'curriculum', subject:'english', type:'notes', level:'jhs', waec:true, url:'/lessons/ENGLISH-Lesson-10-Spelling-Made-Easy.md', downloadUrl:'/lessons/ENGLISH-Lesson-10-Spelling-Made-Easy.md', tags:['spelling','vocabulary','english'], dateAdded:'2026-06-23' },
+  { id:'eng-l11', title:'Punctuation', description:'Commas, apostrophes, colons, semicolons — when and why to use them, with Ghanaian examples.', section:'curriculum', subject:'english', type:'notes', level:'jhs', waec:true, url:'/lessons/ENGLISH-Lesson-11-Punctuation.md', downloadUrl:'/lessons/ENGLISH-Lesson-11-Punctuation.md', tags:['punctuation','grammar','writing'], dateAdded:'2026-06-23' },
+  { id:'eng-l12', title:'Summary Writing', description:'How to reduce a passage to its key points — a crucial BECE and WASSCE skill with worked examples.', section:'curriculum', subject:'english', type:'notes', level:'jhs', waec:true, url:'/lessons/ENGLISH-Lesson-12-Summary-Writing.md', downloadUrl:'/lessons/ENGLISH-Lesson-12-Summary-Writing.md', tags:['summary','waec','bece','writing'], dateAdded:'2026-06-23' },
+  { id:'eng-l13', title:'Essay Writing', description:'How to write expository, argumentative and discursive essays — with complete model answers.', section:'curriculum', subject:'english', type:'notes', level:'shs1', waec:true, url:'/lessons/ENGLISH-Lesson-13-Essay-Writing.md', downloadUrl:'/lessons/ENGLISH-Lesson-13-Essay-Writing.md', tags:['essay','waec','writing','shs'], dateAdded:'2026-06-23' },
+  { id:'eng-l14', title:'Creative Story Writing', description:'Plot, character, setting, and narrative voice — for WASSCE creative writing and journalism.', section:'curriculum', subject:'english', type:'notes', level:'shs1', waec:true, url:'/lessons/ENGLISH-Lesson-14-Creative-Story-Writing.md', downloadUrl:'/lessons/ENGLISH-Lesson-14-Creative-Story-Writing.md', tags:['creative writing','story','narrative'], dateAdded:'2026-06-23' },
+  { id:'eng-l15', title:'Poetry & Figurative Language', description:'Simile, metaphor, personification, imagery — analysing Ghanaian and African poems for WASSCE.', section:'curriculum', subject:'english', type:'notes', level:'shs1', waec:true, url:'/lessons/ENGLISH-Lesson-15-Poetry-Figurative-Language.md', downloadUrl:'/lessons/ENGLISH-Lesson-15-Poetry-Figurative-Language.md', tags:['poetry','metaphor','simile','literature'], dateAdded:'2026-06-23' },
+  { id:'eng-l16', title:'Comprehension Deep Dive', description:'Advanced comprehension strategies for SHS — inference, tone, purpose, and exam technique.', section:'curriculum', subject:'english', type:'notes', level:'shs2', waec:true, url:'/lessons/ENGLISH-Lesson-16-Comprehension-Deep-Dive.md', downloadUrl:'/lessons/ENGLISH-Lesson-16-Comprehension-Deep-Dive.md', tags:['comprehension','waec','inference','tone'], dateAdded:'2026-06-23' },
+  { id:'eng-l17', title:'Speaking & Pronunciation', description:'Common Ghanaian pronunciation patterns, intonation, and confident public speaking.', section:'curriculum', subject:'english', type:'notes', level:'shs1', waec:false, url:'/lessons/ENGLISH-Lesson-17-Speaking-Pronunciation.md', downloadUrl:'/lessons/ENGLISH-Lesson-17-Speaking-Pronunciation.md', tags:['pronunciation','speaking','accent','oral'], dateAdded:'2026-06-23' },
+  { id:'eng-l18', title:'Listening & Note-Taking', description:'Active listening skills, note-taking techniques for class, lectures, and meetings.', section:'curriculum', subject:'english', type:'notes', level:'shs1', waec:false, url:'/lessons/ENGLISH-Lesson-18-Listening-Note-Taking.md', downloadUrl:'/lessons/ENGLISH-Lesson-18-Listening-Note-Taking.md', tags:['listening','note taking','study skills'], dateAdded:'2026-06-23' },
+  { id:'eng-l19', title:'Ghanaian & African Literature', description:'Ama Ata Aidoo, Ayi Kwei Armah, Chinua Achebe, Wole Soyinka — African voices and WASSCE literature.', section:'curriculum', subject:'english', type:'notes', level:'shs2', waec:true, url:'/lessons/ENGLISH-Lesson-19-Ghanaian-African-Literature.md', downloadUrl:'/lessons/ENGLISH-Lesson-19-Ghanaian-African-Literature.md', tags:['literature','Aidoo','Achebe','waec'], dateAdded:'2026-06-23' },
+  { id:'eng-l20', title:'English for the Future', description:'Professional emails, reports, LinkedIn profiles, and AI-assisted writing for the 2030 workplace.', section:'curriculum', subject:'english', type:'notes', level:'shs2', waec:false, url:'/lessons/ENGLISH-Lesson-20-English-For-The-Future.md', downloadUrl:'/lessons/ENGLISH-Lesson-20-English-For-The-Future.md', tags:['professional','future','email','AI writing'], dateAdded:'2026-06-23' },
+
+  /* — ICT (6 lessons) — */
+  { id:'ict-l01', title:'What is a Computer?', description:'Hardware, software, input/output, and how computers work — for JHS ICT beginners.', section:'curriculum', subject:'ict', type:'notes', level:'jhs', waec:false, url:'/lessons/ICT-Lesson-01-What-is-a-Computer.md', downloadUrl:'/lessons/ICT-Lesson-01-What-is-a-Computer.md', tags:['computer','hardware','software','bece'], dateAdded:'2026-06-23' },
+  { id:'ict-l02', title:'Internet Safety & MoMo Security', description:'Online scams, fake news, safe passwords, and protecting your mobile money in Ghana.', section:'curriculum', subject:'ict', type:'notes', level:'jhs', waec:false, url:'/lessons/ICT-Lesson-02-Internet-Safety-MoMo.md', downloadUrl:'/lessons/ICT-Lesson-02-Internet-Safety-MoMo.md', tags:['internet safety','momo','scams','cybersecurity'], dateAdded:'2026-06-23' },
+  { id:'ict-l03', title:'Search Like a Pro', description:'Google search operators, evaluating sources, and finding reliable information online.', section:'curriculum', subject:'ict', type:'notes', level:'jhs', waec:false, url:'/lessons/ICT-Lesson-03-Search-Like-a-Pro.md', downloadUrl:'/lessons/ICT-Lesson-03-Search-Like-a-Pro.md', tags:['google','search','research','internet'], dateAdded:'2026-06-23' },
+  { id:'ict-l04', title:'Word Processing & Your CV', description:'Microsoft Word and Google Docs — write your first professional CV step by step.', section:'curriculum', subject:'ict', type:'notes', level:'jhs', waec:false, url:'/lessons/ICT-Lesson-04-Word-Processing-CV.md', downloadUrl:'/lessons/ICT-Lesson-04-Word-Processing-CV.md', tags:['word','CV','resume','professional'], dateAdded:'2026-06-23' },
+  { id:'ict-l05', title:'Spreadsheets & Money', description:'Excel/Google Sheets basics — budgets, income trackers, and business records for Ghanaian entrepreneurs.', section:'curriculum', subject:'ict', type:'notes', level:'jhs', waec:false, url:'/lessons/ICT-Lesson-05-Spreadsheets-Money.md', downloadUrl:'/lessons/ICT-Lesson-05-Spreadsheets-Money.md', tags:['excel','spreadsheets','budget','money'], dateAdded:'2026-06-23' },
+  { id:'ict-l06', title:'Email Professionalism', description:'How to write a proper email — subject lines, greetings, tone, and follow-up for jobs and business.', section:'curriculum', subject:'ict', type:'notes', level:'shs1', waec:false, url:'/lessons/ICT-Lesson-06-Email-Professionalism.md', downloadUrl:'/lessons/ICT-Lesson-06-Email-Professionalism.md', tags:['email','professional','communication','job'], dateAdded:'2026-06-23' },
+
+  /* — GHANAIAN LANGUAGE (1 lesson) — */
+  { id:'ghl-l01', title:'Your Language Is Power', description:'Why Ghanaian languages matter — Twi, Ga, Ewe, Dagbani, and the future of language preservation with AI.', section:'curriculum', subject:'ghanaian-languages', type:'notes', level:'jhs', waec:false, url:'/lessons/GHLANG-Lesson-01-Your-Language-Is-Power.md', downloadUrl:'/lessons/GHLANG-Lesson-01-Your-Language-Is-Power.md', tags:['twi','ga','ewe','language','culture'], dateAdded:'2026-06-23' },
+
+  /* — SOCIAL STUDIES (1 lesson) — */
+  { id:'soc-l01', title:'The Ghana Story', description:"Ghana's history from ancient kingdoms to independence — Kwame Nkrumah, colonialism, and democracy.", section:'curriculum', subject:'social-studies', type:'notes', level:'jhs', waec:true, url:'/lessons/SOCIAL-Lesson-01-The-Ghana-Story.md', downloadUrl:'/lessons/SOCIAL-Lesson-01-The-Ghana-Story.md', tags:['history','Nkrumah','independence','social studies'], dateAdded:'2026-06-23' },
+
+  /* — CREATIVE ARTS (1 lesson) — */
+  { id:'arts-l01', title:'The Art in Your Blood', description:'Kente weaving, Adinkra symbols, highlife music, and how digital tools are redefining Ghanaian creativity.', section:'curriculum', subject:'creative-arts', type:'notes', level:'jhs', waec:false, url:'/lessons/ARTS-Lesson-01-The-Art-In-Your-Blood.md', downloadUrl:'/lessons/ARTS-Lesson-01-The-Art-In-Your-Blood.md', tags:['kente','adinkra','arts','music','highlife'], dateAdded:'2026-06-23' },
+
+  /* — RELIGIOUS & MORAL EDUCATION (1 lesson) — */
+  { id:'rme-l01', title:'Character Is Wealth', description:'Ethics, moral decision-making, Ubuntu, and the values that build strong Ghanaian communities.', section:'curriculum', subject:'rme', type:'notes', level:'jhs', waec:false, url:'/lessons/RME-Lesson-01-Character-Is-Wealth.md', downloadUrl:'/lessons/RME-Lesson-01-Character-Is-Wealth.md', tags:['ethics','ubuntu','morality','RME'], dateAdded:'2026-06-23' },
+
+  /* — PE & HEALTH (1 lesson) — */
+  { id:'pe-l01', title:'Your Body, Your Machine', description:"Physical fitness, nutrition, mental health, and why active living matters for Ghana's youth.", section:'curriculum', subject:'pe', type:'notes', level:'jhs', waec:false, url:'/lessons/PE-HEALTH-Lesson-01-Your-Body-Your-Machine.md', downloadUrl:'/lessons/PE-HEALTH-Lesson-01-Your-Body-Your-Machine.md', tags:['fitness','health','nutrition','mental health'], dateAdded:'2026-06-23' },
+
+  /* — SLIDE DOCS & RESOURCES — */
+  { id:'slide-001', title:'Ghana AI Health Guide', description:'Complete guide to using AI in healthcare — disease detection, hospital management, and patient care in Ghana.', section:'curriculum', subject:'science', type:'pdf', level:'university', waec:false, url:'/resources/slides/Ghana_AI_Health_Guide.pdf', downloadUrl:'/resources/slides/Ghana_AI_Health_Guide.pdf', tags:['health','AI','hospital','medicine'], dateAdded:'2026-06-23' },
+  { id:'slide-002', title:'Ghana Digital Armoury', description:'Your complete toolkit of digital skills — software, AI tools, and platforms for every Ghanaian professional.', section:'curriculum', subject:'ict', type:'pdf', level:'shs2', waec:false, url:'/resources/slides/Ghana_Digital_Armoury.pdf', downloadUrl:'/resources/slides/Ghana_Digital_Armoury.pdf', tags:['digital skills','tools','professional'], dateAdded:'2026-06-23' },
+  { id:'slide-003', title:'Ghana Mobile App Blueprint', description:'How to plan, design, and launch a mobile app for the Ghanaian market — no-code to full-stack.', section:'curriculum', subject:'ict', type:'pdf', level:'university', waec:false, url:'/resources/slides/Ghana_Mobile_App_Blueprint.pdf', downloadUrl:'/resources/slides/Ghana_Mobile_App_Blueprint.pdf', tags:['app','mobile','startup','tech'], dateAdded:'2026-06-23' },
+  { id:'slide-004', title:'Digital Skills for Every Ghanaian', description:'The 10 essential digital skills every Ghanaian needs by 2030 — from browsing to AI.', section:'curriculum', subject:'ict', type:'pdf', level:'jhs', waec:false, url:'/resources/slides/The Digital Skills for Every.pdf', downloadUrl:'/resources/slides/The Digital Skills for Every.pdf', tags:['digital skills','Ghana','2030'], dateAdded:'2026-06-23' },
+  { id:'slide-005', title:'Telco & Mobile Money — MTN, Telecel, AirtelTigo', description:"The context block for Ghana's telecom sector — how mobile money works and AI opportunities within it.", section:'curriculum', subject:'ict', type:'pdf', level:'shs2', waec:false, url:'/resources/slides/The Telco & Mobile Money Context Block (MTN, Telecel, AirtelTigo).pdf', downloadUrl:'/resources/slides/The Telco & Mobile Money Context Block (MTN, Telecel, AirtelTigo).pdf', tags:['momo','telecom','MTN','Telecel','fintech'], dateAdded:'2026-06-23' },
+  { id:'slide-006', title:'Ghana AI Structural Engineering Guide', description:'Applying AI to civil and structural engineering in Ghana — construction, analysis and infrastructure.', section:'curriculum', subject:'science', type:'pdf', level:'university', waec:false, url:'/resources/slides/Ghana_AI_Structural_Engineering.pdf', downloadUrl:'/resources/slides/Ghana_AI_Structural_Engineering.pdf', tags:['engineering','construction','AI','infrastructure'], dateAdded:'2026-06-23' },
+
+  /* — TOOLS — */
+  { id:'tool-001', title:'Lesson Teleprompter', description:'Paste your lesson slides and read them hands-free with auto-scroll. Perfect for teachers and content creators.', section:'curriculum', subject:'ict', type:'interactive', level:'educators', waec:false, url:'/teleprompter', tags:['tool','teacher','creator','teleprompter'], dateAdded:'2026-06-06' },
+  { id:'tool-002', title:'Slide to Video Converter', description:'Turn a slide PDF into a shareable video for TikTok, Reels and more.', section:'curriculum', subject:'ict', type:'interactive', level:'educators', waec:false, url:'/slide-to-video', tags:['tool','video','creator','tiktok'], dateAdded:'2026-06-07' },
+
+
+  /* ═══════════════════════════════════════════════════════════
+     SECTION 2 — AI FOR GHANA
+     10 foundation lessons + prompting skills
+  ═══════════════════════════════════════════════════════════ */
+
+  { id:'ai-l01', title:'Lesson 1 — What is AI?', description:'"AI is like a very fast Kejetia market woman." The clearest AI explanation for every Ghanaian — beginners welcome.', section:'ai-ghana', subject:'ai-basics', type:'notes', level:'beginner', waec:false, featured:true, url:'/lessons/AI-Lesson-01-What-is-AI.md', downloadUrl:'/lessons/AI-Lesson-01-What-is-AI.md', tags:['AI basics','kejetia','introduction','beginner'], dateAdded:'2026-06-23' },
+  { id:'ai-l02', title:'Lesson 2 — How Does AI Learn?', description:'"The same way you passed BECE — by studying and practising." Machine learning explained for Ghanaian students.', section:'ai-ghana', subject:'ai-basics', type:'notes', level:'beginner', waec:false, url:'/lessons/AI-Lesson-02-How-AI-Learns.md', downloadUrl:'/lessons/AI-Lesson-02-How-AI-Learns.md', tags:['machine learning','BECE','training data'], dateAdded:'2026-06-23' },
+  { id:'ai-l03', title:'Lesson 3 — AI in Your Phone', description:"You use AI every day and don't know it. Maps, autocomplete, face unlock, TikTok For You — all AI.", section:'ai-ghana', subject:'ai-basics', type:'notes', level:'beginner', waec:false, url:'/lessons/AI-Lesson-03-AI-In-Your-Phone.md', downloadUrl:'/lessons/AI-Lesson-03-AI-In-Your-Phone.md', tags:['phone','apps','AI tools','everyday'], dateAdded:'2026-06-23' },
+  { id:'ai-l04', title:'Lesson 4 — What is ChatGPT?', description:'What ChatGPT is, how to use it, and how it can help Ghanaian students, teachers and entrepreneurs.', section:'ai-ghana', subject:'ai-basics', type:'notes', level:'beginner', waec:false, url:'/lessons/AI-Lesson-04-What-is-ChatGPT.md', downloadUrl:'/lessons/AI-Lesson-04-What-is-ChatGPT.md', tags:['ChatGPT','tools','AI assistant'], dateAdded:'2026-06-23' },
+  { id:'ai-l05', title:'Lesson 5 — Can AI Speak Twi?', description:"NLP for Ghanaian languages — how AI processes Twi, Ga, and Ewe, and what's still missing.", section:'ai-ghana', subject:'ai-basics', type:'notes', level:'beginner', waec:false, url:'/lessons/AI-Lesson-05-Can-AI-Speak-Twi.md', downloadUrl:'/lessons/AI-Lesson-05-Can-AI-Speak-Twi.md', tags:['twi','NLP','language AI','Ghanaian languages'], dateAdded:'2026-06-23' },
+  { id:'ai-l06', title:'Lesson 6 — AI for Farmers', description:'How Ghanaian farmers are using AI to detect crop disease, predict weather, and improve yields.', section:'ai-ghana', subject:'ai-agriculture', type:'notes', level:'beginner', waec:false, url:'/lessons/AI-Lesson-06-AI-For-Farmers.md', downloadUrl:'/lessons/AI-Lesson-06-AI-For-Farmers.md', tags:['agriculture','farming','crop disease','AI'], dateAdded:'2026-06-23' },
+  { id:'ai-l07', title:'Lesson 7 — AI for Doctors', description:"Disease detection, X-ray reading, hospital management — how AI is entering Ghana's healthcare system.", section:'ai-ghana', subject:'ai-health', type:'notes', level:'beginner', waec:false, url:'/lessons/AI-Lesson-07-AI-For-Doctors.md', downloadUrl:'/lessons/AI-Lesson-07-AI-For-Doctors.md', tags:['healthcare','diagnosis','hospital','medical AI'], dateAdded:'2026-06-23' },
+  { id:'ai-l08', title:'Lesson 8 — Will AI Take My Job?', description:"The honest answer for Ghanaians. Which jobs AI will change, which it won't, and how to stay ahead.", section:'ai-ghana', subject:'ai-basics', type:'notes', level:'beginner', waec:false, url:'/lessons/AI-Lesson-08-Will-AI-Take-My-Job.md', downloadUrl:'/lessons/AI-Lesson-08-Will-AI-Take-My-Job.md', tags:['jobs','future of work','career','automation'], dateAdded:'2026-06-23' },
+  { id:'ai-l09', title:'Lesson 9 — AI for Students', description:'Use AI to study smarter — BECE prep, essay writing, revision summaries, and WASSCE question practice.', section:'ai-ghana', subject:'ai-students', type:'notes', level:'beginner', waec:false, url:'/lessons/AI-Lesson-09-AI-For-Students.md', downloadUrl:'/lessons/AI-Lesson-09-AI-For-Students.md', tags:['students','study','BECE','WASSCE','revision'], dateAdded:'2026-06-23' },
+  { id:'ai-l10', title:'Lesson 10 — AI for Entrepreneurs', description:'Write your business plan, marketing copy, and customer emails with AI — for Ghanaian entrepreneurs.', section:'ai-ghana', subject:'ai-business', type:'notes', level:'beginner', waec:false, url:'/lessons/AI-Lesson-10-AI-For-Entrepreneurs.md', downloadUrl:'/lessons/AI-Lesson-10-AI-For-Entrepreneurs.md', tags:['entrepreneur','business','marketing','startup'], dateAdded:'2026-06-23' },
+
+  /* — THE GHANA PROMPT QURAN (PDF) — */
+  { id:'pq-pdf', title:'The Ghana Prompt Quran — Full PDF', description:'The complete guide to AI prompting for Ghanaians. 20 chapters, 200+ real-world prompts. Download free.', section:'ai-ghana', subject:'prompt-quran', type:'pdf', level:'beginner', waec:false, featured:true, url:'/resources/slides/The_Ghana_Prompt_Quran.pdf', downloadUrl:'/resources/slides/The_Ghana_Prompt_Quran.pdf', tags:['prompting','Ghana','guide','PDF','all levels'], dateAdded:'2026-06-23' },
+
+  /* — AI FOR GHANA TOOLS — */
+  { id:'ai-tool-001', title:'The AI Lesson Architect', description:'Framework and templates for building AI-powered lessons for Ghanaian classrooms.', section:'ai-ghana', subject:'ai-tools', type:'pdf', level:'educators', waec:false, url:'/resources/slides/The_AI_Lesson_Architect.pdf', downloadUrl:'/resources/slides/The_AI_Lesson_Architect.pdf', tags:['teacher','lesson plan','AI tools','educator'], dateAdded:'2026-06-23' },
+  { id:'ai-tool-002', title:'TikTok Posting Tool', description:'Post AI For Ghana videos directly to @AIForGhana TikTok account with this integrated web tool.', section:'ai-ghana', subject:'ai-tools', type:'interactive', level:'educators', waec:false, url:'/tiktok-tool', tags:['tiktok','post','video','creator'], dateAdded:'2026-06-06' },
+
+
+  /* ═══════════════════════════════════════════════════════════
+     SECTION 3 — GHANA PROMPT BIBLE
+     20 chapters of "The Ghana Prompt Quran"
+     Practical AI prompting for every area of Ghanaian life
+  ═══════════════════════════════════════════════════════════ */
+
+  { id:'gpb-ch01', title:'Chapter 1 — The Foundation: What Is a Prompt?', description:'The basics of AI prompting — what a prompt is, why it matters, and how to start giving better instructions to AI.', section:'prompt-bible', subject:'prompt-quran', type:'notes', level:'beginner', waec:false, featured:true, url:'#ch01', tags:['prompting','basics','introduction','AI'], dateAdded:'2026-06-23' },
+  { id:'gpb-ch02', title:'Chapter 2 — The 5-Part Master Formula', description:'The CRATE formula for perfect prompts: Context, Role, Action, Tone, Example. Master this and everything changes.', section:'prompt-bible', subject:'prompt-quran', type:'notes', level:'beginner', waec:false, url:'#ch02', tags:['formula','CRATE','prompting','technique'], dateAdded:'2026-06-23' },
+  { id:'gpb-ch03', title:'Chapter 3 — The Ghana Context System', description:'How to inject Ghanaian context into any prompt — market prices, local names, our culture, our language.', section:'prompt-bible', subject:'prompt-quran', type:'notes', level:'beginner', waec:false, url:'#ch03', tags:['Ghana context','culture','local','prompting'], dateAdded:'2026-06-23' },
+  { id:'gpb-ch04', title:'Chapter 4 — Advanced Techniques', description:'Chain prompting, few-shot learning, and role stacking — for when basic prompts are not enough.', section:'prompt-bible', subject:'prompt-quran', type:'notes', level:'intermediate', waec:false, url:'#ch04', tags:['chain prompting','few-shot','advanced'], dateAdded:'2026-06-23' },
+  { id:'gpb-ch05', title:'Chapter 5 — Prompts for Entrepreneurs & Business', description:'AI prompts for writing business plans, proposals, marketing copy, and investor pitches in Ghana.', section:'prompt-bible', subject:'prompt-quran', type:'notes', level:'beginner', waec:false, url:'#ch05', tags:['entrepreneur','business','marketing','proposal'], dateAdded:'2026-06-23' },
+  { id:'gpb-ch06', title:'Chapter 6 — Prompts for Students & Education', description:'Study guides, essay drafts, exam prep, and research assistance for BECE, WASSCE and university.', section:'prompt-bible', subject:'prompt-quran', type:'notes', level:'beginner', waec:false, url:'#ch06', tags:['students','BECE','WASSCE','study'], dateAdded:'2026-06-23' },
+  { id:'gpb-ch07', title:'Chapter 7 — Prompts for Professionals & Career', description:'CVs, job applications, LinkedIn profiles, interview prep, and professional emails using AI.', section:'prompt-bible', subject:'prompt-quran', type:'notes', level:'beginner', waec:false, url:'#ch07', tags:['career','CV','job','professional'], dateAdded:'2026-06-23' },
+  { id:'gpb-ch08', title:'Chapter 8 — Prompts for Creatives & Content Creators', description:'Writing scripts, captions, blog posts, TikTok hooks, and creative content with Ghanaian flavour.', section:'prompt-bible', subject:'prompt-quran', type:'notes', level:'beginner', waec:false, url:'#ch08', tags:['creator','tiktok','script','content','social media'], dateAdded:'2026-06-23' },
+  { id:'gpb-ch09', title:'Chapter 9 — Prompts for Health & Wellbeing', description:'Using AI to understand health conditions, prepare doctor visits, and build healthy habits in Ghana.', section:'prompt-bible', subject:'prompt-quran', type:'notes', level:'beginner', waec:false, url:'#ch09', tags:['health','medical','wellbeing','doctor'], dateAdded:'2026-06-23' },
+  { id:'gpb-ch10', title:'Chapter 10 — Prompts for Agriculture & Rural Life', description:'AI prompts for farmers — crop planning, pest control, market prices, and agritech in Ghana.', section:'prompt-bible', subject:'prompt-quran', type:'notes', level:'beginner', waec:false, url:'#ch10', tags:['agriculture','farming','rural','crops'], dateAdded:'2026-06-23' },
+  { id:'gpb-ch11', title:'Chapter 11 — Prompts for Finance & Money Management', description:'Personal budgeting, savings, mobile money, loans, and investment planning with AI.', section:'prompt-bible', subject:'prompt-quran', type:'notes', level:'beginner', waec:false, url:'#ch11', tags:['finance','budget','momo','savings','investment'], dateAdded:'2026-06-23' },
+  { id:'gpb-ch12', title:'Chapter 12 — Culture, Language & Heritage', description:'Using AI to preserve Ghanaian languages, document culture, and translate between Twi and English.', section:'prompt-bible', subject:'prompt-quran', type:'notes', level:'intermediate', waec:false, url:'#ch12', tags:['culture','twi','language','heritage','preservation'], dateAdded:'2026-06-23' },
+  { id:'gpb-ch13', title:"Chapter 13 — STEM & Science for Ghana's Future", description:"AI prompts for science projects, data analysis, engineering, and coding for Ghanaian STEM students.", section:'prompt-bible', subject:'prompt-quran', type:'notes', level:'intermediate', waec:false, url:'#ch13', tags:['STEM','science','engineering','coding','data'], dateAdded:'2026-06-23' },
+  { id:'gpb-ch14', title:'Chapter 14 — Law, Rights & Civic Power', description:"Know your rights, understand Ghana's constitution, and use AI to navigate legal and civic life.", section:'prompt-bible', subject:'prompt-quran', type:'notes', level:'beginner', waec:false, url:'#ch14', tags:['law','rights','civic','constitution','justice'], dateAdded:'2026-06-23' },
+  { id:'gpb-ch15', title:'Chapter 15 — Climate, Environment & Green Ghana', description:"Climate change, sustainability, green jobs, and what AI says about Ghana's environmental future.", section:'prompt-bible', subject:'prompt-quran', type:'notes', level:'beginner', waec:false, url:'#ch15', tags:['climate','environment','green','sustainability'], dateAdded:'2026-06-23' },
+  { id:'gpb-ch16', title:'Chapter 16 — Digital Skills, Coding & Tech Careers', description:'Learn to code, build apps, and launch tech careers using AI as your tutor and co-pilot.', section:'prompt-bible', subject:'prompt-quran', type:'notes', level:'intermediate', waec:false, url:'#ch16', tags:['coding','tech career','programming','apps'], dateAdded:'2026-06-23' },
+  { id:'gpb-ch17', title:'Chapter 17 — Teachers, Schools & Education Innovation', description:'Lesson plans, marking schemes, student feedback, and AI tools transforming Ghanaian classrooms.', section:'prompt-bible', subject:'prompt-quran', type:'notes', level:'educators', waec:false, url:'#ch17', tags:['teacher','lesson plan','education','classroom'], dateAdded:'2026-06-23' },
+  { id:'gpb-ch18', title:"Chapter 18 — Ghana's Global Ambition: Trade & Diplomacy", description:"Export strategies, trade policy, AfCFTA, and using AI to position Ghana in the global economy.", section:'prompt-bible', subject:'prompt-quran', type:'notes', level:'advanced', waec:false, url:'#ch18', tags:['trade','AfCFTA','export','diplomacy','global'], dateAdded:'2026-06-23' },
+  { id:'gpb-ch19', title:'Chapter 19 — Engineering, Architecture & Building Ghana', description:"AI prompts for civil engineers, architects, and builders driving Ghana's infrastructure boom.", section:'prompt-bible', subject:'prompt-quran', type:'notes', level:'advanced', waec:false, url:'#ch19', tags:['engineering','architecture','construction','infrastructure'], dateAdded:'2026-06-23' },
+  { id:'gpb-ch20', title:'Chapter 20 — Leadership, Governance & Nation Building', description:'AI for leaders — speeches, policies, community development, and building the Ghana of 2050.', section:'prompt-bible', subject:'prompt-quran', type:'notes', level:'advanced', waec:false, url:'#ch20', tags:['leadership','governance','policy','nation building'], dateAdded:'2026-06-23' },
 ];
