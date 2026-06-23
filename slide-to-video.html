@@ -102,32 +102,78 @@ video{width:100%;max-width:340px;border-radius:14px;border:1px solid var(--borde
 footer{text-align:center;padding:2rem 1rem;color:var(--text-dim);font-size:.78rem;font-family:var(--font-mono);border-top:1px solid var(--border);margin-top:2rem}
 footer a{color:var(--gh-gold);text-decoration:none}
 
+
 /* ── TEXT-TO-SLIDE ADDITIONS ── */
 .mode-bar{display:flex;gap:.4rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:50px;padding:.3rem;margin-bottom:1.5rem}
 .mode-btn{flex:1;border:none;border-radius:50px;padding:.65rem 1rem;font-family:var(--font-head);font-size:.88rem;font-weight:700;cursor:pointer;color:var(--text-dim);background:transparent;transition:all .2s}
 .mode-btn.on{background:var(--gh-gold);color:#000}
-.tpl-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:.5rem;margin:.8rem 0}
-.tpl{border:2px solid var(--border);border-radius:12px;padding:.65rem .3rem .5rem;text-align:center;cursor:pointer;transition:all .2s;font-size:.72rem;font-family:var(--font-head);font-weight:700;letter-spacing:.04em}
-.tpl:hover{border-color:rgba(255,255,255,.3)}
-.tpl.on{border-color:var(--gh-gold);box-shadow:0 0 0 1px var(--gh-gold)}
-.tpl .dot{width:28px;height:28px;border-radius:8px;margin:0 auto .4rem;border:1px solid rgba(255,255,255,.15)}
-.brand-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.85rem}
-.brand-row .opt{margin:0}
-.stxt{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;color:#fff;padding:.8rem .9rem;font-family:var(--font-mono);font-size:.82rem;line-height:1.6;resize:vertical;min-height:260px;outline:none;tab-size:2}
-.stxt:focus{border-color:rgba(252,209,22,.35)}
-.slide-prev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:.6rem;margin-top:1.1rem}
-.sp-thumb{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--border);cursor:pointer;background:#000}
+.inp{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;color:#fff;padding:.65rem .8rem;font-family:var(--font-mono);font-size:.85rem;outline:none}
+.inp:focus{border-color:rgba(252,209,22,.4)}
+
+/* creator top bar */
+.creator-top{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.9rem}
+.creator-btn{display:inline-flex;align-items:center;gap:.38rem;border:1px solid var(--border);background:rgba(255,255,255,.04);color:rgba(255,255,255,.75);border-radius:50px;padding:.48rem .95rem;font-size:.8rem;font-weight:600;cursor:pointer;font-family:var(--font-head);transition:all .18s}
+.creator-btn:hover{border-color:var(--gh-gold);color:var(--gh-gold)}
+.creator-btn-danger{border-color:rgba(206,17,38,.35);color:rgba(206,17,38,.6)}
+.creator-btn-danger:hover{border-color:var(--gh-red);color:var(--gh-red);background:rgba(206,17,38,.08)}
+.card-count{font-family:var(--font-mono);font-size:.72rem;color:var(--text-dim)}
+.starter-wrap{position:relative}
+.starter-drop{position:absolute;top:calc(100% + .4rem);left:0;background:#16161c;border:1px solid var(--border);border-radius:14px;padding:.35rem;z-index:100;min-width:210px;display:none;box-shadow:0 24px 70px rgba(0,0,0,.7)}
+.starter-drop.open{display:block}
+.starter-item{padding:.58rem .85rem;border-radius:9px;cursor:pointer;font-size:.83rem;transition:background .13s;white-space:nowrap;color:#fff}
+.starter-item:hover{background:rgba(252,209,22,.08);color:var(--gh-gold)}
+
+/* slide cards */
+.slide-card{border:1px solid var(--border);border-radius:14px;margin-bottom:.7rem;background:rgba(255,255,255,.02);overflow:hidden;transition:border-color .2s}
+.slide-card:hover{border-color:rgba(255,255,255,.16)}
+.card-head{display:flex;align-items:center;gap:.5rem;padding:.58rem .8rem;border-bottom:1px solid var(--border);background:rgba(0,0,0,.18);flex-wrap:wrap}
+.card-num{font-family:var(--font-mono);font-size:.68rem;color:var(--text-dim);min-width:46px}
+.card-tpl-chips{display:flex;gap:4px;flex:1}
+.card-chip{width:17px;height:17px;border-radius:5px;cursor:pointer;border:2.5px solid transparent;transition:all .15s;flex-shrink:0}
+.card-chip.on{border-color:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.4)}
+.card-actions{display:flex;gap:.2rem;margin-left:auto}
+.card-action{background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--text-dim);width:26px;height:26px;border-radius:7px;cursor:pointer;font-size:.76rem;transition:all .15s;display:flex;align-items:center;justify-content:center}
+.card-action:hover{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.2)}
+.card-del:hover{background:rgba(206,17,38,.2);color:var(--gh-red);border-color:var(--gh-red)}
+.card-body-grid{display:grid;grid-template-columns:1fr 105px}
+.card-fields{padding:.7rem .8rem;display:flex;flex-direction:column;gap:.45rem}
+.card-kicker{background:transparent;border:none;border-bottom:1px solid rgba(252,209,22,.25);color:var(--gh-gold);font-family:var(--font-mono);font-size:.76rem;padding:.3rem .15rem;letter-spacing:.1em;outline:none;width:100%;transition:border-color .15s}
+.card-kicker:focus{border-bottom-color:var(--gh-gold)}
+.card-kicker::placeholder{color:rgba(252,209,22,.25)}
+.card-headline{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:9px;color:#fff;font-family:var(--font-head);font-size:.92rem;font-weight:700;padding:.48rem .6rem;resize:none;min-height:58px;outline:none;line-height:1.35;width:100%;transition:border-color .15s}
+.card-headline:focus{border-color:rgba(255,255,255,.28)}
+.card-body-text{background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:9px;color:var(--text-dim);font-family:var(--font-body);font-size:.8rem;padding:.45rem .6rem;resize:none;min-height:50px;outline:none;line-height:1.55;width:100%;transition:border-color .15s}
+.card-body-text:focus{border-color:rgba(255,255,255,.15);color:#fff}
+.card-prev-wrap{background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;border-left:1px solid var(--border);padding:.5rem .4rem;cursor:pointer}
+.card-prev-wrap:hover .card-prev-canvas{opacity:.85;transform:scale(1.02)}
+.card-prev-canvas{border-radius:5px;max-width:88px;display:block;transition:all .2s}
+.card-prev-label{font-family:var(--font-mono);font-size:.55rem;color:var(--text-dim);letter-spacing:.06em}
+.card-prev-expand{font-size:.58rem;color:rgba(252,209,22,.5);font-family:var(--font-mono)}
+
+/* generated slide grid */
+.slide-prev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:.6rem;margin-top:1rem}
+.sp-thumb{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--border);cursor:pointer;background:#000;transition:transform .2s,border-color .2s}
+.sp-thumb:hover{transform:translateY(-2px);border-color:var(--gh-gold)}
 .sp-thumb canvas{width:100%;display:block}
 .sp-thumb .sp-n{position:absolute;top:4px;left:4px;background:rgba(0,0,0,.7);color:#fff;font-family:var(--font-mono);font-size:.6rem;padding:.1rem .38rem;border-radius:20px}
 .sp-thumb .sp-del{position:absolute;top:4px;right:4px;background:rgba(206,17,38,.85);color:#fff;border:none;width:20px;height:20px;border-radius:50%;cursor:pointer;font-size:.58rem;display:flex;align-items:center;justify-content:center}
-.format-hint{background:rgba(0,107,63,.07);border:1px solid rgba(0,107,63,.25);border-radius:10px;padding:.75rem .9rem;font-size:.76rem;color:var(--text-dim);line-height:1.7;margin-bottom:.8rem}
-.format-hint code{color:var(--gh-gold);font-family:var(--font-mono)}
-.gen-slides-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--gh-green);color:#fff;border:none;border-radius:50px;padding:.75rem 1.5rem;font-family:var(--font-head);font-weight:700;font-size:.9rem;cursor:pointer;transition:all .2s;margin-top:1rem}
+.gen-slides-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--gh-green);color:#fff;border:none;border-radius:50px;padding:.75rem 1.5rem;font-family:var(--font-head);font-weight:700;font-size:.9rem;cursor:pointer;transition:all .2s}
 .gen-slides-btn:hover{background:#008a4f;transform:translateY(-1px)}
-.gen-slides-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
-.font-warn{display:none;font-size:.75rem;color:var(--text-dim);padding:.5rem .8rem;background:rgba(252,209,22,.07);border:1px solid rgba(252,209,22,.2);border-radius:8px;margin-top:.5rem}
-.inp{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;color:#fff;padding:.65rem .8rem;font-family:var(--font-mono);font-size:.85rem;outline:none}
-.inp:focus{border-color:rgba(252,209,22,.4)}
+.brand-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem}
+.font-warn{display:none;font-size:.75rem;color:var(--text-dim);padding:.4rem .75rem;background:rgba(252,209,22,.07);border:1px solid rgba(252,209,22,.18);border-radius:8px}
+
+/* fullscreen preview modal */
+.prev-modal{position:fixed;inset:0;z-index:500;display:none;align-items:center;justify-content:center}
+.prev-modal.open{display:flex}
+.prev-modal-bg{position:absolute;inset:0;background:rgba(0,0,0,.94);backdrop-filter:blur(16px)}
+.prev-modal-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:1rem;padding:1.5rem}
+.prev-modal-inner canvas{border-radius:14px;max-height:80vh;max-width:88vw;box-shadow:0 40px 120px rgba(0,0,0,.9)}
+.prev-modal-nav{display:flex;align-items:center;gap:1.25rem}
+.prev-modal-nav button{background:rgba(255,255,255,.08);border:1px solid var(--border);color:#fff;width:42px;height:42px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.prev-modal-nav button:hover{background:rgba(252,209,22,.15);border-color:var(--gh-gold)}
+#prevModalIdx{font-family:var(--font-mono);font-size:.82rem;color:var(--text-dim);min-width:54px;text-align:center}
+.prev-modal-close{position:absolute;top:0;right:0;background:var(--gh-red);border:none;color:#fff;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;transform:translate(30%,-30%)}
+
 </style>
   <link rel="stylesheet" href="/enhance.css">
 </head>
@@ -151,73 +197,52 @@ footer a{color:var(--gh-gold);text-decoration:none}
 
   <!-- TEXT-TO-SLIDES PANEL -->
   <div class="panel" id="panelCreate">
-    <div class="step-h"><span class="step-n" style="background:var(--gh-green);font-size:1.1rem">✦</span> Text → Slides</div>
+    <div class="step-h"><span class="step-n" style="background:var(--gh-green);font-size:1.1rem">✦</span> Text → Slides <span style="font-family:var(--font-mono);font-size:.62rem;color:var(--text-dim);font-weight:400;margin-left:.5rem">LIVE PREVIEW · GHANA BRANDED</span></div>
 
-    <div class="format-hint">
-      <b>Format:</b> Separate slides with <code>---</code> on its own line.<br>
-      <b>Line 1:</b> Kicker label — short, ALL CAPS (e.g. <code>CHAPTER 1</code>)<br>
-      <b>Line 2:</b> Headline — the big bold statement<br>
-      <b>Lines 3+:</b> Body text or subtitle<br>
-      <b>Bullets:</b> Start a line with <code>•</code> or <code>-</code>  &nbsp;·&nbsp;  Use <code>TERM — description</code> for colour-coded bullets
+    <!-- Action bar -->
+    <div class="creator-top">
+      <button class="creator-btn" id="addCardBtn"><i class="fas fa-plus"></i> Add Slide</button>
+      <div class="starter-wrap">
+        <button class="creator-btn" id="starterBtn"><i class="fas fa-magic-wand-sparkles"></i> Templates <i class="fas fa-chevron-down" style="font-size:.6rem;margin-left:.15rem"></i></button>
+        <div class="starter-drop" id="starterDrop">
+          <div class="starter-item" data-tmpl="ai-lesson">🤖 AI Lesson (5 slides)</div>
+          <div class="starter-item" data-tmpl="prompt-tips">✍️ Prompt Tips (5 slides)</div>
+          <div class="starter-item" data-tmpl="motivational">🔥 Motivational (4 slides)</div>
+          <div class="starter-item" data-tmpl="problem-solution">💡 Problem → Solution (4 slides)</div>
+          <div class="starter-item" data-tmpl="ghana-fact">🇬🇭 Ghana Tech Fact (3 slides)</div>
+        </div>
+      </div>
+      <div style="margin-left:auto;display:flex;gap:.5rem;align-items:center">
+        <span class="card-count" id="cardCount"></span>
+        <button class="creator-btn creator-btn-danger" id="clearAllCardsBtn"><i class="fas fa-trash-alt"></i> Clear all</button>
+      </div>
     </div>
 
-    <label class="opt">Your slide content</label>
-    <textarea class="stxt" id="slideText" placeholder="CHAPTER 1
-YOU'RE USING AI WRONG.
-And it is quietly costing you free power.
----
-THE REALITY
-Lazy questions get lazy answers.
-The AI is brilliant. Your instruction was weak.
----
-WHAT IS A PROMPT
-A prompt is simply the instruction you give the AI.
-Clear instruction in. Clear answer out.
----
-THE FORMULA
-Four parts make a powerful prompt.
-• WHO — the role the AI should play
-• WHAT — exactly what you want
-• SITUATION — your real context
-• FORMAT — how you want the answer
----
-BETTER PROMPT
-= BETTER ANSWER.
-Every single time."></textarea>
-
-    <label class="opt" style="margin-top:1.1rem">Template style</label>
-    <div class="tpl-row" id="tplRow">
-      <div class="tpl on" data-tpl="auto"><div class="dot" style="background:linear-gradient(135deg,#1A1A1A 33%,#FCD116 33% 66%,#006B3C 66%)"></div>Auto Ghana</div>
-      <div class="tpl" data-tpl="dark"><div class="dot" style="background:#1A1A1A"></div>Dark</div>
-      <div class="tpl" data-tpl="light"><div class="dot" style="background:#FAFAF7;border-color:rgba(0,0,0,.15)"></div>Light</div>
-      <div class="tpl" data-tpl="green"><div class="dot" style="background:#006B3C"></div>Green</div>
-      <div class="tpl" data-tpl="gold"><div class="dot" style="background:#FCD116"></div>Gold</div>
-      <div class="tpl" data-tpl="red"><div class="dot" style="background:#CE1126"></div>Red</div>
-    </div>
-
+    <!-- Brand row -->
     <div class="brand-row">
-      <div>
-        <label class="opt">Brand name</label>
-        <input class="inp" id="brandName" value="AI FOR GHANA" placeholder="AI FOR GHANA">
-      </div>
-      <div>
-        <label class="opt">Handle</label>
-        <input class="inp" id="brandHandle" value="@AIForGhana" placeholder="@AIForGhana">
-      </div>
+      <div><label class="opt" style="margin:0 0 .3rem">Brand name</label><input class="inp" id="brandName" value="AI FOR GHANA" placeholder="AI FOR GHANA"></div>
+      <div><label class="opt" style="margin:0 0 .3rem">Handle</label><input class="inp" id="brandHandle" value="@AIForGhana" placeholder="@AIForGhana"></div>
     </div>
 
-    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:1rem">
-      <button class="gen-slides-btn" id="genSlidesBtn"><i class="fas fa-layer-group"></i> Generate Slides</button>
-      <span class="font-warn" id="fontWarn">⚠️ Font still loading — may use fallback font</span>
+    <!-- Slide cards -->
+    <div id="slideCards"></div>
+
+    <!-- Generate -->
+    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:.9rem">
+      <button class="gen-slides-btn" id="genSlidesBtn"><i class="fas fa-layer-group"></i> Generate All Slides</button>
+      <span class="font-warn" id="fontWarn">⚠️ Font loading — may use fallback</span>
     </div>
 
+    <!-- Generated preview grid -->
     <div class="slide-prev-grid" id="textSlidePrev"></div>
 
     <div class="gen-row" id="addSlidesRow" style="display:none;margin-top:1rem">
-      <button class="btn btn-gold" id="addSlidesBtn"><i class="fas fa-arrow-right"></i> Use these slides → go to settings</button>
+      <button class="btn btn-gold" id="addSlidesBtn"><i class="fas fa-arrow-right"></i> Use these slides → make video</button>
       <button class="btn btn-ghost" id="clearSlidesBtn"><i class="fas fa-rotate-left"></i> Clear</button>
     </div>
   </div>
+
+
 
   <!-- STEP 1 -->
   <div class="panel" id="setup" style="display:none">
@@ -325,7 +350,22 @@ Every single time."></textarea>
     </div>
   </div>
 
+  <!-- Fullscreen slide preview modal -->
+  <div class="prev-modal" id="prevModal">
+    <div class="prev-modal-bg" id="prevModalBg"></div>
+    <div class="prev-modal-inner">
+      <canvas id="prevModalCanvas"></canvas>
+      <div class="prev-modal-nav">
+        <button id="prevModalPrev"><i class="fas fa-chevron-left"></i></button>
+        <span id="prevModalIdx">1 / 1</span>
+        <button id="prevModalNext"><i class="fas fa-chevron-right"></i></button>
+      </div>
+      <button class="prev-modal-close" id="prevModalClose"><i class="fas fa-times"></i></button>
+    </div>
+  </div>
+
   <canvas id="previewCanvas"></canvas>
+  
 </div>
 
 <div class="toast" id="toast"></div>
@@ -547,44 +587,205 @@ $('resetTags').addEventListener('click',()=>{$('tags').value=DEFAULT_TAGS;saveSe
 $('tags').addEventListener('change',saveSettings);
 
 // ─────────────────────────────────────────────────────────────
-// TEXT-TO-SLIDE ENGINE
+// TEXT-TO-SLIDE ENGINE v2  ·  Card editor + live preview
 // ─────────────────────────────────────────────────────────────
 let generatedSlides = [];
-let selectedTpl = 'auto';
 let fontsReady = false;
 document.fonts.ready.then(() => { fontsReady = true; });
 
+// ── Templates ────────────────────────────────────────────────
 const TEMPLATES = {
   dark:  { bg:'#1A1A1A', kickerC:'#FCD116', headC1:'#FFFFFF', headC2:'#FCD116', bodyC:'#DDDDDD', accentBar:'#FCD116', brandC:'#FFFFFF', handleC:'#AFAFAF' },
-  light: { bg:'#FAFAF7', kickerC:'#CE1126', headC1:'#1A1A1A', headC2:'#1A1A1A', bodyC:'#333333', accentBar:'#006B3C', brandC:'#006B3C', handleC:'#7A7A7A' },
+  light: { bg:'#FAFAF7', kickerC:'#CE1126', headC1:'#1A1A1A', headC2:'#1A1A1A', bodyC:'#444444', accentBar:'#006B3C', brandC:'#006B3C', handleC:'#7A7A7A' },
   green: { bg:'#006B3C', kickerC:'#FCD116', headC1:'#FFFFFF', headC2:'#FFFFFF', bodyC:'#FCD116',  accentBar:'#FCD116', brandC:'#FFFFFF', handleC:'#AFAFAF' },
   gold:  { bg:'#FCD116', kickerC:'#006B3C', headC1:'#1A1A1A', headC2:'#1A1A1A', bodyC:'#5A4B00', accentBar:'#006B3C', brandC:'#006B3C', handleC:'#7A7A7A' },
   red:   { bg:'#CE1126', kickerC:'#FCD116', headC1:'#FFFFFF', headC2:'#FCD116', bodyC:'#FFD0D5',  accentBar:'#FCD116', brandC:'#FFFFFF', handleC:'#FFB0B8' },
 };
 const TPL_CYCLE = ['dark','light','green','gold','light','red','green','dark'];
+const TPL_COLORS = { dark:'#1A1A1A', light:'#E8E8E2', green:'#006B3C', gold:'#FCD116', red:'#CE1126' };
 
 function getTpl(name, idx) {
-  const key = (name === 'auto') ? TPL_CYCLE[idx % TPL_CYCLE.length] : name;
+  const key = name === 'auto' ? TPL_CYCLE[idx % TPL_CYCLE.length] : (name || 'dark');
   return TEMPLATES[key] || TEMPLATES.dark;
 }
 
-function parseSlideText(raw) {
-  return raw.split(/\n---\n|^---$/m).map(block => {
-    const lines = block.split('\n').map(l => l.trim()).filter(Boolean);
-    if (!lines.length) return null;
-    let kicker = '', headline = '', bodyLines = [], bullets = [], i = 0;
-    if (lines[0] && lines[0].length <= 42 && /^[A-Z0-9 .·&@#!?:'\-]+$/.test(lines[0])) {
-      kicker = lines[0]; i = 1;
-    }
-    if (lines[i]) { headline = lines[i]; i++; }
-    for (; i < lines.length; i++) {
-      if (/^[•\-★]/.test(lines[i])) bullets.push(lines[i].replace(/^[•\-★]\s*/, ''));
-      else bodyLines.push(lines[i]);
-    }
-    return { kicker, headline, body: bodyLines.join('\n'), bullets };
-  }).filter(Boolean);
+// ── Starter templates ─────────────────────────────────────────
+const STARTERS = {
+  'ai-lesson': [
+    { kicker:'LESSON 1', headline:'What Is Artificial Intelligence?', body:'AI is a computer trained to think, learn, and make decisions — just like a human mind.', tpl:'dark' },
+    { kicker:'THE TRUTH', headline:'AI is not magic. It is math.', body:'Every AI learns from examples — the same way you learned to read and write.', tpl:'light' },
+    { kicker:'IN GHANA', headline:'AI is already changing your life.', body:'Mobile money fraud detection. Crop disease apps. Traffic navigation. It is everywhere.', tpl:'green' },
+    { kicker:'YOUR MOVE', headline:'Learn AI now — or be left behind.', body:'By 2030, 85 million jobs in Africa will require digital skills. The time is now.', tpl:'gold' },
+    { kicker:'START TODAY', headline:'Anyone can learn AI. Including you.', body:'Follow @AIForGhana for free lessons every week. No degree needed.', tpl:'red' },
+  ],
+  'prompt-tips': [
+    { kicker:'THE PROBLEM', headline:"You're using AI wrong.", body:'Lazy questions get lazy answers. The AI is brilliant. Your instruction was weak.', tpl:'dark' },
+    { kicker:'WHAT IS A PROMPT', headline:'A prompt is the instruction you give the AI.', body:'Clear instruction in. Clear answer out. Every single time.', tpl:'green' },
+    { kicker:'THE FORMULA', headline:'Four parts make a powerful prompt.', body:"• WHO — the role the AI should play\n• WHAT — exactly what you want\n• SITUATION — your real context\n• FORMAT — how you want the answer", tpl:'light' },
+    { kicker:'BAD VS GOOD', headline:"\"Help me.\" vs \"Act as a business coach...\"", body:'The more specific your prompt, the more powerful the answer.', tpl:'gold' },
+    { kicker:'PRACTISE NOW', headline:'Better prompt = better answer. Always.', body:'Try the #PromptGhana challenge. Share your best prompt today.', tpl:'red' },
+  ],
+  'motivational': [
+    { kicker:'FOR GHANA', headline:"Africa's moment is NOW.", body:"By 2050, Africa will have the world's largest workforce. Your skills will power it.", tpl:'dark' },
+    { kicker:'REMEMBER THIS', headline:'Every expert was once a beginner.', body:'Kwame Nkrumah had no blueprint. Yaa Asantewaa had no army. They still led.', tpl:'green' },
+    { kicker:'THE CHOICE', headline:'You can watch the future — or build it.', body:'Technology will not wait for you to be ready. Get ready now.', tpl:'gold' },
+    { kicker:'AI FOR GHANA', headline:'Free knowledge. Zero excuses.', body:'Every lesson at raufhusein.site is free. Forever. Because education is a human right.', tpl:'red' },
+  ],
+  'problem-solution': [
+    { kicker:'THE PROBLEM', headline:"Most Ghanaians don't know what AI can do for them.", body:'Not because they are not smart. Because nobody showed them.', tpl:'dark' },
+    { kicker:'THE GAP', headline:'The world is moving at AI speed.', body:"While some wait, others are using AI to write proposals, code apps, and run businesses — all for free.", tpl:'light' },
+    { kicker:'THE SOLUTION', headline:'AI For Ghana: free education for every Ghanaian.', body:'Lessons in plain language. Real Ghana examples. No jargon. No cost.', tpl:'green' },
+    { kicker:'JOIN NOW', headline:'Follow. Learn. Share. Repeat.', body:'@AIForGhana on TikTok and Instagram. raufhusein.site for full lessons.', tpl:'gold' },
+  ],
+  'ghana-fact': [
+    { kicker:'DID YOU KNOW', headline:"Ghana's tech economy grew 30% in 2023.", body:"Accra's tech hub now hosts over 600 startups. Ghana is becoming Africa's Silicon Valley.", tpl:'dark' },
+    { kicker:'THE OPPORTUNITY', headline:'Ghana has 16 million people under 25.', body:"That's 16 million potential engineers, designers, founders, and AI builders.", tpl:'green' },
+    { kicker:'YOUR MOVE', headline:'The next tech giant from Africa will come from Ghana.', body:"Why not you? Start learning today. The tools are free. The opportunity is real.", tpl:'gold' },
+  ],
+};
+
+// ── Card model ────────────────────────────────────────────────
+let cardItems = []; // [{kicker, headline, body, tpl}]
+
+function updateCardCount() {
+  const el = $('cardCount');
+  if (el) el.textContent = cardItems.length ? `${cardItems.length} slide${cardItems.length>1?'s':''}` : '';
 }
 
+function createCardEl(data, idx) {
+  const { kicker='', headline='', body='', tpl='dark' } = data;
+  const div = document.createElement('div');
+  div.className = 'slide-card';
+  div.dataset.idx = idx;
+
+  const chipHTML = Object.keys(TPL_COLORS).map(k =>
+    `<span class="card-chip${k===tpl?' on':''}" data-tpl="${k}" style="background:${TPL_COLORS[k]}${k==='light'?';border:1px solid #ccc':''}" title="${k.charAt(0).toUpperCase()+k.slice(1)}"></span>`
+  ).join('');
+
+  div.innerHTML = `
+    <div class="card-head">
+      <span class="card-num">Slide ${idx+1}</span>
+      <div class="card-tpl-chips">${chipHTML}</div>
+      <div class="card-actions">
+        <button class="card-action" data-action="dup" title="Duplicate">⧉</button>
+        <button class="card-action" data-action="up" title="Move up">↑</button>
+        <button class="card-action" data-action="dn" title="Move down">↓</button>
+        <button class="card-action card-del" data-action="del" title="Delete">✕</button>
+      </div>
+    </div>
+    <div class="card-body-grid">
+      <div class="card-fields">
+        <input class="card-kicker" value="${kicker}" placeholder="KICKER LABEL (short, ALL CAPS)">
+        <textarea class="card-headline" placeholder="Your big headline...">${headline}</textarea>
+        <textarea class="card-body-text" placeholder="Body text or bullet points&#10;• Bullet 1&#10;• Bullet 2">${body}</textarea>
+      </div>
+      <div class="card-prev-wrap" title="Click to preview full size">
+        <canvas class="card-prev-canvas"></canvas>
+        <span class="card-prev-label">PREVIEW</span>
+        <span class="card-prev-expand">⤢ click</span>
+      </div>
+    </div>`;
+
+  // Chip clicks
+  div.querySelectorAll('.card-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      div.querySelectorAll('.card-chip').forEach(c => c.classList.remove('on'));
+      chip.classList.add('on');
+      const i = +div.dataset.idx;
+      cardItems[i].tpl = chip.dataset.tpl;
+      schedulePreview(div);
+    });
+  });
+
+  // Action buttons
+  div.querySelector('.card-actions').addEventListener('click', e => {
+    const btn = e.target.closest('[data-action]'); if (!btn) return;
+    const i = +div.dataset.idx;
+    const action = btn.dataset.action;
+    if (action === 'del') { cardItems.splice(i, 1); rebuildCards(); }
+    else if (action === 'dup') { cardItems.splice(i+1, 0, {...cardItems[i]}); rebuildCards(); }
+    else if (action === 'up' && i > 0) { [cardItems[i-1],cardItems[i]]=[cardItems[i],cardItems[i-1]]; rebuildCards(); }
+    else if (action === 'dn' && i < cardItems.length-1) { [cardItems[i],cardItems[i+1]]=[cardItems[i+1],cardItems[i]]; rebuildCards(); }
+  });
+
+  // Live input sync + preview
+  div.querySelector('.card-kicker').addEventListener('input', e => { cardItems[+div.dataset.idx].kicker = e.target.value; schedulePreview(div); });
+  div.querySelector('.card-headline').addEventListener('input', e => { cardItems[+div.dataset.idx].headline = e.target.value; schedulePreview(div); });
+  div.querySelector('.card-body-text').addEventListener('input', e => { cardItems[+div.dataset.idx].body = e.target.value; schedulePreview(div); });
+
+  // Click preview to open modal
+  div.querySelector('.card-prev-wrap').addEventListener('click', () => {
+    const i = +div.dataset.idx;
+    if (generatedSlides.length) { openModal(i < generatedSlides.length ? i : 0); }
+    else { renderCardPreview(div); toast('Generate slides first to see full-screen preview 👆'); }
+  });
+
+  return div;
+}
+
+function rebuildCards() {
+  const container = $('slideCards');
+  container.innerHTML = '';
+  cardItems.forEach((data, i) => {
+    const el = createCardEl(data, i);
+    container.appendChild(el);
+    schedulePreview(el);
+  });
+  updateCardCount();
+}
+
+function addBlankCard() {
+  const tpls = Object.keys(TPL_COLORS);
+  cardItems.push({ kicker:'', headline:'', body:'', tpl: TPL_CYCLE[cardItems.length % TPL_CYCLE.length] });
+  rebuildCards();
+  // Scroll last card into view
+  const cards = $('slideCards').querySelectorAll('.slide-card');
+  if (cards.length) cards[cards.length-1].scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function loadStarter(key) {
+  const data = STARTERS[key];
+  if (!data) return;
+  cardItems = data.map(d => ({...d}));
+  rebuildCards();
+  toast(`${data.length} slides loaded 🎉`);
+}
+
+// ── Live preview ──────────────────────────────────────────────
+const prevTimers = {};
+function schedulePreview(cardEl) {
+  const idx = cardEl.dataset.idx;
+  clearTimeout(prevTimers[idx]);
+  prevTimers[idx] = setTimeout(() => renderCardPreview(cardEl), 280);
+}
+
+function renderCardPreview(cardEl) {
+  const i = +cardEl.dataset.idx;
+  const data = cardItems[i];
+  if (!data) return;
+  const [W, H] = dims();
+  const tpl = getTpl(data.tpl, i);
+  const parsed = parseOneSlide(data);
+  const srcCanvas = renderTextSlide(parsed, tpl, W, H);
+  const pc = cardEl.querySelector('.card-prev-canvas');
+  // Scale: fit in 88px wide
+  const scale = 88 / W;
+  pc.width = 88; pc.height = Math.round(H * scale);
+  pc.getContext('2d').drawImage(srcCanvas, 0, 0, pc.width, pc.height);
+}
+
+function parseOneSlide(data) {
+  const bullets = [], bodyLines = [];
+  (data.body || '').split('\n').forEach(line => {
+    const t = line.trim();
+    if (!t) return;
+    if (/^[•\-★]/.test(t)) bullets.push(t.replace(/^[•\-★]\s*/, ''));
+    else bodyLines.push(t);
+  });
+  return { kicker: data.kicker||'', headline: data.headline||'', body: bodyLines.join('\n'), bullets };
+}
+
+// ── Slide renderer ─────────────────────────────────────────────
 function wrapText(ctx, text, maxW, font) {
   ctx.font = font;
   const words = text.split(' ');
@@ -598,6 +799,14 @@ function wrapText(ctx, text, maxW, font) {
   return lines;
 }
 
+function drawGhanaStripe(ctx, W, H) {
+  const sh = Math.max(8, Math.round(H * 0.013));
+  const y = H - sh;
+  ctx.fillStyle = '#006B3C'; ctx.fillRect(0, y, W/3, sh);
+  ctx.fillStyle = '#FCD116'; ctx.fillRect(W/3, y, W/3, sh);
+  ctx.fillStyle = '#CE1126'; ctx.fillRect(2*W/3, y, W/3, sh);
+}
+
 function renderTextSlide(data, tpl, W, H) {
   const c = document.createElement('canvas');
   c.width = W; c.height = H;
@@ -606,71 +815,101 @@ function renderTextSlide(data, tpl, W, H) {
   const maxW = W - PAD * 2;
   const isPort = H > W;
 
+  // Background
   ctx.fillStyle = tpl.bg;
   ctx.fillRect(0, 0, W, H);
+
+  // Top accent bar
   ctx.fillStyle = tpl.accentBar;
-  ctx.fillRect(0, 0, W, Math.max(6, Math.round(H * 0.005)));
+  ctx.fillRect(0, 0, W, Math.max(7, Math.round(H * 0.006)));
 
-  let y = isPort ? Math.round(H * 0.088) : Math.round(H * 0.1);
+  // Ghana flag stripe at bottom
+  drawGhanaStripe(ctx, W, H);
 
+  let y = isPort ? Math.round(H * 0.085) : Math.round(H * 0.1);
+
+  // Kicker
   if (data.kicker) {
-    const kSz = Math.round(W * 0.032);
-    const kFont = `700 ${kSz}px "Space Grotesk","Arial Black",sans-serif`;
-    ctx.font = kFont; ctx.fillStyle = tpl.kickerC;
-    ctx.fillText(data.kicker, PAD, y);
-    y += Math.round(kSz * 1.75);
+    const kSz = Math.round(W * 0.031);
+    ctx.font = `700 ${kSz}px "Space Grotesk","Arial Black",sans-serif`;
+    ctx.fillStyle = tpl.kickerC;
+    // Kicker with underline dot
+    ctx.fillText(data.kicker.toUpperCase(), PAD, y);
+    // Small accent line below kicker
+    ctx.fillStyle = tpl.accentBar;
+    ctx.fillRect(PAD, y + Math.round(kSz * 0.25), Math.round(W * 0.06), Math.round(kSz * 0.12));
+    y += Math.round(kSz * 1.9);
   }
 
+  // Headline
   if (data.headline) {
-    let hSz = Math.round(W * (isPort ? 0.115 : 0.072));
-    if (data.headline.length > 60) hSz = Math.round(hSz * 0.60);
-    else if (data.headline.length > 40) hSz = Math.round(hSz * 0.74);
-    else if (data.headline.length > 25) hSz = Math.round(hSz * 0.87);
+    // Detect impact mode: no kicker, no body, short headline
+    const isImpact = !data.kicker && !data.body && !data.bullets.length && data.headline.length < 50;
+    let hSz = Math.round(W * (isPort ? (isImpact ? 0.145 : 0.112) : 0.072));
+    if (!isImpact) {
+      if (data.headline.length > 60) hSz = Math.round(hSz * 0.60);
+      else if (data.headline.length > 40) hSz = Math.round(hSz * 0.74);
+      else if (data.headline.length > 25) hSz = Math.round(hSz * 0.87);
+    }
     const hFont = `700 ${hSz}px "Space Grotesk","Arial Black",sans-serif`;
     const wrapped = wrapText(ctx, data.headline, maxW, hFont);
     ctx.font = hFont;
-    const lineH = Math.round(hSz * 1.12);
+    const lineH = Math.round(hSz * 1.1);
+
+    // Center vertically if impact mode
+    if (isImpact) {
+      const totalH = wrapped.length * lineH;
+      y = Math.round((H - totalH) / 2) + hSz;
+    }
+
     const half = Math.max(1, Math.ceil(wrapped.length / 2));
     wrapped.forEach((line, i) => {
-      ctx.fillStyle = (i < half) ? tpl.headC1 : tpl.headC2;
+      ctx.fillStyle = i < half ? tpl.headC1 : tpl.headC2;
       ctx.fillText(line, PAD, y);
       y += lineH;
     });
-    y += Math.round(hSz * 0.45);
+    y += Math.round(hSz * 0.42);
   }
 
+  // Body text
   if (data.body && !data.bullets.length) {
-    const bSz = Math.round(W * 0.037);
+    const bSz = Math.round(W * 0.036);
     const bFont = `400 ${bSz}px Inter,Arial,sans-serif`;
     ctx.fillStyle = tpl.bodyC;
     data.body.split('\n').forEach(line => {
       if (!line.trim()) return;
       const wrapped = wrapText(ctx, line, maxW, bFont);
       ctx.font = bFont;
-      wrapped.forEach(wl => { ctx.fillText(wl, PAD, y); y += Math.round(bSz * 1.5); });
+      wrapped.forEach(wl => { ctx.fillText(wl, PAD, y); y += Math.round(bSz * 1.55); });
+      y += Math.round(bSz * 0.3);
     });
   }
 
+  // Bullets
   if (data.bullets.length) {
-    const bSz = Math.round(W * 0.032);
-    const starSz = Math.round(W * 0.026);
-    const lineH = Math.round(bSz * 1.7);
+    const bSz = Math.round(W * 0.031);
+    const starSz = Math.round(W * 0.025);
+    const lineH = Math.round(bSz * 1.72);
     data.bullets.forEach(bullet => {
-      const starFont = `700 ${starSz}px "Space Grotesk",sans-serif`;
-      ctx.font = starFont; ctx.fillStyle = '#FCD116';
+      ctx.font = `700 ${starSz}px "Space Grotesk",sans-serif`;
+      ctx.fillStyle = '#FCD116';
       ctx.fillText('★', PAD, y);
       const starW = ctx.measureText('★').width + Math.round(W * 0.016);
       const bx = PAD + starW;
       const parts = bullet.split(/\s*—\s*/);
       if (parts.length > 1) {
-        const kFont2 = `700 ${bSz}px "Space Grotesk",sans-serif`;
-        const vFont = `400 ${bSz}px Inter,Arial,sans-serif`;
-        ctx.font = kFont2; ctx.fillStyle = tpl.accentBar;
+        ctx.font = `700 ${bSz}px "Space Grotesk",sans-serif`;
+        ctx.fillStyle = tpl.accentBar;
         const kLabel = parts[0] + '  —  ';
         ctx.fillText(kLabel, bx, y);
         const kW = ctx.measureText(kLabel).width;
-        ctx.font = vFont; ctx.fillStyle = tpl.bodyC;
-        ctx.fillText(parts.slice(1).join(' — '), bx + kW, y);
+        ctx.font = `400 ${bSz}px Inter,Arial,sans-serif`;
+        ctx.fillStyle = tpl.bodyC;
+        // Wrap rest
+        const rest = parts.slice(1).join(' — ');
+        const wrapped = wrapText(ctx, rest, maxW - bx + PAD - kW, `400 ${bSz}px Inter,Arial,sans-serif`);
+        ctx.fillText(wrapped[0]||'', bx + kW, y);
+        wrapped.slice(1).forEach(wl => { y += Math.round(bSz * 1.4); ctx.fillText(wl, bx + Math.round(W*0.01), y); });
       } else {
         ctx.font = `400 ${bSz}px Inter,Arial,sans-serif`;
         ctx.fillStyle = tpl.bodyC;
@@ -680,8 +919,9 @@ function renderTextSlide(data, tpl, W, H) {
     });
   }
 
-  const brandY = H - Math.round(H * 0.058);
-  const brandSz = Math.round(W * 0.026);
+  // Bottom branding
+  const brandY = H - Math.round(H * 0.072);
+  const brandSz = Math.round(W * 0.025);
   const handleSz = Math.round(W * 0.019);
   ctx.font = `700 ${brandSz}px "Space Grotesk","Arial Black",sans-serif`;
   ctx.fillStyle = tpl.brandC;
@@ -693,20 +933,20 @@ function renderTextSlide(data, tpl, W, H) {
   return c;
 }
 
+// ── Generate all slides ────────────────────────────────────────
 $('genSlidesBtn').addEventListener('click', () => {
-  const text = $('slideText').value.trim();
-  if (!text) { toast('Paste your slide content first ✍️'); return; }
+  if (!cardItems.length) { toast('Add at least one slide first ✍️'); return; }
   if (!fontsReady) $('fontWarn').style.display = 'inline-block';
   const [W, H] = dims();
-  const parsed = parseSlideText(text);
-  if (!parsed.length) { toast('No slides found. Use --- to separate slides.'); return; }
   generatedSlides = [];
   const prev = $('textSlidePrev');
   prev.innerHTML = '';
-  parsed.forEach((data, i) => {
-    const tpl = getTpl(selectedTpl, i);
-    const c = renderTextSlide(data, tpl, W, H);
-    generatedSlides.push({ src: c, w: W, h: H, thumb: c.toDataURL('image/jpeg', 0.72), dur: null });
+  cardItems.forEach((data, i) => {
+    const tpl = getTpl(data.tpl, i);
+    const parsed = parseOneSlide(data);
+    const c = renderTextSlide(parsed, tpl, W, H);
+    generatedSlides.push({ src: c, w: W, h: H, thumb: c.toDataURL('image/jpeg', 0.75), dur: null });
+    // Thumbnail
     const div = document.createElement('div');
     div.className = 'sp-thumb';
     const pc = document.createElement('canvas');
@@ -715,12 +955,13 @@ $('genSlidesBtn').addEventListener('click', () => {
     const n = document.createElement('span'); n.className = 'sp-n'; n.textContent = i + 1;
     const del = document.createElement('button'); del.className = 'sp-del'; del.title = 'Remove';
     del.innerHTML = '<i class="fas fa-times"></i>';
-    del.onclick = () => removeGenSlide(div);
+    del.onclick = e => { e.stopPropagation(); removeGenSlide(div); };
+    div.onclick = () => openModal(i);
     div.appendChild(pc); div.appendChild(n); div.appendChild(del);
     prev.appendChild(div);
   });
   $('addSlidesRow').style.display = 'flex';
-  toast(`${parsed.length} slide${parsed.length > 1 ? 's' : ''} created 🎉`);
+  toast(`${generatedSlides.length} slide${generatedSlides.length>1?'s':''} ready — click any to preview 🎉`);
 });
 
 function removeGenSlide(div) {
@@ -736,8 +977,8 @@ $('addSlidesBtn').addEventListener('click', () => {
   slides.push(...generatedSlides);
   renderThumbs();
   setMode('upload');
-  $('setup').scrollIntoView({ behavior: 'smooth' });
-  toast(`${generatedSlides.length} slide${generatedSlides.length > 1 ? 's' : ''} added ✅`);
+  $('setup').scrollIntoView({ behavior:'smooth' });
+  toast(`${generatedSlides.length} slide${generatedSlides.length>1?'s':''} added ✅`);
 });
 
 $('clearSlidesBtn').addEventListener('click', () => {
@@ -746,6 +987,39 @@ $('clearSlidesBtn').addEventListener('click', () => {
   $('addSlidesRow').style.display = 'none';
 });
 
+// ── Fullscreen modal ──────────────────────────────────────────
+let modalIdx = 0;
+function openModal(i) {
+  modalIdx = i;
+  drawModal();
+  $('prevModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  $('prevModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function drawModal() {
+  if (!generatedSlides.length) return;
+  modalIdx = Math.max(0, Math.min(modalIdx, generatedSlides.length - 1));
+  const slide = generatedSlides[modalIdx];
+  const mc = $('prevModalCanvas');
+  mc.width = slide.w; mc.height = slide.h;
+  mc.getContext('2d').drawImage(slide.src, 0, 0);
+  $('prevModalIdx').textContent = `${modalIdx+1} / ${generatedSlides.length}`;
+}
+$('prevModalClose').addEventListener('click', closeModal);
+$('prevModalBg').addEventListener('click', closeModal);
+$('prevModalPrev').addEventListener('click', () => { modalIdx--; drawModal(); });
+$('prevModalNext').addEventListener('click', () => { modalIdx++; drawModal(); });
+document.addEventListener('keydown', e => {
+  if (!$('prevModal').classList.contains('open')) return;
+  if (e.key === 'Escape') closeModal();
+  if (e.key === 'ArrowLeft') { modalIdx--; drawModal(); }
+  if (e.key === 'ArrowRight') { modalIdx++; drawModal(); }
+});
+
+// ── Mode toggle ────────────────────────────────────────────────
 function setMode(mode) {
   const isCreate = mode === 'create';
   $('modeCreate').classList.toggle('on', isCreate);
@@ -756,24 +1030,54 @@ function setMode(mode) {
 $('modeCreate').addEventListener('click', () => setMode('create'));
 $('modeUpload').addEventListener('click', () => setMode('upload'));
 
-document.querySelectorAll('.tpl').forEach(t => {
-  t.addEventListener('click', () => {
-    document.querySelectorAll('.tpl').forEach(x => x.classList.remove('on'));
-    t.classList.add('on');
-    selectedTpl = t.dataset.tpl;
-  });
+// ── Starter templates ─────────────────────────────────────────
+$('starterBtn').addEventListener('click', e => {
+  e.stopPropagation();
+  $('starterDrop').classList.toggle('open');
+});
+document.addEventListener('click', () => $('starterDrop').classList.remove('open'));
+$('starterDrop').addEventListener('click', e => {
+  const item = e.target.closest('.starter-item'); if (!item) return;
+  loadStarter(item.dataset.tmpl);
+  $('starterDrop').classList.remove('open');
 });
 
-$('shape').addEventListener('change', () => {
-  if (generatedSlides.length) {
-    const btn = $('genSlidesBtn');
-    btn.textContent = '🔄 Re-generate for new shape';
-    setTimeout(() => { btn.innerHTML = '<i class="fas fa-layer-group"></i> Generate Slides'; }, 3000);
+// ── Card management buttons ───────────────────────────────────
+$('addCardBtn').addEventListener('click', addBlankCard);
+$('clearAllCardsBtn').addEventListener('click', () => {
+  if (!cardItems.length || confirm('Clear all slides?')) {
+    cardItems = []; rebuildCards();
+    generatedSlides = [];
+    $('textSlidePrev').innerHTML = '';
+    $('addSlidesRow').style.display = 'none';
   }
 });
 
+// Re-generate hint when shape changes
+$('shape').addEventListener('change', () => {
+  if (generatedSlides.length) {
+    toast('Shape changed — click Generate again to update 🔄');
+    generatedSlides = [];
+    $('textSlidePrev').innerHTML = '';
+    $('addSlidesRow').style.display = 'none';
+  }
+  // Update card mini-previews
+  $('slideCards').querySelectorAll('.slide-card').forEach(card => schedulePreview(card));
+});
+
+// Brand change → refresh all card previews
+['brandName','brandHandle'].forEach(id => {
+  $(id).addEventListener('input', () => {
+    $('slideCards').querySelectorAll('.slide-card').forEach(card => schedulePreview(card));
+  });
+});
+
+// Seed with a starter on first load
+loadStarter('ai-lesson');
+
 // ─────────────────────────────────────────────────────────────
 loadSettings();
+
 </script>
 </body>
 </html>
