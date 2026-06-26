@@ -173,6 +173,17 @@ footer a{color:var(--gh-gold);text-decoration:none}
 .prev-modal-nav button:hover{background:rgba(252,209,22,.15);border-color:var(--gh-gold)}
 #prevModalIdx{font-family:var(--font-mono);font-size:.82rem;color:var(--text-dim);min-width:54px;text-align:center}
 .prev-modal-close{position:absolute;top:0;right:0;background:var(--gh-red);border:none;color:#fff;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;transform:translate(30%,-30%)}
+/* Layout picker pills inside each card */
+.layout-row{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:.3rem}
+.layout-pill{font-size:.58rem;font-family:var(--font-mono);padding:.2rem .5rem;border-radius:5px;cursor:pointer;color:rgba(255,255,255,.38);border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.02);transition:all .15s;user-select:none;letter-spacing:.04em}
+.layout-pill.on{background:rgba(0,107,63,.22);color:#5de8a0;border-color:rgba(0,107,63,.55);font-weight:700}
+.layout-pill:hover{color:#fff;border-color:rgba(255,255,255,.18)}
+/* Fit/Fill toggle button */
+.fit-toggle{display:inline-flex;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-top:.4rem}
+.fit-toggle button{border:none;background:rgba(255,255,255,.04);color:var(--text-dim);padding:.38rem .85rem;font-size:.76rem;cursor:pointer;font-family:var(--font-mono);transition:all .18s}
+.fit-toggle button.on{background:var(--gh-green);color:#fff}
+/* Better thumb strip — gradient bg instead of black */
+.thumb .pic{aspect-ratio:9/16;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 40%,#1a1a2e 0%,#0a0a0f 100%)}
 
 </style>
   <link rel="stylesheet" href="/enhance.css">
@@ -282,8 +293,12 @@ footer a{color:var(--gh-gold);text-decoration:none}
         </select>
       </div>
       <div class="opt">
-        <label>Letterbox background</label>
-        <div class="bg-row" id="bgRow">
+        <label>Slide fit mode</label>
+        <div class="fit-toggle" id="fitToggle">
+          <button class="on" id="btnFit" title="Letterbox: slide fully visible with blurred backdrop">⬜ Fit</button>
+          <button id="btnFill" title="Fill: zoom-crop to fill the frame">⬛ Fill</button>
+        </div>
+        <div class="bg-row" id="bgRow" style="display:none">
           <div class="bg-chip on" data-bg="#000000">Black</div>
           <div class="bg-chip" data-bg="#ffffff">White</div>
           <div class="bg-chip" data-bg="#060608">Dark</div>
@@ -476,9 +491,46 @@ function pickMime(hasAudio){
 }
 
 const canvas=$('previewCanvas'),ctx=canvas.getContext('2d');
-function blit(s,W,H,alpha){const sc=Math.min(W/s.w,H/s.h),dw=s.w*sc,dh=s.h*sc;ctx.globalAlpha=alpha;ctx.drawImage(s.src,(W-dw)/2,(H-dh)/2,dw,dh);ctx.globalAlpha=1;}
+let fillMode = false;
+function blit(s,W,H,alpha){
+  const sc=Math.min(W/s.w,H/s.h),dw=s.w*sc,dh=s.h*sc;
+  const dx=(W-dw)/2, dy=(H-dh)/2;
+  if(fillMode){
+    const sf=Math.max(W/s.w,H/s.h);
+    ctx.globalAlpha=alpha;
+    ctx.drawImage(s.src,(W-s.w*sf)/2,(H-s.h*sf)/2,s.w*sf,s.h*sf);
+    ctx.globalAlpha=1;
+  } else {
+    if(dw<W-2||dh<H-2){
+      ctx.save();
+      ctx.filter='blur(28px) brightness(0.38) saturate(1.3)';
+      const sb=Math.max(W/s.w,H/s.h)*1.25;
+      ctx.drawImage(s.src,(W-s.w*sb)/2,(H-s.h*sb)/2,s.w*sb,s.h*sb);
+      ctx.restore();
+      ctx.fillStyle='rgba(0,0,0,0.18)';
+      ctx.fillRect(0,0,W,H);
+    }
+    ctx.globalAlpha=alpha;
+    ctx.drawImage(s.src,dx,dy,dw,dh);
+    ctx.globalAlpha=1;
+  }
+}
 
 genBtn.addEventListener('click',generate);
+
+// Fit / Fill toggle
+document.getElementById('btnFit').addEventListener('click',()=>{
+  fillMode=false;
+  document.getElementById('btnFit').classList.add('on');
+  document.getElementById('btnFill').classList.remove('on');
+  saveSettings();
+});
+document.getElementById('btnFill').addEventListener('click',()=>{
+  fillMode=true;
+  document.getElementById('btnFill').classList.add('on');
+  document.getElementById('btnFit').classList.remove('on');
+  saveSettings();
+});
 
 async function generate(){
   if(!slides.length)return;
@@ -612,40 +664,40 @@ function getTpl(name, idx) {
 // ── Starter templates ─────────────────────────────────────────
 const STARTERS = {
   'ai-lesson': [
-    { kicker:'LESSON 1', headline:'What Is Artificial Intelligence?', body:'AI is a computer trained to think, learn, and make decisions — just like a human mind.', tpl:'dark' },
-    { kicker:'THE TRUTH', headline:'AI is not magic. It is math.', body:'Every AI learns from examples — the same way you learned to read and write.', tpl:'light' },
-    { kicker:'IN GHANA', headline:'AI is already changing your life.', body:'Mobile money fraud detection. Crop disease apps. Traffic navigation. It is everywhere.', tpl:'green' },
-    { kicker:'YOUR MOVE', headline:'Learn AI now — or be left behind.', body:'By 2030, 85 million jobs in Africa will require digital skills. The time is now.', tpl:'gold' },
-    { kicker:'START TODAY', headline:'Anyone can learn AI. Including you.', body:'Follow @AIForGhana for free lessons every week. No degree needed.', tpl:'red' },
+    { kicker:'LESSON 1', headline:'What Is Artificial Intelligence?', body:'AI is a computer trained to think, learn, and make decisions — just like a human mind.', tpl:'dark', layout:'auto' },
+    { kicker:'THE TRUTH', headline:'AI is not magic. It is math.', body:'Every AI learns from examples — the same way you learned to read and write.', tpl:'light', layout:'auto' },
+    { kicker:'IN GHANA', headline:'AI is already changing your life.', body:'Mobile money fraud detection. Crop disease apps. Traffic navigation. It is everywhere.', tpl:'green', layout:'auto' },
+    { kicker:'YOUR MOVE', headline:'Learn AI now — or be left behind.', body:'By 2030, 85 million jobs in Africa will require digital skills. The time is now.', tpl:'gold', layout:'auto' },
+    { kicker:'START TODAY', headline:'Anyone can learn AI. Including you.', body:'Follow @AIForGhana for free lessons every week. No degree needed.', tpl:'red', layout:'auto' },
   ],
   'prompt-tips': [
-    { kicker:'THE PROBLEM', headline:"You're using AI wrong.", body:'Lazy questions get lazy answers. The AI is brilliant. Your instruction was weak.', tpl:'dark' },
-    { kicker:'WHAT IS A PROMPT', headline:'A prompt is the instruction you give the AI.', body:'Clear instruction in. Clear answer out. Every single time.', tpl:'green' },
-    { kicker:'THE FORMULA', headline:'Four parts make a powerful prompt.', body:"• WHO — the role the AI should play\n• WHAT — exactly what you want\n• SITUATION — your real context\n• FORMAT — how you want the answer", tpl:'light' },
-    { kicker:'BAD VS GOOD', headline:"\"Help me.\" vs \"Act as a business coach...\"", body:'The more specific your prompt, the more powerful the answer.', tpl:'gold' },
-    { kicker:'PRACTISE NOW', headline:'Better prompt = better answer. Always.', body:'Try the #PromptGhana challenge. Share your best prompt today.', tpl:'red' },
+    { kicker:'THE PROBLEM', headline:"You're using AI wrong.", body:'Lazy questions get lazy answers. The AI is brilliant. Your instruction was weak.', tpl:'dark', layout:'auto' },
+    { kicker:'WHAT IS A PROMPT', headline:'A prompt is the instruction you give the AI.', body:'Clear instruction in. Clear answer out. Every single time.', tpl:'green', layout:'auto' },
+    { kicker:'THE FORMULA', headline:'Four parts make a powerful prompt.', body:"• WHO — the role the AI should play\n• WHAT — exactly what you want\n• SITUATION — your real context\n• FORMAT — how you want the answer", tpl:'light', layout:'auto' },
+    { kicker:'BAD VS GOOD', headline:"\"Help me.\" vs \"Act as a business coach...\"", body:'The more specific your prompt, the more powerful the answer.', tpl:'gold', layout:'auto' },
+    { kicker:'PRACTISE NOW', headline:'Better prompt = better answer. Always.', body:'Try the #PromptGhana challenge. Share your best prompt today.', tpl:'red', layout:'auto' },
   ],
   'motivational': [
-    { kicker:'FOR GHANA', headline:"Africa's moment is NOW.", body:"By 2050, Africa will have the world's largest workforce. Your skills will power it.", tpl:'dark' },
-    { kicker:'REMEMBER THIS', headline:'Every expert was once a beginner.', body:'Kwame Nkrumah had no blueprint. Yaa Asantewaa had no army. They still led.', tpl:'green' },
-    { kicker:'THE CHOICE', headline:'You can watch the future — or build it.', body:'Technology will not wait for you to be ready. Get ready now.', tpl:'gold' },
-    { kicker:'AI FOR GHANA', headline:'Free knowledge. Zero excuses.', body:'Every lesson at raufhusein.site is free. Forever. Because education is a human right.', tpl:'red' },
+    { kicker:'FOR GHANA', headline:"Africa's moment is NOW.", body:"By 2050, Africa will have the world's largest workforce. Your skills will power it.", tpl:'dark', layout:'auto' },
+    { kicker:'REMEMBER THIS', headline:'Every expert was once a beginner.', body:'Kwame Nkrumah had no blueprint. Yaa Asantewaa had no army. They still led.', tpl:'green', layout:'auto' },
+    { kicker:'THE CHOICE', headline:'You can watch the future — or build it.', body:'Technology will not wait for you to be ready. Get ready now.', tpl:'gold', layout:'auto' },
+    { kicker:'AI FOR GHANA', headline:'Free knowledge. Zero excuses.', body:'Every lesson at raufhusein.site is free. Forever. Because education is a human right.', tpl:'red', layout:'auto' },
   ],
   'problem-solution': [
-    { kicker:'THE PROBLEM', headline:"Most Ghanaians don't know what AI can do for them.", body:'Not because they are not smart. Because nobody showed them.', tpl:'dark' },
-    { kicker:'THE GAP', headline:'The world is moving at AI speed.', body:"While some wait, others are using AI to write proposals, code apps, and run businesses — all for free.", tpl:'light' },
-    { kicker:'THE SOLUTION', headline:'AI For Ghana: free education for every Ghanaian.', body:'Lessons in plain language. Real Ghana examples. No jargon. No cost.', tpl:'green' },
-    { kicker:'JOIN NOW', headline:'Follow. Learn. Share. Repeat.', body:'@AIForGhana on TikTok and Instagram. raufhusein.site for full lessons.', tpl:'gold' },
+    { kicker:'THE PROBLEM', headline:"Most Ghanaians don't know what AI can do for them.", body:'Not because they are not smart. Because nobody showed them.', tpl:'dark', layout:'auto' },
+    { kicker:'THE GAP', headline:'The world is moving at AI speed.', body:"While some wait, others are using AI to write proposals, code apps, and run businesses — all for free.", tpl:'light', layout:'auto' },
+    { kicker:'THE SOLUTION', headline:'AI For Ghana: free education for every Ghanaian.', body:'Lessons in plain language. Real Ghana examples. No jargon. No cost.', tpl:'green', layout:'auto' },
+    { kicker:'JOIN NOW', headline:'Follow. Learn. Share. Repeat.', body:'@AIForGhana on TikTok and Instagram. raufhusein.site for full lessons.', tpl:'gold', layout:'auto' },
   ],
   'ghana-fact': [
-    { kicker:'DID YOU KNOW', headline:"Ghana's tech economy grew 30% in 2023.", body:"Accra's tech hub now hosts over 600 startups. Ghana is becoming Africa's Silicon Valley.", tpl:'dark' },
-    { kicker:'THE OPPORTUNITY', headline:'Ghana has 16 million people under 25.', body:"That's 16 million potential engineers, designers, founders, and AI builders.", tpl:'green' },
-    { kicker:'YOUR MOVE', headline:'The next tech giant from Africa will come from Ghana.', body:"Why not you? Start learning today. The tools are free. The opportunity is real.", tpl:'gold' },
+    { kicker:'DID YOU KNOW', headline:"Ghana's tech economy grew 30% in 2023.", body:"Accra's tech hub now hosts over 600 startups. Ghana is becoming Africa's Silicon Valley.", tpl:'dark', layout:'auto' },
+    { kicker:'THE OPPORTUNITY', headline:'Ghana has 16 million people under 25.', body:"That's 16 million potential engineers, designers, founders, and AI builders.", tpl:'green', layout:'auto' },
+    { kicker:'YOUR MOVE', headline:'The next tech giant from Africa will come from Ghana.', body:"Why not you? Start learning today. The tools are free. The opportunity is real.", tpl:'gold', layout:'auto' },
   ],
 };
 
 // ── Card model ────────────────────────────────────────────────
-let cardItems = []; // [{kicker, headline, body, tpl}]
+let cardItems = []; // [{kicker, headline, body, tpl, layout}] layout: auto|cover|topic|quote|impact
 
 function updateCardCount() {
   const el = $('cardCount');
@@ -653,7 +705,7 @@ function updateCardCount() {
 }
 
 function createCardEl(data, idx) {
-  const { kicker='', headline='', body='', tpl='dark' } = data;
+  const { kicker='', headline='', body='', tpl='dark', layout='auto' } = data;
   const div = document.createElement('div');
   div.className = 'slide-card';
   div.dataset.idx = idx;
@@ -675,6 +727,9 @@ function createCardEl(data, idx) {
     </div>
     <div class="card-body-grid">
       <div class="card-fields">
+        <div class="layout-row">
+          ${['auto','cover','topic','quote','impact'].map(l=>`<span class="layout-pill${l===layout?' on':''}" data-layout="${l}">${{auto:'⚡ Auto',cover:'🏠 Cover',topic:'📋 Topic',quote:'💬 Quote',impact:'⚡ Impact'}[l]}</span>`).join('')}
+        </div>
         <input class="card-kicker" value="${kicker}" placeholder="KICKER LABEL (short, ALL CAPS)">
         <textarea class="card-headline" placeholder="Your big headline...">${headline}</textarea>
         <textarea class="card-body-text" placeholder="Body text or bullet points&#10;• Bullet 1&#10;• Bullet 2">${body}</textarea>
@@ -686,13 +741,24 @@ function createCardEl(data, idx) {
       </div>
     </div>`;
 
-  // Chip clicks
+  // Template chip clicks
   div.querySelectorAll('.card-chip').forEach(chip => {
     chip.addEventListener('click', () => {
       div.querySelectorAll('.card-chip').forEach(c => c.classList.remove('on'));
       chip.classList.add('on');
       const i = +div.dataset.idx;
       cardItems[i].tpl = chip.dataset.tpl;
+      schedulePreview(div);
+    });
+  });
+
+  // Layout pill clicks
+  div.querySelectorAll('.layout-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      div.querySelectorAll('.layout-pill').forEach(p => p.classList.remove('on'));
+      pill.classList.add('on');
+      const i = +div.dataset.idx;
+      cardItems[i].layout = pill.dataset.layout;
       schedulePreview(div);
     });
   });
@@ -710,6 +776,8 @@ function createCardEl(data, idx) {
 
   // Live input sync + preview
   div.querySelector('.card-kicker').addEventListener('input', e => { cardItems[+div.dataset.idx].kicker = e.target.value; schedulePreview(div); });
+  // Ensure layout is persisted when rebuilding
+  const syncLayout = () => { const ci = cardItems[+div.dataset.idx]; if(ci) { const on = div.querySelector('.layout-pill.on'); if(on) ci.layout = on.dataset.layout; } };
   div.querySelector('.card-headline').addEventListener('input', e => { cardItems[+div.dataset.idx].headline = e.target.value; schedulePreview(div); });
   div.querySelector('.card-body-text').addEventListener('input', e => { cardItems[+div.dataset.idx].body = e.target.value; schedulePreview(div); });
 
@@ -736,7 +804,7 @@ function rebuildCards() {
 
 function addBlankCard() {
   const tpls = Object.keys(TPL_COLORS);
-  cardItems.push({ kicker:'', headline:'', body:'', tpl: TPL_CYCLE[cardItems.length % TPL_CYCLE.length] });
+  cardItems.push({ kicker:'', headline:'', body:'', tpl: TPL_CYCLE[cardItems.length % TPL_CYCLE.length], layout:'auto' });
   rebuildCards();
   // Scroll last card into view
   const cards = $('slideCards').querySelectorAll('.slide-card');
@@ -799,6 +867,10 @@ function wrapText(ctx, text, maxW, font) {
   return lines;
 }
 
+// ════════════════════════════════════════════════
+// LAYOUT RENDER ENGINE — Cover / Topic / Quote / Impact
+// ════════════════════════════════════════════════
+
 function drawGhanaStripe(ctx, W, H) {
   const sh = Math.max(8, Math.round(H * 0.013));
   const y = H - sh;
@@ -807,10 +879,107 @@ function drawGhanaStripe(ctx, W, H) {
   ctx.fillStyle = '#CE1126'; ctx.fillRect(2*W/3, y, W/3, sh);
 }
 
-function renderTextSlide(data, tpl, W, H) {
-  const c = document.createElement('canvas');
-  c.width = W; c.height = H;
-  const ctx = c.getContext('2d');
+// ── Cover Layout ──────────────────────────────────────────────
+// Full-bleed color, huge headline, kicker as subtitle, ghost shape bg
+function drawCoverLayout(ctx, data, tpl, W, H) {
+  const PAD = Math.round(W * 0.08);
+  const isPort = H > W;
+
+  // Background
+  ctx.fillStyle = tpl.bg;
+  ctx.fillRect(0, 0, W, H);
+
+  // Ghost diagonal accent shape
+  ctx.save();
+  ctx.globalAlpha = 0.07;
+  ctx.fillStyle = tpl.accentBar;
+  ctx.beginPath();
+  ctx.moveTo(W * 0.42, H);
+  ctx.lineTo(W + 10, H * 0.28);
+  ctx.lineTo(W + 10, H + 10);
+  ctx.fill();
+  ctx.restore();
+
+  // Subtle corner dot grid
+  ctx.save();
+  ctx.globalAlpha = 0.06;
+  ctx.fillStyle = tpl.brandC;
+  for (let r = 0; r < 5; r++) {
+    for (let c2 = 0; c2 < 5; c2++) {
+      ctx.beginPath();
+      ctx.arc(W * 0.72 + c2 * W * 0.055, H * 0.12 + r * H * 0.045, W * 0.007, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+  ctx.restore();
+
+  // Brand name top-left
+  const bSmSz = Math.round(W * 0.026);
+  ctx.font = `800 ${bSmSz}px "Space Grotesk","Arial Black",sans-serif`;
+  ctx.fillStyle = tpl.brandC;
+  ctx.globalAlpha = 0.85;
+  ctx.fillText($('brandName').value || 'AI FOR GHANA', PAD, Math.round(H * 0.075));
+  ctx.globalAlpha = 1;
+
+  // Massive headline — vertically centered
+  let cY = H * (isPort ? 0.4 : 0.35);
+  if (data.headline) {
+    const len = data.headline.length;
+    let hSz = Math.round(W * (isPort ? 0.138 : 0.088));
+    if (len > 35) hSz = Math.round(hSz * 0.68);
+    else if (len > 22) hSz = Math.round(hSz * 0.83);
+    const hFont = `800 ${hSz}px "Space Grotesk","Arial Black",sans-serif`;
+    const lines = wrapText(ctx, data.headline, W - PAD * 2, hFont);
+    ctx.font = hFont;
+    const lineH = Math.round(hSz * 1.05);
+    let y = cY - (lines.length * lineH) / 2 + hSz * 0.5;
+    lines.forEach((line, i) => {
+      ctx.fillStyle = i < Math.ceil(lines.length / 2) ? tpl.headC1 : tpl.headC2;
+      ctx.fillText(line, PAD, y);
+      y += lineH;
+    });
+    cY = y + hSz * 0.28;
+  }
+
+  // Accent divider
+  ctx.fillStyle = tpl.accentBar;
+  ctx.fillRect(PAD, cY, Math.round(W * 0.072), Math.max(3, Math.round(H * 0.004)));
+  cY += Math.round(H * 0.035);
+
+  // Kicker as subtitle
+  if (data.kicker) {
+    const kSz = Math.round(W * 0.032);
+    ctx.font = `600 ${kSz}px "Space Grotesk",sans-serif`;
+    ctx.fillStyle = tpl.kickerC;
+    ctx.fillText(data.kicker, PAD, cY);
+  }
+
+  // Body short line (if any)
+  if (data.body && !data.kicker) {
+    const bodFirst = data.body.split('\n')[0].trim();
+    if (bodFirst) {
+      const bSz = Math.round(W * 0.028);
+      ctx.font = `400 ${bSz}px Inter,sans-serif`;
+      ctx.fillStyle = tpl.bodyC;
+      ctx.fillText(bodFirst, PAD, cY);
+    }
+  }
+
+  // Footer
+  const footY = H - Math.round(H * 0.085);
+  const footSz = Math.round(W * 0.021);
+  ctx.font = `400 ${footSz}px Inter,sans-serif`;
+  ctx.fillStyle = tpl.handleC;
+  ctx.fillText('Free for all Ghanaians', PAD, footY);
+  const handle = $('brandHandle').value || '@AIForGhana';
+  ctx.fillText(handle, W - PAD - ctx.measureText(handle).width, footY);
+
+  drawGhanaStripe(ctx, W, H);
+}
+
+// ── Topic Layout ──────────────────────────────────────────────
+// Bold colored heading top, separator, content below — like slide 3
+function drawTopicLayout(ctx, data, tpl, W, H) {
   const PAD = Math.round(W * 0.074);
   const maxW = W - PAD * 2;
   const isPort = H > W;
@@ -821,97 +990,96 @@ function renderTextSlide(data, tpl, W, H) {
 
   // Top accent bar
   ctx.fillStyle = tpl.accentBar;
-  ctx.fillRect(0, 0, W, Math.max(7, Math.round(H * 0.006)));
+  ctx.fillRect(0, 0, W, Math.max(7, Math.round(H * 0.007)));
 
-  // Ghana flag stripe at bottom
-  drawGhanaStripe(ctx, W, H);
+  let y = isPort ? Math.round(H * 0.082) : Math.round(H * 0.095);
 
-  let y = isPort ? Math.round(H * 0.085) : Math.round(H * 0.1);
+  // Small brand top-left
+  const bSmSz = Math.round(W * 0.022);
+  ctx.font = `800 ${bSmSz}px "Space Grotesk",sans-serif`;
+  ctx.fillStyle = tpl.kickerC;
+  ctx.globalAlpha = 0.9;
+  ctx.fillText($('brandName').value || 'AI FOR GHANA', PAD, y);
+  ctx.globalAlpha = 1;
+  y += Math.round(bSmSz * 2.3);
 
   // Kicker
   if (data.kicker) {
-    const kSz = Math.round(W * 0.031);
-    ctx.font = `700 ${kSz}px "Space Grotesk","Arial Black",sans-serif`;
+    const kSz = Math.round(W * 0.028);
+    ctx.font = `700 ${kSz}px "Space Grotesk",sans-serif`;
     ctx.fillStyle = tpl.kickerC;
-    // Kicker with underline dot
     ctx.fillText(data.kicker.toUpperCase(), PAD, y);
-    // Small accent line below kicker
+    // Underline tick
     ctx.fillStyle = tpl.accentBar;
-    ctx.fillRect(PAD, y + Math.round(kSz * 0.25), Math.round(W * 0.06), Math.round(kSz * 0.12));
+    ctx.fillRect(PAD, y + Math.round(kSz * 0.3), Math.round(W * 0.055), Math.round(kSz * 0.1));
     y += Math.round(kSz * 1.9);
   }
 
-  // Headline
+  // Big headline
   if (data.headline) {
-    // Detect impact mode: no kicker, no body, short headline
-    const isImpact = !data.kicker && !data.body && !data.bullets.length && data.headline.length < 50;
-    let hSz = Math.round(W * (isPort ? (isImpact ? 0.145 : 0.112) : 0.072));
-    if (!isImpact) {
-      if (data.headline.length > 60) hSz = Math.round(hSz * 0.60);
-      else if (data.headline.length > 40) hSz = Math.round(hSz * 0.74);
-      else if (data.headline.length > 25) hSz = Math.round(hSz * 0.87);
-    }
-    const hFont = `700 ${hSz}px "Space Grotesk","Arial Black",sans-serif`;
-    const wrapped = wrapText(ctx, data.headline, maxW, hFont);
+    const len = data.headline.length;
+    let hSz = Math.round(W * (isPort ? 0.098 : 0.062));
+    if (len > 65) hSz = Math.round(hSz * 0.56);
+    else if (len > 45) hSz = Math.round(hSz * 0.70);
+    else if (len > 28) hSz = Math.round(hSz * 0.84);
+    const hFont = `800 ${hSz}px "Space Grotesk","Arial Black",sans-serif`;
+    const lines = wrapText(ctx, data.headline, maxW, hFont);
     ctx.font = hFont;
-    const lineH = Math.round(hSz * 1.1);
-
-    // Center vertically if impact mode
-    if (isImpact) {
-      const totalH = wrapped.length * lineH;
-      y = Math.round((H - totalH) / 2) + hSz;
-    }
-
-    const half = Math.max(1, Math.ceil(wrapped.length / 2));
-    wrapped.forEach((line, i) => {
+    const lineH = Math.round(hSz * 1.08);
+    const half = Math.max(1, Math.ceil(lines.length / 2));
+    lines.forEach((line, i) => {
       ctx.fillStyle = i < half ? tpl.headC1 : tpl.headC2;
       ctx.fillText(line, PAD, y);
       y += lineH;
     });
-    y += Math.round(hSz * 0.42);
+    y += Math.round(hSz * 0.28);
+
+    // Separator line
+    ctx.fillStyle = tpl.accentBar;
+    ctx.globalAlpha = 0.7;
+    ctx.fillRect(PAD, y, maxW, Math.max(2, Math.round(H * 0.003)));
+    ctx.globalAlpha = 1;
+    y += Math.round(hSz * 0.52);
   }
 
   // Body text
   if (data.body && !data.bullets.length) {
-    const bSz = Math.round(W * 0.036);
-    const bFont = `400 ${bSz}px Inter,Arial,sans-serif`;
+    const bSz = Math.round(W * 0.033);
+    ctx.font = `400 ${bSz}px Inter,sans-serif`;
     ctx.fillStyle = tpl.bodyC;
     data.body.split('\n').forEach(line => {
-      if (!line.trim()) return;
-      const wrapped = wrapText(ctx, line, maxW, bFont);
-      ctx.font = bFont;
-      wrapped.forEach(wl => { ctx.fillText(wl, PAD, y); y += Math.round(bSz * 1.55); });
-      y += Math.round(bSz * 0.3);
+      if (!line.trim()) { y += bSz * 0.4; return; }
+      const wl = wrapText(ctx, line, maxW, `400 ${bSz}px Inter,sans-serif`);
+      ctx.font = `400 ${bSz}px Inter,sans-serif`;
+      wl.forEach(wline => { ctx.fillText(wline, PAD, y); y += Math.round(bSz * 1.55); });
     });
   }
 
   // Bullets
   if (data.bullets.length) {
-    const bSz = Math.round(W * 0.031);
+    const bSz = Math.round(W * (isPort ? 0.033 : 0.027));
     const starSz = Math.round(W * 0.025);
-    const lineH = Math.round(bSz * 1.72);
+    const lineH = Math.round(bSz * 1.88);
     data.bullets.forEach(bullet => {
       ctx.font = `700 ${starSz}px "Space Grotesk",sans-serif`;
       ctx.fillStyle = '#FCD116';
       ctx.fillText('★', PAD, y);
-      const starW = ctx.measureText('★').width + Math.round(W * 0.016);
-      const bx = PAD + starW;
+      const sw = ctx.measureText('★').width + Math.round(W * 0.018);
+      const bx = PAD + sw;
       const parts = bullet.split(/\s*—\s*/);
       if (parts.length > 1) {
         ctx.font = `700 ${bSz}px "Space Grotesk",sans-serif`;
         ctx.fillStyle = tpl.accentBar;
-        const kLabel = parts[0] + '  —  ';
-        ctx.fillText(kLabel, bx, y);
-        const kW = ctx.measureText(kLabel).width;
-        ctx.font = `400 ${bSz}px Inter,Arial,sans-serif`;
+        const klabel = parts[0] + '  ';
+        ctx.fillText(klabel, bx, y);
+        const kw = ctx.measureText(klabel).width;
+        ctx.font = `400 ${bSz}px Inter,sans-serif`;
         ctx.fillStyle = tpl.bodyC;
-        // Wrap rest
-        const rest = parts.slice(1).join(' — ');
-        const wrapped = wrapText(ctx, rest, maxW - bx + PAD - kW, `400 ${bSz}px Inter,Arial,sans-serif`);
-        ctx.fillText(wrapped[0]||'', bx + kW, y);
-        wrapped.slice(1).forEach(wl => { y += Math.round(bSz * 1.4); ctx.fillText(wl, bx + Math.round(W*0.01), y); });
+        const rest = wrapText(ctx, parts.slice(1).join(' '), maxW - sw - kw, `400 ${bSz}px Inter`);
+        ctx.fillText(rest[0] || '', bx + kw, y);
+        rest.slice(1).forEach(wl => { y += Math.round(bSz * 1.4); ctx.fillText(wl, bx + Math.round(W*0.01), y); });
       } else {
-        ctx.font = `400 ${bSz}px Inter,Arial,sans-serif`;
+        ctx.font = `500 ${bSz}px Inter,sans-serif`;
         ctx.fillStyle = tpl.bodyC;
         ctx.fillText(bullet, bx, y);
       }
@@ -919,16 +1087,237 @@ function renderTextSlide(data, tpl, W, H) {
     });
   }
 
-  // Bottom branding
-  const brandY = H - Math.round(H * 0.072);
-  const brandSz = Math.round(W * 0.025);
-  const handleSz = Math.round(W * 0.019);
-  ctx.font = `700 ${brandSz}px "Space Grotesk","Arial Black",sans-serif`;
+  // Bottom brand
+  const bBrandY = H - Math.round(H * 0.072);
+  const bSz2 = Math.round(W * 0.022);
+  ctx.font = `700 ${bSz2}px "Space Grotesk",sans-serif`;
   ctx.fillStyle = tpl.brandC;
-  ctx.fillText($('brandName').value || 'AI FOR GHANA', PAD, brandY);
-  ctx.font = `400 ${handleSz}px Inter,Arial,sans-serif`;
+  ctx.fillText($('brandName').value || 'AI FOR GHANA', PAD, bBrandY);
+  ctx.font = `400 ${Math.round(bSz2 * 0.82)}px Inter,sans-serif`;
   ctx.fillStyle = tpl.handleC;
-  ctx.fillText($('brandHandle').value || '@AIForGhana', PAD, brandY + Math.round(handleSz * 1.7));
+  ctx.fillText($('brandHandle').value || '@AIForGhana', PAD, bBrandY + bSz2 * 1.55);
+
+  drawGhanaStripe(ctx, W, H);
+}
+
+// ── Quote Layout ──────────────────────────────────────────────
+// Portrait: big italic quote center-stage + bullets below
+// Landscape: left quote | right header+bullets (like slide 2)
+function drawQuoteLayout(ctx, data, tpl, W, H) {
+  const PAD = Math.round(W * 0.065);
+  const isPort = H > W;
+  const maxW = W - PAD * 2;
+
+  // Background
+  ctx.fillStyle = tpl.bg;
+  ctx.fillRect(0, 0, W, H);
+
+  // Top brand
+  const bSmSz = Math.round(W * 0.024);
+  ctx.font = `800 ${bSmSz}px "Space Grotesk",sans-serif`;
+  ctx.fillStyle = tpl.kickerC;
+  ctx.globalAlpha = 0.85;
+  ctx.fillText($('brandName').value || 'AI FOR GHANA', PAD, Math.round(H * 0.072));
+  ctx.globalAlpha = 1;
+
+  const quoteSrc = data.headline || data.body || '';
+  const hasBullets = data.bullets && data.bullets.length > 0;
+
+  if (!isPort && hasBullets) {
+    // ── LANDSCAPE SPLIT ──
+    const mid = Math.round(W * 0.48);
+
+    // Vertical divider
+    ctx.fillStyle = tpl.accentBar;
+    ctx.globalAlpha = 0.5;
+    ctx.fillRect(mid - 1, H * 0.1, 2, H * 0.8);
+    ctx.globalAlpha = 1;
+
+    // Left: giant ghost quote mark + italic quote
+    ctx.font = `900 ${Math.round(W * 0.15)}px Georgia,serif`;
+    ctx.fillStyle = tpl.accentBar;
+    ctx.globalAlpha = 0.18;
+    ctx.fillText('"', PAD - Math.round(W * 0.01), H * 0.38);
+    ctx.globalAlpha = 1;
+    const qSz = Math.round(W * 0.044);
+    const qLines = wrapText(ctx, quoteSrc, mid - PAD * 2, `italic 700 ${qSz}px "Space Grotesk",Georgia,serif`);
+    ctx.font = `italic 700 ${qSz}px "Space Grotesk",Georgia,serif`;
+    ctx.fillStyle = tpl.headC1;
+    let qy = Math.round(H * 0.32);
+    qLines.forEach(line => { ctx.fillText(line, PAD, qy); qy += Math.round(qSz * 1.38); });
+
+    // Right: title + bullets
+    const rPAD = mid + PAD;
+    const rMaxW = W - rPAD - PAD;
+    const hSz = Math.round(W * 0.034);
+    if (data.kicker) {
+      ctx.font = `800 ${hSz}px "Space Grotesk",sans-serif`;
+      ctx.fillStyle = tpl.headC1;
+      ctx.fillText(data.kicker, rPAD, Math.round(H * 0.22));
+    }
+    const bSz = Math.round(W * 0.026);
+    let by = Math.round(H * 0.30);
+    data.bullets.forEach(bullet => {
+      ctx.font = `700 ${Math.round(bSz * 0.9)}px "Space Grotesk",sans-serif`;
+      ctx.fillStyle = '#FCD116';
+      ctx.fillText('★', rPAD, by);
+      const sw = ctx.measureText('★').width + Math.round(W * 0.014);
+      ctx.font = `500 ${bSz}px Inter,sans-serif`;
+      ctx.fillStyle = tpl.bodyC;
+      const blines = wrapText(ctx, bullet, rMaxW - sw, `500 ${bSz}px Inter`);
+      ctx.fillText(blines[0] || '', rPAD + sw, by);
+      blines.slice(1).forEach(wl => { by += Math.round(bSz * 1.35); ctx.fillText(wl, rPAD + sw, by); });
+      by += Math.round(bSz * 2.1);
+    });
+  } else {
+    // ── PORTRAIT / NO BULLETS: big centered quote ──
+    const qSz = Math.round(W * (isPort ? 0.072 : 0.048));
+    const qLines = wrapText(ctx, quoteSrc, maxW, `italic 700 ${qSz}px "Space Grotesk",Georgia,serif`);
+    const totalH = qLines.length * qSz * 1.35;
+
+    // Ghost quote mark
+    ctx.font = `900 ${Math.round(qSz * 4)}px Georgia,serif`;
+    ctx.fillStyle = tpl.accentBar;
+    ctx.globalAlpha = 0.13;
+    ctx.fillText('"', PAD - qSz * 0.3, H * 0.42);
+    ctx.globalAlpha = 1;
+
+    ctx.font = `italic 700 ${qSz}px "Space Grotesk",Georgia,serif`;
+    ctx.fillStyle = tpl.headC1;
+    let qy = Math.round((H - totalH) / 2);
+    if (data.kicker) qy = Math.round(H * 0.28);
+    qLines.forEach(line => { ctx.fillText(line, PAD, qy + qSz); qy += Math.round(qSz * 1.38); });
+
+    // Kicker as attribution
+    if (data.kicker) {
+      const kSz = Math.round(W * 0.028);
+      ctx.fillStyle = tpl.accentBar;
+      ctx.fillRect(PAD, qy + Math.round(kSz * 0.4), Math.round(W * 0.04), Math.max(2, Math.round(kSz * 0.12)));
+      ctx.font = `600 ${kSz}px "Space Grotesk",sans-serif`;
+      ctx.fillStyle = tpl.kickerC;
+      ctx.fillText('— ' + data.kicker, PAD + Math.round(W * 0.055), qy + kSz * 1.1);
+      qy += Math.round(kSz * 2.2);
+    }
+
+    // Bullets below quote
+    if (hasBullets) {
+      const bSz = Math.round(W * (isPort ? 0.033 : 0.026));
+      data.bullets.forEach(b => {
+        ctx.font = `700 ${Math.round(bSz * 0.9)}px "Space Grotesk",sans-serif`;
+        ctx.fillStyle = '#FCD116';
+        ctx.fillText('★', PAD, qy);
+        const sw = ctx.measureText('★').width + Math.round(W * 0.015);
+        ctx.font = `500 ${bSz}px Inter,sans-serif`;
+        ctx.fillStyle = tpl.bodyC;
+        ctx.fillText(b, PAD + sw, qy);
+        qy += Math.round(bSz * 2.0);
+      });
+    }
+  }
+
+  // Footer handle
+  const footSz = Math.round(W * 0.020);
+  ctx.font = `400 ${footSz}px Inter,sans-serif`;
+  ctx.fillStyle = tpl.handleC;
+  ctx.fillText($('brandHandle').value || '@AIForGhana', PAD, H - Math.round(H * 0.082));
+
+  drawGhanaStripe(ctx, W, H);
+}
+
+// ── Impact Layout ──────────────────────────────────────────────
+// Single enormous statement, centered — pure typographic punch
+function drawImpactLayout(ctx, data, tpl, W, H) {
+  const PAD = Math.round(W * 0.08);
+
+  // Background
+  ctx.fillStyle = tpl.bg;
+  ctx.fillRect(0, 0, W, H);
+
+  // Left accent bar
+  ctx.fillStyle = tpl.accentBar;
+  ctx.fillRect(0, 0, Math.max(6, Math.round(W * 0.012)), H);
+
+  // Subtle radial glow center
+  const grd = ctx.createRadialGradient(W/2, H/2, 0, W/2, H/2, Math.max(W,H) * 0.5);
+  grd.addColorStop(0, 'rgba(252,209,22,0.04)');
+  grd.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = grd;
+  ctx.fillRect(0, 0, W, H);
+
+  // Huge centered text
+  const text = data.headline || data.body || '';
+  const maxW = W - PAD * 2;
+  let hSz = Math.round(W * (H > W ? 0.135 : 0.088));
+  if (text.length > 50) hSz = Math.round(hSz * 0.62);
+  else if (text.length > 35) hSz = Math.round(hSz * 0.74);
+  else if (text.length > 22) hSz = Math.round(hSz * 0.88);
+
+  const hFont = `800 ${hSz}px "Space Grotesk","Arial Black",sans-serif`;
+  const lines = wrapText(ctx, text, maxW, hFont);
+  ctx.font = hFont;
+  const lineH = Math.round(hSz * 1.08);
+  const totalH = lines.length * lineH;
+  let y = Math.round((H - totalH) / 2) + hSz;
+
+  lines.forEach((line, i) => {
+    const evenOdd = i % 2;
+    ctx.fillStyle = evenOdd === 0 ? tpl.headC1 : tpl.headC2;
+    ctx.fillText(line, PAD, y);
+    y += lineH;
+  });
+
+  // Kicker attribution below
+  if (data.kicker) {
+    y += Math.round(hSz * 0.4);
+    // Short accent line
+    ctx.fillStyle = tpl.accentBar;
+    ctx.fillRect(PAD, y - Math.round(hSz * 0.1), Math.round(W * 0.04), Math.max(3, Math.round(hSz * 0.07)));
+    const kSz = Math.round(W * 0.028);
+    ctx.font = `600 ${kSz}px "Space Grotesk",sans-serif`;
+    ctx.fillStyle = tpl.kickerC;
+    ctx.fillText(data.kicker, PAD + Math.round(W * 0.055), y);
+  }
+
+  // Handle bottom-right
+  const bSz2 = Math.round(W * 0.019);
+  ctx.font = `400 ${bSz2}px Inter,sans-serif`;
+  ctx.fillStyle = tpl.handleC;
+  const handle = $('brandHandle').value || '@AIForGhana';
+  ctx.fillText(handle, W - PAD - ctx.measureText(handle).width, H - Math.round(H * 0.082));
+
+  drawGhanaStripe(ctx, W, H);
+}
+
+// ── Main renderTextSlide — dispatches to layout functions ──────
+function renderTextSlide(data, tpl, W, H) {
+  const c = document.createElement('canvas');
+  c.width = W; c.height = H;
+  const ctx = c.getContext('2d');
+
+  // Determine effective layout
+  const rawLayout = data.layout || 'auto';
+  let effective = rawLayout;
+  if (rawLayout === 'auto') {
+    const hasBullets = data.bullets && data.bullets.length > 0;
+    const hasBody    = !!(data.body && data.body.trim());
+    const shortHead  = !!(data.headline && data.headline.length < 48);
+    if (!data.kicker && !hasBody && !hasBullets && shortHead) {
+      effective = 'impact';
+    } else if (data.kicker && !hasBody && !hasBullets) {
+      effective = 'cover';
+    } else if (hasBullets || hasBody) {
+      effective = 'topic';
+    } else {
+      effective = 'cover';
+    }
+  }
+
+  switch (effective) {
+    case 'cover':  drawCoverLayout(ctx, data, tpl, W, H);  break;
+    case 'quote':  drawQuoteLayout(ctx, data, tpl, W, H);  break;
+    case 'impact': drawImpactLayout(ctx, data, tpl, W, H); break;
+    default:       drawTopicLayout(ctx, data, tpl, W, H);  break;
+  }
 
   return c;
 }
