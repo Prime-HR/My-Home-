@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI For Ghana — Free AI Education for Every Ghanaian</title>
+<meta name="description" content="AI For Ghana by Rauf Husein. Free AI education for every Ghanaian — child to adult. See how AI already powers Ghana, and learn to build it.">
+<meta name="theme-color" content="#000000">
+<meta name="author" content="Rauf Husein">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI For Ghana — Free AI Education for Every Ghanaian">
+<meta property="og:description" content="See how AI already powers Ghana — finance, farms, hospitals, schools — and learn to build it. Free, for every Ghanaian.">
+<meta property="og:url" content="https://raufhusein.site/ai-for-ghana.html">
+<meta property="og:locale" content="en_GH">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{
+  --bg:#000000;--text:#ffffff;--text-dim:rgba(255,255,255,0.55);--text-faint:rgba(255,255,255,0.35);
+  --border:rgba(255,255,255,0.10);--border-bright:rgba(255,255,255,0.22);
+  --card:rgba(255,255,255,0.04);--card-hover:rgba(255,255,255,0.07);
+  --accent:#ffffff;--radius:20px;
+  --font-head:'Space Grotesk',sans-serif;--font-body:'Inter',sans-serif;--font-mono:'DM Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+::selection{background:#fff;color:#000}
+
+/* Aurora background */
+.aurora{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.aurora span{position:absolute;border-radius:50%;filter:blur(90px);opacity:0.10;background:#fff}
+.aurora span:nth-child(1){width:480px;height:480px;top:-120px;left:-80px;animation:auroraFloat 18s ease-in-out infinite}
+.aurora span:nth-child(2){width:380px;height:380px;bottom:-100px;right:-60px;opacity:0.07;animation:auroraFloat 22s ease-in-out infinite reverse}
+@keyframes auroraFloat{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,30px)}}
+
+/* Cursor glow */
+.cursor-glow{position:fixed;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.06),transparent 60%);pointer-events:none;z-index:1;transform:translate(-50%,-50%);transition:opacity .3s}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:2}
+
+/* Nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;transition:all .4s;backdrop-filter:blur(10px)}
+.nav.scrolled{background:rgba(0,0,0,0.6);border-bottom:1px solid var(--border)}
+.logo{font-family:var(--font-head);font-weight:700;font-size:1.05rem;letter-spacing:-0.01em;display:flex;align-items:center;gap:.5rem}
+.logo i{font-size:.9rem}
+.nav-links{display:flex;align-items:center;gap:1.8rem;list-style:none}
+.nav-links a{font-size:.85rem;color:var(--text-dim);transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-cta{background:#fff;color:#000;padding:.5rem 1.2rem;border-radius:50px;font-size:.8rem;font-weight:700;font-family:var(--font-head);transition:transform .2s;display:inline-flex;align-items:center;gap:.4rem}
+.nav-cta:hover{transform:translateY(-2px)}
+@media(max-width:760px){.nav-links{display:none}}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 0 4rem}
+.badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--card);border:1px solid var(--border);border-radius:50px;padding:.4rem 1rem;font-size:.72rem;font-family:var(--font-mono);color:var(--text-dim);text-transform:uppercase;letter-spacing:.12em;width:fit-content;margin-bottom:1.8rem}
+.badge .dot{width:7px;height:7px;border-radius:50%;background:#fff;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-family:var(--font-head);font-size:clamp(2.6rem,7vw,5rem);font-weight:700;line-height:1.02;letter-spacing:-0.03em;max-width:14ch;margin-bottom:1.4rem}
+.hero h1 .out{color:var(--text-faint)}
+.hero p{font-size:clamp(1rem,2.2vw,1.25rem);color:var(--text-dim);max-width:52ch;margin-bottom:2.4rem}
+.cta-row{display:flex;flex-wrap:wrap;gap:1rem;align-items:center}
+.btn{padding:.9rem 1.9rem;border-radius:50px;font-family:var(--font-head);font-weight:700;font-size:.92rem;display:inline-flex;align-items:center;gap:.55rem;transition:transform .2s,background .2s;cursor:pointer;border:none}
+.btn-solid{background:#fff;color:#000}
+.btn-solid:hover{transform:translateY(-3px)}
+.btn-ghost{background:transparent;border:1px solid var(--border-bright);color:#fff}
+.btn-ghost:hover{background:var(--card-hover)}
+
+/* Stat ticker */
+.stats{display:flex;flex-wrap:wrap;gap:2.5rem;margin-top:3.5rem;padding-top:2.2rem;border-top:1px solid var(--border)}
+.stat .n{font-family:var(--font-head);font-size:1.7rem;font-weight:700}
+.stat .l{font-size:.74rem;color:var(--text-dim);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.08em}
+
+/* Section */
+section{padding:5.5rem 0;position:relative;z-index:2}
+.eyebrow{font-family:var(--font-mono);font-size:.7rem;color:var(--text-faint);text-transform:uppercase;letter-spacing:.18em;margin-bottom:1rem}
+.h2{font-family:var(--font-head);font-size:clamp(1.8rem,4vw,2.7rem);font-weight:700;letter-spacing:-0.02em;line-height:1.1;margin-bottom:1rem}
+.lead{color:var(--text-dim);max-width:58ch;font-size:1.02rem}
+
+/* Audience pillars */
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:2.8rem}
+.pcard{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.7rem;transition:transform .25s,background .25s,border-color .25s}
+.pcard:hover{transform:translateY(-5px);background:var(--card-hover);border-color:var(--border-bright)}
+.pcard i{font-size:1.5rem;margin-bottom:1.1rem;display:block}
+.pcard .num{font-family:var(--font-mono);font-size:.62rem;color:var(--text-faint);letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:.7rem}
+.pcard h3{font-family:var(--font-head);font-size:1.05rem;font-weight:700;margin-bottom:.5rem}
+.pcard p{font-size:.85rem;color:var(--text-dim);line-height:1.55}
+
+/* Explorer */
+.explorer{margin-top:2.8rem}
+.sectors{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.6rem}
+.sec-btn{background:var(--card);border:1px solid var(--border);border-radius:50px;padding:.55rem 1.1rem;font-size:.83rem;font-family:var(--font-head);font-weight:600;color:var(--text-dim);cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem}
+.sec-btn:hover{color:#fff;border-color:var(--border-bright)}
+.sec-btn.active{background:#fff;color:#000;border-color:#fff}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;backdrop-filter:blur(12px);min-height:230px}
+.panel-head{display:flex;align-items:center;gap:.8rem;margin-bottom:1.4rem}
+.panel-head .ico{font-size:1.8rem}
+.panel-head h3{font-family:var(--font-head);font-size:1.3rem;font-weight:700}
+.exlist{list-style:none;display:grid;gap:.85rem}
+.exlist li{display:flex;gap:.8rem;align-items:flex-start;font-size:.92rem}
+.exlist li i{color:#fff;margin-top:.25rem;font-size:.8rem;opacity:.8}
+.exlist li b{font-weight:600}
+.impact{margin-top:1.5rem;padding-top:1.3rem;border-top:1px solid var(--border);font-size:.9rem;color:var(--text-dim)}
+.impact b{color:#fff;font-family:var(--font-head)}
+.fade-swap{animation:fadeUp .4s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* Gaps callout */
+.gaps{background:linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02));border:1px solid var(--border-bright);border-radius:var(--radius);padding:2.6rem;margin-top:2.8rem;backdrop-filter:blur(12px)}
+.gaps h3{font-family:var(--font-head);font-size:1.5rem;font-weight:700;margin-bottom:.8rem}
+.gaps .chips{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.4rem}
+.chip{background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:8px;padding:.5rem .9rem;font-size:.82rem;font-family:var(--font-mono)}
+
+/* Quiz */
+.quiz{margin-top:2.8rem;display:grid;gap:1rem}
+.q{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1.6rem;cursor:pointer;transition:background .2s}
+.q:hover{background:var(--card-hover)}
+.q .qq{font-family:var(--font-head);font-weight:600;font-size:.98rem;display:flex;justify-content:space-between;gap:1rem;align-items:center}
+.q .qq i{color:var(--text-faint);transition:transform .3s}
+.q.open .qq i{transform:rotate(45deg)}
+.q .qa{max-height:0;overflow:hidden;transition:max-height .35s ease,margin .35s ease,opacity .3s;opacity:0;color:var(--text-dim);font-size:.9rem}
+.q.open .qa{max-height:200px;margin-top:.9rem;opacity:1}
+
+/* Library folders */
+.folders{display:grid;gap:1rem;margin-top:2.8rem}
+.folder{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:border-color .25s,background .25s}
+.folder:hover{border-color:var(--border-bright)}
+.folder.open{background:var(--card-hover)}
+.folder-head{width:100%;display:flex;align-items:center;gap:1rem;padding:1.4rem 1.6rem;background:none;border:none;color:#fff;cursor:pointer;text-align:left;font-family:var(--font-head)}
+.folder-ico{font-size:1.4rem;width:34px;text-align:center;transition:transform .35s}
+.folder.open .folder-ico{transform:scale(1.15) translateY(-1px)}
+.folder-meta{flex:1;display:flex;flex-direction:column;gap:.15rem}
+.folder-name{font-weight:700;font-size:1.05rem}
+.folder-count{font-family:var(--font-mono);font-size:.68rem;color:var(--text-faint);text-transform:uppercase;letter-spacing:.1em}
+.folder-chev{color:var(--text-dim);transition:transform .35s;font-size:.85rem}
+.folder.open .folder-chev{transform:rotate(180deg)}
+.folder-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .42s ease}
+.folder.open .folder-body{grid-template-rows:1fr}
+.folder-inner{overflow:hidden;min-height:0}
+.folder-list{list-style:none;padding:0 1rem 1.1rem}
+.lesson{display:flex;align-items:center;gap:.8rem;padding:.85rem 1rem;border-radius:10px;color:var(--text-dim);font-size:.92rem;transition:background .2s,color .2s;opacity:0;transform:translateY(10px)}
+.folder.open .lesson{opacity:1;transform:translateY(0);transition:opacity .45s ease,transform .45s ease,background .2s,color .2s}
+.lesson:hover{background:rgba(255,255,255,0.06);color:#fff}
+.lesson .l-ico{font-size:.8rem;opacity:.7;width:18px;text-align:center}
+.lesson .l-name{flex:1}
+.lesson .l-go{font-size:.72rem;opacity:0;transform:translateX(-4px);transition:opacity .2s,transform .2s}
+.lesson:hover .l-go{opacity:.8;transform:translateX(0)}
+
+/* Footer */
+footer{border-top:1px solid var(--border);padding:3.5rem 0 4rem;position:relative;z-index:2;margin-top:3rem}
+.foot-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2rem;align-items:flex-start}
+.foot-brand h4{font-family:var(--font-head);font-weight:700;font-size:1.1rem;margin-bottom:.5rem}
+.foot-brand p{color:var(--text-dim);font-size:.85rem;max-width:34ch}
+.socials{display:flex;gap:.7rem;margin-top:1.2rem}
+.socials a{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-dim);transition:all .2s}
+.socials a:hover{background:#fff;color:#000;transform:translateY(-3px)}
+.foot-meta{font-family:var(--font-mono);font-size:.72rem;color:var(--text-faint);text-align:right;line-height:1.9}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="aurora"><span></span><span></span></div>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<nav class="nav" id="nav">
+  <a href="#top" class="logo"><i class="fa-solid fa-microchip"></i> AI&nbsp;For&nbsp;Ghana</a>
+  <ul class="nav-links">
+    <li><a href="#audience">Who it's for</a></li>
+    <li><a href="#explore">AI in Ghana</a></li>
+    <li><a href="#library">Lessons</a></li>
+    <li><a href="#quiz">Test yourself</a></li>
+  </ul>
+  <a href="https://raufhusein.site/" class="nav-cta"><i class="fa-solid fa-arrow-left"></i> raufhusein.site</a>
+</nav>
+
+<header class="hero wrap" id="top">
+  <div class="badge"><span class="dot"></span> Free · for every Ghanaian</div>
+  <h1>AI education for <span class="out">every</span> Ghanaian.</h1>
+  <p>From the child in the village to the trader in Makola — AI is already shaping Ghana. We make it visible, teach it plainly, and show you how to <b>build</b> it.</p>
+  <div class="cta-row">
+    <a href="#library" class="btn btn-solid">Browse free lessons <i class="fa-solid fa-book-open"></i></a>
+    <a href="#explore" class="btn btn-ghost">See AI in Ghana <i class="fa-solid fa-arrow-down"></i></a>
+    <a href="https://www.tiktok.com/@AIForGhana" class="btn btn-ghost"><i class="fa-brands fa-tiktok"></i> @AIForGhana</a>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="n">700K+</div><div class="l">farmers reached by AI</div></div>
+    <div class="stat"><div class="n">6</div><div class="l">sectors already running on AI</div></div>
+    <div class="stat"><div class="n">∞</div><div class="l">gaps left to build</div></div>
+  </div>
+</header>
+
+<section id="audience" class="wrap">
+  <div class="reveal">
+    <div class="eyebrow">Who it's for</div>
+    <h2 class="h2">One mission, four learners.</h2>
+    <p class="lead">Education that meets every Ghanaian where they are — from first stories to building real tools.</p>
+  </div>
+  <div class="grid4">
+    <div class="pcard reveal"><i class="fa-solid fa-child-reaching"></i><span class="num">01 · Kids</span><h3>Story &amp; values</h3><p>Anansi tales and bilingual lessons that teach curiosity, wisdom, and the basics of how machines think.</p></div>
+    <div class="pcard reveal"><i class="fa-solid fa-graduation-cap"></i><span class="num">02 · Students</span><h3>Skills &amp; AI literacy</h3><p>Short lessons, study kits and quizzes that turn AI from a buzzword into a skill students can use and build.</p></div>
+    <div class="pcard reveal"><i class="fa-solid fa-briefcase"></i><span class="num">03 · Adults</span><h3>Money &amp; business</h3><p>Practical guidance on income, focus and using AI tools to grow a business in the real Ghanaian economy.</p></div>
+    <div class="pcard reveal"><i class="fa-solid fa-flag"></i><span class="num">04 · Nation</span><h3>What moves Ghana</h3><p>Civic, health, farming and digital-skill content for the topics that move a whole nation forward.</p></div>
+  </div>
+</section>
+
+<section id="explore" class="wrap">
+  <div class="reveal">
+    <div class="eyebrow">AI in everyday Ghana — Lesson 3</div>
+    <h2 class="h2">AI isn't coming. It's already here.</h2>
+    <p class="lead">In your pocket, your farm, your hospital, your bank. Tap a sector to see how AI already works in Ghana today.</p>
+  </div>
+  <div class="explorer reveal">
+    <div class="sectors" id="sectors"></div>
+    <div class="panel" id="panel"></div>
+  </div>
+
+  <div class="gaps reveal">
+    <h3><i class="fa-solid fa-bolt"></i> The gaps are your opportunity.</h3>
+    <p class="lead">Ghana doesn't only have to <i>use</i> AI — we can build it. These are wide open, waiting for Ghanaian builders:</p>
+    <div class="chips">
+      <span class="chip">Twi · Ga · Dagbani AI</span>
+      <span class="chip">Local-gov &amp; land registry</span>
+      <span class="chip">Fishing safety &amp; catch</span>
+      <span class="chip">Mental-health support</span>
+    </div>
+  </div>
+</section>
+
+<section id="library" class="wrap">
+  <div class="reveal">
+    <div class="eyebrow">The library · now public</div>
+    <h2 class="h2">Free lessons. Tap a folder to open it.</h2>
+    <p class="lead">Every folder opens real lessons and resources you can read right now — no signup, no fee. Built for Ghana, free for Ghana.</p>
+  </div>
+  <div class="folders reveal" id="folders"></div>
+</section>
+
+<section id="quiz" class="wrap">
+  <div class="reveal">
+    <div class="eyebrow">Test yourself</div>
+    <h2 class="h2">Did it stick?</h2>
+    <p class="lead">Tap a question to reveal the answer.</p>
+  </div>
+  <div class="quiz reveal" id="quiz"></div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <h4><i class="fa-solid fa-microchip"></i> AI For Ghana</h4>
+      <p>Free AI education for every Ghanaian — child to adult. A Rauf Husein project, built in Accra.</p>
+      <div class="socials">
+        <a href="https://www.tiktok.com/@AIForGhana" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://www.youtube.com/@GAEP-AI" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.instagram.com/rauf_husein/" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://github.com/Prime-HR" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://raufhusein.site/" aria-label="Website"><i class="fa-solid fa-globe"></i></a>
+      </div>
+    </div>
+    <div class="foot-meta">
+      RAUF HUSEIN · ACCRA, GHANA<br>
+      AI EDUCATOR · SOFTWARE STUDIO<br>
+      © <span id="yr"></span> · ANYTHING THAT MOVES THE NATION
+    </div>
+  </div>
+</footer>
+
+<script>
+const SECTORS = [
+  {id:'finance',icon:'💳',name:'Finance & Banking',items:[
+    ['MTN MoMo AI','detects fraud and predicts customer behaviour'],
+    ['Fido','AI credit scoring for people with no bank history'],
+    ['GCB Bank','AI chatbot for customer service']
+  ],impact:'Millions of Ghanaians gain financial access who were previously excluded.'},
+  {id:'agric',icon:'🌽',name:'Agriculture',items:[
+    ['Farmerline','AI voice advice in local languages to 700,000+ farmers'],
+    ['Ignitia','tropical weather AI, more accurate than global models'],
+    ['Drone spraying','AI-guided crop drones in northern Ghana']
+  ],impact:'Higher yields, less waste, better income for farmers.'},
+  {id:'health',icon:'🏥',name:'Health',items:[
+    ['mPharma','AI predicts medicine shortages across 300+ pharmacies'],
+    ['Zipline','AI logistics for blood &amp; medicine delivery by drone'],
+    ['Malaria AI','detection from microscope images']
+  ],impact:'Fewer stockouts and faster emergency medical response.'},
+  {id:'edu',icon:'🎓',name:'Education',items:[
+    ['GES + adaptive learning','AI-powered personalised lessons'],
+    ['Eneza Education','AI tutoring via SMS for low-bandwidth areas'],
+    ['AI For Ghana','free AI education for all Ghanaians']
+  ],impact:'Rural students get the same quality content as Accra.'},
+  {id:'commerce',icon:'🛒',name:'Commerce & Retail',items:[
+    ['Jumia Ghana','AI product recommendations and delivery routing'],
+    ['Tonaton','AI search and fraud detection in classifieds'],
+    ['Social shops','AI helps sellers reach the right customers']
+  ],impact:'Ghanaian businesses compete online like global brands.'},
+  {id:'transport',icon:'🚕',name:'Transport',items:[
+    ['Uber / Bolt','AI matches drivers to riders, surge pricing'],
+    ['Traffic AI','prediction for Accra&rsquo;s roads'],
+    ['Zipline routes','AI plans optimal drone flight paths']
+  ],impact:'Less congestion, faster delivery, safer roads.'}
+];
+const QUIZ = [
+  ['Name one AI company in Ghanaian agriculture and what it does.','Farmerline — AI voice advice to farmers in local languages. (Or Ignitia — tropical weather AI.)'],
+  ['How does Fido use AI to help Ghanaians?','AI credit scoring for people without a traditional bank history.'],
+  ['What gap could students help fill?','Twi / Ga / Dagbani AI models, local-government AI, fishing-industry AI, or mental-health support.'],
+  ['Why is Ignitia&rsquo;s weather AI important for Ghana?','Global models handle tropical African weather poorly. Ignitia is built for West African conditions, giving farmers more accurate forecasts.']
+];
+
+// Build sectors
+const secWrap=document.getElementById('sectors');
+const panel=document.getElementById('panel');
+SECTORS.forEach((s,i)=>{
+  const b=document.createElement('button');
+  b.className='sec-btn'+(i===0?' active':'');
+  b.innerHTML=`<span>${s.icon}</span> ${s.name}`;
+  b.onclick=()=>{document.querySelectorAll('.sec-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');render(s);};
+  secWrap.appendChild(b);
+});
+function render(s){
+  panel.innerHTML=`<div class="fade-swap">
+    <div class="panel-head"><span class="ico">${s.icon}</span><h3>${s.name}</h3></div>
+    <ul class="exlist">${s.items.map(it=>`<li><i class="fa-solid fa-circle-check"></i><span><b>${it[0]}</b> — ${it[1]}</span></li>`).join('')}</ul>
+    <div class="impact"><b>Impact:</b> ${s.impact}</div>
+  </div>`;
+}
+render(SECTORS[0]);
+
+// Build quiz
+const quiz=document.getElementById('quiz');
+QUIZ.forEach(q=>{
+  const d=document.createElement('div');
+  d.className='q';
+  d.innerHTML=`<div class="qq">${q[0]}<i class="fa-solid fa-plus"></i></div><div class="qa">${q[1]}</div>`;
+  d.onclick=()=>d.classList.toggle('open');
+  quiz.appendChild(d);
+});
+
+// Library folders
+const FOLDERS=[
+ {ico:'🤖',name:'AI Education — GAEP',items:[
+   ['GAEP — Ghana AI Education Programme','https://app.notion.com/p/374cb4ca430e817a8facf9c7c8b43fe2'],
+   ['School Curriculum','https://app.notion.com/p/367cb4ca430e81f9821dc4be0eff2a5b'],
+   ['AI Basics — Lesson Scripts (15)','https://app.notion.com/p/367cb4ca430e81e4ae3ecfd0d06296bd'],
+   ['AI Tools Deep Dives (16–30)','https://app.notion.com/p/367cb4ca430e81cf90f1e9210162ad84']
+ ]},
+ {ico:'📐',name:'Ghana Core Curriculum',items:[
+   ['Pillar 1 — Ghana Core Curriculum','https://app.notion.com/p/377cb4ca430e8110829df2c654b88eaf'],
+   ['Pillar 2 — STEM & Technology','https://app.notion.com/p/377cb4ca430e8193bb99dba98c9cfb58'],
+   ['Pillar 3 — Future Skills 2025–2050','https://app.notion.com/p/377cb4ca430e81d38960daa3d302d16e'],
+   ['Pillar 4 — AI For Ghana Content','https://app.notion.com/p/377cb4ca430e81c39999d7b3b1a5b0ec'],
+   ['Pillar 5 — Research & Resources','https://app.notion.com/p/377cb4ca430e81579824d82c366d8974']
+ ]},
+ {ico:'💼',name:'Life Paths — Business & Mindset',items:[
+   ['Pillar 1 — Business Models & Principles','https://app.notion.com/p/37acb4ca430e81d29911d9f1e45d2144'],
+   ['Pillar 2 — Personal Philosophy & Mindset','https://app.notion.com/p/37acb4ca430e81248fa6e6aa418677a2'],
+   ['Pillar 3 — Entrepreneurial Pathways','https://app.notion.com/p/37acb4ca430e81b6ac6ee12fd4982b2f']
+ ]},
+ {ico:'🧠',name:'Prompt Library',items:[
+   ['The Ghana Prompt Quran','https://app.notion.com/p/369cb4ca430e8143855cf60a28f6a7fa']
+ ]}
+];
+const foldersWrap=document.getElementById('folders');
+FOLDERS.forEach((f,fi)=>{
+  const open=fi===0;
+  const d=document.createElement('div');
+  d.className='folder'+(open?' open':'');
+  const items=f.items.map((it,i)=>`<li><a class="lesson" style="transition-delay:${(i*0.05).toFixed(2)}s" href="${it[1]}" target="_blank" rel="noopener"><i class="fa-solid fa-book-open l-ico"></i><span class="l-name">${it[0]}</span><i class="fa-solid fa-arrow-up-right-from-square l-go"></i></a></li>`).join('');
+  const n=f.items.length;
+  d.innerHTML=`<button class="folder-head"><span class="folder-ico">${open?'📂':'📁'}</span><span class="folder-meta"><span class="folder-name">${f.name}</span><span class="folder-count">${n} ${n>1?'lessons':'lesson'}</span></span><i class="fa-solid fa-chevron-down folder-chev"></i></button><div class="folder-body"><div class="folder-inner"><ul class="folder-list">${items}</ul></div></div>`;
+  const ico=d.querySelector('.folder-ico');
+  d.querySelector('.folder-head').onclick=()=>{ico.textContent=d.classList.toggle('open')?'📂':'📁';};
+  foldersWrap.appendChild(d);
+});
+
+// Nav scroll + reveal + cursor + year
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>30));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const glow=document.getElementById('cursorGlow');
+addEventListener('mousemove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px';},{passive:true});
+document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
