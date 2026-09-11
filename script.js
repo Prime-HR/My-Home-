@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations();
   initMobileMenu();
   initScrollTop();
+  initFashionSellerPro();
 });
 
 // ================================================
@@ -138,6 +139,7 @@ const PRODUCTS = [
   { title: 'Employee Self-Service Portals', cat: 'HR · Self-Service', color: '#fdba74', icon: 'fa-id-badge', href: 'products.html' },
   { title: 'Energy Management Systems (EMS)', cat: 'Utilities · Energy', color: '#fbbf24', icon: 'fa-bolt', href: 'products.html' },
   { title: 'Enterprise Resource Planning (ERP)', cat: 'Business · Enterprise', color: '#8b5cf6', icon: 'fa-cubes', href: 'products.html#erp' },
+  { title: 'Fashion Seller Pro', cat: 'Business · Fashion Commerce', color: '#818cf8', icon: 'fa-shirt', href: 'fashion-seller-pro.html' },
 ];
 
 function initSearch() {
@@ -210,6 +212,36 @@ function initSearch() {
     const regex = new RegExp(`(${query})`, 'gi');
     return text.replace(regex, '<mark style="background:rgba(245,166,35,0.3);color:var(--gold);border-radius:2px;">$1</mark>');
   }
+}
+
+// ================================================
+// FASHION SELLER PRO — inject into marketplace
+// ================================================
+function initFashionSellerPro() {
+  const grid = document.getElementById('productsGrid');
+  if (!grid || document.getElementById('fashion-seller-pro-card')) return;
+
+  const card = `
+    <div class="product-card" data-category="business" id="fashion-seller-pro-card">
+      <div class="card-badge hot">NEW · SAAS</div>
+      <div class="card-icon-wrap" style="--icon-color:#818cf8;"><i class="fas fa-shirt"></i></div>
+      <div class="card-body">
+        <div class="card-meta">Business · Fashion Commerce</div>
+        <h3 class="card-title">Fashion Seller Pro</h3>
+        <p class="card-desc">Ghana-focused business operating system for fashion sellers. Manage products, customers, orders, payments, deliveries and profit — all in one simple place.</p>
+        <div class="card-tags"><span>Products</span><span>Orders</span><span>Customers</span><span>Profit</span><span>WhatsApp</span></div>
+      </div>
+      <div class="card-footer">
+        <div class="card-price"><span class="price-label">SaaS</span><span class="price-amount">Coming Soon</span></div>
+        <div class="card-actions">
+          <a href="fashion-seller-pro.html" class="btn-card-primary"><i class="fas fa-arrow-right" style="margin-right:6px;font-size:0.85em;"></i>View Product</a>
+          <a href="contact.html?product=fashion-seller-pro&type=demo" class="btn-card-ghost">Request Demo</a>
+        </div>
+      </div>
+    </div>
+  `;
+
+  grid.insertAdjacentHTML('afterbegin', card);
 }
 
 // ================================================
@@ -466,6 +498,7 @@ if (contactForm) {
       'ghana-school': 'GhanaSchoolApp',
       'ats': 'Applicant Tracking System',
       'payroll-hr': 'Ghana Payroll & HR System',
+      'fashion-seller-pro': 'Fashion Seller Pro',
     };
     const subjectEl = document.getElementById('subject');
     if (subjectEl && subjectMap[productParam]) {
