@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fashion Seller Pro | Rauf Husein Software Marketplace</title>
+  <meta name="description" content="Fashion Seller Pro is a Ghana-focused business operating system for fashion sellers. Manage products, customers, orders, payments, deliveries and profit in one place.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/enhance.css">
+  <style>
+    .fsp-page{min-height:100vh;background:#000;color:#fff}
+    .fsp-wrap{width:min(1120px,calc(100% - 40px));margin:auto}
+    .fsp-hero{padding:150px 0 90px;background:radial-gradient(circle at 75% 25%,rgba(99,102,241,.22),transparent 35%),#000}
+    .fsp-kicker{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid rgba(255,255,255,.16);border-radius:999px;color:#a5b4fc;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    .fsp-hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(3rem,8vw,5.8rem);line-height:.95;max-width:820px;margin:22px 0;font-weight:700;letter-spacing:-.05em}
+    .fsp-hero h1 span{color:#818cf8}
+    .fsp-lead{max-width:760px;font-size:1.2rem;line-height:1.8;color:#b8bcc8}
+    .fsp-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+    .fsp-btn{display:inline-flex;align-items:center;gap:9px;padding:14px 20px;border-radius:12px;text-decoration:none;font-weight:700;border:1px solid rgba(255,255,255,.16);transition:.2s}
+    .fsp-btn-primary{background:#6366f1;color:#fff;border-color:#6366f1}.fsp-btn-primary:hover{background:#4f46e5}.fsp-btn-ghost{color:#fff;background:rgba(255,255,255,.03)}.fsp-btn-ghost:hover{background:rgba(255,255,255,.08)}
+    .fsp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:30px 0 90px}
+    .fsp-card{padding:26px;border:1px solid rgba(255,255,255,.12);border-radius:18px;background:#0d0d0d}
+    .fsp-card i{font-size:1.25rem;color:#818cf8}.fsp-card h3{margin:15px 0 8px;font-size:1.08rem}.fsp-card p{margin:0;color:#9ca3af;line-height:1.7;font-size:.95rem}
+    .fsp-section{padding:30px 0 90px}.fsp-section h2{font-family:'Space Grotesk',sans-serif;font-size:2.2rem;margin-bottom:12px}.fsp-section>p{color:#9ca3af;max-width:760px;line-height:1.8}
+    .fsp-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:28px}.fsp-list div{padding:18px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:#0a0a0a}.fsp-list strong{display:block;margin-bottom:5px}.fsp-list span{color:#9ca3af;font-size:.9rem}
+    .fsp-banner{margin:10px 0 90px;padding:34px;border-radius:22px;background:linear-gradient(135deg,#171717,#0b0b0b);border:1px solid rgba(129,140,248,.35)}
+    .fsp-banner h2{margin:0 0 10px;font-family:'Space Grotesk',sans-serif}.fsp-banner p{margin:0 0 20px;color:#a7acb7;line-height:1.7}
+    @media(max-width:800px){.fsp-grid{grid-template-columns:1fr}.fsp-list{grid-template-columns:1fr}.fsp-hero{padding-top:125px}}
+  </style>
+</head>
+<body class="fsp-page">
+  <nav class="nav solid" id="mainNav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand"><div class="brand-mark">RH</div><div class="brand-text"><span class="brand-name">RAUF HUSEIN</span><span class="brand-tagline">Software Marketplace</span></div></a>
+      <ul class="nav-links"><li><a href="index.html" class="nav-link">Home</a></li><li><a href="products.html" class="nav-link active">Products</a></li><li><a href="categories.html" class="nav-link">Categories</a></li><li><a href="contact.html" class="nav-link">Contact</a></li></ul>
+      <div class="nav-actions"><button class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></button></div>
+    </div>
+  </nav>
+
+  <div class="cursor-dot"></div><div class="cursor-ring"></div><div class="noise-overlay"></div>
+
+  <main>
+    <section class="fsp-hero">
+      <div class="fsp-wrap">
+        <span class="fsp-kicker"><i class="fas fa-store"></i> New SaaS Product</span>
+        <h1>Fashion Seller <span>Pro</span></h1>
+        <p class="fsp-lead">A Ghana-focused business operating system for fashion sellers. Manage your products, customers, orders, payments, deliveries and profit — all in one simple place.</p>
+        <div class="fsp-actions">
+          <a class="fsp-btn fsp-btn-primary" href="contact.html?product=fashion-seller-pro&type=demo"><i class="fas fa-calendar-check"></i> Request a Demo</a>
+          <a class="fsp-btn fsp-btn-ghost" href="https://github.com/Prime-HR/ghboy1" target="_blank" rel="noopener"><i class="fab fa-github"></i> View Project</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="fsp-wrap">
+      <div class="fsp-grid">
+        <article class="fsp-card"><i class="fas fa-boxes-stacked"></i><h3>Products & Stock</h3><p>Track selling price, cost price, stock quantity, low-stock levels, sizes and colours.</p></article>
+        <article class="fsp-card"><i class="fas fa-cart-shopping"></i><h3>Orders & Quick Sale</h3><p>Record sales quickly and follow every order from new order to delivery.</p></article>
+        <article class="fsp-card"><i class="fas fa-users"></i><h3>Customer Management</h3><p>Keep customer details, order history, spending, outstanding balances and VIP status together.</p></article>
+        <article class="fsp-card"><i class="fas fa-chart-line"></i><h3>Profit & Reports</h3><p>Understand revenue, product cost, business expenses, profit trends and best sellers.</p></article>
+        <article class="fsp-card"><i class="fab fa-whatsapp"></i><h3>WhatsApp Selling</h3><p>Generate ready-to-send customer messages and follow-ups, with deeper automation planned.</p></article>
+        <article class="fsp-card"><i class="fas fa-wand-magic-sparkles"></i><h3>AI Seller Tools</h3><p>Generate product descriptions, captions, customer replies, promotions and content ideas.</p></article>
+      </div>
+
+      <section class="fsp-section">
+        <h2>Built around the real work of a fashion seller</h2>
+        <p>Fashion Seller Pro focuses on the business behind the sale — not just putting products online.</p>
+        <div class="fsp-list">
+          <div><strong>Know what needs attention</strong><span>Pending payments, delivery queues and low-stock alerts.</span></div>
+          <div><strong>Protect your margins</strong><span>See revenue, product costs and expenses together.</span></div>
+          <div><strong>Serve customers faster</strong><span>Keep customer details and order history in one place.</span></div>
+          <div><strong>Designed for Ghana</strong><span>Ghana cedi, Mobile Money workflows and WhatsApp-first selling.</span></div>
+        </div>
+      </section>
+
+      <section class="fsp-banner">
+        <h2>Ready to run your fashion business in one place?</h2>
+        <p>Fashion Seller Pro is being developed as a dedicated SaaS application for Ghanaian fashion sellers. Request a demo to follow the product and get access as the application goes live.</p>
+        <a class="fsp-btn fsp-btn-primary" href="contact.html?product=fashion-seller-pro&type=buy"><i class="fas fa-arrow-right"></i> Get Started</a>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
