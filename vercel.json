@@ -16,7 +16,8 @@
     { "source": "/slide-to-video.html", "destination": "/slide-to-video", "permanent": true },
     { "source": "/learning-center.html", "destination": "/learning-center", "permanent": true },
     { "source": "/quiz.html", "destination": "/quiz", "permanent": true },
-    { "source": "/certificate.html", "destination": "/certificate", "permanent": true }
+    { "source": "/certificate.html", "destination": "/certificate", "permanent": true },
+    { "source": "/fashion-seller-pro.html", "destination": "/fashion-seller-pro", "permanent": true }
   ],
   "rewrites": [
     { "source": "/products", "destination": "/products.html" },
@@ -29,7 +30,8 @@
     { "source": "/slide-to-video", "destination": "/slide-to-video.html" },
     { "source": "/learning-center", "destination": "/learning-center.html" },
     { "source": "/quiz", "destination": "/quiz.html" },
-    { "source": "/certificate", "destination": "/certificate.html" }
+    { "source": "/certificate", "destination": "/certificate.html" },
+    { "source": "/fashion-seller-pro", "destination": "/fashion-seller-pro.html" }
   ],
   "headers": [
     {
