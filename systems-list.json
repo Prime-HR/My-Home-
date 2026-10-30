@@ -1,0 +1,242 @@
+[
+ {
+  "id": "medicare",
+  "name": "MediCare Ghana",
+  "meta": "Healthcare · Hospital Management"
+ },
+ {
+  "id": "ehr",
+  "name": "Electronic Health Records (EHR)",
+  "meta": "Healthcare · Records"
+ },
+ {
+  "id": "ctms",
+  "name": "Clinical Trial Management (CTMS)",
+  "meta": "Healthcare · Research"
+ },
+ {
+  "id": "moneybuddy",
+  "name": "MoneyBuddy",
+  "meta": "Finance · Personal"
+ },
+ {
+  "id": "core-banking",
+  "name": "Core Banking System",
+  "meta": "Finance · Banking"
+ },
+ {
+  "id": "accounting-practice-management",
+  "name": "Accounting Practice Management",
+  "meta": "Finance · Accounting"
+ },
+ {
+  "id": "accounting-software",
+  "name": "Accounting Software",
+  "meta": "Finance · Accounting"
+ },
+ {
+  "id": "agri-intel",
+  "name": "Agricultural Intelligence Platform",
+  "meta": "Agriculture · AI/ML"
+ },
+ {
+  "id": "agricultural-marketplace",
+  "name": "Agricultural Marketplace",
+  "meta": "Agriculture · Marketplace"
+ },
+ {
+  "id": "farm-management-systems",
+  "name": "Farm Management Systems",
+  "meta": "Agriculture · Operations"
+ },
+ {
+  "id": "school",
+  "name": "GhanaSchoolApp",
+  "meta": "Education · School Management"
+ },
+ {
+  "id": "education-school-management",
+  "name": "Education (School Management)",
+  "meta": "Education · Management"
+ },
+ {
+  "id": "education-department-systems",
+  "name": "Education Department Systems",
+  "meta": "Education · Department"
+ },
+ {
+  "id": "ghana-election-backend",
+  "name": "Ghana Election Backend",
+  "meta": "Government · Elections"
+ },
+ {
+  "id": "citizen-service-portals",
+  "name": "Citizen Service Portals",
+  "meta": "Government · Services"
+ },
+ {
+  "id": "e-government-platforms",
+  "name": "E-Government Platforms",
+  "meta": "Government · Digital"
+ },
+ {
+  "id": "ghana-payroll-and-hr-system",
+  "name": "Ghana Payroll & HR System",
+  "meta": "HR · Payroll"
+ },
+ {
+  "id": "applicant-tracking-systems-ats",
+  "name": "Applicant Tracking Systems (ATS)",
+  "meta": "HR · Recruitment"
+ },
+ {
+  "id": "employee-self-service-portals",
+  "name": "Employee Self-Service Portals",
+  "meta": "HR · Self-Service"
+ },
+ {
+  "id": "hms",
+  "name": "Hotel Management System (HMS)",
+  "meta": "Hospitality · Full-Suite"
+ },
+ {
+  "id": "event-ticketing-systems",
+  "name": "Event Ticketing Systems",
+  "meta": "Events · Ticketing"
+ },
+ {
+  "id": "appointment-scheduling",
+  "name": "Appointment Scheduling",
+  "meta": "Services · Scheduling"
+ },
+ {
+  "id": "erp",
+  "name": "Enterprise Resource Planning (ERP)",
+  "meta": "Business · Enterprise"
+ },
+ {
+  "id": "customer-relationship-management",
+  "name": "Customer Relationship Management",
+  "meta": "Business · CRM"
+ },
+ {
+  "id": "document-management-systems-dms",
+  "name": "Document Management Systems (DMS)",
+  "meta": "Business · Documents"
+ },
+ {
+  "id": "document-automation-systems",
+  "name": "Document Automation Systems",
+  "meta": "Business · Automation"
+ },
+ {
+  "id": "content-management-systems-cms",
+  "name": "Content Management Systems (CMS)",
+  "meta": "Business · Content"
+ },
+ {
+  "id": "digital-asset-management-dam",
+  "name": "Digital Asset Management (DAM)",
+  "meta": "Business · Assets"
+ },
+ {
+  "id": "case-management-systems",
+  "name": "Case Management Systems",
+  "meta": "Business · Legal"
+ },
+ {
+  "id": "consulting-management-systems",
+  "name": "Consulting Management Systems",
+  "meta": "Business · Consulting"
+ },
+ {
+  "id": "architecture-engineering-project-management",
+  "name": "Architecture Engineering Project Management",
+  "meta": "Construction · Project Management"
+ },
+ {
+  "id": "building-information-modeling-bim",
+  "name": "Building Information Modeling (BIM)",
+  "meta": "Construction · BIM"
+ },
+ {
+  "id": "church-management-system",
+  "name": "Church Management System",
+  "meta": "Community · Church"
+ },
+ {
+  "id": "broadcasting-systems",
+  "name": "Broadcasting Systems",
+  "meta": "Media · Broadcasting"
+ },
+ {
+  "id": "e-commerce-platforms",
+  "name": "E-commerce Platforms",
+  "meta": "Commerce · E-commerce"
+ },
+ {
+  "id": "energy-management-systems-ems",
+  "name": "Energy Management Systems (EMS)",
+  "meta": "Utilities · Energy"
+ },
+ {
+  "id": "edu-ai-agent",
+  "name": "Education AI Agent",
+  "meta": "Education · AI-Powered"
+ },
+ {
+  "id": "safecall",
+  "name": "SafeCall",
+  "meta": "Safety · Emergency Communication"
+ },
+ {
+  "id": "made-in-ghana",
+  "name": "Made in Ghana Digital Marketplace",
+  "meta": "E-Commerce · Made in Ghana"
+ },
+ {
+  "id": "benab",
+  "name": "Benab Enterprise System",
+  "meta": "Business · Enterprise Platform"
+ },
+ {
+  "id": "pharmacy",
+  "name": "Pharmacy Management System",
+  "meta": "Healthcare · Pharmacy"
+ },
+ {
+  "id": "restaurant",
+  "name": "Restaurant Management System",
+  "meta": "Hospitality · Food & Beverage"
+ },
+ {
+  "id": "pos",
+  "name": "Point of Sale (POS) System",
+  "meta": "Retail · Point of Sale"
+ },
+ {
+  "id": "pms",
+  "name": "Project Management System",
+  "meta": "Business · Project Management"
+ },
+ {
+  "id": "property",
+  "name": "Property Management System (PMS)",
+  "meta": "Real Estate · Property"
+ },
+ {
+  "id": "inventory",
+  "name": "Inventory Management System",
+  "meta": "Business · Inventory"
+ },
+ {
+  "id": "wholesale-manager",
+  "name": "PRIME/HR Wholesale Manager",
+  "meta": "Business · Wholesale & Distribution"
+ },
+ {
+  "id": "fleet",
+  "name": "Fleet Management System",
+  "meta": "Logistics · Fleet"
+ }
+]
