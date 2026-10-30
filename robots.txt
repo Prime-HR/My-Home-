@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://raufhusein.site/sitemap.xml
+Sitemap: https://www.raufhusein.site/sitemap.xml

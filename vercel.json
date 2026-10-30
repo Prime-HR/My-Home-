@@ -4,6 +4,7 @@
   "trailingSlash": false,
   "redirects": [
     { "source": "/home", "destination": "/", "permanent": true },
+    { "source": "/learning-center", "destination": "/ai-for-ghana", "permanent": true },
     { "source": "/index", "destination": "/", "permanent": true },
     { "source": "/index.html", "destination": "/", "permanent": true },
     { "source": "/products.html", "destination": "/products", "permanent": true },

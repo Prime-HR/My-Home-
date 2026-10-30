@@ -1,0 +1,144 @@
+/* ===== GHANA GLOW LAYER =====
+   Loaded last on the home page. Brings warm Ghana colours (gold, green, red)
+   back as accents on the black glass design, plus a friendly personal intro. */
+
+:root{
+  --gh-gold:#F7C948;
+  --gh-green:#2ECC8F;
+  --gh-red:#FF5A6E;
+  --gh-sky:#5AB4FF;
+  --gh-violet:#A98BFF;
+  --kente:linear-gradient(90deg,var(--gh-red) 0 33.3%,var(--gh-gold) 33.3% 66.6%,var(--gh-green) 66.6% 100%);
+  --warm-grad:linear-gradient(100deg,var(--gh-gold),#FFB86B 35%,var(--gh-green));
+}
+
+/* Kente stripe across the very top of the page */
+body::before{content:'';position:fixed;top:0;left:0;right:0;height:3px;background:var(--kente);z-index:600;pointer-events:none}
+
+/* Warm colour into the aurora glow behind the hero */
+.fx-aurora .a1{background:radial-gradient(ellipse,rgba(247,201,72,0.30),transparent 68%)}
+.fx-aurora .a2{background:radial-gradient(ellipse,rgba(46,204,143,0.24),transparent 70%)}
+.fx-aurora .a3{background:radial-gradient(ellipse,rgba(255,90,110,0.18),transparent 70%)}
+
+/* Brand mark and accents */
+.brand-mark{background:var(--warm-grad)!important;color:#111!important;box-shadow:0 4px 18px rgba(247,201,72,0.35)}
+.brand-tag{color:rgba(255,255,255,0.55)}
+.sec-label{color:var(--gh-gold)!important;opacity:.9}
+
+/* ---- Hero ---- */
+#entry{padding-top:6.5rem;padding-bottom:4rem;box-sizing:border-box}
+.hello-chip{display:inline-flex;align-items:center;gap:.7rem;padding:.35rem 1.1rem .35rem .35rem;margin-bottom:1.6rem;border-radius:100px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:#fff;text-decoration:none;font-size:.9rem;transition:transform .25s,border-color .25s,background .25s}
+.hello-chip:hover{transform:translateY(-2px);border-color:rgba(247,201,72,0.6);background:rgba(247,201,72,0.08)}
+.hello-chip img{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid transparent;background:var(--warm-grad) border-box;box-shadow:0 0 0 2px #000 inset}
+.hello-chip b{font-weight:700}
+.hello-chip .wave{display:inline-block;transform-origin:70% 70%;animation:wave 2.6s ease-in-out infinite}
+@keyframes wave{0%,60%,100%{transform:rotate(0)}10%,30%{transform:rotate(16deg)}20%,40%{transform:rotate(-8deg)}}
+.entry-tag{display:none}
+
+.entry-title .line2{background:linear-gradient(90deg,var(--gh-gold),#FFB86B,var(--gh-green),var(--gh-gold))!important;background-size:200% auto!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;filter:drop-shadow(0 6px 30px rgba(247,201,72,0.25))}
+.entry-title .line3{color:rgba(255,255,255,0.45)!important;-webkit-text-fill-color:rgba(255,255,255,0.45)!important}
+.entry-sub strong{color:var(--gh-gold)}
+
+/* Main buttons: warm gold pill */
+.btn-enter,.nav-cta,.btn-red,.btn-green{background:var(--warm-grad)!important;color:#111!important;box-shadow:0 6px 24px rgba(247,201,72,0.30)!important}
+.btn-enter:hover,.nav-cta:hover,.btn-red:hover,.btn-green:hover{background:var(--warm-grad)!important;filter:brightness(1.08);box-shadow:0 10px 36px rgba(247,201,72,0.45)!important}
+
+/* Stats as small glass tiles with coloured numbers */
+.entry-stats{gap:1rem;border-top:none;margin-top:4rem;padding-top:0}
+.entry-stats > div{min-width:150px;padding:1.1rem 1.4rem;border-radius:22px;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.10);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:transform .25s,border-color .25s}
+.entry-stats > div:hover{transform:translateY(-3px)}
+.entry-stats > div:nth-child(1) .sa{color:var(--gh-gold)}
+.entry-stats > div:nth-child(2) .sa{color:var(--gh-green)}
+.entry-stats > div:nth-child(3) .sa{color:var(--gh-sky)}
+.entry-stats > div:nth-child(4) .sa{color:var(--gh-red)}
+.entry-stats > div:nth-child(1):hover{border-color:rgba(247,201,72,.5)}
+.entry-stats > div:nth-child(2):hover{border-color:rgba(46,204,143,.5)}
+.entry-stats > div:nth-child(3):hover{border-color:rgba(90,180,255,.5)}
+.entry-stats > div:nth-child(4):hover{border-color:rgba(255,90,110,.5)}
+
+/* Status bar and ticker */
+.cmd-stat-val .a{color:var(--gh-green)}
+.fx-ticker-track i{color:var(--gh-gold)}
+.fx-ticker-track span:nth-child(3n+2) i{color:var(--gh-green)}
+.fx-ticker-track span:nth-child(3n) i{color:var(--gh-red)}
+
+/* ---- Hub zones: each one gets its own colour ---- */
+.zone{--zc:247,201,72}
+.z-marketplace{--zc:247,201,72}
+.z-ai{--zc:169,139,255}
+.z-edu{--zc:46,204,143}
+.z-demos{--zc:255,90,110}
+.z-tools{--zc:90,180,255}
+.z-cta{--zc:255,184,107}
+.z-about{--zc:46,204,143}
+.zone{background:linear-gradient(150deg,rgba(var(--zc),0.10),rgba(255,255,255,0.03) 55%)!important}
+.zone:hover{border-color:rgba(var(--zc),0.55)!important;box-shadow:0 24px 70px rgba(var(--zc),0.18),inset 0 1px 0 rgba(255,255,255,0.2)!important}
+.z-icon{width:64px;height:64px;display:flex;align-items:center;justify-content:center;font-size:2rem;opacity:1;padding:0;margin-bottom:auto;border-radius:20px;background:rgba(var(--zc),0.16);border:1px solid rgba(var(--zc),0.35);box-shadow:0 8px 24px rgba(var(--zc),0.18);transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.zone:hover .z-icon{transform:translateY(-4px) rotate(-6deg) scale(1.06)}
+.zone .z-tag{color:rgba(var(--zc),0.95)!important}
+.zone:hover .z-arr{color:rgb(var(--zc))!important}
+.z-badge{color:rgb(var(--zc));border-color:rgba(var(--zc),0.4);background:rgba(var(--zc),0.10)}
+.z-live,.z-live-dot{color:var(--gh-green)}
+.z-live-dot{background:var(--gh-green);box-shadow:0 0 10px var(--gh-green)}
+.zone{padding-top:2rem}
+.zone > *{position:relative;z-index:1}
+.zone > .z-badge,.zone > .z-live{position:absolute;z-index:2}
+
+/* ---- Marketplace product cards coloured by category ---- */
+.pc{--pcc:247,201,72}
+.pc[data-cat="healthcare" i]{--pcc:255,90,110}
+.pc[data-cat="agriculture" i]{--pcc:46,204,143}
+.pc[data-cat="finance" i]{--pcc:247,201,72}
+.pc[data-cat="education" i]{--pcc:90,180,255}
+.pc[data-cat="government" i]{--pcc:169,139,255}
+.pc .pc-cat{display:inline-block;color:rgb(var(--pcc));background:rgba(var(--pcc),0.12);border:1px solid rgba(var(--pcc),0.3);border-radius:100px;padding:.2rem .65rem}
+.pc .pc-icon{opacity:.85}
+.pc:hover{border-color:rgba(var(--pcc),0.5)!important;box-shadow:0 24px 60px rgba(var(--pcc),0.14)!important}
+.pc .pc-btn:hover{background:rgb(var(--pcc));border-color:rgb(var(--pcc));color:#111}
+.pill.active{background:var(--warm-grad)!important;border-color:transparent!important;color:#111!important}
+
+/* ---- Testimonials, education, about ---- */
+.t-stars{color:var(--gh-gold)!important;text-shadow:0 0 12px rgba(247,201,72,.5)}
+.t-card:hover{border-color:rgba(247,201,72,.45)!important}
+.t-avatar{background:var(--warm-grad)!important;color:#111!important}
+.aig-title em{background:var(--warm-grad)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important}
+.phase-num{color:var(--gh-gold);background:rgba(247,201,72,0.10);border-color:rgba(247,201,72,0.3)}
+.pillar-card .pillar-num{color:var(--gh-green)}
+.pillar-icon{display:inline-flex;width:52px;height:52px;align-items:center;justify-content:center;border-radius:16px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12)}
+.pillar-card:hover .pillar-icon{transform:scale(1.08) rotate(-5deg);transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+.about-photo{border:none!important;box-shadow:0 0 0 3px #000,0 0 0 6px rgba(247,201,72,.65),0 24px 60px rgba(247,201,72,.22)!important}
+.hl{color:var(--gh-gold)}
+.city i{color:var(--gh-red)}
+.soc:hover,.fsoc:hover{border-color:var(--gh-gold)!important;color:var(--gh-gold)!important;transform:translateY(-2px)}
+
+/* ---- Call to action: glowing Ghana border ---- */
+.cta-inner{overflow:hidden}
+.cta-inner::before{content:'';position:absolute;inset:-2px;top:auto;left:0;width:auto;height:4px;background:var(--kente)!important;border-radius:0;z-index:2}
+.cta-inner{box-shadow:0 30px 90px rgba(247,201,72,0.12),inset 0 1px 0 rgba(255,255,255,0.16)!important;background:radial-gradient(ellipse at 50% 0%,rgba(247,201,72,0.14),transparent 60%),rgba(255,255,255,0.04)!important}
+
+/* Footer brand + scroll button */
+.fb-mark .bm{background:var(--warm-grad)!important;color:#111!important}
+.fc ul li i{color:var(--gh-gold)}
+.scroll-top:hover{background:var(--gh-gold)!important;color:#111!important}
+footer{border-top:none!important;position:relative}
+footer::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--kente);opacity:.8}
+
+/* Custom cursor in gold */
+.cur-dot{background:var(--gh-gold)!important;box-shadow:0 0 12px var(--gh-gold)}
+.cur-ring{border-color:rgba(247,201,72,0.55)!important}
+
+/* Phone */
+@media(max-width:600px){
+  .nav{padding:.8rem 1rem}
+  .nav-cta{padding:.5rem .95rem!important;font-size:.75rem!important;white-space:nowrap}
+  .brand-tag{display:none}
+  .hello-chip{font-size:.82rem}
+  .entry-stats{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:3rem}
+  .entry-stats > div{min-width:0;padding:.9rem}
+  .stat-num{font-size:1.6rem}
+  .entry-title .line3{white-space:normal}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .hello-chip .wave{animation:none}
+}
